@@ -175,7 +175,7 @@ div {
     color: #6E7173;
     float: left;
     display: inline;
-    text-indent: .15em; }
+    text-indent: 2em; }
     .post .post-meta:before {
       font-family: "FontAwesome";
       content: "\f073";
