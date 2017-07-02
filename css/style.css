@@ -161,8 +161,7 @@ div {
   color: #888; }
 
 .post {
-  padding: 25px 0 15px;
-  text-indent: 2em; }
+  padding: 25px 0 15px; }
   .post .post-title {
     margin: 0;
     color: #555;
@@ -176,7 +175,7 @@ div {
     color: #6E7173;
     float: left;
     display: inline;
-    text-indent: .15em; }
+    text-indent: 2em; }
     .post .post-meta:before {
       font-family: "FontAwesome";
       content: "\f073";
