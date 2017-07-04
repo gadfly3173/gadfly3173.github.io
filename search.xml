@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+    
+    <entry>
+      <title><![CDATA[【纪实】 - 智障博客搭建旅程]]></title>
+      <url>/2017/07/%E6%90%AD%E5%BB%BA%E7%BA%AA%E5%AE%9E/</url>
+      <content type="html"><![CDATA[<p>拥有一个自己的网站曾经是我的一个梦想。这个想法其实从初中的时候我就开始有了，但是呢。。。我其实不是一个执行力很强的人，于是一拖再拖，拖到了现在。。。(╯‵□′)╯︵┻━┻<br><a id="more"></a></p>
+<h2 id="蠢蠢欲动"><a href="#蠢蠢欲动" class="headerlink" title="蠢蠢欲动"></a>蠢蠢欲动</h2><p>彼时我正在研究Flyme和MIUI的patchrom（虽然没坚持下去是吧），于是我看到了这么一个网站：<a href="http://kernel.meizu.com" target="_blank" rel="external">魅族内核团队</a>，通过其中的关于页面，以及之后的百度谷歌，我发现GitHub提供了静态网站的托管服务，并且可以自己通过jekyll等工具对markdown文档进行编译，生成静态网页。</p>
+<h2 id="付诸行动"><a href="#付诸行动" class="headerlink" title="付诸行动"></a>付诸行动</h2><p>魅族内核团队提供了自己的博客源代码，于是我将其仓库直接Fork到了我自己的账户下，修改仓库名以符合GitHub Pages的要求。访问<a href="https://gadfly3173.github.io">gadfly3173.github.io</a>后就显示了和魅族内核团队一样的页面。这个时候就应该开始修改网站让他变成我自己的了。为了管理方便，我选择Visual Studio Code对博客源代码进行管理。通过其内置的强大的搜索功能，我将其中与我无关的内容都进行了删减和修改。为了在Linux环境下修改方便，我顺手学习了一下GIMP（说得好像这玩意的基础操作很难学一样。。。），最后得到了这样的效果：<br><img src="/images/posts/2017/07/jekyll_ver.jpg" alt=""><br>看起来是还不错，但是总想做点什么，让它看起来更像是我的博客，而不是从别人那里直接生搬硬套过来的。<br><img src="/images/posts/sticker/huajidog.gif" alt=""><br>结合我在百度上找到的别人建站的经验，我给我的博客页面中头像显示处增加了鼠标滑过头像旋转的功能，参考了很多网上的方法。这个功能我实现了很久，后来发现实在是我的CSS语法掌握得太差而导致没有显示。。。┑(￣Д ￣)┍</p>
+<h2 id="遭遇阻力"><a href="#遭遇阻力" class="headerlink" title="遭遇阻力"></a>遭遇阻力</h2><p>这个时候我意识到，我需要给我的博客添加一个评论功能。作为静态页面，这是不能直接实现的，但这并不意味着没有方法。通过JavaScript技术，可以由外部服务器提供评论功能。百度一下，发现大家都在用多说，可我再一百度多说，发现多说倒闭了。。。WTF？？？<br>通过谷歌再次搜索，发现还有很多人通过Disqus来实现。于是按照教程我完成了Disqus的部署。然而在一次意外中，我发现这东西其实是被墙的，普通用户难以使用。。。坑爹。。。<br>于是再次搜索资料，发现大家还喜欢用一些其他的评论系统，于是一个个试过来，发现不是不能以中文显示评论插件，就是显示我的域名被占用（没错，网易云跟帖，我说的就是你）正当我垂头丧气时，我意外发现了一个开源项目叫Gitment。作者利用GitHub的Issue功能和API，制作了一个用Issue页面来实现评论功能的插件。这好像正合我意啊！<br><img src="/images/posts/sticker/juezui.jpg" alt=""><br>可是当我将其应用后，我发现这玩意按钮哪里不对？？？<br><img src="/images/posts/2017/07/gitment_bug.png" alt=""><br>经过一段时间的研究，我怀疑是我们的主题或者jekyll的问题。。。然而考虑到jekyll在win下使用不方便等原因，我决定在技师的安利下转到Hexo。</p>
+<h2 id="转移阵地"><a href="#转移阵地" class="headerlink" title="转移阵地"></a>转移阵地</h2><p>Hexo一开始让我有点不太习惯。虽然它比Jekyll的可维护性更强，但是文件结构更加复杂。。。不过Hexo中很多功能通过一条命令一个插件就能搞定，要比Jekyll什么都自己动手方便得多。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 建站 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 纪实 </tag>
+            
+            <tag> 建站 </tag>
+            
+            <tag> Hexo </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Hello World & Demo]]></title>
+      <url>/2017/07/hello-world/</url>
+      <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+]]></content>
+      
+        
+    </entry>
+    
+  
+  
+</search>
