@@ -11,7 +11,7 @@ comments: false
 ## 关于本站
 
 * 本站托管在 [GitHub](http://github.com) 和 [CodingPage](https://coding.net/) 上，通过 [Markdown](http://wowubuntu.com/markdown/) 撰写，由 [Hexo](https://hexo.io/) 静态化。
-* 源码仓库：[gadfly3173.github.io](https://github.com/gadfly3173/gadfly3173.github.io)
+* 源码仓库：[gadfly3173.github.io](https://github.com/gadfly3173/gadfly3173.github.io/tree/source)
 
 ## 我的风采
 
