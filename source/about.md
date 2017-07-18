@@ -3,14 +3,15 @@ layout: page
 title: "关于"
 description: "猪蹄宝宝的博客n(*≧▽≦*)n"
 group: navigation
-comments: false
+comment: false
+notag: true
 ---
 
 没啥好讲的，nie
 
 ## 关于本站
 
-* 本站托管在 [GitHub](http://github.com) 和 [CodingPage](https://coding.net/) 上，通过 [Markdown](http://wowubuntu.com/markdown/) 撰写，由 [Hexo](https://hexo.io/) 静态化。
+* 本站托管在 [GitHub](http://github.com) 上，通过 [Markdown](http://wowubuntu.com/markdown/) 撰写，由 [Hexo](https://hexo.io/) 静态化。
 * 源码仓库：[gadfly3173.github.io](https://github.com/gadfly3173/gadfly3173.github.io/tree/source)
 
 ## 我的风采
@@ -22,6 +23,9 @@ comments: false
 
 ## 更新日志
 
+* 2017-07-14 update
+  1. 更换主题为Material
+  2. 关闭国内镜像站
 * 2017-07-03 update
   1. 修正两个域名下的评论不同步的问题
 * 2017-07-02 update

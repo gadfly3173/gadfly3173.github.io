@@ -1,0 +1,60 @@
+{
+  "_from": "hexo-material",
+  "_id": "hexo-material@1.4.0",
+  "_inBundle": false,
+  "_integrity": "sha1-mOhZWLUqdlK4Rb8ESklph4jCfhA=",
+  "_location": "/hexo-material",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "hexo-material",
+    "name": "hexo-material",
+    "escapedName": "hexo-material",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/hexo-material/-/hexo-material-1.4.0.tgz",
+  "_shasum": "98e85958b52a7652b845bf044a49698788c27e10",
+  "_spec": "hexo-material",
+  "_where": "/home/gadfly/gadfly3173.github.io",
+  "author": {
+    "name": "Viosey"
+  },
+  "bugs": {
+    "url": "https://github.com/viosey/hexo-theme-material/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Material Design Theme for Hexo",
+  "devDependencies": {
+    "ejs-lint": "^0.2.0",
+    "eslint": "^3.14.0",
+    "eslint-config-airbnb-base": "^11.0.1",
+    "eslint-plugin-import": "^2.2.0",
+    "sass-lint": "^1.10.2"
+  },
+  "homepage": "https://github.com/viosey/hexo-theme-material#readme",
+  "keywords": [
+    "hexo",
+    "theme",
+    "material"
+  ],
+  "license": "GPL-3.0",
+  "name": "hexo-material",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/viosey/hexo-theme-material.git"
+  },
+  "scripts": {
+    "lint": "npm run setup && bash lint.sh",
+    "setup": "npm cache clean && npm install",
+    "test": "echo \"Error: no test specified\""
+  },
+  "version": "1.4.0"
+}

@@ -67,7 +67,7 @@ plugin:
 - hexo-generator-feed
 
 ## Themes: https://hexo.io/themes/
-theme: maupassant
+theme: material
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
@@ -75,5 +75,4 @@ deploy:
   type: git
   repo: 
     github: git@github.com:gadfly3173/gadfly3173.github.io.git
-    coding: git@git.coding.net:gadfly3173/gadfly3173.coding.me.git
   branch: master
