@@ -4,9 +4,9 @@
 
 # Head info
 head:
-    favicon: "https://q.qlogo.cn/headimg_dl?dst_uin=2427303995&spec=100"
-    high_res_favicon: "https://q.qlogo.cn/headimg_dl?dst_uin=2427303995&spec=200"
-    apple_touch_icon: "https://q.qlogo.cn/headimg_dl?dst_uin=2427303995&spec=200"
+    favicon: "https://q.qlogo.cn/headimg_dl?dst_uin=2427303995&spec=140"
+    high_res_favicon: "https://q.qlogo.cn/headimg_dl?dst_uin=2427303995&spec=140"
+    apple_touch_icon: "https://q.qlogo.cn/headimg_dl?dst_uin=2427303995&spec=140"
     keywords: 猪蹄 技术 博客
     site_verification:
         google:
@@ -19,7 +19,7 @@ head:
 # Jump Links Settings
 url:
     rss: /atom.xml
-    daily_pic: "#"
+    daily_pic: https://www.bing.com/gallery/
     logo: "#"
 
 
@@ -67,13 +67,11 @@ background:
     bing:
         enable: false
         parameter: "C"
-    particles_js:
-        enable: false
 
 # Images Settings
 img:
     logo: "/img/logo.png"
-    avatar: "https://q.qlogo.cn/headimg_dl?dst_uin=2427303995&spec=100"
+    avatar: "https://q.qlogo.cn/headimg_dl?dst_uin=2427303995&spec=140"
     daily_pic: "/img/daily_pic.png"
     sidebar_header: "/img/sidebar_header.png"
     random_thumbnail: "/img/random/material-"
