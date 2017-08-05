@@ -9,8 +9,12 @@ BL的博客:
 你说:
     link: https://nishuo.me
     avatar: "https://q.qlogo.cn/headimg_dl?dst_uin=1542966096&spec=100"
-    descr: "https://nishuo.me"
+    descr: 一直PY的动车组群主
 必应美图API:
     link: https://i-meto.com/bing-api/
-    avatar: "/images/bing-meitu.jpg"
+    avatar: /images/logo/bing-meitu.jpg
     descr: 偶然发现的必应美图API
+Hitokoto API:
+    link: https://blog.lwl12.com/read/hitokoto-api.html
+    avatar: /images/logo/hitokoto.jpg
+    descr: 一言纯净版

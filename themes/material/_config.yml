@@ -9,8 +9,8 @@ head:
     apple_touch_icon: "https://q.qlogo.cn/headimg_dl?dst_uin=2427303995&spec=140"
     keywords: 猪蹄 技术 博客
     site_verification:
-        google:
-        baidu:
+        google: MOBmMnlG4FLxPhQfX-_7yxv5LpI6xyDNZAHcTmO6U3A
+        baidu: 
 
     # Enable generate structured-data as JSON+LD for SEO or not.
     #        Set as 'false' if it cause some wrong when `hexo g`.
@@ -20,7 +20,7 @@ head:
 url:
     rss: /atom.xml
     daily_pic: https://www.bing.com/gallery/
-    logo: "#"
+    logo: 
 
 
 # ---------------------------------------------------------------
@@ -33,7 +33,7 @@ scheme: Paradox
 
 # UI & UX: slogan, color, effect
 uiux:
-    slogan: "好久不见！o(>﹏<)o"
+    slogan: <script type="text/javascript" src="https://api.lwl12.com/hitokoto/main/get?encode=js&charset=utf-8"></script><div id="lwlhitokoto"><script>lwlhitokoto()</script></div>
     theme_color: "#0097A7"
     theme_sub_color: "#00838F"
     hyperlink_color: "#00838F"

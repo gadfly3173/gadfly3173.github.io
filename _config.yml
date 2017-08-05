@@ -5,14 +5,14 @@
 # Site
 title: 猪蹄宝宝的博客n(*≧▽≦*)n
 subtitle:
-description:
+description: 有人问我，我就会讲，但是无人来
 author: 猪蹄宝宝
 language: zh-CN
 timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://gadfly3173.github.io/
+url: http://blog.gadfly.vip/
 root: /
 permalink: :year/:month/:title/
 permalink_defaults:
@@ -41,7 +41,7 @@ highlight:
   enable: true
   line_number: true
   auto_detect: false
-  tab_replace:
+  tab_replace: 
 
 # Category & Tag
 default_category: uncategorized
@@ -62,9 +62,10 @@ pagination_dir: page
 
 # Extensions
 ## Plugins: https://hexo.io/plugins/
-#RSS订阅
+#RSS订阅 Sitemap
 plugin:
 - hexo-generator-feed
+- hexo-generator-sitemap
 
 ## Themes: https://hexo.io/themes/
 theme: material

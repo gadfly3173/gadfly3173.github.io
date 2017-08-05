@@ -48,9 +48,9 @@
     <% if(theme.analytics.use === "baidu") { %>
         <link rel="dns-prefetch" href="https://hm.baidu.com"/>
     <% } %>
-    <% if(theme.analytics.use === "google") { %>
+    <!--<% if(theme.analytics.use === "google") { %>-->
         <link rel="dns-prefetch" href="https://www.google-analytics.com"/>
-    <% } %>
+    <!--<% } %>-->
     <% if(theme.analytics.use === "cnzz") { %>
         <link rel="dns-prefetch" href="https://s95.cnzz.com"/>
     <% } %>
@@ -79,6 +79,7 @@
     <!-- Site Verification -->
     <% if(theme.head.site_verification.google) { %><meta name="google-site-verification" content="<%= theme.head.site_verification.google %>" /><% } %>
     <% if(theme.head.site_verification.baidu) { %><meta name="baidu-site-verification" content="<%= theme.head.site_verification.baidu %>" /><% } %>
+    <meta name="google-site-verification" content="-XYYwwZAFEK7e05Fhm5pc4VxaFvBnqSMqjkKTwu8hlU" />
 
     <!-- Favicons -->
     <link rel="icon shortcut" type="image/ico" href="<%= theme.head.favicon %>">
@@ -171,9 +172,6 @@
     <%}%>
     
     <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
-
-    <!-- Analytics -->
-    <% if(theme.analytics.use) { %><%- partial('_widget/analytics/' + theme.analytics.use + '-analytics') %><% } %>
 
     <!-- Custom Head -->
     <% if (site.data.head) { %>

@@ -1,10 +1,10 @@
 ---
-layout: page
 title: "关于"
 description: "猪蹄宝宝的博客n(*≧▽≦*)n"
 group: navigation
 comment: false
 notag: true
+totop: true
 ---
 
 没啥好讲的，nie
@@ -23,6 +23,9 @@ notag: true
 
 ## 更新日志
 
+* 2017-08-04 update
+  1. 修改欢迎语为Hitokoto(一言 - 纯净)API
+  2. 完成域名ICP备案
 * 2017-07-19 update
   1. 修改每日一图为必应美图
   2. 增加粒子背景

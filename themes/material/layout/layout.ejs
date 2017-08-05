@@ -7,21 +7,21 @@
         <%- partial('_widget/page-gallery') %>
     <% } else { %>
         <body id="scheme-<%= theme.scheme %>" class="lazy">
-            <canvas id="Mycanvas" style="position:fixed;z-index:-99;">你这是什么垃圾浏览器，都不能显示(╯‵□′)╯︵┻━┻</canvas>
+            <canvas id="Mycanvas" style="position:fixed;z-index:-99;display:block;">你这是什么垃圾浏览器，都不能显示(╯‵□′)╯︵┻━┻</canvas>
                     <script>
-
-	                     var WIDTH = window.innerWidth, HEIGHT = window.innerHeight, POINT = 35;
+	                     
+                        var WIDTH = window.innerWidth, HEIGHT = window.innerHeight, POINT = 15;
 	
-                         var canvas = document.getElementById('Mycanvas');
-                         canvas.width = WIDTH,
-	                     canvas.height = HEIGHT;
-	                     var context = canvas.getContext('2d');
-	                     context.strokeStyle = 'rgba(0,0,0,0.02)',
-	                     context.strokeWidth = 1,
-	                     context.fillStyle = 'rgba(0,0,0,0.05)';
-	                     var circleArr = [];
+                        var canvas = document.getElementById('Mycanvas');
+                        WIDTH = canvas.width = window.innerWidth;
+                        HEIGHT = canvas.height = window.innerHeight;
+	                    var context = canvas.getContext('2d');
+	                    context.strokeStyle = 'rgba(0,0,0,0.02)',
+	                    context.strokeWidth = 1,
+	                    context.fillStyle = 'rgba(0,0,0,0.05)';
+	                    var circleArr = [];
 
-	                     function Line (x, y, _x, _y, o) {
+                        function Line (x, y, _x, _y, o) {
                      		this.beginX = x,
                      		this.beginY = y,
                      		this.closeX = _x,
@@ -72,9 +72,7 @@
 
                      	function draw () {
 	                     	context.clearRect(0,0,canvas.width, canvas.height);
-	                     	for (var i = 0; i < POINT; i++) {
-	                     		drawCricle(context, circleArr[i].x, circleArr[i].y, circleArr[i].r);
-	                     	}
+	                     	
 	                     	for (var i = 0; i < POINT; i++) {
 	                     		for (var j = 0; j < POINT; j++) {
 	                     			if (i + j < POINT) {
@@ -89,9 +87,12 @@
 		                     		}
 		                     	}
 		                     }
+                             for (var i = 0; i < POINT; i++) {
+	                     		drawCricle(context, circleArr[i].x, circleArr[i].y, circleArr[i].r);
+	                     	}
 	                     }
 
-                     	window.onload = function () {
+                     	$(document).ready(function(){ 
                      		init();
                      		setInterval(function () {
 	                     		for (var i = 0; i < POINT; i++) {
@@ -106,7 +107,7 @@
 	                     		}
 	                     		draw();
 	                     	}, 16);
-	                     }
+	                     })
 
                      </script>
             
