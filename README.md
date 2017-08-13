@@ -15,3 +15,7 @@ $ npm install -g hexo
 $ hexo init
 ```
 剩下的东西请自己查看node与hexo的文档，需要使用的插件请自行寻找安装。
+本站已使用插件：
+1. hexo-generator-feed #RSS
+2. hexo-generator-sitemap #Sitemap
+3. hexo-generator-search #Search
