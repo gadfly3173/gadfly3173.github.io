@@ -79,6 +79,7 @@
     <!-- Site Verification -->
     <% if(theme.head.site_verification.google) { %><meta name="google-site-verification" content="<%= theme.head.site_verification.google %>" /><% } %>
     <% if(theme.head.site_verification.baidu) { %><meta name="baidu-site-verification" content="<%= theme.head.site_verification.baidu %>" /><% } %>
+    <!--老站-->
     <meta name="google-site-verification" content="-XYYwwZAFEK7e05Fhm5pc4VxaFvBnqSMqjkKTwu8hlU" />
 
     <!-- Favicons -->
@@ -170,6 +171,17 @@
         <%- partial('_partial/config_css') %>
         <%- jsLsload('js/jquery.min.js') %>
     <%}%>
+
+    <!-- Analytics -->
+    <% if(theme.analytics.baidu_site_id) { %>
+        <%- partial('_widget/analytics/baidu-analytics') %>
+    <% } %>
+    <% if(theme.analytics.cnzz_site_id) { %>
+        <%- partial('_widget/analytics/cnzz-analytics') %>
+    <% } %>
+    <% if(theme.analytics.google_site_id) { %>
+        <%- partial('_widget/analytics/google-analytics') %>
+    <% } %>
     
     <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
 
