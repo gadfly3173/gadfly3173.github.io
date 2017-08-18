@@ -230,7 +230,7 @@ search:
 # Available value:
 #     baidu | google | cnzz
 analytics:
-    baidu_site_id: c905ffbd0c5f2e7a794cefce7d70562a
+    baidu_site_id: d95615699de515b10c8ca2ec86c7982e
     google_site_id:
     cnzz_site_id:
 
