@@ -10,10 +10,6 @@ $ sudo apt install nodejs
 ```bash
 $ npm install -g hexo
 ```
-然后进入你准备放博客的位置，执行
-```bash
-$ hexo init
-```
 剩下的东西请自己查看node与hexo的文档，需要使用的插件请自行寻找安装。
 本站已使用插件：
 1. hexo-generator-feed #RSS
