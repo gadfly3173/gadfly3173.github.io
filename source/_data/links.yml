@@ -1,13 +1,13 @@
 技师的博客:
-    link: https://yunhao981.github.io
+    link: https://yunhao981.github.io/
     avatar: "https://q.qlogo.cn/headimg_dl?dst_uin=1050715632&spec=100"
     descr: "https://yunhao981.github.io"
 BL的博客:
-    link: https://bolinghh.github.io
+    link: https://bolinghh.github.io/
     avatar: "https://q.qlogo.cn/headimg_dl?dst_uin=929590345&spec=100"
     descr: "https://bolinghh.github.io"
 你说:
-    link: https://nishuo.me
+    link: https://zuotian.org/
     avatar: "https://q.qlogo.cn/headimg_dl?dst_uin=1542966096&spec=100"
     descr: 一直PY的动车组群主
 必应美图API:
@@ -26,3 +26,7 @@ Viosey:
     link: https://www.ryongyon.com/fairly-easy-to-use-must-be-daily-picture-api.html
     avatar: /images/logo/ryongyon.jpg
     descr: 另一个必应美图API
+MSMVU:
+    link: https://msmvu.org/
+    avatar: http://p.qlogo.cn/gh/375664708/375664708/140/
+    descr: MSMVU中学生地铁志愿者联盟
