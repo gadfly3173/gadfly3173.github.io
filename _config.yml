@@ -38,7 +38,7 @@ post_asset_folder: false
 relative_link: false
 future: true
 highlight:
-  enable: true
+  enable: false
   line_number: true
   auto_detect: false
   tab_replace: 
@@ -66,6 +66,12 @@ pagination_dir: page
 plugin:
 - hexo-generator-feed
 - hexo-generator-sitemap
+- hexo-prism-plugin
+
+prism_plugin:
+  mode: 'preprocess'    # realtime/preprocess
+  theme: 'default'
+  line_number: false    # default false
 
 ## Themes: https://hexo.io/themes/
 theme: material
