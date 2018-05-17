@@ -120,7 +120,7 @@ toc:
 
 # SNS Menu
 sns:
-    email: 2427303995@qq.com
+    email: gadfly@gadfly.vip
     facebook: 
     twitter: 
     googleplus: 
@@ -147,7 +147,7 @@ sns_share:
 sidebar:
     dropdown:
         给我发邮件:
-            link: mailto:2427303995@qq.com
+            link: mailto:gadfly@gadfly.vip
             icon: email
     homepage:
         use: true
