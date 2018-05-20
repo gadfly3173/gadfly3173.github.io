@@ -1,6 +1,6 @@
 ---
 title: 记录一下对模板和hexo做过的改动
-layout: private
+layout: post
 date: 2018-05-18 00:04:46
 categories: 建站
 tags:
@@ -11,6 +11,7 @@ tags:
 - JS
 - 纪实
 permalink:
+
 ---
 ### 背景
 在./themes/layout.ejs的``<body>``中加入

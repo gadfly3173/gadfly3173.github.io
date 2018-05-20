@@ -1,6 +1,6 @@
 ---
 title: 选个笔记本？（二）
-layout: private
+layout: post
 date: 2017-08-24 21:28:19
 categories: 电脑
 tags: 

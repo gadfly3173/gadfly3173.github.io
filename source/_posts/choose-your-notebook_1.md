@@ -8,7 +8,7 @@ tags:
 - 电脑
 - 指南
 thumbnail: /images/posts/2017/08/no_cunzai.jpg
-layout: private
+layout: post
 ---
 >符合你全部需求的笔记本，根本不存在。 ——奥拉猪王
 >未推荐的笔记本不代表一定不适合你！ ——赭石·沃兹基·硕德

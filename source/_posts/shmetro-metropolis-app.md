@@ -1,6 +1,6 @@
 ---
 title: 谈谈上海地铁的扫码进出站——Metro大都会
-layout: private
+layout: post
 date: 2018-01-29 17:10:43
 categories: 通信
 tags: 
@@ -16,6 +16,7 @@ tags:
 - 移动支付
 permalink:
 thumbnail: /images/posts/2018/01/metropolics-app.jpg
+
 ---
 >在2017年的10月30日，上海地铁正式推出了Metro大都会APP及其相关的各项服务，并在磁悬浮上首先运行。经过几个月的发展，2018年1月20日，这项服务在上海所有的地铁线路和车站开始正式运行，而它至今也带着非常巨大的争议。
 

@@ -1,5 +1,5 @@
 ---
-layout: private
+layout: post
 title: 一个比较完美的网页模板
 date: 2018-05-17 20:35:29
 tags:
