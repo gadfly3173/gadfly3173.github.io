@@ -18,6 +18,7 @@
     "hexo-generator-sitemap": "^1.2.0",
     "hexo-generator-tag": "^0.2.0",
     "hexo-helper-post-top": "0.0.1",
+    "hexo-helper-qrcode": "^1.0.2",
     "hexo-material": "^1.4.0",
     "hexo-prism-plugin": "^2.2.0",
     "hexo-renderer-ejs": "^0.2.0",
