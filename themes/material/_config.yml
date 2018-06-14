@@ -164,7 +164,7 @@ sidebar:
     pages:
         图库:
             link: /gallery/
-            icon: photo size select actual
+            icon: photo
             divider: false
         timeline:
             link: /timeline/
