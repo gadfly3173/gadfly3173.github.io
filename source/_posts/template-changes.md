@@ -151,7 +151,7 @@ slogan: <script type="text/javascript" src="https://api.lwl12.com/hitokoto/main/
 ### 首图/每日一图
 在``./themes/material/layout/_partial/daily_pic.ejs``中，把原本的每日一图模块注释掉,把slogan上原本的每日一图的链接注释掉，写上
 ```html
-<div class="mdl-card__media mdl-color-text--grey-50" style="background-image:url(https://www.ryongyon.com/bing/rand/webp)">
+<div class="mdl-card__media mdl-color-text--grey-50" style="background-image:url(https://api.i-meto.com/bing)">
 ```
 ### 发布
 为了可以通过``hexo d -g``命令直接发布到我的Github，需要将``./_config.yml``中的``# Deployment``部分修改为
