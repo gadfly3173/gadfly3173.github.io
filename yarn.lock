@@ -1544,11 +1544,6 @@ hexo-log@^0.2.0:
     chalk "^1.1.1"
     hexo-bunyan "^1.0.0"
 
-hexo-material@^1.4.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/hexo-material/-/hexo-material-1.5.0.tgz#2db1267f45f29a336f13db5d862ebbfade04b1ea"
-  integrity sha1-LbEmf0XymjNvE9tdhi67+t4Eseo=
-
 hexo-pagination@0.0.2:
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/hexo-pagination/-/hexo-pagination-0.0.2.tgz#8cf470c7db0de5b18a3926a76deb194015df7f2b"
