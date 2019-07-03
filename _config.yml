@@ -76,6 +76,21 @@ prism_plugin:
 ## Themes: https://hexo.io/themes/
 theme: material
 
+marked:
+  gfm: true
+  pedantic: false
+  sanitize: false
+  tables: true
+  breaks: true
+  smartLists: true
+  smartypants: true
+  modifyAnchors: ''
+  autolink: false
+
+toc:
+  maxDepth: 3
+  slugify: false
+  
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:

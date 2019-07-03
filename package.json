@@ -8,6 +8,7 @@
   "dependencies": {
     "gitment": "0.0.3",
     "hexo": "^3.9.0",
+    "hexo-cli": "^2.0.0",
     "hexo-deployer-git": "^0.3.0",
     "hexo-fs": "^0.2.0",
     "hexo-generator-archive": "^0.1.4",
@@ -22,7 +23,7 @@
     "hexo-prism-plugin": "^2.3.0",
     "hexo-renderer-ejs": "^0.2.0",
     "hexo-renderer-jade": "^0.3.0",
-    "hexo-renderer-marked": "^0.2.10",
+    "hexo-renderer-marked": "^1.0.1",
     "hexo-renderer-sass": "^0.3.2",
     "hexo-renderer-stylus": "^0.3.1",
     "hexo-server": "^0.2.1"
