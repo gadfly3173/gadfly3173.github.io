@@ -66,6 +66,7 @@ pagination_dir: page
 plugin:
 - hexo-generator-feed
 - hexo-generator-sitemap
+- hexo-generator-baidu-sitemap
 - hexo-prism-plugin
 
 prism_plugin:
