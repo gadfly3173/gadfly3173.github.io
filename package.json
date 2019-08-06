@@ -5,6 +5,15 @@
   "hexo": {
     "version": "3.9.0"
   },
+  "scripts": {
+    "serve": "hexo s",
+    "start": "hexo s",
+    "dev": "hexo s",
+    "build": "hexo g",
+    "release": "hexo d -g",
+    "publish": "hexo d -g",
+    "new": "hexo new"
+  },
   "dependencies": {
     "gitment": "0.0.3",
     "hexo": "^3.9.0",
@@ -21,6 +30,7 @@
     "hexo-generator-tag": "^0.2.0",
     "hexo-helper-post-top": "0.0.1",
     "hexo-helper-qrcode": "^1.0.2",
+    "hexo-lazyload-image": "^1.0.4",
     "hexo-prism-plugin": "^2.3.0",
     "hexo-renderer-ejs": "^0.2.0",
     "hexo-renderer-jade": "^0.3.0",

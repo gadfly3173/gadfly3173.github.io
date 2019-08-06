@@ -67,7 +67,6 @@ plugin:
 - hexo-generator-feed
 - hexo-generator-sitemap
 - hexo-generator-baidu-sitemap
-- hexo-prism-plugin
 
 prism_plugin:
   mode: 'preprocess'    # realtime/preprocess
@@ -76,6 +75,11 @@ prism_plugin:
 
 ## Themes: https://hexo.io/themes/
 theme: material
+
+lazyload:
+  enable: true 
+  onlypost: true
+  loadingImg: ./images/227387.gif 
 
 marked:
   gfm: true
