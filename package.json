@@ -10,8 +10,8 @@
     "start": "hexo s",
     "dev": "hexo s",
     "build": "hexo g",
-    "release": "hexo d -g",
-    "publish": "hexo d -g",
+    "release": "hexo clean && hexo d -g",
+    "publish": "hexo clean && hexo d -g",
     "new": "hexo new"
   },
   "dependencies": {

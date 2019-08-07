@@ -79,7 +79,7 @@ theme: material
 lazyload:
   enable: true 
   onlypost: true
-  loadingImg: ./images/227387.gif 
+  loadingImg: /images/227387.gif 
 
 marked:
   gfm: true
