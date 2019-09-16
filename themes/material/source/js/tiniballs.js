@@ -82,6 +82,12 @@ function draw() {
 }
 
 $(document).ready(function () {
+    var isIE = document.documentMode || +(navigator.userAgent.match(/MSIE (\d+)/) && RegExp.$1)
+    console.log(isIE)
+    if (isIE) {
+        window.alert("本页面仅支持真正的现代浏览器，而您正在使用IE，将有部分功能无法使用，请谅解");
+        return;
+    }
     init();
     setInterval(function () {
         for (var i = 0; i < POINT; i++) {
