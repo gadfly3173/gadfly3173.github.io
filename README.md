@@ -17,3 +17,4 @@ $ npm install -g hexo
 3. hexo-generator-search #Search
 4. hexo-prism-plugin #Highlight
 5. hexo-helper-qrcode #QRCode
+6. hexo-wordcount #字数统计
