@@ -10,7 +10,7 @@ head:
     keywords: 猪蹄 技术 博客
     site_verification:
         google: MOBmMnlG4FLxPhQfX-_7yxv5LpI6xyDNZAHcTmO6U3A
-        baidu: 
+        baidu:
 
     # Enable generate structured-data as JSON+LD for SEO or not.
     #        Set as 'false' if it cause some wrong when `hexo g`.
@@ -20,7 +20,7 @@ head:
 url:
     rss: /atom.xml
     daily_pic: https://www.bing.com/gallery/
-    logo: 
+    logo:
 
 
 # ---------------------------------------------------------------
@@ -33,7 +33,7 @@ scheme: Paradox
 
 # UI & UX: slogan, color, effect
 uiux:
-    slogan: <div id="hitokoto">一言·Hitokoto</div><script type="text/javascript" src="https://v1.hitokoto.cn/?encode=js&select=%23hitokoto"></script>
+    slogan: <div id="hitokoto" style="text-shadow:2px 2px 4px rgb(51,51,51);">一言·Hitokoto</div><script type="text/javascript" src="https://v1.hitokoto.cn/?encode=js&select=%23hitokoto"></script>
     theme_color: "#0097A7"
     theme_sub_color: "#00838F"
     hyperlink_color: "#00838F"
@@ -121,9 +121,9 @@ toc:
 # SNS Menu
 sns:
     email: gadfly@gadfly.vip
-    facebook: 
-    twitter: 
-    googleplus: 
+    facebook:
+    twitter:
+    googleplus:
     weibo:
     instagram:
     tumblr:
@@ -204,7 +204,7 @@ sidebar:
 # MaterialCDN
 # When you set 'use' as true, the needed css, js, font file will have a new src.
 # The new src will have the base domain you configured in 'base'.
-materialcdn: 
+materialcdn:
     use: false
     base: https://materialcdn.nfz.moe/hexo/1.4.0
 
@@ -217,7 +217,7 @@ comment:
     changyan_appid:
     changyan_conf:
     changyan_thread_key_type: path
-    gentie_productKey: 
+    gentie_productKey:
 
 # Search Systems
 # Available value:
