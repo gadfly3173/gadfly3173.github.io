@@ -381,11 +381,10 @@ a {
     background: transparent;
 }
 #post-content pre {
-    background-color: #f7f7f7;
     font-size: 13px;
     line-height: 19px;
     overflow: auto;
-    padding: 16px;
+    /* padding: 16px; */
     border-radius: 3px;
 }
 #post-content .gutter,

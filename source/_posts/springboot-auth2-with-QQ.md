@@ -12,10 +12,10 @@ visible:
 ---
 写这个主要是为了整理开发思路与记录，顺便表示 QQ 的接口真的写的很奇怪。。。
 <!--More-->
-整个项目是一个课程作业，我选择了后端使用 Spring Boot，前端使用 Vue.js 作为项目的技术栈。首先说一下 Auth 2.0。这个在QQ的文档里倒也写的很清楚[OAuth2.0简介 — QQ互联WIKI](https://wiki.connect.qq.com/oauth2-0%E7%AE%80%E4%BB%8B)。它采用第三方应用在客户端根据自己的 AppId 和 Redirect URI（回调地址）来请求QQ的授权页面，用户授权后将 Authentication Code 作为 params 跳转到回调地址，回调地址将这个 Code 传给后端，由后端根据 AppId 和 Secret 再向 QQ 申请用户登录的 Access Token，根据这个 Token 后端才能去获取用户授权的相关信息。第三方应用中每个用户都有一个唯一的 OpenId 用于对应唯一的用户，但是不同第三方应用对相同的用户拿到的 OpenId 则是不同的。开发中参考了[使用java后端的springboot环境下实现网站接入QQ第三方登录](https://segmentfault.com/a/1190000020181967)，因此避免了很多坑。
+整个项目是一个课程作业，我选择了后端使用 Spring Boot，前端使用 Vue.js 作为项目的技术栈。首先说一下 Auth 2.0。这个在QQ的文档里倒也写的很清楚 [OAuth2.0简介 — QQ互联WIKI](https://wiki.connect.qq.com/oauth2-0%E7%AE%80%E4%BB%8B)。它采用第三方应用在客户端根据自己的 AppId 和 Redirect URI（回调地址）来请求QQ的授权页面，用户授权后将 Authentication Code 作为 params 跳转到回调地址，回调地址将这个 Code 传给后端，由后端根据 AppId 和 Secret 再向 QQ 申请用户登录的 Access Token，根据这个 Token 后端才能去获取用户授权的相关信息。第三方应用中每个用户都有一个唯一的 OpenId 用于对应唯一的用户，但是不同第三方应用对相同的用户拿到的 OpenId 则是不同的。开发中参考了 [使用java后端的springboot环境下实现网站接入QQ第三方登录](https://segmentfault.com/a/1190000020181967)，因此避免了很多坑。
 
 ### 获取 Access Token
-QQ 官方文档在这里[传送门](https://wiki.connect.qq.com/%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C_oauth2-0)。这份文档对于没有开发经验的人来说坑实在是太多，不过相比其他平台还是比较友好的。参考文章中是使用了读取配置的方式，我则是写了一个返回secret等内容的工具类来获取 QQ 相关配置。
+QQ 官方文档在这里 [传送门](https://wiki.connect.qq.com/%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C_oauth2-0)。这份文档对于没有开发经验的人来说坑实在是太多，不过相比其他平台还是比较友好的。参考文章中是使用了读取配置的方式，我则是写了一个返回secret等内容的工具类来获取 QQ 相关配置。
 基本代码如下：
 ```java
 @PostMapping(value = "/login/callback", consumes= { MediaType.APPLICATION_JSON_VALUE})
@@ -112,7 +112,7 @@ restTemplate可以接收所有的返回参数，然而 QQ 这里采用了一个�
 
 >这里有两点值得一说
 >
->其一，为什么String regex = "\\{.*\\}";，正则表达式中有\\这东西呢？这时因为正则表达式中{和}都是有意义的，非字符的，我们希望正则表达式把它们理解成字符，就需要对它们进行转义，所以这里需要一个转义符\，但\自身在java字符串中并不是字符，所以我们还要转义\自身，所以会出现\\。
+>其一，为什么String regex = "&#92;&#92;{.*&#92;&#92;}";，正则表达式中有&#92;&#92;这东西呢？这时因为正则表达式中{和}都是有意义的，非字符的，我们希望正则表达式把它们理解成字符，就需要对它们进行转义，所以这里需要一个转义符&#92;，但&#92;自身在java字符串中并不是字符，所以我们还要转义&#92;自身，所以会出现&#92;&#92;。
 >
 >其二，matcher如果不经历matcher.find()，则就算有合适的匹配内容，也仍然不会有任何匹配能得到。所以matcher.find()是必须的，同时matcher.find()一次后再来一次，那完了，返回false。
 
