@@ -70,7 +70,7 @@ plugin:
 
 prism_plugin:
   mode: 'preprocess'    # realtime/preprocess
-  theme: 'material-oceanic'
+  theme: 'tomorrow'
   line_number: true    # default false
 
 ## Themes: https://hexo.io/themes/
