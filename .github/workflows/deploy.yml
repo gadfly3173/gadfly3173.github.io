@@ -10,6 +10,7 @@ env:
   GIT_EMAIL: gadfly@gadfly.vip
   DEPLOY_REPO: gadfly3173/gadfly3173.github.io
   DEPLOY_BRANCH: master
+  TZ: Asia/Shanghai
 
 jobs:
   build:
