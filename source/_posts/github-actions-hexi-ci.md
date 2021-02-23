@@ -66,7 +66,15 @@ jobs:
         node-version: [10.x]
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Checkout deploy repo
+        uses: actions/checkout@v2
+        with:
+          repository: ${{ env.DEPLOY_REPO }}
+          ref: ${{ env.DEPLOY_BRANCH }}
+          path: .deploy_git
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
