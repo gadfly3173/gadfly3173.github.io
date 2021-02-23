@@ -42,7 +42,7 @@ blog (repository)
         └── deploy.yml
 ```
 在 `deploy.yml` 文件中粘贴以下内容。
-```yml
+```yaml
 name: Hexo CI
 
 on:
