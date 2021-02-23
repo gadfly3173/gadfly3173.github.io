@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html style="display: none;" lang="zh">
+    <head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.4.0 -->
+    <script>window.materialVersion = "1.4.0"</script>
+
+    <!-- Title -->
+    
+    <title>
+        
+            关于校园一卡通的初探索 | 
+        
+        猪蹄宝宝的博客n(*≧▽≦*)n
+    </title>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    
+    
+    
+    
+    <!---->
+    
+    
+    
+    
+    
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="猪蹄宝宝">
+    <meta name="description" itemprop="description" content="
+校园一卡通涵盖了我们校园生活中的方方面面，吃饭喝水购物门禁都靠它，对于其工作方式我非常感兴趣，因此做了这次的探索。In the world of locked rooms, the man with the key is king.– Moriarty
+">
+    <meta name="keywords" content="猪蹄 技术 博客,单片机,RFID,PROXMARK3,校园卡,NFC,一卡通,数据分析">
+
+    <!-- Site Verification -->
+    <meta name="google-site-verification" content="MOBmMnlG4FLxPhQfX-_7yxv5LpI6xyDNZAHcTmO6U3A">
+    
+    <!--老站-->
+    <meta name="google-site-verification" content="-XYYwwZAFEK7e05Fhm5pc4VxaFvBnqSMqjkKTwu8hlU">
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="https://q.qlogo.cn/headimg_dl?dst_uin=2427303995&amp;spec=140">
+    <link rel="icon" sizes="192x192" href="https://q.qlogo.cn/headimg_dl?dst_uin=2427303995&amp;spec=140">
+    <link rel="apple-touch-icon" href="https://q.qlogo.cn/headimg_dl?dst_uin=2427303995&amp;spec=140">
+
+    <!--iOS -->
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="猪蹄宝宝的博客n(*≧▽≦*)n">
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="https://blog.gadfly.vip">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="关于校园一卡通的初探索 | 猪蹄宝宝的博客n(*≧▽≦*)n">
+    <meta property="og:image" content="https://q.qlogo.cn/headimg_dl?dst_uin=2427303995&amp;spec=140">
+    <meta property="og:description" content="
+校园一卡通涵盖了我们校园生活中的方方面面，吃饭喝水购物门禁都靠它，对于其工作方式我非常感兴趣，因此做了这次的探索。In the world of locked rooms, the man with the key is king.– Moriarty
+">
+    <meta property="og:article:tag" content="单片机"> <meta property="og:article:tag" content="RFID"> <meta property="og:article:tag" content="PROXMARK3"> <meta property="og:article:tag" content="校园卡"> <meta property="og:article:tag" content="NFC"> <meta property="og:article:tag" content="一卡通"> <meta property="og:article:tag" content="数据分析"> 
+
+    
+        <meta property="article:published_time" content="5月 07, 2019">
+        <meta property="article:modified_time" content="2月 23, 2021">
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:title" content="关于校园一卡通的初探索 | 猪蹄宝宝的博客n(*≧▽≦*)n">
+    <meta name="twitter:description" content="
+校园一卡通涵盖了我们校园生活中的方方面面，吃饭喝水购物门禁都靠它，对于其工作方式我非常感兴趣，因此做了这次的探索。In the world of locked rooms, the man with the key is king.– Moriarty
+">
+    <meta name="twitter:image" content="https://q.qlogo.cn/headimg_dl?dst_uin=2427303995&amp;spec=140">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://blog.gadfly.vip">
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="https://blog.gadfly.vip/2019/05/campus-card-research/index.html">
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "猪蹄宝宝的博客n(*≧▽≦*)n",
+        "logo": "https://q.qlogo.cn/headimg_dl?dst_uin=2427303995&amp;spec=140"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "猪蹄宝宝",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://q.qlogo.cn/headimg_dl?dst_uin=2427303995&amp;spec=140"
+        },
+        "description": "有人问我，我就会讲，但是无人来"
+    },
+    "headline": "关于校园一卡通的初探索",
+    "url": "https://blog.gadfly.vip/2019/05/campus-card-research/index.html",
+    "datePublished": "5月 07, 2019",
+    "dateModified": "2月 23, 2021",
+    "description": "
+校园一卡通涵盖了我们校园生活中的方方面面，吃饭喝水购物门禁都靠它，对于其工作方式我非常感兴趣，因此做了这次的探索。In the world of locked rooms, the man with the key is king.– Moriarty
+",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://blog.gadfly.vip"
+    }
+}
+</script>
+
+
+    
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import lsloader -->
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(key){try{localStorage.removeItem(key)}catch(e){}};lsloader.setLS=function(key,val){try{localStorage.setItem(key,val)}catch(e){}};lsloader.getLS=function(key){var val="";try{val=localStorage.getItem(key)}catch(e){val=""}return val};versionString="/*"+materialVersion+"*/";lsloader.clean=function(){try{var keys=[];for(var i=0;i<localStorage.length;i++){keys.push(localStorage.key(i))}keys.forEach(function(key){var data=lsloader.getLS(key);if(data&&data.indexOf(versionString)===-1){lsloader.removeLS(key)}})}catch(e){}};lsloader.clean();lsloader.load=function(jsname,jspath,cssonload){cssonload=cssonload||function(){};var code;code=this.getLS(jsname);if(code&&code.indexOf(versionString)===-1){this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload);return}if(code){var versionNumber=code.split(versionString)[0];if(versionNumber!=jspath){console.log("reload:"+jspath);this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload);return}code=code.split(versionString)[1];if(/\.js?.+$/.test(versionNumber)){this.jsRunSequence.push({name:jsname,code:code});this.runjs(jspath,jsname,code)}else{document.getElementById(jsname).appendChild(document.createTextNode(code));cssonload()}}else{this.requestResource(jsname,jspath,cssonload)}};lsloader.requestResource=function(name,path,cssonload){var that=this;if(/\.js?.+$/.test(path)){this.iojs(path,name,function(path,name,code){that.setLS(name,path+versionString+code);that.runjs(path,name,code)})}else if(/\.css?.+$/.test(path)){this.iocss(path,name,function(code){document.getElementById(name).appendChild(document.createTextNode(code));that.setLS(name,path+versionString+code)},cssonload)}};lsloader.iojs=function(path,jsname,callback){var that=this;that.jsRunSequence.push({name:jsname,code:""});try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(path,jsname,xhr.response);return}}that.jsfallback(path,jsname)}};xhr.send(null)}catch(e){that.jsfallback(path,jsname)}};lsloader.iocss=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.iofonts=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.runjs=function(path,name,code){if(!!name&&!!code){for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code=code}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var script=document.createElement("script");script.appendChild(document.createTextNode(this.jsRunSequence[0].code));script.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(script);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var that=this;var script=document.createElement("script");script.src=this.jsRunSequence[0].path;script.type="text/javascript";this.jsRunSequence[0].status="loading";script.onload=function(){that.jsRunSequence.shift();if(that.jsRunSequence.length>0){that.runjs()}};document.body.appendChild(script)}};lsloader.tagLoad=function(path,name){this.jsRunSequence.push({name:name,code:"",path:path,status:"failed"});this.runjs()};lsloader.jsfallback=function(path,name){if(!!this.jsnamemap[name]){return}else{this.jsnamemap[name]=name}for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code="";this.jsRunSequence[k].status="failed";this.jsRunSequence[k].path=path}}this.runjs()};lsloader.cssfallback=function(path,name,cssonload){if(!!this.cssnamemap[name]){return}else{this.cssnamemap[name]=1}var link=document.createElement("link");link.type="text/css";link.href=path;link.rel="stylesheet";link.onload=link.onerror=cssonload;var root=document.getElementsByTagName("script")[0];root.parentNode.insertBefore(link,root)};lsloader.runInlineScript=function(scriptId,codeId){var code=document.getElementById(codeId).innerText;this.jsRunSequence.push({name:scriptId,code:code});this.runjs()};lsloader.loadCombo=function(jslist){var updateList="";var requestingModules={};for(var k in jslist){var LS=this.getLS(jslist[k].name);if(!!LS){var version=LS.split(versionString)[0];var code=LS.split(versionString)[1]}else{var version=""}if(version==jslist[k].path){this.jsRunSequence.push({name:jslist[k].name,code:code,path:jslist[k].path})}else{this.jsRunSequence.push({name:jslist[k].name,code:null,path:jslist[k].path,status:"comboloading"});requestingModules[jslist[k].name]=true;updateList+=(updateList==""?"":";")+jslist[k].path}}var that=this;if(!!updateList){var xhr=new XMLHttpRequest;xhr.open("get",combo+updateList,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){that.runCombo(xhr.response,requestingModules);return}}else{for(var i in that.jsRunSequence){if(requestingModules[that.jsRunSequence[i].name]){that.jsRunSequence[i].status="failed"}}that.runjs()}}};xhr.send(null)}this.runjs()};lsloader.runCombo=function(comboCode,requestingModules){comboCode=comboCode.split("/*combojs*/");comboCode.shift();for(var k in this.jsRunSequence){if(!!requestingModules[this.jsRunSequence[k].name]&&!!comboCode[0]){this.jsRunSequence[k].status="comboJS";this.jsRunSequence[k].code=comboCode[0];this.setLS(this.jsRunSequence[k].name,this.jsRunSequence[k].path+versionString+comboCode[0]);comboCode.shift()}}this.runjs()}})();</script>
+
+    <!-- Import CSS & jQuery -->
+    
+        <style id="css/material.min.css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("css/material.min.css","/css/material.min.css?fJTiM/K1J3dWIruo3pxtAw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";})</script>
+        <style id="css/style.min.css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("css/style.min.css","/css/style.min.css?t6ikxPWsvw5PQpsUH5Ltfg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";})</script>
+        
+        
+            <style>
+    
+    
+    
+    
+    
+    
+    
+    .footer-sns-github {
+        background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgY2xhc3M9Imljb24iIHZpZXdCb3g9IjAgMCAxMDI0IDEwMjQiPjxwYXRoIGQ9Ik0xMzguNCA3OGMtNi40IDEuNC0yNi40IDE0LjItMzYgMjIuOC04IDcuMi0yMiAyOS44LTI0LjQgMzkuMi0xLjYgNi40LTIgMTEzLjItMS42IDM2OCAuNiAyOTkuNCAxIDM1OS44IDMuNCAzNjQgMTEgMjAuMiAyMS42IDMyLjQgMzcuMiA0MyAxNS42IDEwLjYgMTcuMiAxMS4yIDM0LjIgMTMuMiAxMC42IDEuMiA2My40IDEuNiAxMjcuNiAxLjRsMTA5LjYtLjYgNi02LjggNi4yLTYuOC0xLjItMjUuMmMtLjgtMTUuOC0uMi0zMy40IDEuNC00Ny4yIDMtMjUuNCAxLjQtMzYuMi02LTQzLjItNS00LjYtNi4yLTQuOC0zMC42LTQuMi0yNy42LjgtMjQgMS42LTY4LjgtMTYtOC42LTMuNC0yMi42LTE4LTI4LjQtMjkuOC0xMS40LTIyLjgtMjctNDUtMzkuMi01NS42LTE0LTEyLjItMTkuOC0yMC44LTE5LjgtMjguNiAwLTExLjYgMTMuNi0xMi42IDMzLjItMi40IDE2LjYgOC44IDIwLjggMTIuNCA0MC44IDM2LjIgMjQuMiAyOC42IDMxIDMzLjYgNTQgMzkuNiAxNS4yIDQgNDIuMiAzIDUxLjQtMS44IDktNC42IDE4LTE1LjIgMjQuNC0yOS4yIDExLjQtMjQuMiA3LjQtMzEuMi0yMC42LTM2LjgtOS44LTItMjkuMi04LTQzLjQtMTMuNC00MC40LTE1LjgtNjQuNi0zNy40LTg1LjQtNzYuMi0xMS42LTIxLjgtMTUuNC0zMy0xOC4yLTUzLjYtNC4yLTMyLjItNC44LTYwLjItMS40LTg0IDMuNC0yMy44IDYuOC0zMi44IDIwLjItNTQgNC02IDguOC0xNS42IDExLTIxLjQgMy44LTEwIDMuOC0xMS42IDEtMzAtNS4yLTM0LjItMy4yLTUyLjQgNy42LTcwLjIgNy4yLTEyLjIgMTUtMTcuMiAyNC4yLTE1LjggMTIuOCAyLjIgNTIgMTcuNCA2Ni44IDI2LjIgMjYgMTUgMjkgMTUuNCA4Mi40IDcuMiAyNC42LTMuOCAzMy44LTQuMiA2MC0zLjIgMTcgLjYgNDEuNCAzIDU0IDUuMiAzOC40IDYuNiA0OS42IDUuMiA3My0xMCA2LjYtNC4yIDE3LjQtOS40IDI0LTExLjYgNi42LTIuMiAxNi01LjggMjEtOC4yIDEzLTYgMjgtNS42IDM1LjYuOCAxMi40IDEwLjQgMTguNiA0MS40IDE0LjQgNzEuNi00LjQgMzAuNi0zIDM5LjQgOC40IDUzLjggMy40IDQuNCAxMS4yIDE5LjIgMTcuNCAzMy4yTDc3NSA0NDN2NzhsLTEwIDI4Yy0xNS4yIDQzLjItMzYuOCA3My4yLTY2LjIgOTIuOC0xMy40IDguOC01NyAyNS40LTc2LjggMjktMjguMiA1LjItMzMuMiAxMi42LTIyIDMyLjIgMTEuMiAxOS40IDEyLjQgMzIuOCAxMS42IDEyOS42bC0uNiA4NS44IDUuNCA0LjZjMy42IDMgOS4yIDUuMiAxNiA2IDUuOC44IDYwLjIgMSAxMjAuNi42IDEwOC40LS42IDExMC4yLS42IDExOS01IDI0LTExLjYgNDAtMjcuNCA1MS42LTUwLjZsNS40LTExIC42LTM0N2MuNC0yMjMtLjItMzUzLjQtMS40LTM2NS0yLTE3LTIuNi0xOC42LTEzLTM0LTEwLjYtMTUuNC0yMi44LTI2LjItNDMuMi0zNy4yLTQuMi0yLjQtNjQuNi0yLjgtMzY2LTMuMi0xOTguNiAwLTM2NCAuNC0zNjcuNiAxLjR6Ii8+PC9zdmc+);
+    }
+    
+    
+    
+    .footer-sns-zhihu {
+        background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgY2xhc3M9Imljb24iIHZpZXdCb3g9IjAgMCAxMDI0IDEwMjQiPjxwYXRoIGQ9Ik0xMzYuOCA3OC44Yy04LjYgMi44LTI0IDEyLjQtMzMuNiAyMS04LjYgNy44LTIxLjQgMjcuOC0yNC40IDM3LjgtNC4yIDE0LTQgNzIzLjQgMCA3MzMuNCA4LjYgMjAuNiAzNi44IDQ4LjYgNTYgNTUuNiA5IDMuNCA3NDcuNCAzLjQgNzU2LjQgMCAxOS44LTcuMiA0OS0zNi42IDU2LTU2LjIgMi4yLTYgMi42LTc1LjYgMi44LTM2Ni40IDAtMjMzLjgtLjYtMzYxLjQtMi0zNjYtMS4yLTMuOC02LjYtMTMuOC0xMi4yLTIyLjItOC4yLTEyLjItMTMuNC0xNy40LTI1LjgtMjUuNi04LjQtNS44LTE5LTExLjQtMjMuMi0xMi4yLTQuNi0xLjItMTYzLjItMS44LTM3NC44LTEuOC0yOTMgMC0zNjguNi42LTM3NS4yIDIuNnptMTkwIDE0NS42YzUuNCA3LjYgNCAxNy40LTQuOCAzMS42LTkuOCAxNi0xMC44IDI3LjQtMyAzNSAyLjYgMi44IDYuNCA1IDguNCA1czM3LjguNCA3OS42LjZjNjggLjQgNzYuNi44IDgyLjQgMy44IDkuMiA1IDEyLjYgMTEgMTIuNiAyMiAwIDctMS4yIDEwLjgtNC44IDE1bC00LjggNS40LTM4IC4yYy01My44IDAtNTMuOCAwLTU1LjQgNTEuMi0uNiAxOC0xLjYgNDIuOC0yLjIgNTUtMS4yIDIyLjguNiAzMS42IDcuNiAzNi4yIDEuNC44IDIyLjIgMiA0NiAyLjZsNDMuMiAxIDguOCA2YzE1LjQgMTAuOCAxNy44IDI5LjIgNSAzNy01LjggMy42LTEwLjIgNC01MS44IDQtMzEgMC00NyAuOC01MC42IDIuNC03IDMuMi0xNC4yIDE3LjYtMTcuMiAzNC40LTMuMiAxNi42LTEgMjEuOCA5LjYgMjUuMiAxMy40IDQuMiAyMS44IDExLjIgNDkgNDEuNCAzNSAzOC44IDM2LjYgNDEgNDEuOCA1OC44IDcgMjMuOCAyLjIgNDEuOC0xMS40IDQxLjgtNy42IDAtMTItMy0yMS0xNC42LTEzLjgtMTcuNC01NC40LTY1LjgtNjItNzMuOC0xNS4yLTE2LTI5LjQtNS44LTM4LjggMjcuNC0xLjggNi42LTguOCAyMy4yLTE1LjYgMzctMTAuOCAyMi0xNCAyNi44LTI3LjQgMzkuNi0xOS42IDE5LjItMjYuNCAyMy01My42IDI5LjYtMjcuMiA2LjQtMzcgNS42LTM4LTMuNi0xLTguNCA0LjQtMTYuNCAyMC0yOSAxNi0xMyAzNi44LTM2LjYgNDUuMi01MS40IDMtNS4yIDguMi0xMy44IDExLjYtMTkgMy40LTUgMTEuOC0yMC40IDE4LjYtMzQuMiAxMC0yMCAxMy42LTI5LjQgMTcuMi00NyAyLjYtMTIuMiA2LjItMjUuNCA3LjgtMjkuNCA0LTkuNCA0LTIxLjQuMi0yNy01LjItNy40LTE2LTguOC02Mi42LTguNC01MC40LjQtNTUuMi0uOC01Ny42LTEzLjItMS44LTEwLjQgNS44LTI0LjQgMTYuMi0yOS44IDcuNC0zLjggMTEuOC00LjIgNTYuMi00LjhsNDguNC0uOCA0LjYtNWM0LjgtNSA0LjgtNSA1LTYxLjYgMC0zNS4yLS44LTU5LjItMi02My4yLTMuOC0xMS4yLTExLTE0LjgtMzAuMi0xNC44cy0yMS40IDEuNC0zMS4yIDE4LjJjLTguMiAxNC40LTIwLjYgMjguOC0zMy4yIDM4LjgtMTMuMiAxMC40LTIxLjYgMTMtMjggOS04LjQtNS42LTUuMi0yMy4yIDguMi00My4yIDQtNi40IDkuMi0xOC42IDEyLjItMjkuNiAzLTEwLjIgNy40LTIzLjIgMTAtMjkgMi40LTUuNiA2LTE2LjggOC0yNC42IDUuNi0yMy42IDI0LTUwLjggMzkuNC01OC40IDExLjItNS40IDE4LjYtNS40IDIyLjQuMnptNDUyIDY4LjJjMTEuOCA3LjggMTEuNC0uOCAxMC44IDIxNi0uNiAxODEtLjggMTk4LjgtNCAyMDMtNy42IDEwLjgtOS44IDExLjQtNTMuNiAxMi40bC00MSAxLTE0IDcuOGMtNy42IDQuMi0yMS4yIDEzLTI5LjggMTkuNC0yNS44IDE5LjItMzUgMTkuOC00My40IDMuMi0xMS44LTIzLjItMjMuNi0zMy4yLTM5LjQtMzMuNC04LjggMC0xMy42LTIuOC0xNy4yLTkuOC0yLjYtNC44LTMtMzMuOC0yLjYtMjA4LjguNC0xOTkuOC40LTIwMyA0LjQtMjA3LjQgMi4yLTIuNCA1LjgtNS4yIDgtNi4yIDIuMi0uOCA1MS44LTEuNCAxMTAtMS4yIDk5IC40IDEwNi42LjYgMTExLjggNHoiLz48cGF0aCBkPSJNNjA2LjggMzM3LjRjLTIuNC40LTYuNCAzLTkgNS44bC00LjggNS4yLS42IDE1Ni40LS40IDE1Ni40IDYuNCA5LjRjMy42IDUuMiA5LjggMTUuMiAxMy42IDIxLjggOCAxNC4yIDE2LjggMjAuNiAyNS42IDE4LjYgMy4yLS42IDEzLjgtNyAyMy42LTE0LjIgMjMtMTcgMjcuOC0xOSA1MC4yLTIwLjIgMTYuNC0xIDE5LjItMS44IDIzLjYtNi4yIDIuOC0yLjggNS02LjQgNS4yLTguMlY1MDUuNmMwLTExNi0uNi0xNTQuNC0yLjYtMTU4LjYtNC44LTEwLjQtOC40LTExLTcwLTEwLjgtMzEuMi4yLTU4LjYuOC02MC44IDEuMnoiLz48L3N2Zz4=);
+    }
+    
+    
+    .footer-sns-bilibili {
+        background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgY2xhc3M9Imljb24iIHZpZXdCb3g9IjAgMCAxMDI0IDEwMjQiPjxwYXRoIGQ9Ik0xMzguOCA3Ny44Yy03LjggMi0zMiAxNy44LTM4LjggMjUuNi05LjYgMTAuNi0xOC40IDI1LTIxLjIgMzQtNC4yIDE0LjItNC4yIDcyMy42IDAgNzMzLjYgOC40IDIwLjIgMjkuNCA0MS42IDUzLjIgNTQuMiA2LjggMy42IDE4LjggMy44IDM3MCAzLjhoMzYzbDktNC4yYzE0LTYuOCAzMS42LTIyLjQgNDIuNi0zOCA5LjQtMTMuOCAxMC0xNS4yIDExLjYtMzIuNiAxLjItMTAuNCAxLjYtMTY2LjggMS40LTM2NS42LS42LTMxNy44LS44LTM0OC4yLTMuOC0zNTQuNi05LjItMTkuMi0yMC44LTMzLTM4LjYtNDVsLTE3LjYtMTItMzYyLjQtLjRjLTE5OS4yIDAtMzY1IC40LTM2OC40IDEuMnpNMzcxLjIgMjUxYzQuMiAxLjYgMjIuNiAxOC4yIDQ0LjYgMzkuOCAyOS44IDI5LjIgMzkgMzcuMiA0NS40IDM5IDEwLjYgMyA3My4yIDIuOCA4My4yLS4yIDYtMS44IDE1LjgtMTAuNCA0My40LTM3LjggMTkuOC0xOS42IDM5LjQtMzcuNCA0NC0zOS42IDE1LjItNy44IDMxLjYtNCA0MSA5LjQgMTAuNCAxNS4yIDguOCAyOC02IDQ0LjYtMTUgMTYuOC0xMSAyNC40IDE0LjIgMjYuOCAxOC44IDEuNiAyNS4yIDMuOCA0My44IDE0LjggMTkuMiAxMS4yIDI4IDIxIDQwLjYgNDQuOEw3NzUgNDExdjI1MGwtOS44IDE5LjZjLTEwLjQgMjAuNi0yMy44IDM1LjYtNDMgNDcuNi0xOC44IDEyLTE4LjYgMTItMjI2LjIgMTEuNGwtMTg5LS42LTExLjgtNC44Yy02LjQtMi42LTE4LjYtMTAuMi0yNi44LTE3LTE2LTEyLjgtMjUuNi0yNi40LTM1LTQ5LjItNC40LTExLTQuNC0xMS40LTQuNC0xMzIuMlY0MTQuNmwxMC40LTIxYzguNC0xNi44IDEzLTIzLjQgMjIuNi0zMi4yIDE3LjItMTYgMzkuMi0yNi40IDU5LjItMjguNCAyNy4yLTIuNCAzMS4yLTkuMiAxNS44LTI3LjItNS01LjgtOS42LTEzLjQtMTAuMi0xNy4yLTUuMi0yNy40IDE5LjQtNDguMiA0NC40LTM3LjZ6Ii8+PHBhdGggZD0iTTMzMC4yIDQwMC40Yy05IDEuNi0xNSA1LjQtMjMgMTUtMTEuNCAxMy40LTExLjIgMTItMTEuMiAxMjAuNnMtLjIgMTA1LjYgMTEuMiAxMjIuNEMzMTggNjczLjggMzA3IDY3MyA0OTIgNjczLjZjOTAuOC40IDE3MC42IDAgMTc3LjQtLjYgMTUuNi0xLjYgMjMuNi02LjggMzIuMi0yMWw2LjQtMTAuOFY1MzcuOGMwLTY4LS44LTEwNS40LTIuMi0xMDkuMi0zLTgtMTUuMi0yMi4yLTIyLjItMjUuOC01LjItMi42LTI2LjYtMy4yLTE3NS42LTMuNC05My40LS4yLTE3My40LjItMTc3LjggMXptNzguNCA3MC40YzkuNiA0IDIyLjggMTcuOCAyNS4yIDI2LjYgMi44IDkuOCAyLjggMzMuNCAwIDQzLjItMi40IDguNi0xMS44IDIwLjItMjAgMjQuNi04IDQtMjMuNiAzLjYtMzEtMS0zLjYtMi4yLTguNC04LTExLTEzLjYtNC4yLTguNC00LjgtMTIuNC00LjgtMzEuOCAwLTIxIC4yLTIyLjYgNi0zMS44IDQtNi40IDktMTEuMiAxNC44LTE0LjQgMTAuMi01LjQgMTIuMi01LjYgMjAuOC0xLjh6bTIwNiAwYzIwIDguMiAyOS4yIDM2LjQgMjIuMiA2Ny40LTIuOCAxMi00LjggMTYuMi0xMC44IDIyLjItNyA3LTguNCA3LjYtMTguOCA3LjYtMTkgMC0zMC42LTkuMi0zNi40LTI5LjItMy42LTEyLjQtMi40LTM3LjggMi4yLTQ2LjggNS05LjYgMjQtMjQgMzEuNi0yNCAyIDAgNi40IDEuMiAxMCAyLjh6Ii8+PC9zdmc+);
+    }
+    
+    
+</style>
+
+        
+        <!-- Config CSS -->
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+  pre{
+    text-indent: 0em;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+<!-- Import Font -->
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+        <script>lsloader.load("js/jquery.min.js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==")</script>
+    
+
+    <!-- Analytics -->
+    
+        <script>
+    var _hmt = _hmt || [];
+    (function() {var hm = document.createElement('script');
+    hm.src = 'https://hm.baidu.com/hm.js?d95615699de515b10c8ca2ec86c7982e';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
+    
+    
+    
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
+
+    <!-- Custom Head -->
+    
+<link rel="stylesheet" href="/css/prism-material-oceanic.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <canvas id="Mycanvas" style="position:fixed;z-index:-99;display:block;">你这是什么垃圾浏览器，这都不能显示(╯‵□′)╯︵┻━┻</canvas>
+                    <script src="/js/tiniballs.js"></script>
+            
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0×00-写在前面"><span class="post-toc-number">1.</span> <span class="post-toc-text">0×00 写在前面</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#本文中提到的所有技术仅供学习研究作参考，请勿将其用于非法用途！！！"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">本文中提到的所有技术仅供学习研究作参考，请勿将其用于非法用途！！！</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x01-设备"><span class="post-toc-number">2.</span> <span class="post-toc-text">0x01 设备</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x02-一些基础概念"><span class="post-toc-number">3.</span> <span class="post-toc-text">0x02 一些基础概念</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#proxmark3"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">proxmark3</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#M1卡"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">M1卡</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#RFID与NFC"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">RFID与NFC</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#CPU卡"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">CPU卡</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x03-还是直接上手吧"><span class="post-toc-number">4.</span> <span class="post-toc-text">0x03 还是直接上手吧</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x04-一点挫折"><span class="post-toc-number">5.</span> <span class="post-toc-text">0x04 一点挫折</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x05-后记"><span class="post-toc-number">6.</span> <span class="post-toc-text">0x05 后记</span></a></li></ol>
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+    
+
+
+
+
+
+<!-- Layouts -->
+
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
+
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                关于校园一卡通的初探索
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="https://q.qlogo.cn/headimg_dl?dst_uin=2427303995&spec=140" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>猪蹄宝宝</strong>
+        <span>5月 07, 2019</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">devices other</i>
+    <span class="visuallyhidden">devices other</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+    <li class="mdl-menu__item">在其它设备中阅读本文章</li>
+    
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAAC3klEQVR42u3awW4CMQwEUP7/p+m1UksY24uA5OVUtQvkpVKntnO7H7lu2NjY2NjY2NjY2B/JvsXr9/N/X7t+t0fPr99z/Xy+Z2xsbOwT2E/+9C+fWX9Ywut9YnXP2NjY2Cewk9B69Kr8UPLIWcdkec/Y2NjY2EVwAkiOJtkDNjY2NvacvQ659XeSJhQ2NjY29lVNpfXWq42kpBXVC05sbGzs09iTQe+7vn7zfBsbGxv7Y9jVlbfyk4JhHpCFnWNjY2Nvyq6WEElpMR8P9AbGF1Rg2NjY2F/OrrZ7kud7jaTqhZ7oF4mNjY29KTtv2VQDaV6c9Ea8hQoMGxsbe1N2NRiqjCTeqjEZ/RQbGxt7U3ZvoNu7WFltUU0OtzzfxsbGxv5adtJ8nwwSJpheOVTObWxsbOwt2AmsV2Zc1brqjXuxsbGxT2BP2j3VkUBe/PRGy9jY2NhnsvON5lvJQ/HeWs2iBRsbG3tTdlIwzBtPedGSlzqjphI2Njb2duzJeLW6lby11BtCjyowbGxs7C9kJ+PePPCuwuTxVog6bGxs7E3ZvWuRvXKiGpx5lDYHvdjY2NhbsCfbSo4mvwaUlCuTg8PGxsbem11t4vSu11QPOi9mmvNtbGxs7O3YeWDkcXLtUU4KEmxsbOxd2dWQuKolVD3Q6jv88ww2Njb2AexkE/nH5GPgalCt378wFcHGxsbegj1pCfWuV07wo/jExsbGPoBdvTQ52XoyNqiG1pNfFTY2Nvam7ISRjwTyYUDSMLrF64LxADY2NvbXsqtrTeo1/V8RZtjY2NjnsHshkTSPqhcuc3ZyHNjY2NinsfNRQfRPf9y+zy/oVEfOUVMJGxsbezt2HlqTqza9KziToMXGxsbGzmMm33ry2nmBhI2NjY39ilIkv3AzKUuwsbGxz2TnrZ/XFQ+TsMTGxsY+mT1p1kwirXopJ29XRU0lbGxs7C3Y5yxsbGxsbGxsbGzsj1k/XSGRAzxrsvwAAAAASUVORK5CYII=">
+    
+</ul>
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/NFC/">NFC</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/PROXMARK3/">PROXMARK3</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/RFID/">RFID</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/一卡通/">一卡通</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/单片机/">单片机</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/数据分析/">数据分析</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/校园卡/">校园卡</a>
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=关于校园一卡通的初探索&url=https://blog.gadfly.vip/2019/05/campus-card-research/index.html&pic=&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=关于校园一卡通的初探索&url=https://blog.gadfly.vip/2019/05/campus-card-research/index.html&via=猪蹄宝宝" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.gadfly.vip/2019/05/campus-card-research/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://blog.gadfly.vip/2019/05/campus-card-research/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=猪蹄宝宝的博客n(*≧▽≦*)n&title=关于校园一卡通的初探索&summary=有人问我，我就会讲，但是无人来&pics=https://blog.gadfly.viphttps://q.qlogo.cn/headimg_dl?dst_uin=2427303995&spec=140&url=https://blog.gadfly.vip/2019/05/campus-card-research/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 QQ
+            </li>
+        </a>
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+
+    
+        <span class="post-count"><i class="material-icons post-count-i">vertical_split</i> 2.6k 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i> 10 分钟</span>
+        <hr>
+        <blockquote>
+<p>校园一卡通涵盖了我们校园生活中的方方面面，吃饭喝水购物门禁都靠它，对于其工作方式我非常感兴趣，因此做了这次的探索。<br>In the world of locked rooms, the man with the key is king.<br>– Moriarty</p>
+</blockquote>
+<a id="more"></a>
+
+<h3 id="0×00-写在前面"><a href="#0×00-写在前面" class="headerlink" title="0×00 写在前面"></a>0×00 写在前面</h3><h4 id="本文中提到的所有技术仅供学习研究作参考，请勿将其用于非法用途！！！"><a href="#本文中提到的所有技术仅供学习研究作参考，请勿将其用于非法用途！！！" class="headerlink" title="本文中提到的所有技术仅供学习研究作参考，请勿将其用于非法用途！！！"></a>本文中提到的所有技术仅供学习研究作参考，<strong>请勿将其用于非法用途</strong>！！！</h4><h3 id="0x01-设备"><a href="#0x01-设备" class="headerlink" title="0x01 设备"></a>0x01 设备</h3><ul>
+<li>proxmark3</li>
+<li>空白UID卡（或其他可以随意写入的13.56MHz高频ISO14443a卡）</li>
+<li>一台可以使用NFC功能的安卓手机（非必需）</li>
+<li>一颗爱折腾的心<br><img src="/images/227387.gif" data-original="/images/posts/2019/05/PM3.jpg" alt></li>
+</ul>
+<h3 id="0x02-一些基础概念"><a href="#0x02-一些基础概念" class="headerlink" title="0x02 一些基础概念"></a>0x02 一些基础概念</h3><h4 id="proxmark3"><a href="#proxmark3" class="headerlink" title="proxmark3"></a>proxmark3</h4><p>Proxmark3是由Jonathan Westhues在做硕士论文中研究Mifare Classic时设计、开发的一款开源硬件，可以用于RFID中嗅探、读取以及克隆等相关操作，如：PM3可以在水卡、公交卡、门禁卡等一系列RFID\NFC卡片和与其相对应的机器读取、数据交换的时候进行嗅探攻击，并利用嗅探到的数据通过XOR校验工具把扇区的密钥计算出来，当然PM3也能用于破解门禁实施物理入侵。</p>
+<h4 id="M1卡"><a href="#M1卡" class="headerlink" title="M1卡"></a>M1卡</h4><p>所谓的M1芯片，是指菲利浦下属子公司恩智浦出品的芯片缩写，全称为NXP Mifare1系列，常用的有S50及S70两种型号，复旦FM1108、AT24C64、AT24C04等芯片与其兼容，利用PVC封装M1芯片、感应天线，然后压制成型后而制作的卡即是智能卡行业所说的M1卡，属于非接触式IC卡。M1卡的优点是可读写、有16个独立的可加密扇区，可应用于16个不同的系统，能够轻易实现一卡多用，多个系统一卡通用。</p>
+<h4 id="RFID与NFC"><a href="#RFID与NFC" class="headerlink" title="RFID与NFC"></a>RFID与NFC</h4><p>NFC是在RFID的基础上发展而来，NFC从本质上与RFID没有太大区别，都是基于地理位置相近的两个物体之间的信号传输。但NFC与RFID还是有区别的，NFC技术增加了点对点通信功能，可以快速建立蓝牙设备之间的P2P（点对点）无线通信，NFC设备彼此寻找对方并建立通信连接。P2P通信的双方设备是对等的，而RFID通信的双方设备是主从关系。NFC相较于RFID技术，具有距离近、带宽高、能耗低等一些特点。NFC只是限于13.56MHz的频段，而RFID的频段有低频（125KHz到135KHz），高频（13.56MHz）和超高频（860MHz到960MHz）之间。NFC工作有效距离小于10cm，所以具有很高的安全性，RFID工作有效距离从几米到几十米都有。因为同样工作于13.56MHz，NFC与现有非接触智能卡技术兼容，所以很多的厂商和相关团体都支持NFC，而RFID标准较多，统一较为复杂（估计是没可能统一的了），只能在特殊行业有特殊需求下，采用相应的技术标准。RFID更多的被应用在生产、物流、跟踪、资产管理上，而NFC则在门禁、公交、手机支付等领域内发挥着巨大的作用。</p>
+<h4 id="CPU卡"><a href="#CPU卡" class="headerlink" title="CPU卡"></a>CPU卡</h4><p>也称智能卡，卡内的集成电路中带有微处理器CPU、存储单元（包括随机存储器RAM、程序存储器ROM（FLASH）、用户数据存储器EEPROM）以及芯片操作系统COS（Chip Operating System）。装有COS的CPU卡相当于一台微型计算机，不仅具有数据存储功能，同时具有命令处理和数据安全保护等功能。</p>
+<h3 id="0x03-还是直接上手吧"><a href="#0x03-还是直接上手吧" class="headerlink" title="0x03 还是直接上手吧"></a>0x03 还是直接上手吧</h3><p>上面复制粘贴了一堆我差点没看懂的基本概念，似乎也没太大用处，只是希望大家能大概明白这些非接触IC卡的工作原理和大致种类23333。下面我来讲讲我是怎么做这次的探索的。<br>探索这种对我来说全新的领域自然是要吃点亏的，比如最早的时候我买了台没什么用的ACR122u，结果发现这东西对于CPU卡（也就是我们平常生活中使用的大部分非接触式IC卡）并没有什么作用。因为虽然这些卡都兼容MIFARE，但是采用了许多新技术来保障其中的安全，ACR122u针对的只有那些简单的M1卡。所以那台机器被我卖给了某不知名学长去玩23333。<br>查阅了一些资料后，我对这些东西有了初步的概念，在某UCLA的学长的建议下，我买了台proxmark3来继续探索。proxmark3本质上是一款单片机，可以实现非常多的功能。这玩意在某宝上有很多祖国版。祖国版与原版的区别主要是阉割了一部分电路，但是优化了天线的使用与安装方式，售价200-600不等，个人建议选择200左右的就够了，毕竟我们只需要简单研究，而不是拿去搞黑产（雾。用proxmark3之后我收集到了许多有意思的信息。执行<code>hf 14a reader</code>之后，就可以读取到卡片的UID（相当于卡号）、ATQA、SAK、TYPE（卡类型）、ATS等。UID一般用于确认卡的身份，正常情况下是一卡一号，很多门禁系统（比如我们学校）就依靠这个来进行门禁的识别，不过也有些严格的门禁不仅要求UID，还会对整张卡的其他信息有要求（比如上海大学）。然后我用手边的几张卡试了试，发现银行卡、上海公交卡、我的校园卡的卡类型都是<code>JCOP31 or JCOP41 v2.3.1</code>，也就是说都是CPU卡，很可能我的校园卡和交通卡一样采用了滚动码加密，难以破解。</p>
+<blockquote>
+<p>之前基础概念里有提到，M1卡或者兼容它的卡中有16个扇区（0-15），每个扇区中有四个块，也就是有64个块（0-63）。每个扇区都可以分别被不同的密钥所加密，每个扇区有两个密钥，分为keyA和keyB，这两个密钥分别长12个字节，密钥内容可以由任意可重复的12个十六进制数字（0-F）组成，keyA在每个扇区第四个块的前12位，keyB在后12位，中间8位则是控制字。key的验证是在卡内部进行的，读写器只负责给卡提供电并和卡通讯，读写器发送加密的密码到卡，卡内部进行解密验证并发返回值，读写器根据卡的返回值来判断验证是否通过。每个区中的控制字决定验证密码通过后能进行的操作。如果控制字中已将某区锁死，即使密码验证通过也读写不了卡中的数据。默认的控制字数据是无论那个密码验证通过，都可读写区中的数据，keyA是永远不可读的，keyB在默认控制字的情况下可以读，条件是密码必须验证通过。<br><img src="/images/227387.gif" data-original="/images/posts/2019/05/blocks_sheet.jpg" alt><br>而这里提到的滚动码加密则是key并不固定，在每次读写后，通过卡内的计数器和与读卡器中保存的相同的特定的加密算法来计算出新的key，从而保证key无法被简单破解，即使侥幸破解后，key也只有一次使用的机会，大大增加了卡本身的安全性，这项技术在公交卡之类的离线储值卡上应用广泛。</p>
+</blockquote>
+<h3 id="0x04-一点挫折"><a href="#0x04-一点挫折" class="headerlink" title="0x04 一点挫折"></a>0x04 一点挫折</h3><p>这时某UCLA的学长还介绍给了我一个很有趣的APP，叫<code>Mifare Classic Tool</code>，Google play地址在这里：https://play.google.com/store/apps/details?id=de.syss.MifareClassicTool，Github项目地址在这里：https://github.com/ikarus23/MifareClassicTool。这个可以在有NFC功能的手机上读写兼容MIFARE的卡，我用它读了一下校园卡，发现1-6扇区被加密无法读取，7-15扇区则都是默认密钥<code>FFFFFFFFFFFF</code>，0扇区的keyA为<code>010203040506</code>，keyB没有显示，应该是卡片不允许读取。<br><img src="/images/227387.gif" data-original="/images/posts/2019/05/MCT_results.jpg" alt><br>用手机能做到的也只有这些了，于是我继续使用proxmark3研究。pm3的GUI软件中有一些自带的破解选项，比如PRNG破解<code>hf mf mifare</code>，可以利用MIFARE卡中存在的漏洞来获取某些特定的密码。但是令我意外的是，我没能获取到任何数据。我以为它是不存在这样的漏洞，于是试图使用嗅探功能来获取，却也失败了。这时那位神秘的UCLA学长提醒我是不是固件问题。于是我注意到，某宝上便宜的PM3使用的都是所谓2.0版本的固件，而500+的都是4.0。考虑到这是一款开源硬件，于是我去它的github仓库里找到了固件源码自行编译，并编译了新版本的命令行工具，果然获得了不同的结果。这时再使用PRNG破解，就成功得到了0扇区keyA为<code>010203040506</code>（等等，怎么有一种什么都没做的感觉？？？）。<br>事实上，除了PRNG之外，还有一个操作叫<code>知一求全``hf mf nested [1-4 也就是1k卡还是其他的什么卡] [第几扇区，从0开始] [A还是B] [key] d</code>，同样是利用MIFARE卡的漏洞来根据某个密钥计算出其他的密钥。执行之后，我成功得到了我的校园卡的全部密钥。又找了其他同学的卡测试之后发现，这张校园卡并没有什么特殊的加密方式，虽然使用的是比较先进的CPU卡，但却只把它当成普通的M1卡来记录数据。所有卡的0扇区keyA都是<code>010203040506</code>，1-6扇区的keyA应该是根据UID计算的一个key，0-6扇区的keyB则是另一个。<br>分析里面的数据之后发现，0扇区的1块记录了学号，2扇区的8-9块记录了完整的学生姓名和身份证号，5扇区负责洗澡的水费，13扇区则是负责宿舍区净水器喝水的水费。下图是某同学的校园卡读取后的部分数据，为了保障当事人隐私，部分数据已打码。<br><img src="/images/227387.gif" data-original="/images/posts/2019/05/dump_data.jpg" alt></p>
+<h3 id="0x05-后记"><a href="#0x05-后记" class="headerlink" title="0x05 后记"></a>0x05 后记</h3><p>折腾真是件愉快的事情啊，不过总算还是搞出了点东西。最后的最后，本文仅作学习交流之参考，<strong>请绝对不要用这里提到的技术去做违法之事！！！</strong></p>
+
+            <script type="text/javascript">
+                $(function(){
+                var oA = ('<a href="' + window.location.href + '" target="_blank">' + window.location.href + '</a>')
+                document.getElementById('src_link').innerHTML = "本文链接： " + oA ;
+                });
+            </script>
+            <hr>
+            <div id="src_link">本文链接加载失败！请检查浏览器是否支持Javascript并重试。</div>
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #757575;
+            text-shadow: 0
+        }
+</style>
+	
+<div class="btn_click_load"> 
+    <button class="disqus_click_btn">阅读评论（请确保您并非处在 公开、平等、有序的网络审查地区）</button>
+</div>
+
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://blog.gadfly.vip/2019/05/campus-card-research/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'https://blog.gadfly.vip/2019/05/campus-card-research/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/ls-javascript" id="disqus-lazy-load-script">
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//gadfly3173.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+  	
+
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2019/07/some-notes/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2018/07/dual-gpu-switch/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="https://q.qlogo.cn/headimg_dl?dst_uin=2427303995&amp;spec=140" alt="猪蹄宝宝's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        gadfly@gadfly.vip
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="mailto:gadfly@gadfly.vip" target="_blank" title="给我发邮件">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        给我发邮件
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2021/02/">二月 2021<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/04/">四月 2020<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/09/">九月 2019<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">七月 2019<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/07/">七月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/05/">五月 2018<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/08/">八月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">3</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                分类
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                <a class="sidebar_archives-link" href="/categories/NFC/">NFC<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/RFID/">RFID<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/优化/">优化<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/建站/">建站<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/开发/">开发<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/categories/技术/">技术<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/电脑/">电脑<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/简历/">简历<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/系统/">系统<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/纪实/">纪实<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/通信/">通信<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/随笔/">随笔<span class="sidebar_archives-count">1</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Pages  -->
+    
+        <li>
+            <a href="/gallery/" title="图库">
+                
+                    <i class="material-icons sidebar-material-icons">photo</i>
+                
+                图库
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/timeline/" title="timeline">
+                
+                    <i class="material-icons sidebar-material-icons">timeline</i>
+                
+                timeline
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/tags/" title="标签云">
+                
+                    <i class="material-icons sidebar-material-icons">loyalty</i>
+                
+                标签云
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/messages.html" title="留言板">
+                
+                    <i class="material-icons sidebar-material-icons">message</i>
+                
+                留言板
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/about.html" title="关于">
+                
+                    <i class="material-icons sidebar-material-icons">person</i>
+                
+                关于
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/links/" title="友情链接">
+                
+                    <i class="material-icons sidebar-material-icons">link</i>
+                
+                友情链接
+            </a>
+        </li>
+        
+    
+
+    <!-- Article Number  -->
+    
+        <li>
+            <a href="/archives">
+                文章总数
+                <span class="sidebar-badge">24</span>
+            </a>
+        </li>
+        
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
+<!-- Theme Material -->
+
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            主题 - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+
+    <!-- Facebook -->
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/gadfly3173" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+        <a href="https://www.zhihu.com/people/zhu-ti-70-82/activities" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-zhihu">
+                <span class="visuallyhidden">Zhihu</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Bilibili -->
+    
+        <a href="https://space.bilibili.com/17819592/#!/" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-bilibili">
+                <span class="visuallyhidden">Bilibili</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Telegram -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;2017&nbsp;-<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>猪蹄宝宝
+            <p>互联网ICP备案：沪ICP备17034114号-1</p>
+        </div>
+        
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import File -->
+
+
+    <script>lsloader.load("js/lazyload.min.js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==")</script>
+    <script>lsloader.load("js/js.min.js","/js/js.min.js?oAl/+lvaqTFV31JXTmbrNA==")</script>
+
+
+
+    <script>lsloader.load("js/nprogress.js","/js/nprogress.js?8ZgRfNJMGsXF1xjM7gVIjQ==")</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+   <!-- 使用 DISQUS js 代码 -->
+
+
+
+
+
+
+<!-- UC Browser Compatible -->
+<script>
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('<link rel="stylesheet" href="/css/uc.css">');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script>
+
+<!-- Window Load-->
+<script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+</script>
+
+<!-- MathJax Load-->
+
+<script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script>
+
+<!-- Bing Background -->
+
+
+<script>
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+console.log('\n %c © Material Theme | Version: 1.4.0 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+</script>
+
+                    
+                </main>
+            </div>
+
+        <script>!function(e){var r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function t(){for(var c=0;c<r.length;c++)t=r[c],void 0,0<=(n=t.getBoundingClientRect()).top&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=r[c];t=o,n=function(){r=r.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}t(),e.addEventListener("scroll",function(){!function(t,n){clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)}(t,e)})}(this);</script></body>
+    
+</html>
