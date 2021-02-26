@@ -2,8 +2,11 @@
 title: 利用 Github Actions 自动部署 Hexo 博客
 layout: post
 date: 2021-02-23 19:39:07
-categories:
+categories: 建站
 tags:
+- 纪实
+- 建站
+- Hexo
 permalink:
 visible:
 ---
