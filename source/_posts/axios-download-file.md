@@ -249,4 +249,4 @@ export function _delete(url, params = {}) {
 export default _axio
 ```
 
-参考：['Axios 同时支持下载和 JSON 数据格式'](http://blog.tubumu.com/2017/12/27/axios-extension-01/)
+参考：[Axios 同时支持下载和 JSON 数据格式](http://blog.tubumu.com/2017/12/27/axios-extension-01/)
