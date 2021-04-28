@@ -16,8 +16,8 @@ typora-copy-images-to: ..\images\posts\2021\04
 
 项目地址：
 
-- 前端：[https://github.com/gadfly3173/chakki-vue](https://github.com/gadfly3173/chakki-vue)
-- 后端：[https://github.com/gadfly3173/chakki-spring](https://github.com/gadfly3173/chakki-spring)
+- 前端：[https://github.com/gadfly3173/chakki-vue/](https://github.com/gadfly3173/chakki-vue)
+- 后端：[https://github.com/gadfly3173/chakki-spring/](https://github.com/gadfly3173/chakki-spring)
 
 要开发一个问卷模块，首先我们需要将问卷进行抽象，来理解一个问卷系统需要哪些数据。一个问卷中可能包含多个题目，他们可能是简答题或选择题等。一个选择题可能包含多个选项，问题可以限制选项被选择的数量。如果是矩阵选择题，那么选项将分为横轴与纵轴两种，两种选项可以两两组合变成一个唯一的选项。同时，所有的选项与问题都可以被排序。将这些条件抽象成树状的数据模型就可以是下图的形式。按照图示就可以很清晰地设计出数据库的表结构了。
 
