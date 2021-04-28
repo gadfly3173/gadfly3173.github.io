@@ -11,6 +11,7 @@ tags:
 permalink:
 visible:
 thumbnail: /images/posts/2019/07/1.png
+typora-root-url: ..
 ---
 ![图片](/images/posts/2019/07/1.png)
 首先当然是到这里（<https://www.cloudflare.com>）来登录/注册。注册很简单，一个邮箱就行了。然后他会给你发一封确认邮件，确认完成即可进行配置。

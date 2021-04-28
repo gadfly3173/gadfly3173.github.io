@@ -6,4 +6,5 @@ tags:
 permalink:
 layout: post
 visible: 
+typora-root-url: ..
 ---
