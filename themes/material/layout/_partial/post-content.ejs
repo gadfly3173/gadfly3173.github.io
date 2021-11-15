@@ -1,26 +1,28 @@
 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
 
-    <% if(theme.scheme === 'Paradox') { %>
-        <span class="post-count"><i class="material-icons post-count-i">vertical_split</i> <%- wordcount(page.content) %> 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i> <%- min2read(page.content, {cn: 275, en: 140}) %> 分钟</span>
-        <hr>
-        <%- page.content %>
-            <script type="text/javascript">
-                $(function(){
-                var oA = ('<a href="' + window.location.href + '" target="_blank">' + window.location.href + '</a>')
-                document.getElementById('src_link').innerHTML = "本文链接： " + oA ;
-                });
-            </script>
-            <hr>
-            <div id="src_link">本文链接加载失败！请检查浏览器是否支持Javascript并重试。</div>
-    <% } %>
+  <% if(theme.scheme === 'Paradox') { %>
+    <span class="post-count"><i class="material-icons post-count-i">vertical_split</i>
+      <%- wordcount(page.content) %> 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i>
+      <%- min2read(page.content, {cn: 275, en: 140}) %> 分钟</span>
+    <hr>
+    <%- page.content %>
+      <hr>
+      <div id="src_link">本文链接：加载中……</div>
+      <script type="text/javascript">
+        $(function(){
+          var oA = (`<a href="${window.location.href}" target="_blank">${decodeURI(window.location.href)}</a>`);
+          document.getElementById('src_link').innerHTML = `本文链接：${oA}`;
+        });
+      </script>
+  <% } %>
 
-    <% if(theme.scheme === 'Isolation') { %>
-        <div class="post-content_wrapper">
-            <p class="post-title">
-                <%- page.title %>
-            </p>
-            <%- page.content %>
+  <% if(theme.scheme === 'Isolation') { %>
+    <div class="post-content_wrapper">
+      <p class="post-title">
+        <%- page.title %>
+      </p>
+      <%- page.content %>
 
-        </div>
-    <% } %>
+    </div>
+  <% } %>
 </div>
