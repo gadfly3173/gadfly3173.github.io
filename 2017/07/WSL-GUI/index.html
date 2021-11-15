@@ -530,10 +530,12 @@ WSL真是一个神奇的小妖精啊=￣ω￣=
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
 
-    
-        <span class="post-count"><i class="material-icons post-count-i">vertical_split</i> 281 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i> 1 分钟</span>
-        <hr>
-        <blockquote>
+  
+    <span class="post-count"><i class="material-icons post-count-i">vertical_split</i>
+      281 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i>
+      1 分钟</span>
+    <hr>
+    <blockquote>
 <p>WSL真是一个神奇的小妖精啊=￣ω￣=</p>
 </blockquote>
 <a id="more"></a>
@@ -542,17 +544,17 @@ WSL真是一个神奇的小妖精啊=￣ω￣=
 <pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># DISPLAY=:0 firefox</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>firefox在这里仅作为一个例子，你可以用这个方法启动任何GUI应用(^o^)/~<br><img src="/images/227387.gif" data-original="/images/posts/2017/07/firefox_bash.png" alt><br>哦对了，使用这个命令前，记得要启动X Server，否则会提示拒绝连接哦！</p>
 
-            <script type="text/javascript">
-                $(function(){
-                var oA = ('<a href="' + window.location.href + '" target="_blank">' + window.location.href + '</a>')
-                document.getElementById('src_link').innerHTML = "本文链接： " + oA ;
-                });
-            </script>
-            <hr>
-            <div id="src_link">本文链接加载失败！请检查浏览器是否支持Javascript并重试。</div>
-    
+      <hr>
+      <div id="src_link">本文链接：加载中……</div>
+      <script type="text/javascript">
+        $(function(){
+          var oA = (`<a href="${window.location.href}" target="_blank">${decodeURI(window.location.href)}</a>`);
+          document.getElementById('src_link').innerHTML = `本文链接：${oA}`;
+        });
+      </script>
+  
 
-    
+  
 </div>
 
 

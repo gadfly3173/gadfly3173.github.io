@@ -522,10 +522,12 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
 
-    
-        <span class="post-count"><i class="material-icons post-count-i">vertical_split</i> 663 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i> 2 分钟</span>
-        <hr>
-        <p>Spring Boot 中对方法开启事务管理非常轻松，只需要 <code>@Transactional</code> 注解就可以让方法开启事务，然而不了解其机制时使用可能会导致其失效。</p>
+  
+    <span class="post-count"><i class="material-icons post-count-i">vertical_split</i>
+      663 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i>
+      2 分钟</span>
+    <hr>
+    <p>Spring Boot 中对方法开启事务管理非常轻松，只需要 <code>@Transactional</code> 注解就可以让方法开启事务，然而不了解其机制时使用可能会导致其失效。</p>
 <a id="more"></a>
 <p><code>@Transactional</code> 本质是一个 AOP 动态代理，不需要开发者干预。下面来一个代码例子：</p>
 <pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Service</span>
@@ -579,17 +581,17 @@
 <pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Transactional</span><span class="token punctuation">(</span> rollbackFor <span class="token operator">=</span> Exception<span class="token punctuation">.</span><span class="token keyword">class</span> <span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>更详细的使用要点可以看来自 IBM Developer 的 <a href="https://www.ibm.com/developerworks/cn/java/j-master-spring-transactional-use/index.html" target="_blank" rel="noopener">透彻的掌握 Spring 中@transactional 的使用</a></p>
 
-            <script type="text/javascript">
-                $(function(){
-                var oA = ('<a href="' + window.location.href + '" target="_blank">' + window.location.href + '</a>')
-                document.getElementById('src_link').innerHTML = "本文链接： " + oA ;
-                });
-            </script>
-            <hr>
-            <div id="src_link">本文链接加载失败！请检查浏览器是否支持Javascript并重试。</div>
-    
+      <hr>
+      <div id="src_link">本文链接：加载中……</div>
+      <script type="text/javascript">
+        $(function(){
+          var oA = (`<a href="${window.location.href}" target="_blank">${decodeURI(window.location.href)}</a>`);
+          document.getElementById('src_link').innerHTML = `本文链接：${oA}`;
+        });
+      </script>
+  
 
-    
+  
 </div>
 
 

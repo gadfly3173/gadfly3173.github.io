@@ -522,10 +522,12 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
 
-    
-        <span class="post-count"><i class="material-icons post-count-i">vertical_split</i> 670 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i> 3 分钟</span>
-        <hr>
-        <p>由于学校有个Ios开发课程，不得不开始使用我最厌恶的MACos。  </p>
+  
+    <span class="post-count"><i class="material-icons post-count-i">vertical_split</i>
+      670 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i>
+      3 分钟</span>
+    <hr>
+    <p>由于学校有个Ios开发课程，不得不开始使用我最厌恶的MACos。  </p>
 <a id="more"></a>
 <h4 id="安装过程："><a href="#安装过程：" class="headerlink" title="安装过程："></a>安装过程：</h4><h5 id="首先Google一个Vmware出来装好"><a href="#首先Google一个Vmware出来装好" class="headerlink" title="首先Google一个Vmware出来装好"></a>首先Google一个Vmware出来装好</h5><p>然后找一下合适的MACos镜像。我这边用的是：<br>百度网盘：链接: https://pan.baidu.com/s/1Y-SAspAY-28pccir9JsDhA 提取码: kegh<br>然后前往https://github.com/DrDonk/unlocker下载vmware-unlocker以便解除Vmware对MAC虚拟机的限制  </p>
 <h5 id="unlocker"><a href="#unlocker" class="headerlink" title="unlocker"></a>unlocker</h5><p>关闭vmware的所有服务<br>解压并打开下载的UnLocker文件夹, 右键win-install, 选择以管理员身份运行<br><img src="/images/227387.gif" data-original="/images/posts/2019/09/unlocker.webp" alt></p>
@@ -559,17 +561,17 @@ featureCompat.enable <span class="token operator">=</span> <span class="token st
 <li><a href="https://www.dkukoc.com/post/226.html" target="_blank" rel="noopener">VMware15 安装 mac OS 10.14 分辨率调整为1920*1080？_电脑基础_Dkukoc</a></li>
 </ul>
 
-            <script type="text/javascript">
-                $(function(){
-                var oA = ('<a href="' + window.location.href + '" target="_blank">' + window.location.href + '</a>')
-                document.getElementById('src_link').innerHTML = "本文链接： " + oA ;
-                });
-            </script>
-            <hr>
-            <div id="src_link">本文链接加载失败！请检查浏览器是否支持Javascript并重试。</div>
-    
+      <hr>
+      <div id="src_link">本文链接：加载中……</div>
+      <script type="text/javascript">
+        $(function(){
+          var oA = (`<a href="${window.location.href}" target="_blank">${decodeURI(window.location.href)}</a>`);
+          document.getElementById('src_link').innerHTML = `本文链接：${oA}`;
+        });
+      </script>
+  
 
-    
+  
 </div>
 
 

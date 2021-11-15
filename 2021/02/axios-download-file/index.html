@@ -522,10 +522,12 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
 
-    
-        <span class="post-count"><i class="material-icons post-count-i">vertical_split</i> 934 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i> 5 分钟</span>
-        <hr>
-        <p>现在有一个接口提供下载服务，在发生异常时，这个接口会返回 JSON 数据，来告诉前端是什么样的异常。默认情况下，Axios 只能处理 JSON 数据，如何让二者兼容是本文讨论的核心。</p>
+  
+    <span class="post-count"><i class="material-icons post-count-i">vertical_split</i>
+      934 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i>
+      5 分钟</span>
+    <hr>
+    <p>现在有一个接口提供下载服务，在发生异常时，这个接口会返回 JSON 数据，来告诉前端是什么样的异常。默认情况下，Axios 只能处理 JSON 数据，如何让二者兼容是本文讨论的核心。</p>
 <p>Axios 的核心是 <code>XMLHttpRequest</code>。可以设置 <code>XMLHttpRequest</code> 对象的 <code>responseType</code> 属性以改变从服务器端获取的预期响应。可接受的值为空字符串（默认）、<code>arraybuffer</code>、<code>blob</code>、<code>json</code>、<code>text</code>、<code>document</code>。而 Axios 默认配置为 <code>json</code>，如果将其配置为 <code>blob</code>，虽然可以处理下载文件了，但是接口返回的 JSON 数据很难<strong>同步</strong>转换为 JSON 进行处理（因为 Blob 转 JSON 需要使用 <code>FileReader().readAsText()</code>，这是一个异步的操作）。因此我们可以设置 <code>responseType</code> 为 <code>arraybuffer</code>，<code>ArrayBuffer</code> 对象用来表示通用的、固定长度的原始二进制数据缓冲区。它是一个字节数组，通常在其他语言中称为“byte array”，<code>ArrayBuffer</code>可以简单的转换为 JSON 或 Blob。</p>
 <pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// ajax 封装插件, 使用 axios</span>
 <span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span>
@@ -760,17 +762,17 @@ Plugin<span class="token punctuation">.</span>install <span class="token operato
 <span class="token keyword">export</span> <span class="token keyword">default</span> _axio<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>参考：<a href="http://blog.tubumu.com/2017/12/27/axios-extension-01/" target="_blank" rel="noopener">Axios 同时支持下载和 JSON 数据格式</a></p>
 
-            <script type="text/javascript">
-                $(function(){
-                var oA = ('<a href="' + window.location.href + '" target="_blank">' + window.location.href + '</a>')
-                document.getElementById('src_link').innerHTML = "本文链接： " + oA ;
-                });
-            </script>
-            <hr>
-            <div id="src_link">本文链接加载失败！请检查浏览器是否支持Javascript并重试。</div>
-    
+      <hr>
+      <div id="src_link">本文链接：加载中……</div>
+      <script type="text/javascript">
+        $(function(){
+          var oA = (`<a href="${window.location.href}" target="_blank">${decodeURI(window.location.href)}</a>`);
+          document.getElementById('src_link').innerHTML = `本文链接：${oA}`;
+        });
+      </script>
+  
 
-    
+  
 </div>
 
 

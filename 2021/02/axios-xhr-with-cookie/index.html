@@ -522,10 +522,12 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
 
-    
-        <span class="post-count"><i class="material-icons post-count-i">vertical_split</i> 277 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i> 1 分钟</span>
-        <hr>
-        <p>前文提到过，Axios 的核心是 <code>XMLHttpRequest</code>。<code>XMLHttpRequest</code> 对象在默认情况下并不会发送 <code>Cookies</code>，需要设置 <code>withCredentials: true</code>才行。但是只有前端设置也是没有用的，涉及跨域的情况下，还需要后端配合。我用的是Spring，就用Spring的配置类演示了。</p>
+  
+    <span class="post-count"><i class="material-icons post-count-i">vertical_split</i>
+      277 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i>
+      1 分钟</span>
+    <hr>
+    <p>前文提到过，Axios 的核心是 <code>XMLHttpRequest</code>。<code>XMLHttpRequest</code> 对象在默认情况下并不会发送 <code>Cookies</code>，需要设置 <code>withCredentials: true</code>才行。但是只有前端设置也是没有用的，涉及跨域的情况下，还需要后端配合。我用的是Spring，就用Spring的配置类演示了。</p>
 <pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// ajax 封装插件, 使用 axios</span>
 <span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span>
 <span class="token keyword">import</span> axios <span class="token keyword">from</span> <span class="token string">'axios'</span>
@@ -567,17 +569,17 @@
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>参考：<a href="https://github.com/chinesedfan/You-Dont-Know-Axios" target="_blank" rel="noopener">You Don’t Know Axios</a></p>
 
-            <script type="text/javascript">
-                $(function(){
-                var oA = ('<a href="' + window.location.href + '" target="_blank">' + window.location.href + '</a>')
-                document.getElementById('src_link').innerHTML = "本文链接： " + oA ;
-                });
-            </script>
-            <hr>
-            <div id="src_link">本文链接加载失败！请检查浏览器是否支持Javascript并重试。</div>
-    
+      <hr>
+      <div id="src_link">本文链接：加载中……</div>
+      <script type="text/javascript">
+        $(function(){
+          var oA = (`<a href="${window.location.href}" target="_blank">${decodeURI(window.location.href)}</a>`);
+          document.getElementById('src_link').innerHTML = `本文链接：${oA}`;
+        });
+      </script>
+  
 
-    
+  
 </div>
 
 

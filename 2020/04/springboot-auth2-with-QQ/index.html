@@ -522,10 +522,12 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
 
-    
-        <span class="post-count"><i class="material-icons post-count-i">vertical_split</i> 1.9k 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i> 8 分钟</span>
-        <hr>
-        <p>写这个主要是为了整理开发思路与记录，顺便表示 QQ 的接口真的写的很奇怪。。。</p>
+  
+    <span class="post-count"><i class="material-icons post-count-i">vertical_split</i>
+      1.9k 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i>
+      8 分钟</span>
+    <hr>
+    <p>写这个主要是为了整理开发思路与记录，顺便表示 QQ 的接口真的写的很奇怪。。。</p>
 <a id="more"></a>
 <p>整个项目是一个课程作业，我选择了后端使用 Spring Boot，前端使用 Vue.js 作为项目的技术栈。首先说一下 Auth 2.0。这个在QQ的文档里倒也写的很清楚 <a href="https://wiki.connect.qq.com/oauth2-0%E7%AE%80%E4%BB%8B" target="_blank" rel="noopener">OAuth2.0简介 — QQ互联WIKI</a>。它采用第三方应用在客户端根据自己的 AppId 和 Redirect URI（回调地址）来请求QQ的授权页面，用户授权后将 Authentication Code 作为 params 跳转到回调地址，回调地址将这个 Code 传给后端，由后端根据 AppId 和 Secret 再向 QQ 申请用户登录的 Access Token，根据这个 Token 后端才能去获取用户授权的相关信息。第三方应用中每个用户都有一个唯一的 OpenId 用于对应唯一的用户，但是不同第三方应用对相同的用户拿到的 OpenId 则是不同的。开发中参考了 <a href="https://segmentfault.com/a/1190000020181967" target="_blank" rel="noopener">使用java后端的springboot环境下实现网站接入QQ第三方登录</a>，因此避免了很多坑。</p>
 <h3 id="获取-Access-Token"><a href="#获取-Access-Token" class="headerlink" title="获取 Access Token"></a>获取 Access Token</h3><p>QQ 官方文档在这里 <a href="https://wiki.connect.qq.com/%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C_oauth2-0" target="_blank" rel="noopener">传送门</a>。这份文档对于没有开发经验的人来说坑实在是太多，不过相比其他平台还是比较友好的。参考文章中是使用了读取配置的方式，我则是写了一个返回secret等内容的工具类来获取 QQ 相关配置。<br>基本代码如下：</p>
@@ -658,17 +660,17 @@
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>获取用户信息的接口正常多了，返回的是 JSON。主要可以聊聊的是 JWT，不过这个也放到下次再讲吧。</p>
 
-            <script type="text/javascript">
-                $(function(){
-                var oA = ('<a href="' + window.location.href + '" target="_blank">' + window.location.href + '</a>')
-                document.getElementById('src_link').innerHTML = "本文链接： " + oA ;
-                });
-            </script>
-            <hr>
-            <div id="src_link">本文链接加载失败！请检查浏览器是否支持Javascript并重试。</div>
-    
+      <hr>
+      <div id="src_link">本文链接：加载中……</div>
+      <script type="text/javascript">
+        $(function(){
+          var oA = (`<a href="${window.location.href}" target="_blank">${decodeURI(window.location.href)}</a>`);
+          document.getElementById('src_link').innerHTML = `本文链接：${oA}`;
+        });
+      </script>
+  
 
-    
+  
 </div>
 
 

@@ -522,10 +522,12 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
 
-    
-        <span class="post-count"><i class="material-icons post-count-i">vertical_split</i> 333 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i> 1 分钟</span>
-        <hr>
-        <p>你看不见我！看不见我！略略略</p>
+  
+    <span class="post-count"><i class="material-icons post-count-i">vertical_split</i>
+      333 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i>
+      1 分钟</span>
+    <hr>
+    <p>你看不见我！看不见我！略略略</p>
 <a id="more"></a>
 <p>最近开始在博客上写日记，我希望它们可以在首页不显示，但是在归档里还能找到，研究了几篇文章之后，我做了如下改动：<br>index.ejs中</p>
 <pre><code>    &lt;!-- Normal Post --&gt;
@@ -559,17 +561,17 @@ layout: post
 <span class="token punctuation">---</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>visible属性只有在为<code>hide</code>的时候才会使文章在首页不可见，其他时候均为可见状态。<br>参考资料：1、https://github.com/viosey/hexo-theme-material/issues/483<br>　　　　　2、https://forwardkth.github.io/2016/05/08/next-theme-post-visibility/</p>
 
-            <script type="text/javascript">
-                $(function(){
-                var oA = ('<a href="' + window.location.href + '" target="_blank">' + window.location.href + '</a>')
-                document.getElementById('src_link').innerHTML = "本文链接： " + oA ;
-                });
-            </script>
-            <hr>
-            <div id="src_link">本文链接加载失败！请检查浏览器是否支持Javascript并重试。</div>
-    
+      <hr>
+      <div id="src_link">本文链接：加载中……</div>
+      <script type="text/javascript">
+        $(function(){
+          var oA = (`<a href="${window.location.href}" target="_blank">${decodeURI(window.location.href)}</a>`);
+          document.getElementById('src_link').innerHTML = `本文链接：${oA}`;
+        });
+      </script>
+  
 
-    
+  
 </div>
 
 

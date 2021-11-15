@@ -443,10 +443,12 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
 
-    
-        <span class="post-count"><i class="material-icons post-count-i">vertical_split</i> 266 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i> 1 分钟</span>
-        <hr>
-        <p>没啥好讲的，nie</p>
+  
+    <span class="post-count"><i class="material-icons post-count-i">vertical_split</i>
+      266 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i>
+      1 分钟</span>
+    <hr>
+    <p>没啥好讲的，nie</p>
 <h2 id="关于本站"><a href="#关于本站" class="headerlink" title="关于本站"></a>关于本站</h2><ul>
 <li>本站托管在 <a href="http://github.com" target="_blank" rel="noopener">GitHub</a> 上，通过 <a href="http://wowubuntu.com/markdown/" target="_blank" rel="noopener">Markdown</a> 撰写，由 <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> 静态化。</li>
 <li>源码仓库：<a href="https://github.com/gadfly3173/gadfly3173.github.io/tree/source" target="_blank" rel="noopener">gadfly3173.github.io</a></li>
@@ -501,17 +503,17 @@
 </li>
 </ul>
 
-            <script type="text/javascript">
-                $(function(){
-                var oA = ('<a href="' + window.location.href + '" target="_blank">' + window.location.href + '</a>')
-                document.getElementById('src_link').innerHTML = "本文链接： " + oA ;
-                });
-            </script>
-            <hr>
-            <div id="src_link">本文链接加载失败！请检查浏览器是否支持Javascript并重试。</div>
-    
+      <hr>
+      <div id="src_link">本文链接：加载中……</div>
+      <script type="text/javascript">
+        $(function(){
+          var oA = (`<a href="${window.location.href}" target="_blank">${decodeURI(window.location.href)}</a>`);
+          document.getElementById('src_link').innerHTML = `本文链接：${oA}`;
+        });
+      </script>
+  
 
-    
+  
 </div>
 
 

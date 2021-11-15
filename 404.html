@@ -443,10 +443,12 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
 
-    
-        <span class="post-count"><i class="material-icons post-count-i">vertical_split</i> 66 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i> 1 分钟</span>
-        <hr>
-        <img src="/images/227387.gif" data-original="/images/twitter/404.png">
+  
+    <span class="post-count"><i class="material-icons post-count-i">vertical_split</i>
+      66 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i>
+      1 分钟</span>
+    <hr>
+    <img src="/images/227387.gif" data-original="/images/twitter/404.png">
 
 <p>啊哦┗|｀O′|┛ ，你访问的页面不见了呢┑(￣Д ￣)┍<br>可能是因为：</p>
 <ul>
@@ -455,17 +457,17 @@
 <li>出了点bug，刷新一下吧！【刷新了还没用的话，参考上面两条～】</li>
 </ul>
 
-            <script type="text/javascript">
-                $(function(){
-                var oA = ('<a href="' + window.location.href + '" target="_blank">' + window.location.href + '</a>')
-                document.getElementById('src_link').innerHTML = "本文链接： " + oA ;
-                });
-            </script>
-            <hr>
-            <div id="src_link">本文链接加载失败！请检查浏览器是否支持Javascript并重试。</div>
-    
+      <hr>
+      <div id="src_link">本文链接：加载中……</div>
+      <script type="text/javascript">
+        $(function(){
+          var oA = (`<a href="${window.location.href}" target="_blank">${decodeURI(window.location.href)}</a>`);
+          document.getElementById('src_link').innerHTML = `本文链接：${oA}`;
+        });
+      </script>
+  
 
-    
+  
 </div>
 
 

@@ -522,10 +522,12 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
 
-    
-        <span class="post-count"><i class="material-icons post-count-i">vertical_split</i> 7.3k 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i> 28 分钟</span>
-        <hr>
-        <p><small><em>本文中提到的<code>卡片</code>，若非特别注明，均为非接触式卡片，不再另外声明。</em></small></p>
+  
+    <span class="post-count"><i class="material-icons post-count-i">vertical_split</i>
+      7.3k 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i>
+      28 分钟</span>
+    <hr>
+    <p><small><em>本文中提到的<code>卡片</code>，若非特别注明，均为非接触式卡片，不再另外声明。</em></small></p>
 <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>首先分析NFC和我们身边的IC卡之前，我们需要先介绍一些基本的概念：</p>
 <blockquote>
 <p>近场通信技术（Near-field communication，NFC）由非接触式射频识别（RFID）演变而来，由飞利浦半导体（现恩智浦半导体）、诺基亚和索尼共同于2004年研制开发，其基础是RFID及互连技术。近场通信是一种短距高频的无线电技术，在13.56MHz频率运行于20厘米距离内。其传输速度有106 Kbit/秒、212 Kbit/秒或者424 Kbit/秒三种。当前近场通信已通过成为ISO/IEC IS 18092国际标准、EMCA-340标准与ETSI TS 102 190标准。NFC采用主动和被动两种读取模式。</p>
@@ -651,17 +653,17 @@
 <li><a href="https://zh.wikipedia.org" target="_blank" rel="noopener">维基百科</a></li>
 </ul>
 
-            <script type="text/javascript">
-                $(function(){
-                var oA = ('<a href="' + window.location.href + '" target="_blank">' + window.location.href + '</a>')
-                document.getElementById('src_link').innerHTML = "本文链接： " + oA ;
-                });
-            </script>
-            <hr>
-            <div id="src_link">本文链接加载失败！请检查浏览器是否支持Javascript并重试。</div>
-    
+      <hr>
+      <div id="src_link">本文链接：加载中……</div>
+      <script type="text/javascript">
+        $(function(){
+          var oA = (`<a href="${window.location.href}" target="_blank">${decodeURI(window.location.href)}</a>`);
+          document.getElementById('src_link').innerHTML = `本文链接：${oA}`;
+        });
+      </script>
+  
 
-    
+  
 </div>
 
 

@@ -522,10 +522,12 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
 
-    
-        <span class="post-count"><i class="material-icons post-count-i">vertical_split</i> 940 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i> 4 分钟</span>
-        <hr>
-        <p>我们知道在Github上有proxmark3的最新固件，今天聊一聊在windows下如何编译固件源码并刷入proxmark3。</p>
+  
+    <span class="post-count"><i class="material-icons post-count-i">vertical_split</i>
+      940 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i>
+      4 分钟</span>
+    <hr>
+    <p>我们知道在Github上有proxmark3的最新固件，今天聊一聊在windows下如何编译固件源码并刷入proxmark3。</p>
 <a id="more"></a>
 <p>pm3的固件基本由c语言构成，在windows下进行编译存在一定的难度，好在GitHub上早有大神针对其制作的脚本，可以轻松地配置编译所需要的环境。</p>
 <h3 id="开发环境配置"><a href="#开发环境配置" class="headerlink" title="开发环境配置"></a>开发环境配置</h3><p>这里我们使用的是<a href="https://github.com/Gator96100/ProxSpace" target="_blank" rel="noopener">ProxSpace</a>,解压到合适的地方即可。</p>
@@ -618,17 +620,17 @@ cmd.exe
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>而proxspace工作目录下的<code>.\pm3\client\proxmark3.exe</code>就是匹配最新固件的pm3的命令行客户端了。</p>
 
-            <script type="text/javascript">
-                $(function(){
-                var oA = ('<a href="' + window.location.href + '" target="_blank">' + window.location.href + '</a>')
-                document.getElementById('src_link').innerHTML = "本文链接： " + oA ;
-                });
-            </script>
-            <hr>
-            <div id="src_link">本文链接加载失败！请检查浏览器是否支持Javascript并重试。</div>
-    
+      <hr>
+      <div id="src_link">本文链接：加载中……</div>
+      <script type="text/javascript">
+        $(function(){
+          var oA = (`<a href="${window.location.href}" target="_blank">${decodeURI(window.location.href)}</a>`);
+          document.getElementById('src_link').innerHTML = `本文链接：${oA}`;
+        });
+      </script>
+  
 
-    
+  
 </div>
 
 

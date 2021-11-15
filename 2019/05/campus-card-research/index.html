@@ -530,10 +530,12 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
 
-    
-        <span class="post-count"><i class="material-icons post-count-i">vertical_split</i> 2.6k 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i> 10 分钟</span>
-        <hr>
-        <blockquote>
+  
+    <span class="post-count"><i class="material-icons post-count-i">vertical_split</i>
+      2.6k 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i>
+      10 分钟</span>
+    <hr>
+    <blockquote>
 <p>校园一卡通涵盖了我们校园生活中的方方面面，吃饭喝水购物门禁都靠它，对于其工作方式我非常感兴趣，因此做了这次的探索。<br>In the world of locked rooms, the man with the key is king.<br>– Moriarty</p>
 </blockquote>
 <a id="more"></a>
@@ -555,17 +557,17 @@
 <h3 id="0x04-一点挫折"><a href="#0x04-一点挫折" class="headerlink" title="0x04 一点挫折"></a>0x04 一点挫折</h3><p>这时某UCLA的学长还介绍给了我一个很有趣的APP，叫<code>Mifare Classic Tool</code>，Google play地址在这里：https://play.google.com/store/apps/details?id=de.syss.MifareClassicTool，Github项目地址在这里：https://github.com/ikarus23/MifareClassicTool。这个可以在有NFC功能的手机上读写兼容MIFARE的卡，我用它读了一下校园卡，发现1-6扇区被加密无法读取，7-15扇区则都是默认密钥<code>FFFFFFFFFFFF</code>，0扇区的keyA为<code>010203040506</code>，keyB没有显示，应该是卡片不允许读取。<br><img src="/images/227387.gif" data-original="/images/posts/2019/05/MCT_results.jpg" alt><br>用手机能做到的也只有这些了，于是我继续使用proxmark3研究。pm3的GUI软件中有一些自带的破解选项，比如PRNG破解<code>hf mf mifare</code>，可以利用MIFARE卡中存在的漏洞来获取某些特定的密码。但是令我意外的是，我没能获取到任何数据。我以为它是不存在这样的漏洞，于是试图使用嗅探功能来获取，却也失败了。这时那位神秘的UCLA学长提醒我是不是固件问题。于是我注意到，某宝上便宜的PM3使用的都是所谓2.0版本的固件，而500+的都是4.0。考虑到这是一款开源硬件，于是我去它的github仓库里找到了固件源码自行编译，并编译了新版本的命令行工具，果然获得了不同的结果。这时再使用PRNG破解，就成功得到了0扇区keyA为<code>010203040506</code>（等等，怎么有一种什么都没做的感觉？？？）。<br>事实上，除了PRNG之外，还有一个操作叫<code>知一求全``hf mf nested [1-4 也就是1k卡还是其他的什么卡] [第几扇区，从0开始] [A还是B] [key] d</code>，同样是利用MIFARE卡的漏洞来根据某个密钥计算出其他的密钥。执行之后，我成功得到了我的校园卡的全部密钥。又找了其他同学的卡测试之后发现，这张校园卡并没有什么特殊的加密方式，虽然使用的是比较先进的CPU卡，但却只把它当成普通的M1卡来记录数据。所有卡的0扇区keyA都是<code>010203040506</code>，1-6扇区的keyA应该是根据UID计算的一个key，0-6扇区的keyB则是另一个。<br>分析里面的数据之后发现，0扇区的1块记录了学号，2扇区的8-9块记录了完整的学生姓名和身份证号，5扇区负责洗澡的水费，13扇区则是负责宿舍区净水器喝水的水费。下图是某同学的校园卡读取后的部分数据，为了保障当事人隐私，部分数据已打码。<br><img src="/images/227387.gif" data-original="/images/posts/2019/05/dump_data.jpg" alt></p>
 <h3 id="0x05-后记"><a href="#0x05-后记" class="headerlink" title="0x05 后记"></a>0x05 后记</h3><p>折腾真是件愉快的事情啊，不过总算还是搞出了点东西。最后的最后，本文仅作学习交流之参考，<strong>请绝对不要用这里提到的技术去做违法之事！！！</strong></p>
 
-            <script type="text/javascript">
-                $(function(){
-                var oA = ('<a href="' + window.location.href + '" target="_blank">' + window.location.href + '</a>')
-                document.getElementById('src_link').innerHTML = "本文链接： " + oA ;
-                });
-            </script>
-            <hr>
-            <div id="src_link">本文链接加载失败！请检查浏览器是否支持Javascript并重试。</div>
-    
+      <hr>
+      <div id="src_link">本文链接：加载中……</div>
+      <script type="text/javascript">
+        $(function(){
+          var oA = (`<a href="${window.location.href}" target="_blank">${decodeURI(window.location.href)}</a>`);
+          document.getElementById('src_link').innerHTML = `本文链接：${oA}`;
+        });
+      </script>
+  
 
-    
+  
 </div>
 
 

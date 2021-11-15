@@ -530,10 +530,12 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
 
-    
-        <span class="post-count"><i class="material-icons post-count-i">vertical_split</i> 1.1k 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i> 4 分钟</span>
-        <hr>
-        <blockquote>
+  
+    <span class="post-count"><i class="material-icons post-count-i">vertical_split</i>
+      1.1k 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i>
+      4 分钟</span>
+    <hr>
+    <blockquote>
 <p>拥有一个自己的网站曾经是我的一个梦想。这个想法其实从初中的时候我就开始有了，但是呢。。。我其实不是一个执行力很强的人，于是一拖再拖，拖到了现在。。。(╯‵□′)╯︵┻━┻</p>
 </blockquote>
 <a id="more"></a>
@@ -544,17 +546,17 @@
 <h2 id="转移阵地"><a href="#转移阵地" class="headerlink" title="转移阵地"></a>转移阵地</h2><p>Hexo一开始让我有点不太习惯。虽然它比Jekyll的可维护性更强，但是文件结构更加复杂。。。不过Hexo中很多功能通过一条命令一个插件就能搞定，要比Jekyll什么都自己动手方便得多。<br>按照网上的教程迁移完成后，我选择了Maupassant主题，添加了百度统计代码，按照jade语法重新加入Gitment插件，用hexo-generator-feed插件解决了RSS页面的问题。踩完一堆坑后，这博客也差不多搞完啦！</p>
 <h2 id="后续修改"><a href="#后续修改" class="headerlink" title="后续修改"></a>后续修改</h2><p>今天觉得应该搞个首行缩进的功能，结果我把.post-meta当成了文章属性，.post-content当成了目录。。。论不好好学英语的后果。。。<br>以及我发现text-indent:2em;只对p标签分段的文字有效，而Hexo会自动将我自己在md中打的回车转义成&lt;br&gt;。于是我在marked.js中将其改为&lt;/p&gt;&lt;p&gt;，一劳永逸2333。</p>
 
-            <script type="text/javascript">
-                $(function(){
-                var oA = ('<a href="' + window.location.href + '" target="_blank">' + window.location.href + '</a>')
-                document.getElementById('src_link').innerHTML = "本文链接： " + oA ;
-                });
-            </script>
-            <hr>
-            <div id="src_link">本文链接加载失败！请检查浏览器是否支持Javascript并重试。</div>
-    
+      <hr>
+      <div id="src_link">本文链接：加载中……</div>
+      <script type="text/javascript">
+        $(function(){
+          var oA = (`<a href="${window.location.href}" target="_blank">${decodeURI(window.location.href)}</a>`);
+          document.getElementById('src_link').innerHTML = `本文链接：${oA}`;
+        });
+      </script>
+  
 
-    
+  
 </div>
 
 

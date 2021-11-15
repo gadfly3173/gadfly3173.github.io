@@ -521,10 +521,12 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
 
-    
-        <span class="post-count"><i class="material-icons post-count-i">vertical_split</i> 1.4k 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i> 5 分钟</span>
-        <hr>
-        <blockquote>
+  
+    <span class="post-count"><i class="material-icons post-count-i">vertical_split</i>
+      1.4k 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i>
+      5 分钟</span>
+    <hr>
+    <blockquote>
 <p>在2017年的10月30日，上海地铁正式推出了Metro大都会APP及其相关的各项服务，并在磁悬浮上首先运行。经过几个月的发展，2018年1月20日，这项服务在上海所有的地铁线路和车站开始正式运行，而它至今也带着非常巨大的争议。</p>
 </blockquote>
 <a id="more"></a>
@@ -539,17 +541,17 @@
 </ul>
 <p>也就是说，需要打开手机蓝牙一方面是为了乘客使用二维码过闸时，蓝牙能够提供闸机向手机的信息写入，而二维码只能实现信息的读取，从而实现双脱机状态下的过闸。另一方面，蓝牙的短距离特点还能防止二维码截屏转发出现盗刷、多扣款等支付消费风险。<br>因为闸机并不会一直与服务器进行数据交互，而是在一定时间后集中所有数据，一起打包发给服务器，这时服务器才会知道你乘了车，对你的账户进行扣费。所以APP中提示扣费需要约30分钟。这样的工作模式可以保证在网络出现故障时，用户也能正常乘车，同时保证账户资金安全。支付宝乘车码之类的东西则是通过实时与服务器进行校验来保证安全，这两者使用的是不同的思路，很难说谁好谁坏，各有利弊，只有适合不适合。<br>这几天亲自尝试了一下，感觉速度不是特别快，不知道是我二维码没对准还是技术上有什么障碍导致手机与闸机交互太慢。使用后我认为这玩意目前便携性还是不如交通卡，APP如果能够在手机桌面用一个窗口部件来显示二维码或者像支付宝这样可以通过通知栏快速打开二维码会方便很多。<br><img src="/images/227387.gif" data-original="/images/posts/2018/01/app-quanxian.jpg" alt><br>很多人吐槽这个APP获取权限过多，个人暂时没发现有什么特别过分的权限要求。<br>网络上现在有不少反对的声音说：这种服务应该直接并入支付宝。个人认为这种方式并不符合上海地铁的实际需求。支付宝并不能满足上海地铁要求的双脱机工作，同时这种公共事业服务被非国有企业垄断也对地铁运营不利。不过众所周知的是，上海地铁与上海公交卡两家矛盾显著，这个APP也是上海地铁为了绕过公交卡公司而产生的。<br>撇开这些，这个APP本身个人认为还不错，没有非常糟糕。申通应该也有意用这个代替以前那个仿佛垃圾一般的上海地铁官方指南。。。申通试图将这个APP做成资讯门户，很可惜，它并没有这个实力，这个APP里也只有和上海地铁有关的内容还可以，其他资讯实在是没法看。。。只能说进步空间很大，现在也远未到公众所期望的及格线，还有很多需要改进的地方，比如部分手机不支持之类的。但是我个人很看好这款产品，并希望它能越来越好。<br><img src="/images/227387.gif" data-original="/images/posts/2018/01/O98K.jpg" alt></p>
 
-            <script type="text/javascript">
-                $(function(){
-                var oA = ('<a href="' + window.location.href + '" target="_blank">' + window.location.href + '</a>')
-                document.getElementById('src_link').innerHTML = "本文链接： " + oA ;
-                });
-            </script>
-            <hr>
-            <div id="src_link">本文链接加载失败！请检查浏览器是否支持Javascript并重试。</div>
-    
+      <hr>
+      <div id="src_link">本文链接：加载中……</div>
+      <script type="text/javascript">
+        $(function(){
+          var oA = (`<a href="${window.location.href}" target="_blank">${decodeURI(window.location.href)}</a>`);
+          document.getElementById('src_link').innerHTML = `本文链接：${oA}`;
+        });
+      </script>
+  
 
-    
+  
 </div>
 
 

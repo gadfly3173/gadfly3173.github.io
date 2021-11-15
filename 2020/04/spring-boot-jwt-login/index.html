@@ -522,10 +522,12 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
 
-    
-        <span class="post-count"><i class="material-icons post-count-i">vertical_split</i> 1.7k 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i> 7 分钟</span>
-        <hr>
-        <p>Spring Boot 开发笔记系列第二弹，这次来聊聊 JWT 和登录鉴权系统的设计。</p>
+  
+    <span class="post-count"><i class="material-icons post-count-i">vertical_split</i>
+      1.7k 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i>
+      7 分钟</span>
+    <hr>
+    <p>Spring Boot 开发笔记系列第二弹，这次来聊聊 JWT 和登录鉴权系统的设计。</p>
 <a id="more"></a>
 <p>阮一峰的 <a href="https://www.ruanyifeng.com/blog/2018/07/json_web_token-tutorial.html" target="_blank" rel="noopener">JSON Web Token 入门教程</a> 里把 JWT 的概念都讲得很清楚了。既然它被称为 Token，那么自然是作为令牌，用来验证身份的存在。传统的 Session, Cookie 等都承担着类似的功能。JWT 的独特之处在于它可以承载一定的信息，是一种无状态的令牌。验证其是否有效的工作可以不需要经过数据库或者缓存等，如果加密 JWT 的密钥在后端是固定的或者通过其承载的信息可以算出来的，那么验证与下发都可以极大的减少服务器压力。而它本身可以承载的信息中可以加上不敏感的内容，比如用户 id 或者用户名等等，在不经过数据库操作的时候就能判断用户的合法性，完成一定的操作。<br>当然这样的设计也有局限性，比如我的项目中需要保证用户不会在多处同时登录，但是 JWT 验证 Token 只根据它其中包含的过期时间信息，后端不能在用户使用第二台设备登录时作废第一台设备的登录信息，这可能导致一定的安全隐患。因此我在项目中引入了 Redis 缓存，每次下发 Token 时生成随机密钥，这个密钥与用户信息绑定，与 Token 拥有相同的过期时间并存在 Redis 中。Redis 的原理使得这样的操作不会增加太多的开销，又能让 JWT 依然承担传递信息的任务。</p>
 <h3 id="JWT-相关的设计"><a href="#JWT-相关的设计" class="headerlink" title="JWT 相关的设计"></a>JWT 相关的设计</h3><p>首先来一个 JWT 的工具类：</p>
@@ -710,17 +712,17 @@
 <p>把它注册为一个配置类，在其中注册刚才的登录拦截器，添加 <code>/**</code> 路径，把所有请求都转到拦截器中，当然，登录之类的接口不能走拦截器，因此还要添加例外。</p>
 <p>这样，一个基本的未登录用户的拦截功能就做完了。由于我的项目中权限只有两级，敏感权限也没几个，所以只是另外写了个工具类判断是否有高级权限，并没有做进拦截器里。</p>
 
-            <script type="text/javascript">
-                $(function(){
-                var oA = ('<a href="' + window.location.href + '" target="_blank">' + window.location.href + '</a>')
-                document.getElementById('src_link').innerHTML = "本文链接： " + oA ;
-                });
-            </script>
-            <hr>
-            <div id="src_link">本文链接加载失败！请检查浏览器是否支持Javascript并重试。</div>
-    
+      <hr>
+      <div id="src_link">本文链接：加载中……</div>
+      <script type="text/javascript">
+        $(function(){
+          var oA = (`<a href="${window.location.href}" target="_blank">${decodeURI(window.location.href)}</a>`);
+          document.getElementById('src_link').innerHTML = `本文链接：${oA}`;
+        });
+      </script>
+  
 
-    
+  
 </div>
 
 

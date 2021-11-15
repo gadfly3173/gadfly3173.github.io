@@ -522,10 +522,12 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
 
-    
-        <span class="post-count"><i class="material-icons post-count-i">vertical_split</i> 2k 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i> 8 分钟</span>
-        <hr>
-        <h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><h3 id="1、从远程主机克隆一个版本库"><a href="#1、从远程主机克隆一个版本库" class="headerlink" title="1、从远程主机克隆一个版本库"></a>1、从远程主机克隆一个版本库</h3><pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> clone <span class="token operator">&lt;</span>版本库的网址<span class="token operator">></span> <span class="token operator">&lt;</span>本地目录名<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+  
+    <span class="post-count"><i class="material-icons post-count-i">vertical_split</i>
+      2k 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i>
+      8 分钟</span>
+    <hr>
+    <h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><h3 id="1、从远程主机克隆一个版本库"><a href="#1、从远程主机克隆一个版本库" class="headerlink" title="1、从远程主机克隆一个版本库"></a>1、从远程主机克隆一个版本库</h3><pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> clone <span class="token operator">&lt;</span>版本库的网址<span class="token operator">></span> <span class="token operator">&lt;</span>本地目录名<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>克隆版本库的时候，所使用的远程主机自动被Git命名为origin。如果想用其他的主机名，需要用git clone命令的-o选项指定。</p>
 <pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> clone -o jQuery https://github.com/jquery/jquery.git<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h3 id="2、管理远程主机名"><a href="#2、管理远程主机名" class="headerlink" title="2、管理远程主机名"></a>2、管理远程主机名</h3><p>使用-v选项，可以参看远程主机的网址。</p>
@@ -603,17 +605,17 @@ $ <span class="token function">git</span> push --all origin<span aria-hidden="tr
 <pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> push origin --tags<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h2 id="替换字体"><a href="#替换字体" class="headerlink" title="替换字体"></a>替换字体</h2><p>https://github.com/ysc3839/FontMod/ 可以用于替换部分Qt或使用GDI渲染的程序的默认字体。<br>Mactype可以用于改善win10字体渲染。与virtual box和上面的fontmod会产生冲突。<br>Mactype以注册表加载需要在bios中关闭secure boot，Surface进入的方法是关机状态下按住<code>音量+</code>，然后按一下<code>电源键</code>，等到出现surface的logo后再松开<code>音量+</code>。</p>
 
-            <script type="text/javascript">
-                $(function(){
-                var oA = ('<a href="' + window.location.href + '" target="_blank">' + window.location.href + '</a>')
-                document.getElementById('src_link').innerHTML = "本文链接： " + oA ;
-                });
-            </script>
-            <hr>
-            <div id="src_link">本文链接加载失败！请检查浏览器是否支持Javascript并重试。</div>
-    
+      <hr>
+      <div id="src_link">本文链接：加载中……</div>
+      <script type="text/javascript">
+        $(function(){
+          var oA = (`<a href="${window.location.href}" target="_blank">${decodeURI(window.location.href)}</a>`);
+          document.getElementById('src_link').innerHTML = `本文链接：${oA}`;
+        });
+      </script>
+  
 
-    
+  
 </div>
 
 

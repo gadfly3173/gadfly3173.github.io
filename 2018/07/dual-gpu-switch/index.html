@@ -522,25 +522,27 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
 
-    
-        <span class="post-count"><i class="material-icons post-count-i">vertical_split</i> 247 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i> 1 分钟</span>
-        <hr>
-        <p>用台式机时，Intel用户可能会发现一件很尴尬的事情，那就是CPU里的核显在使用独显时几乎没有用。那么有什么办法可以让核显来替独显分担，降低功耗呢？<br>要达到这样的目的，我们需要先在BIOS里让核显运行。在我的微星主板的BIOS里就是<code>内建显示配置</code>-&gt;<code>集成显卡多显示器</code>-&gt;<code>允许</code>即可。<br>然后在Windows中，打开 https://downloadcenter.intel.com/zh-cn/product/80939/- ，在里面下载对应CPU的驱动。<br>接着，在桌面右键-&gt;<code>显示设置</code>-&gt;<code>图形设置</code>-&gt;<code>浏览</code>，选择你需要用核显运行的程序，点击<code>选项</code>，选择节能。通过这样的操作之后，我们就可以指定特定的程序通过核显运行，也能在OBS中使用Intel QuickSync编码器来进行编码，极大提升硬件资源利用率。<br>详见视频： https://www.bilibili.com/video/av28150115/ </p>
+  
+    <span class="post-count"><i class="material-icons post-count-i">vertical_split</i>
+      247 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i>
+      1 分钟</span>
+    <hr>
+    <p>用台式机时，Intel用户可能会发现一件很尴尬的事情，那就是CPU里的核显在使用独显时几乎没有用。那么有什么办法可以让核显来替独显分担，降低功耗呢？<br>要达到这样的目的，我们需要先在BIOS里让核显运行。在我的微星主板的BIOS里就是<code>内建显示配置</code>-&gt;<code>集成显卡多显示器</code>-&gt;<code>允许</code>即可。<br>然后在Windows中，打开 https://downloadcenter.intel.com/zh-cn/product/80939/- ，在里面下载对应CPU的驱动。<br>接着，在桌面右键-&gt;<code>显示设置</code>-&gt;<code>图形设置</code>-&gt;<code>浏览</code>，选择你需要用核显运行的程序，点击<code>选项</code>，选择节能。通过这样的操作之后，我们就可以指定特定的程序通过核显运行，也能在OBS中使用Intel QuickSync编码器来进行编码，极大提升硬件资源利用率。<br>详见视频： https://www.bilibili.com/video/av28150115/ </p>
 <iframe src="//player.bilibili.com/player.html?aid=28150115&cid=48650182&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" height="100%"> </iframe>
 
 <p><img src="/images/227387.gif" data-original="/images/posts/2018/07/psb.gif" alt="图片"></p>
 
-            <script type="text/javascript">
-                $(function(){
-                var oA = ('<a href="' + window.location.href + '" target="_blank">' + window.location.href + '</a>')
-                document.getElementById('src_link').innerHTML = "本文链接： " + oA ;
-                });
-            </script>
-            <hr>
-            <div id="src_link">本文链接加载失败！请检查浏览器是否支持Javascript并重试。</div>
-    
+      <hr>
+      <div id="src_link">本文链接：加载中……</div>
+      <script type="text/javascript">
+        $(function(){
+          var oA = (`<a href="${window.location.href}" target="_blank">${decodeURI(window.location.href)}</a>`);
+          document.getElementById('src_link').innerHTML = `本文链接：${oA}`;
+        });
+      </script>
+  
 
-    
+  
 </div>
 
 

@@ -522,10 +522,12 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
 
-    
-        <span class="post-count"><i class="material-icons post-count-i">vertical_split</i> 812 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i> 5 分钟</span>
-        <hr>
-        <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>在./themes/layout.ejs的<code>&lt;body&gt;</code>中加入</p>
+  
+    <span class="post-count"><i class="material-icons post-count-i">vertical_split</i>
+      812 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i>
+      5 分钟</span>
+    <hr>
+    <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>在./themes/layout.ejs的<code>&lt;body&gt;</code>中加入</p>
 <pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>canvas</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Mycanvas<span class="token punctuation">"</span></span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">position</span><span class="token punctuation">:</span>fixed<span class="token punctuation">;</span><span class="token property">z-index</span><span class="token punctuation">:</span>-<span class="token number">99</span><span class="token punctuation">;</span><span class="token property">display</span><span class="token punctuation">:</span>block<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>你这是什么垃圾浏览器，这都不能显示(╯‵□′)╯︵┻━┻<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>canvas</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/js/tiniballs.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>tiniballs.js存放于./themes/material/source/js/中，内容如下：</p>
@@ -653,17 +655,17 @@ context<span class="token punctuation">.</span>strokeStyle <span class="token op
     github: git@github.com:gadfly3173/gadfly3173.github.io.git
   branch: master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-            <script type="text/javascript">
-                $(function(){
-                var oA = ('<a href="' + window.location.href + '" target="_blank">' + window.location.href + '</a>')
-                document.getElementById('src_link').innerHTML = "本文链接： " + oA ;
-                });
-            </script>
-            <hr>
-            <div id="src_link">本文链接加载失败！请检查浏览器是否支持Javascript并重试。</div>
-    
+      <hr>
+      <div id="src_link">本文链接：加载中……</div>
+      <script type="text/javascript">
+        $(function(){
+          var oA = (`<a href="${window.location.href}" target="_blank">${decodeURI(window.location.href)}</a>`);
+          document.getElementById('src_link').innerHTML = `本文链接：${oA}`;
+        });
+      </script>
+  
 
-    
+  
 </div>
 
 

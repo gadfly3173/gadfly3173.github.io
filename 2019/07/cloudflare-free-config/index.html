@@ -513,10 +513,12 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
 
-    
-        <span class="post-count"><i class="material-icons post-count-i">vertical_split</i> 484 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i> 1 分钟</span>
-        <hr>
-        <p><img src="/images/227387.gif" data-original="/images/posts/2019/07/1.png" alt="图片"><br>首先当然是到这里（https://www.cloudflare.com）来登录/注册。注册很简单，一个邮箱就行了。然后他会给你发一封确认邮件，确认完成即可进行配置。<br>然后会提示你输入你的域名，这时输入不带子域名的域名即可，如我的是<code>gadfly.vip</code>，然后点击<code>add site</code>即可，它会自动扫描你已经存在的DNS解析记录，不过有可能解析不全。接下来它会让你把你的DNS服务器改成他给你提供的。每个人的DNS服务器不一定一样，按照网页上给你提供的去修改即可。</p>
+  
+    <span class="post-count"><i class="material-icons post-count-i">vertical_split</i>
+      484 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i>
+      1 分钟</span>
+    <hr>
+    <p><img src="/images/227387.gif" data-original="/images/posts/2019/07/1.png" alt="图片"><br>首先当然是到这里（https://www.cloudflare.com）来登录/注册。注册很简单，一个邮箱就行了。然后他会给你发一封确认邮件，确认完成即可进行配置。<br>然后会提示你输入你的域名，这时输入不带子域名的域名即可，如我的是<code>gadfly.vip</code>，然后点击<code>add site</code>即可，它会自动扫描你已经存在的DNS解析记录，不过有可能解析不全。接下来它会让你把你的DNS服务器改成他给你提供的。每个人的DNS服务器不一定一样，按照网页上给你提供的去修改即可。</p>
 <h3 id="点击上面的DNS标签后即可打开这个页面"><a href="#点击上面的DNS标签后即可打开这个页面" class="headerlink" title="点击上面的DNS标签后即可打开这个页面"></a>点击上面的DNS标签后即可打开这个页面</h3><p><img src="/images/227387.gif" data-original="/images/posts/2019/07/2.png" alt="图片"><br>其中橙黄色的云朵表示使用CDN，灰色的表示不使用。Cloudflare不支持在根域名下同时绑定MX记录和A记录，配置时需要注意。</p>
 <h3 id="Crypto标签中的设置用于配置SSL相关内容。"><a href="#Crypto标签中的设置用于配置SSL相关内容。" class="headerlink" title="Crypto标签中的设置用于配置SSL相关内容。"></a>Crypto标签中的设置用于配置SSL相关内容。</h3><p><img src="/images/227387.gif" data-original="/images/posts/2019/07/3.png" alt="图片"><br>Cloudflare提供了三种SSL模式</p>
 <ul>
@@ -527,17 +529,17 @@
 <p><img src="/images/227387.gif" data-original="/images/posts/2019/07/4.png" alt="图片"><br>origin certificates可以通过cloudflare生成一份可信任的SSL证书并下载，可以安装到服务器上。<br>Always Use HTTPS用于强制HTTPS访问。<br>HSTS是告诉浏览器网站只通过HTTPS访问，防止有攻击者拦截用户通过HTTP访问的请求。个人觉得开启会更好。<br><img src="/images/227387.gif" data-original="/images/posts/2019/07/5.png" alt="图片"><br>这些全开着就完事了，最小TLS版本建议低一点，要不然垃圾浏览器就打不开了。<br><img src="/images/227387.gif" data-original="/images/posts/2019/07/6.png" alt="图片"><br>TLS1.3开着，自动HTTPS重写是把你网页上的http链接全都转成https，如果你网站上有些资源没法走https的话，那还是别开了</p>
 <h3 id="Speed里这些都开着吧"><a href="#Speed里这些都开着吧" class="headerlink" title="Speed里这些都开着吧"></a>Speed里这些都开着吧</h3><p><img src="/images/227387.gif" data-original="/images/posts/2019/07/7.png" alt="图片"><br><img src="/images/227387.gif" data-original="/images/posts/2019/07/8.png" alt="图片"><br><img src="/images/227387.gif" data-original="/images/posts/2019/07/9.png" alt="图片"></p>
 
-            <script type="text/javascript">
-                $(function(){
-                var oA = ('<a href="' + window.location.href + '" target="_blank">' + window.location.href + '</a>')
-                document.getElementById('src_link').innerHTML = "本文链接： " + oA ;
-                });
-            </script>
-            <hr>
-            <div id="src_link">本文链接加载失败！请检查浏览器是否支持Javascript并重试。</div>
-    
+      <hr>
+      <div id="src_link">本文链接：加载中……</div>
+      <script type="text/javascript">
+        $(function(){
+          var oA = (`<a href="${window.location.href}" target="_blank">${decodeURI(window.location.href)}</a>`);
+          document.getElementById('src_link').innerHTML = `本文链接：${oA}`;
+        });
+      </script>
+  
 
-    
+  
 </div>
 
 

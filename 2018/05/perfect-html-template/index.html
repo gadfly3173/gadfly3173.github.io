@@ -521,10 +521,12 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
 
-    
-        <span class="post-count"><i class="material-icons post-count-i">vertical_split</i> 1.2k 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i> 4 分钟</span>
-        <hr>
-        <blockquote>
+  
+    <span class="post-count"><i class="material-icons post-count-i">vertical_split</i>
+      1.2k 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i>
+      4 分钟</span>
+    <hr>
+    <blockquote>
 <p>在制作网页的时候，我们常常需要在页面中出现：HEADER、CONTENT和FOOTER三大部分，而如何让他们三个呆在自己该呆着的地方困扰着很多人。</p>
 </blockquote>
 <a id="more"></a>
@@ -595,17 +597,17 @@ body </span><span class="token punctuation">{</span> <span class="token property
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>在这里面中，main是整个页面的容器，将其最小高度设为100%可以保证整个页面都被元素填满，既可以保证footer可以通过<code>bottom: 0;</code>放在页面底部，也可以实现一些前文中提高的有趣功能。在https://tools.gadfly.vip（我的工具箱网站）中可以体验一下，在它的页面上随意点击，会随机出现一些文字。</p>
 
-            <script type="text/javascript">
-                $(function(){
-                var oA = ('<a href="' + window.location.href + '" target="_blank">' + window.location.href + '</a>')
-                document.getElementById('src_link').innerHTML = "本文链接： " + oA ;
-                });
-            </script>
-            <hr>
-            <div id="src_link">本文链接加载失败！请检查浏览器是否支持Javascript并重试。</div>
-    
+      <hr>
+      <div id="src_link">本文链接：加载中……</div>
+      <script type="text/javascript">
+        $(function(){
+          var oA = (`<a href="${window.location.href}" target="_blank">${decodeURI(window.location.href)}</a>`);
+          document.getElementById('src_link').innerHTML = `本文链接：${oA}`;
+        });
+      </script>
+  
 
-    
+  
 </div>
 
 

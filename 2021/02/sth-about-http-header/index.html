@@ -522,10 +522,12 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
 
-    
-        <span class="post-count"><i class="material-icons post-count-i">vertical_split</i> 333 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i> 1 分钟</span>
-        <hr>
-        <p>关于HTTP Header，网上找到的大部分教程，设置header都是非常简单粗暴的new一个<code>HttpHeaders()</code>，然后直接add的形式（甚至连StackOverflow上也有很多回答是这么做的），如：</p>
+  
+    <span class="post-count"><i class="material-icons post-count-i">vertical_split</i>
+      333 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i>
+      1 分钟</span>
+    <hr>
+    <p>关于HTTP Header，网上找到的大部分教程，设置header都是非常简单粗暴的new一个<code>HttpHeaders()</code>，然后直接add的形式（甚至连StackOverflow上也有很多回答是这么做的），如：</p>
 <pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> ResponseEntity<span class="token operator">&lt;</span>FileSystemResource<span class="token operator">></span> <span class="token function">export</span><span class="token punctuation">(</span>File file<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span>file <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span> null<span class="token punctuation">;</span>
@@ -567,17 +569,17 @@
     <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>这样编码的转换也不需要自己写了，也可以很简单设置header，不会有打错字的困扰（雾</p>
 
-            <script type="text/javascript">
-                $(function(){
-                var oA = ('<a href="' + window.location.href + '" target="_blank">' + window.location.href + '</a>')
-                document.getElementById('src_link').innerHTML = "本文链接： " + oA ;
-                });
-            </script>
-            <hr>
-            <div id="src_link">本文链接加载失败！请检查浏览器是否支持Javascript并重试。</div>
-    
+      <hr>
+      <div id="src_link">本文链接：加载中……</div>
+      <script type="text/javascript">
+        $(function(){
+          var oA = (`<a href="${window.location.href}" target="_blank">${decodeURI(window.location.href)}</a>`);
+          document.getElementById('src_link').innerHTML = `本文链接：${oA}`;
+        });
+      </script>
+  
 
-    
+  
 </div>
 
 

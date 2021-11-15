@@ -522,10 +522,12 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
 
-    
-        <span class="post-count"><i class="material-icons post-count-i">vertical_split</i> 669 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i> 2 分钟</span>
-        <hr>
-        <p>精确率(precision)、准确率(accuracy)和召回率（recall）</p>
+  
+    <span class="post-count"><i class="material-icons post-count-i">vertical_split</i>
+      669 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i>
+      2 分钟</span>
+    <hr>
+    <p>精确率(precision)、准确率(accuracy)和召回率（recall）</p>
 <table>
 <thead>
 <tr>
@@ -565,17 +567,17 @@
   = (TP+TN)/(TP+TN+FP+FN)</code></pre><p>针对我们原来所有样本而言的，它表示的是所有样本有多少被准确预测了。</p>
 <h2 id="四、F1"><a href="#四、F1" class="headerlink" title="四、F1"></a>四、F1</h2><pre><code>2/F1 = 1/P + 1/R</code></pre><h2 id="F1值为精确率和召回率的调和平均数，值越大越好。"><a href="#F1值为精确率和召回率的调和平均数，值越大越好。" class="headerlink" title="F1值为精确率和召回率的调和平均数，值越大越好。"></a>F1值为精确率和召回率的调和平均数，值越大越好。</h2><p>五、误报率和漏报率<br>误报率（虚报率）和漏报率，误报率=1-查准率，漏报率=1-查全率。</p>
 
-            <script type="text/javascript">
-                $(function(){
-                var oA = ('<a href="' + window.location.href + '" target="_blank">' + window.location.href + '</a>')
-                document.getElementById('src_link').innerHTML = "本文链接： " + oA ;
-                });
-            </script>
-            <hr>
-            <div id="src_link">本文链接加载失败！请检查浏览器是否支持Javascript并重试。</div>
-    
+      <hr>
+      <div id="src_link">本文链接：加载中……</div>
+      <script type="text/javascript">
+        $(function(){
+          var oA = (`<a href="${window.location.href}" target="_blank">${decodeURI(window.location.href)}</a>`);
+          document.getElementById('src_link').innerHTML = `本文链接：${oA}`;
+        });
+      </script>
+  
 
-    
+  
 </div>
 
 
