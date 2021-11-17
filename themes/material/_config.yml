@@ -129,7 +129,7 @@ sns:
     tumblr:
     github: https://github.com/gadfly3173
     linkedin:
-    zhihu: https://www.zhihu.com/people/zhu-ti-70-82/activities
+    zhihu:
     bilibili: https://space.bilibili.com/17819592/#!/
     telegram:
 
@@ -166,7 +166,7 @@ sidebar:
             link: /gallery/
             icon: photo
             divider: false
-        timeline:
+        时间线:
             link: /timeline/
             icon: timeline
             divider: false

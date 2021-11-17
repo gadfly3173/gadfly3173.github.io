@@ -14,17 +14,17 @@ visible:
 <!--More-->
 最近开始在博客上写日记，我希望它们可以在首页不显示，但是在归档里还能找到，研究了几篇文章之后，我做了如下改动：
 index.ejs中
-```
+```ejs
     <!-- Normal Post -->
     <% page.posts.each(function(post) { %>
         <% if(!((typeof hasposttop === 'function') && post.top)) { %>
             <% if ( !( (post.visible === 'hide') && (page.path === "index.html") ) )   { %>
-            
+
                 <% if(theme.scheme === 'Paradox') { %>
-                
+
                     <!-- Paradox Thumbnail -->
                     <%- partial('_partial/Paradox-post_entry', { post: post, index: true, pin: false }) %>
-                
+
                 <% } %>
                 <% if(theme.scheme === 'Isolation') { %>
                     <!-- Isolation Thumbnail -->
@@ -46,9 +46,9 @@ categories:
 tags:
 permalink:
 layout: post
-visible: 
+visible:
 ---
 ```
 visible属性只有在为``hide``的时候才会使文章在首页不可见，其他时候均为可见状态。
-参考资料：1、<https://github.com/viosey/hexo-theme-material/issues/483>
+参考资料：1、<https://github.com/bollnh/hexo-theme-material/issues/483>
 　　　　　2、<https://forwardkth.github.io/2016/05/08/next-theme-post-visibility/>

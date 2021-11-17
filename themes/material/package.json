@@ -27,7 +27,7 @@
     "name": "Viosey"
   },
   "bugs": {
-    "url": "https://github.com/viosey/hexo-theme-material/issues"
+    "url": "https://github.com/bollnh/hexo-theme-material/issues"
   },
   "bundleDependencies": false,
   "deprecated": false,
@@ -39,7 +39,7 @@
     "eslint-plugin-import": "^2.2.0",
     "sass-lint": "^1.10.2"
   },
-  "homepage": "https://github.com/viosey/hexo-theme-material#readme",
+  "homepage": "https://github.com/bollnh/hexo-theme-material#readme",
   "keywords": [
     "hexo",
     "theme",
@@ -49,7 +49,7 @@
   "name": "hexo-material",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/viosey/hexo-theme-material.git"
+    "url": "git+https://github.com/bollnh/hexo-theme-material.git"
   },
   "scripts": {
     "lint": "npm run setup && bash lint.sh",
