@@ -2,7 +2,7 @@
     <meta charset="utf-8">
     <!--
         © Material Theme
-        https://github.com/viosey/hexo-theme-material
+        https://github.com/bollnh/hexo-theme-material
         Version: 1.4.0 -->
     <script>window.materialVersion = "1.4.0"</script>
 
@@ -171,7 +171,8 @@
         <%- partial('_partial/config_css') %>
         <%- jsLsload('js/jquery.min.js') %>
     <%}%>
-
+    <!-- PrismJS -->
+    <%- cssLsload('css/prism.tomorrow-night.full.min.css') %>
     <!-- Analytics -->
     <% if(theme.analytics.baidu_site_id) { %>
         <%- partial('_widget/analytics/baidu-analytics') %>
@@ -182,7 +183,7 @@
     <% if(theme.analytics.google_site_id) { %>
         <%- partial('_widget/analytics/google-analytics') %>
     <% } %>
-    
+
     <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
 
     <!-- Custom Head -->

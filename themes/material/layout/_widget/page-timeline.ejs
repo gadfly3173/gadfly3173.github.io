@@ -47,7 +47,7 @@
 		text-align: right;
 	}
 	.md-timeline-excerpt {
-	    	clear: right; 
+	    	clear: right;
 	}
 	@media only screen and (min-width: 1170px) {
 		#md-timeline {
@@ -91,7 +91,7 @@
 		left: 0;
 		width: 60px;
 		height: 40px;
-		border-radius: box-shadow: 0 0 0 4px white, inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 0 0 4px white, inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
 	}
 	.md-timeline-date.blue {
 		background: #0D395F;
@@ -396,7 +396,11 @@
    		<% site.posts.sort('date', -1).limit(site.posts.length).each(function(post){ %>
 			<div class="md-timeline-block">
                 		<div class="md-timeline-date blue">
-                   			<div class="md-date"><%= date(post.date, 'MMM DD YYYY') %></div>
+                   			<div class="md-date">
+                          <%= date(post.date, 'YYYY') %>
+                          <br>
+                          <%= date(post.date, 'MM-DD') %>
+                        </div>
                 		</div>
 
                 		<div class="md-timeline-content">
@@ -404,7 +408,7 @@
 					<div class="md-timeline-info">
 						<span class="md-timeline-info-span">分类:
 							<%- list_categories(post.categories, {
-								show_count: false, 
+								show_count: false,
 								style: 'none'
 							}) %>
 						</span>
@@ -414,7 +418,7 @@
 								style: 'none'
 							}) %>
 						</span>
-						
+
 					</div>
 					<p class="md-timeline-excerpt">
 						<% if(post.excerpt) { %>
@@ -424,8 +428,8 @@
 						<% } %>...
 					</p>
                     		</div>
-			</div>	
-   		<% }) %>	   	  		
+			</div>
+   		<% }) %>
    	<% } -%>
 </section>
 
