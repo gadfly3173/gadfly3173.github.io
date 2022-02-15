@@ -33,7 +33,7 @@ scheme: Paradox
 
 # UI & UX: slogan, color, effect
 uiux:
-    slogan: <div id="hitokoto" style="text-shadow:2px 2px 4px rgb(51,51,51);">一言·Hitokoto</div><script type="text/javascript" src="https://v1.hitokoto.cn/?encode=js&select=%23hitokoto"></script>
+    slogan: <div id="hitokoto" style="text-shadow:2px 2px 4px rgb(51,51,51);">一言·Hitokoto</div><script async type="text/javascript" src="https://v1.hitokoto.cn/?encode=js&select=%23hitokoto"></script>
     theme_color: "#0097A7"
     theme_sub_color: "#00838F"
     hyperlink_color: "#00838F"
