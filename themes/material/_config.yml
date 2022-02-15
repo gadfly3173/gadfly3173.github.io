@@ -86,7 +86,7 @@ img:
 #       Available value of "host": google | baomitu | ustc | custom
 fonts:
     family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif
-    use: google
+    use: baomitu
     custom_font_host:
 
 # Card Elevation Level

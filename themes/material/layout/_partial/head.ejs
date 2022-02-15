@@ -171,7 +171,8 @@
         <%- partial('_partial/config_css') %>
         <%- jsLsload('js/jquery.min.js') %>
     <%}%>
-
+    <!-- PrismJS -->
+    <%- cssLsload('css/prism.tomorrow-night.full.min.css') %>
     <!-- Analytics -->
     <% if(theme.analytics.baidu_site_id) { %>
         <%- partial('_widget/analytics/baidu-analytics') %>

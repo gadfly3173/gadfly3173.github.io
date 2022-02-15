@@ -102,7 +102,6 @@ questionnaire_question_option表是问卷的选择题的选项表，记录了选
 student_questionnaire_question_answer表是学生提交的每个问题的具体回答的记录表，记录了对应student_questionnaire的id、对应的问题id、简答题的回答内容、选择题的选项等信息。
 
 sql建表语句如下：
-
 ```sql
 -- ----------------------------
 -- 问卷表

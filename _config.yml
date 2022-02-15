@@ -43,6 +43,11 @@ highlight:
   line_number: false
   auto_detect: false
   tab_replace:
+prismjs:
+  enable: true
+  preprocess: true
+  line_number: true
+  tab_replace: ''
 
 # Category & Tag
 default_category: uncategorized
@@ -67,11 +72,6 @@ pagination_dir: page
 plugin:
 - hexo-generator-feed
 - hexo-generator-sitemap
-
-prism_plugin:
-  mode: 'preprocess'    # realtime/preprocess
-  theme: 'tomorrow'
-  line_number: true    # default false
 
 ## Themes: https://hexo.io/themes/
 theme: material
