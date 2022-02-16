@@ -21,9 +21,11 @@ tags:
 果然，重装完成后，啥事也不用折腾了，按照正常步骤添加WSL就好了。在GoogleWSL配置过程的时候，我意外发现了一条新闻，讲的是在开发者大会上，有人让WSL显示了GUI。
 ![](/images/posts/sticker/huajidog.gif)
 这么好玩的东西我怎么可以不玩呢？果断按照文章藐视，安装了Xming X Server，配置完bash后，在bash中输入
+
 ```bash
 # DISPLAY=:0 firefox
 ```
-firefox在这里仅作为一个例子，你可以用这个方法启动任何GUI应用\(^o^)/~
+
+firefox在这里仅作为一个例子，你可以用这个方法启动任何GUI应用\\(^o^)/~
 ![](/images/posts/2017/07/firefox_bash.png)
 哦对了，使用这个命令前，记得要启动X Server，否则会提示拒绝连接哦！

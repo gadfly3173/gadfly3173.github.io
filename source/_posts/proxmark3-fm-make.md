@@ -13,26 +13,37 @@ visible:
 我们知道在Github上有proxmark3的最新固件，今天聊一聊在windows下如何编译固件源码并刷入proxmark3。
 <!--More-->
 pm3的固件基本由c语言构成，在windows下进行编译存在一定的难度，好在GitHub上早有大神针对其制作的脚本，可以轻松地配置编译所需要的环境。
+
 ### 开发环境配置
+
 这里我们使用的是[ProxSpace](https://github.com/Gator96100/ProxSpace),解压到合适的地方即可。
 > ProxSpace is a collection of tools that are required to compile the firmware and client of the Proxmark III. At its core ProxSpace uses msys2. MSYS2 is a software distro and building platform for Windows, it provides a bash shell, Autotools, revision control systems and the like for building native Windows applications using MinGW-w64 toolchains. ProxSpace uses the GNU Arm Embedded Toolchain for compiling the Proxmark III firmware.
 
 ![](/images/posts/2019/09/proxspace.png)
 然后准备PM3的源码：[Proxmark/proxmark3](https://github.com/Proxmark/proxmark3/)把他全部解压到ProxSpace的pm3文件夹中（没有的话就自己新建一个,如图即可）。
 ![](/images/posts/2019/09/pm3.png)
+
 ### 编译固件
+
 双击打开`runme64.bat`（如果还是32位系统的话，则使用`runme.bat`），然后会开始自动配置环境，时间可能很长（视网速和本机性能而定），包括MinGW、QT之类的~~什么奇奇怪怪的东西~~，接着执行
+
 ```bash
 make clean && make all
 ```
+
 等待固件自动编译完成即可。
+
 ### 刷入固件
+
 在刚才编译完的窗口中执行
+
 ```bash
 ./client/flasher comx -b ./bootrom/obj/bootrom.elf
 ./client/flasher comx ./armsrc/obj/fullimage.elf
 ```
+
 其中comx代表Proxmark的端口号，根据本机情况修改x即可。如果刷完第一个ELF以后机器无反应或者掉线的话，拔掉数据线，按住机身按钮，再插上，不要松手，几秒钟后电脑就会识别到机器，然后再刷入第二个固件即可。第一个固件是pm3的bootloader，第二个是完整镜像，更新固件需要全部刷入，并且需要先更新bootloader以防出错。如果在刷入第一个固件时就出现了刷到一半端口号改变的情况，则需要使用脚本对其强制多次刷入，可以参考以下脚本（存为bat）自行修改制作。若脚本执行过程中依然执行不下去，则重新连接后再次启动即可。
+
 ```bash
 @echo off
 color 0a
@@ -111,4 +122,5 @@ MODE CON COLS=130 LINES=36
 cmd.exe
 
 ```
+
 而proxspace工作目录下的`.\pm3\client\proxmark3.exe`就是匹配最新固件的pm3的命令行客户端了。

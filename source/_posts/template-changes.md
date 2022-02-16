@@ -14,12 +14,16 @@ permalink:
 
 ---
 ### 背景
+
 在./themes/layout.ejs的``<body>``中加入
+
 ```html
 <canvas id="Mycanvas" style="position:fixed;z-index:-99;display:block;">你这是什么垃圾浏览器，这都不能显示(╯‵□′)╯︵┻━┻</canvas>
 <script src="/js/tiniballs.js"></script>
 ```
+
 tiniballs.js存放于./themes/material/source/js/中，内容如下：
+
 ```javascript
 var WIDTH = window.innerWidth, HEIGHT = window.innerHeight, POINT = 15;
 
@@ -120,45 +124,61 @@ $(document).ready(function () {
     }, 16);
 })
 ```
+
 ### 首行缩进
+
 将./node_modules/marked/lib/marked.js中的``Renderer.prototype.br = function()``部分修改为
+
 ```javascript
 Renderer.prototype.br = function() {
   return this.options.xhtml ? '<br/>' : '</p><p>';
 };
 ```
+
 这样可以保证每个文章的md中的换行符被转义为``<p>``标签。
 然后，将``./themes/material/source/css/style.min.css``中的``#post-content p``部分修改为
+
 ```css
 #post-content p{
-    font-size:15px;
-    line-height:1.7;
-    overflow:hidden;
-    text-indent:2em
+  font-size: 15px;
+  line-height: 1.7;
+  overflow: hidden;
+  text-indent: 2em
 }
 ```
+
 这样，所有使用了post-content这个class的父元素中的p标签都会首行缩进两个字符。但是这样也影响了代码块。可以在``style.min.css``继续修改，也可以在``./themes/material/layout/_partial/config_css.ejs``中的``<!-- Other Styles -->``后的``<style>``标签中加上
+
 ```css
 pre{
-    text-indent: 0em;
+  text-indent: 0em;
 }
 ```
+
 ### Slogan/欢迎语
+
 我使用了Hitokoto（一言·纯净）的API，将``./themes/material/_config.yml``中的``uiux``部分的``slogan``属性修改为
-```javascript
+
+```html
 slogan: <script type="text/javascript" src="https://api.lwl12.com/hitokoto/main/get?encode=js&charset=utf-8"></script><div id="lwlhitokoto"><script>lwlhitokoto()</script></div>
 ```
+
 ### 首图/每日一图
+
 在``./themes/material/layout/_partial/daily_pic.ejs``中，把原本的每日一图模块注释掉,把slogan上原本的每日一图的链接注释掉，写上
+
 ```html
 <div class="mdl-card__media mdl-color-text--grey-50" style="background-image:url(https://api.i-meto.com/bing)">
 ```
+
 ### 发布
+
 为了可以通过``hexo d -g``命令直接发布到我的Github，需要将``./_config.yml``中的``# Deployment``部分修改为
+
 ```yml
 deploy:
   type: git
-  repo: 
+  repo:
     github: git@github.com:gadfly3173/gadfly3173.github.io.git
   branch: master
 ```

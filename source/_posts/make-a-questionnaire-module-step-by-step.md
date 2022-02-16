@@ -23,11 +23,7 @@ typora-copy-images-to: ..\images\posts\2021\04
 
 ![image-20210428182720196](/images/posts/2021/04/image-20210428182720196.png)
 
-
-
 下面是数据库表结构：
-
-
 
 | 列名        | 数据类型         | 字段类型 | 是否为空 | 默认值               | 备注     |
 | ----------- | ---------------- | -------- | -------- | -------------------- | -------- |
@@ -41,8 +37,6 @@ typora-copy-images-to: ..\images\posts\2021\04
 | delete_time | datetime(3)      | datetime | YES      |                      |          |
 
 questionnaire表是问卷信息表，记录了问卷的标题、简介、所属的班级id、问卷的结束时间等信息。
-
-
 
 | 列名             | 数据类型             | 字段类型 | 是否为空 | 默认值               | 备注                    |
 | ---------------- | -------------------- | -------- | -------- | -------------------- | ----------------------- |
@@ -58,8 +52,6 @@ questionnaire表是问卷信息表，记录了问卷的标题、简介、所属�
 
 questionnaire_question表是问题信息表，记录了问题的标题、对应的问卷id、排序、问题类型、上限等信息。
 
-
-
 | 列名        | 数据类型             | 字段类型 | 是否为空 | 默认值               | 备注     |
 | ----------- | -------------------- | -------- | -------- | -------------------- | -------- |
 | id          | int(10) unsigned     | int      | NO       |                      |          |
@@ -72,8 +64,6 @@ questionnaire_question表是问题信息表，记录了问题的标题、对应�
 
 questionnaire_question_option表是问卷的选择题的选项表，记录了选项名、对应的问题id、选项的排序等信息
 
-
-
 | 列名             | 数据类型         | 字段类型 | 是否为空 | 默认值               | 备注   |
 | ---------------- | ---------------- | -------- | -------- | -------------------- | ------ |
 | id               | int(10) unsigned | int      | NO       |                      |        |
@@ -85,8 +75,6 @@ questionnaire_question_option表是问卷的选择题的选项表，记录了选
 | delete_time      | datetime(3)      | datetime | YES      |                      |        |
 
  student_questionnaire表是学生与问卷的关系表，即学生的问卷提交记录，记录了用户id、问卷id、IP地址等信息。
-
-
 
 | 列名                     | 数据类型         | 字段类型 | 是否为空 | 默认值               | 备注                 |
 | ------------------------ | ---------------- | -------- | -------- | -------------------- | -------------------- |
@@ -102,6 +90,7 @@ questionnaire_question_option表是问卷的选择题的选项表，记录了选
 student_questionnaire_question_answer表是学生提交的每个问题的具体回答的记录表，记录了对应student_questionnaire的id、对应的问题id、简答题的回答内容、选择题的选项等信息。
 
 sql建表语句如下：
+
 ```sql
 -- ----------------------------
 -- 问卷表
@@ -202,8 +191,6 @@ CREATE TABLE `student_questionnaire_question_answer`
   COLLATE = utf8mb4_general_ci
   ROW_FORMAT = Dynamic;
 ```
-
-
 
 数据模型中我并没有写上序号一项，因为前端提交时是一个数组的形式，本身就带有数据索引，后端接收到数据后，只要将这个索引作为序号填入数据库即可。对于排序的工作，由前端实现即可。因此，我们可以给出发布问卷使用的json示例：
 
@@ -356,7 +343,7 @@ public class QuestionTypeConstant {
                 for (int k = 0; k < questionDTO.getOptions().size(); k++) {
                     NewOptionDTO optionDTO = questionDTO.getOptions().get(k);
                     QuestionnaireQuestionOptionDO questionnaireQuestionOptionDO =
-                        	QuestionnaireQuestionOptionDO.builder()
+                         QuestionnaireQuestionOptionDO.builder()
                             .questionId(questionnaireQuestionDO.getId())
                             .title(optionDTO.getTitle())
                             .order(k)
@@ -924,4 +911,3 @@ export default {
                 .build();
     }
 ```
-
