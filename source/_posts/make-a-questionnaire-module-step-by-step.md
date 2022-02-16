@@ -6,7 +6,7 @@ date: 2021-04-28 18:10:36
 categories:
 tags:
 permalink:
-visible:
+hide_post_info:
 typora-copy-images-to: ..\images\posts\2021\04
 ---
 

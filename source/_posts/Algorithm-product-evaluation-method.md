@@ -8,7 +8,7 @@ tags:
 - 测试
 - 笔记
 permalink:
-visible:
+hide_post_info:
 ---
 精确率(precision)、准确率(accuracy)和召回率（recall）
 

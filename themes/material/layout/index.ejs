@@ -26,20 +26,13 @@
     <!-- Normal Post -->
     <% page.posts.each(function(post) { %>
         <% if(!((typeof hasposttop === 'function') && post.top)) { %>
-            <% if ( !( (post.visible === 'hide') && (page.path === "index.html") ) )   { %>
-
-                <% if(theme.scheme === 'Paradox') { %>
-
-                    <!-- Paradox Thumbnail -->
-                    <%- partial('_partial/Paradox-post_entry', { post: post, index: true, pin: false }) %>
-
-                <% } %>
-                <% if(theme.scheme === 'Isolation') { %>
-                    <!-- Isolation Thumbnail -->
-                    <%- partial('_partial/Isolation-post_entry', { post: post, index: true, pin: false }) %>
-                <% } %>
-            <% } else { %>
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-color-text--grey-600 mdl-card__supporting-text mdl-cell--12-col fade out" style="text-indent: 1.5em">这里有一篇文章藏起来了哟！</div>
+            <% if(theme.scheme === 'Paradox') { %>
+                <!-- Paradox Thumbnail -->
+                <%- partial('_partial/Paradox-post_entry', { post: post, index: true, pin: false }) %>
+            <% } %>
+            <% if(theme.scheme === 'Isolation') { %>
+                <!-- Isolation Thumbnail -->
+                <%- partial('_partial/Isolation-post_entry', { post: post, index: true, pin: false }) %>
             <% } %>
         <% } %>
     <% }); %>
@@ -48,8 +41,8 @@
     <!-- Index nav -->
         <nav class="material-nav mdl-cell mdl-cell--12-col">
             <%- paginator({
-                prev_text: __('<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"><i class="material-icons" role="presentation">arrow_back</i></button>'),
-                next_text: __('<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"><i class="material-icons" role="presentation">arrow_forward</i></button>'),
+                prev_text: __('<button aria-label="Last page" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"><i class="material-icons" role="presentation">arrow_back</i></button>'),
+                next_text: __('<button aria-label="Next page" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"><i class="material-icons" role="presentation">arrow_forward</i></button>'),
                 space: '',
                 escape: false
             }) %>

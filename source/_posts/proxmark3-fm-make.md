@@ -8,7 +8,7 @@ tags:
 - 编译
 - 单片机
 permalink:
-visible:
+hide_post_info:
 ---
 我们知道在Github上有proxmark3的最新固件，今天聊一聊在windows下如何编译固件源码并刷入proxmark3。
 <!--More-->

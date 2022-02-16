@@ -9,7 +9,7 @@ tags:
 - 系统
 - 黑苹果
 permalink:
-visible:
+hide_post_info:
 ---
 由于学校有个Ios开发课程，不得不开始使用我最厌恶的MACos。
 <!--More-->

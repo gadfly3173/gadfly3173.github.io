@@ -12,7 +12,7 @@ tags:
 - 数据分析
 - 单片机
 permalink:
-visible:
+hide_post_info:
 ---
 >校园一卡通涵盖了我们校园生活中的方方面面，吃饭喝水购物门禁都靠它，对于其工作方式我非常感兴趣，因此做了这次的探索。
 >In the world of locked rooms, the man with the key is king.

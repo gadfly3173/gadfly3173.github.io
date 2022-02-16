@@ -7,9 +7,8 @@
         <%- partial('_widget/page-gallery') %>
     <% } else { %>
         <body id="scheme-<%= theme.scheme %>" class="lazy">
-            <canvas id="Mycanvas" style="position:fixed;z-index:-99;display:block;">你这是什么垃圾浏览器，这都不能显示(╯‵□′)╯︵┻━┻</canvas>
-                    <script src="/js/tiniballs.js"></script>
-            
+            <canvas id="tinyball-canvas" style="position:fixed;z-index:-99;display:block;">你这是什么垃圾浏览器，这都不能显示(╯‵□′)╯︵┻━┻</canvas>
+            <%- jsLsload({path:('js/tiniballs.js'),key:'tiniballs_js'}) %>
             <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
                 <% if(theme.scheme === 'Isolation') { %>
                     <!-- Isolation Header -->
@@ -17,7 +16,6 @@
                 <% } %>
 
                 <!-- Main Container -->
-                
                 <main class="material-layout__content" id="main">
 
                     <!-- Top Anchor -->
@@ -26,7 +24,7 @@
                     <% if(theme.scheme === 'Paradox') { %>
                         <!-- Hamburger Button -->
                         <button class="MD-burger-icon sidebar-toggle">
-                            <span class="MD-burger-layer"></span>
+                            <span id="MD-burger-id" class="MD-burger-layer"></span>
                         </button>
                     <% } %>
 
@@ -44,10 +42,8 @@
                     <%- partial('_partial/footer') %>
 
                     <%- partial('_partial/import_js') %>
-                    
                 </main>
             </div>
-
         </body>
     <% } %>
 </html>

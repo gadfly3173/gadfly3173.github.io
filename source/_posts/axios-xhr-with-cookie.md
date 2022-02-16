@@ -12,7 +12,7 @@ tags:
 - spring
 - 后端
 permalink:
-visible:
+hide_post_info:
 ---
 前文提到过，Axios 的核心是 `XMLHttpRequest`。`XMLHttpRequest` 对象在默认情况下并不会发送 `Cookies`，需要设置 `withCredentials: true`才行。但是只有前端设置也是没有用的，涉及跨域的情况下，还需要后端配合。我用的是Spring，就用Spring的配置类演示了。
 

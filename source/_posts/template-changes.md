@@ -15,11 +15,11 @@ permalink:
 ---
 ### 背景
 
-在./themes/layout.ejs的``<body>``中加入
+在./themes/material/layout/layout.ejs的``<body>``中加入
 
-```html
-<canvas id="Mycanvas" style="position:fixed;z-index:-99;display:block;">你这是什么垃圾浏览器，这都不能显示(╯‵□′)╯︵┻━┻</canvas>
-<script src="/js/tiniballs.js"></script>
+```ejs
+<canvas id="tinyball-canvas" style="position:fixed;z-index:-99;display:block;">你这是什么垃圾浏览器，这都不能显示(╯‵□′)╯︵┻━┻</canvas>
+<%- jsLsload({path:('js/tiniballs.js'),key:'tiniballs_js'}) %>
 ```
 
 tiniballs.js存放于./themes/material/source/js/中，内容如下：
@@ -27,7 +27,7 @@ tiniballs.js存放于./themes/material/source/js/中，内容如下：
 ```javascript
 var WIDTH = window.innerWidth, HEIGHT = window.innerHeight, POINT = 15;
 
-var canvas = document.getElementById('Mycanvas');
+var canvas = document.getElementById('tinyball-canvas');
 WIDTH = canvas.width = window.innerWidth;
 HEIGHT = canvas.height = window.innerHeight;
 var context = canvas.getContext('2d');
@@ -125,7 +125,7 @@ $(document).ready(function () {
 })
 ```
 
-### 首行缩进
+### ~~首行缩进(deprecated)~~
 
 将./node_modules/marked/lib/marked.js中的``Renderer.prototype.br = function()``部分修改为
 
@@ -160,15 +160,19 @@ pre{
 我使用了Hitokoto（一言·纯净）的API，将``./themes/material/_config.yml``中的``uiux``部分的``slogan``属性修改为
 
 ```html
-slogan: <script type="text/javascript" src="https://api.lwl12.com/hitokoto/main/get?encode=js&charset=utf-8"></script><div id="lwlhitokoto"><script>lwlhitokoto()</script></div>
+slogan: <div id="hitokoto" style="text-shadow:2px 2px 4px rgb(51,51,51);">一言·Hitokoto</div><script async type="text/javascript" src="https://v1.hitokoto.cn/?encode=js&select=%23hitokoto"></script>
 ```
 
 ### 首图/每日一图
 
-在``./themes/material/layout/_partial/daily_pic.ejs``中，把原本的每日一图模块注释掉,把slogan上原本的每日一图的链接注释掉，写上
+在主题的`_config.yml`中
 
-```html
-<div class="mdl-card__media mdl-color-text--grey-50" style="background-image:url(https://api.i-meto.com/bing)">
+```yaml
+# Jump Links Settings
+url:
+    rss: /atom.xml
+    daily_pic: https://www.bing.com/gallery/
+    logo:
 ```
 
 ### 发布
@@ -182,3 +186,14 @@ deploy:
     github: git@github.com:gadfly3173/gadfly3173.github.io.git
   branch: master
 ```
+
+### 代码高亮
+
+为了使用PrismJs，需要先下载对应的CSS，然后在`./themes/material/layout/_partial/head.ejs`中添加
+
+```ejs
+    <!-- PrismJS -->
+    <%- cssLsload('css/prism.tomorrow-night.full.min.css') %>
+```
+
+并删除主题的`pre`标签的css

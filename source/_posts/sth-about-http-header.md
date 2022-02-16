@@ -9,7 +9,7 @@ tags:
 - 后端
 - HTTP
 permalink:
-visible:
+hide_post_info:
 ---
 关于HTTP Header，网上找到的大部分教程，设置header都是非常简单粗暴的new一个`HttpHeaders()`，然后直接add的形式（甚至连StackOverflow上也有很多回答是这么做的），如：
 

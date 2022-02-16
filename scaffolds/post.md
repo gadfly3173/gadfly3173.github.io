@@ -5,6 +5,6 @@ categories:
 tags:
 permalink:
 layout: post
-visible: 
+hide_post_info:
 typora-root-url: ..
 ---

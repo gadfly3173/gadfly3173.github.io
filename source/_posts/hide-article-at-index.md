@@ -8,7 +8,7 @@ tags:
 - EJS
 - Hexo
 permalink:
-visible:
+hide_post_info:
 ---
 你看不见我！看不见我！略略略
 <!--More-->
@@ -46,7 +46,7 @@ categories:
 tags:
 permalink:
 layout: post
-visible:
+hide_post_info:
 ---
 ```
 visible属性只有在为``hide``的时候才会使文章在首页不可见，其他时候均为可见状态。

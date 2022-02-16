@@ -1,28 +1,40 @@
 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    <% if(theme.scheme === 'Paradox') { %>
+        <%- page.content %>
+        <% if (page.hide_license !== true && theme.license || page.license) { %>
+                <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">
+                    <p><strong>
+                        <% if (page.license) { %>
+                            <%- page.license %>
+                        <% } else { %> 
+                            <%- theme.license %>
+                        <% } %></strong>
+                        <br>
+                        <strong><%- __('post.permalink') %></strong><a href="<%= page.permalink %>"><%= page.permalink %></a>
+                    </p>
+                </blockquote>
+        <% } %>
+    <% } %>
 
-  <% if(theme.scheme === 'Paradox') { %>
-    <span class="post-count"><i class="material-icons post-count-i">vertical_split</i>
-      <%- wordcount(page.content) %> 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i>
-      <%- min2read(page.content, {cn: 275, en: 140}) %> 分钟</span>
-    <hr>
-    <%- page.content %>
-      <hr>
-      <div id="src_link">本文链接：加载中……</div>
-      <script type="text/javascript">
-        $(function(){
-          var oA = (`<a href="${window.location.href}" target="_blank">${decodeURI(window.location.href)}</a>`);
-          document.getElementById('src_link').innerHTML = `本文链接：${oA}`;
-        });
-      </script>
-  <% } %>
-
-  <% if(theme.scheme === 'Isolation') { %>
-    <div class="post-content_wrapper">
-      <p class="post-title">
-        <%- page.title %>
-      </p>
-      <%- page.content %>
-
-    </div>
-  <% } %>
+    <% if(theme.scheme === 'Isolation') { %>
+        <div class="post-content_wrapper">
+            <p class="post-title">
+                <%- page.title %>
+            </p>
+            <%- page.content %>
+            <% if (page.license || theme.license) { %>
+                <blockquote>
+                    <p>
+                        <% if (page.license) { %>
+                            <%- page.license %>
+                        <% } else { %> 
+                            <%- theme.license %>
+                        <% } %>
+                        <br>
+                        <%- __('post.permalink') %> <%= page.permalink %>
+                    </p>
+                </blockquote>
+            <% } %>
+        </div>
+    <% } %>
 </div>

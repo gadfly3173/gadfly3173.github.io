@@ -4,6 +4,11 @@
 <style>
   body, html {
     font-family: <%- theme.fonts.family %>;
+    overflow-x: hidden !important;
+  }
+  
+  code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   }
 
   a {
@@ -61,20 +66,22 @@
     color: <%= theme.uiux.hyperlink_color %>;
     text-decoration: underline;
   }
-  pre{
-    text-indent: 0em;
-  }
 
 </style>
 
 
 <!-- Theme Background Related-->
 <% if(theme.background.bing.enable === true) { %>
-	  <style>
-		  body{
-            background-image: url(https://api.i-meto.com/bing?<%= theme.background.bing.parameter %>);
-          }
-	  </style>
+    <style>
+      body {
+        background-color: <%= theme.background.purecolor %>;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text {
+        background-color: #fff;
+      }
+    </style>
 <% } else if(!theme.background.bgimg) { %>
     <style>
       body{

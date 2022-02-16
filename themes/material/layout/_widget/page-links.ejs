@@ -6,7 +6,6 @@
         padding: 0;
         margin: 0 auto;
         max-width: 320px;
-        height: 100%;
     }
 
     @media screen and (min-width: 680px) {
@@ -83,7 +82,7 @@
         clear: left;
     }
     #bottom{
-        position: absolute;
+        position: relative;
     }
 </style>
 
@@ -92,7 +91,7 @@
         <% for (var i in site.data.links) { %>
             <li class="md-links-item">
                 <a href="<%= site.data.links[i].link %>" title="<%= i %>" target="_blank">
-                    <img src="<%= site.data.links[i].avatar %>" alt="<%= i %>" width="72px"/>
+                    <img src="<%= site.data.links[i].avatar %>" alt="<%= i %>" height="72px"/>
                     <span class="md-links-title"><%= i %></span><br />
                     <span><%= site.data.links[i].descr %></span>
                 </a>
@@ -101,7 +100,7 @@
     <% } %>
 </ul>
 
-<!--<script type="text/ls-javascript" id="page-links-script">
+<script type="text/ls-javascript" id="page-links-script">
     var adjustFooter = function() {
         if( ($('#bottom').offset().top + $('#bottom').outerHeight() )<$(window).height() ) {
             var footerBottom = $(window).height() - $('#bottom').outerHeight() - $('#bottom').offset().top;
@@ -111,4 +110,4 @@
     $(document).ready(function() {
         adjustFooter();
     });
-</script>-->
+</script>

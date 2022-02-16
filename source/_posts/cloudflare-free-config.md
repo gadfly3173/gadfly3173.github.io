@@ -9,7 +9,7 @@ tags:
 - 配置
 - 笔记
 permalink:
-visible:
+hide_post_info:
 thumbnail: /images/posts/2019/07/1.png
 typora-root-url: ..
 ---

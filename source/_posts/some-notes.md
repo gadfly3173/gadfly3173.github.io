@@ -8,7 +8,7 @@ tags:
 - 随笔
 - 记事
 permalink:
-visible:
+hide_post_info:
 ---
 ## Git
 
