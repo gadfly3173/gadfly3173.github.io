@@ -1,7 +1,7 @@
 
 var WIDTH = window.innerWidth, HEIGHT = window.innerHeight, POINT = 15;
 
-var canvas = document.getElementById('Mycanvas');
+var canvas = document.getElementById('tinyball-canvas');
 WIDTH = canvas.width = window.innerWidth;
 HEIGHT = canvas.height = window.innerHeight;
 var context = canvas.getContext('2d');

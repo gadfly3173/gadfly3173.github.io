@@ -5,8 +5,46 @@
     <!--
         © Material Theme
         https://github.com/bollnh/hexo-theme-material
-        Version: 1.4.0 -->
-    <script>window.materialVersion = "1.4.0"</script>
+        Version: 1.5.6 -->
+    <script>
+        window.materialVersion = "1.5.6"
+        // Delete localstorage with these tags
+        window.oldVersion = [
+            'codestartv1',
+            '1.3.4',
+            '1.4.0',
+            '1.4.0b1',
+            '1.5.0',
+            '1.5.2',
+            '1.5.5'
+        ]
+    </script>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+
+
+
+
+    <link rel="dns-prefetch" href="https://gadfly3173.disqus.com"/>
+
+
+
+    <link rel="dns-prefetch" href="https://hm.baidu.com"/>
+
+
+
+    <link rel="dns-prefetch" href="https://lib.baomitu.com"/>
+
+
+
+
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
     <!-- Title -->
     
@@ -17,123 +55,20 @@
         猪蹄宝宝的博客n(*≧▽≦*)n
     </title>
 
-    <!-- dns prefetch -->
-    <meta http-equiv="x-dns-prefetch-control" content="on">
-    
-    
-    
-    
-    <!---->
-    
-    
-    
-    
-    
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="https://q.qlogo.cn/headimg_dl?dst_uin=2427303995&amp;spec=140">
+    <link rel="icon" href="https://q.qlogo.cn/headimg_dl?dst_uin=2427303995&amp;spec=140">
 
-    <!-- Meta & Info -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <meta name="theme-color" content="#0097A7">
-    <meta name="author" content="猪蹄宝宝">
+    <meta name="format-detection" content="telephone=no"/>
     <meta name="description" itemprop="description" content="
 WSL真是一个神奇的小妖精啊&amp;#x3D;￣ω￣&amp;#x3D;
 ">
     <meta name="keywords" content="猪蹄 技术 博客,WSL,X Server,Windows,Linux,子系统,虚拟机,纪实">
+    <meta name="theme-color" content="#0097A7">
 
-    <!-- Site Verification -->
-    <meta name="google-site-verification" content="MOBmMnlG4FLxPhQfX-_7yxv5LpI6xyDNZAHcTmO6U3A" />
-    
-    <!--老站-->
-    <meta name="google-site-verification" content="-XYYwwZAFEK7e05Fhm5pc4VxaFvBnqSMqjkKTwu8hlU" />
-
-    <!-- Favicons -->
-    <link rel="icon shortcut" type="image/ico" href="https://q.qlogo.cn/headimg_dl?dst_uin=2427303995&amp;spec=140">
-    <link rel="icon" sizes="192x192" href="https://q.qlogo.cn/headimg_dl?dst_uin=2427303995&amp;spec=140">
-    <link rel="apple-touch-icon" href="https://q.qlogo.cn/headimg_dl?dst_uin=2427303995&amp;spec=140">
-
-    <!--iOS -->
-    <meta name="apple-mobile-web-app-title" content="Title">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="MobileOptimized" content="480">
-
-    <!-- Add to homescreen for Chrome on Android -->
-    <meta name="mobile-web-app-capable" content="yes">
-
-    <!-- Add to homescreen for Safari on iOS -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="猪蹄宝宝的博客n(*≧▽≦*)n">
-
-    <!-- The Open Graph protocol -->
-    <meta property="og:url" content="https://blog.gadfly.vip">
-    <meta property="og:type" content="blog">
-    <meta property="og:title" content="【纪实】WSL初探索 - 神奇的GUI | 猪蹄宝宝的博客n(*≧▽≦*)n">
-    <meta property="og:image" content="https://q.qlogo.cn/headimg_dl?dst_uin=2427303995&amp;spec=140" />
-    <meta property="og:description" content="
-WSL真是一个神奇的小妖精啊&amp;#x3D;￣ω￣&amp;#x3D;
-">
-    <meta property="og:article:tag" content="WSL"> <meta property="og:article:tag" content="X Server"> <meta property="og:article:tag" content="Windows"> <meta property="og:article:tag" content="Linux"> <meta property="og:article:tag" content="子系统"> <meta property="og:article:tag" content="虚拟机"> <meta property="og:article:tag" content="纪实"> 
-
-    
-        <meta property="article:published_time" content="7月 05, 2017" />
-        <meta property="article:modified_time" content="2月 16, 2022" />
-    
-
-    <!-- The Twitter Card protocol -->
-    <meta name="twitter:title" content="【纪实】WSL初探索 - 神奇的GUI | 猪蹄宝宝的博客n(*≧▽≦*)n">
-    <meta name="twitter:description" content="
-WSL真是一个神奇的小妖精啊&amp;#x3D;￣ω￣&amp;#x3D;
-">
-    <meta name="twitter:image" content="https://q.qlogo.cn/headimg_dl?dst_uin=2427303995&amp;spec=140">
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://blog.gadfly.vip" />
-
-    <!-- Add canonical link for SEO -->
-    
-        <link rel="canonical" href="https://blog.gadfly.vip/2017/07/WSL-GUI/index.html" />
-    
-
-    <!-- Structured-data for SEO -->
-    
-        
-
-
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "publisher": {
-        "@type": "Organization",
-        "name": "猪蹄宝宝的博客n(*≧▽≦*)n",
-        "logo": "https://q.qlogo.cn/headimg_dl?dst_uin=2427303995&amp;spec=140"
-    },
-    "author": {
-        "@type": "Person",
-        "name": "猪蹄宝宝",
-        "image": {
-            "@type": "ImageObject",
-            "url": "https://q.qlogo.cn/headimg_dl?dst_uin=2427303995&amp;spec=140"
-        },
-        "description": "有人问我，我就会讲，但是无人来"
-    },
-    "headline": "【纪实】WSL初探索 - 神奇的GUI",
-    "url": "https://blog.gadfly.vip/2017/07/WSL-GUI/index.html",
-    "datePublished": "7月 05, 2017",
-    "dateModified": "2月 16, 2022",
-    "description": "
-WSL真是一个神奇的小妖精啊&amp;#x3D;￣ω￣&amp;#x3D;
-",
-    "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://blog.gadfly.vip"
-    }
-}
-</script>
-
-
-    
+    <!-- Disable Fucking Bloody Baidu Tranformation -->
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
 
     <!--[if lte IE 9]>
         <link rel="stylesheet" href="/css/ie-blocker.css">
@@ -144,43 +79,33 @@ WSL真是一个神奇的小妖精啊&amp;#x3D;￣ω￣&amp;#x3D;
     <![endif]-->
 
     <!-- Import lsloader -->
-    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(key){try{localStorage.removeItem(key)}catch(e){}};lsloader.setLS=function(key,val){try{localStorage.setItem(key,val)}catch(e){}};lsloader.getLS=function(key){var val="";try{val=localStorage.getItem(key)}catch(e){val=""}return val};versionString="/*"+materialVersion+"*/";lsloader.clean=function(){try{var keys=[];for(var i=0;i<localStorage.length;i++){keys.push(localStorage.key(i))}keys.forEach(function(key){var data=lsloader.getLS(key);if(data&&data.indexOf(versionString)===-1){lsloader.removeLS(key)}})}catch(e){}};lsloader.clean();lsloader.load=function(jsname,jspath,cssonload){cssonload=cssonload||function(){};var code;code=this.getLS(jsname);if(code&&code.indexOf(versionString)===-1){this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload);return}if(code){var versionNumber=code.split(versionString)[0];if(versionNumber!=jspath){console.log("reload:"+jspath);this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload);return}code=code.split(versionString)[1];if(/\.js?.+$/.test(versionNumber)){this.jsRunSequence.push({name:jsname,code:code});this.runjs(jspath,jsname,code)}else{document.getElementById(jsname).appendChild(document.createTextNode(code));cssonload()}}else{this.requestResource(jsname,jspath,cssonload)}};lsloader.requestResource=function(name,path,cssonload){var that=this;if(/\.js?.+$/.test(path)){this.iojs(path,name,function(path,name,code){that.setLS(name,path+versionString+code);that.runjs(path,name,code)})}else if(/\.css?.+$/.test(path)){this.iocss(path,name,function(code){document.getElementById(name).appendChild(document.createTextNode(code));that.setLS(name,path+versionString+code)},cssonload)}};lsloader.iojs=function(path,jsname,callback){var that=this;that.jsRunSequence.push({name:jsname,code:""});try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(path,jsname,xhr.response);return}}that.jsfallback(path,jsname)}};xhr.send(null)}catch(e){that.jsfallback(path,jsname)}};lsloader.iocss=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.iofonts=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.runjs=function(path,name,code){if(!!name&&!!code){for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code=code}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var script=document.createElement("script");script.appendChild(document.createTextNode(this.jsRunSequence[0].code));script.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(script);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var that=this;var script=document.createElement("script");script.src=this.jsRunSequence[0].path;script.type="text/javascript";this.jsRunSequence[0].status="loading";script.onload=function(){that.jsRunSequence.shift();if(that.jsRunSequence.length>0){that.runjs()}};document.body.appendChild(script)}};lsloader.tagLoad=function(path,name){this.jsRunSequence.push({name:name,code:"",path:path,status:"failed"});this.runjs()};lsloader.jsfallback=function(path,name){if(!!this.jsnamemap[name]){return}else{this.jsnamemap[name]=name}for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code="";this.jsRunSequence[k].status="failed";this.jsRunSequence[k].path=path}}this.runjs()};lsloader.cssfallback=function(path,name,cssonload){if(!!this.cssnamemap[name]){return}else{this.cssnamemap[name]=1}var link=document.createElement("link");link.type="text/css";link.href=path;link.rel="stylesheet";link.onload=link.onerror=cssonload;var root=document.getElementsByTagName("script")[0];root.parentNode.insertBefore(link,root)};lsloader.runInlineScript=function(scriptId,codeId){var code=document.getElementById(codeId).innerText;this.jsRunSequence.push({name:scriptId,code:code});this.runjs()};lsloader.loadCombo=function(jslist){var updateList="";var requestingModules={};for(var k in jslist){var LS=this.getLS(jslist[k].name);if(!!LS){var version=LS.split(versionString)[0];var code=LS.split(versionString)[1]}else{var version=""}if(version==jslist[k].path){this.jsRunSequence.push({name:jslist[k].name,code:code,path:jslist[k].path})}else{this.jsRunSequence.push({name:jslist[k].name,code:null,path:jslist[k].path,status:"comboloading"});requestingModules[jslist[k].name]=true;updateList+=(updateList==""?"":";")+jslist[k].path}}var that=this;if(!!updateList){var xhr=new XMLHttpRequest;xhr.open("get",combo+updateList,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){that.runCombo(xhr.response,requestingModules);return}}else{for(var i in that.jsRunSequence){if(requestingModules[that.jsRunSequence[i].name]){that.jsRunSequence[i].status="failed"}}that.runjs()}}};xhr.send(null)}this.runjs()};lsloader.runCombo=function(comboCode,requestingModules){comboCode=comboCode.split("/*combojs*/");comboCode.shift();for(var k in this.jsRunSequence){if(!!requestingModules[this.jsRunSequence[k].name]&&!!comboCode[0]){this.jsRunSequence[k].status="comboJS";this.jsRunSequence[k].code=comboCode[0];this.setLS(this.jsRunSequence[k].name,this.jsRunSequence[k].path+versionString+comboCode[0]);comboCode.shift()}}this.runjs()}})();</script>
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(a){try{localStorage.removeItem(a)}catch(b){}};lsloader.setLS=function(a,c){try{localStorage.setItem(a,c)}catch(b){}};lsloader.getLS=function(a){var c="";try{c=localStorage.getItem(a)}catch(b){c=""}return c};versionString="/*"+(window.materialVersion||"unknownVersion")+"*/";lsloader.clean=function(){try{var b=[];for(var a=0;a<localStorage.length;a++){b.push(localStorage.key(a))}b.forEach(function(e){var f=lsloader.getLS(e);if(window.oldVersion){var d=window.oldVersion.reduce(function(g,h){return g||f.indexOf("/*"+h+"*/")!==-1},false);if(d){lsloader.removeLS(e)}}})}catch(c){}};lsloader.clean();lsloader.load=function(f,a,b,d){if(typeof b==="boolean"){d=b;b=undefined}d=d||false;b=b||function(){};var e;e=this.getLS(f);if(e&&e.indexOf(versionString)===-1){this.removeLS(f);this.requestResource(f,a,b,d);return}if(e){var c=e.split(versionString)[0];if(c!=a){console.log("reload:"+a);this.removeLS(f);this.requestResource(f,a,b,d);return}e=e.split(versionString)[1];if(d){this.jsRunSequence.push({name:f,code:e});this.runjs(a,f,e)}else{document.getElementById(f).appendChild(document.createTextNode(e));b()}}else{this.requestResource(f,a,b,d)}};lsloader.requestResource=function(b,e,a,c){var d=this;if(c){this.iojs(e,b,function(h,f,g){d.setLS(f,h+versionString+g);d.runjs(h,f,g)})}else{this.iocss(e,b,function(f){document.getElementById(b).appendChild(document.createTextNode(f));d.setLS(b,e+versionString+f)},a)}};lsloader.iojs=function(d,b,g){var a=this;a.jsRunSequence.push({name:b,code:""});try{var f=new XMLHttpRequest();f.open("get",d,true);f.onreadystatechange=function(){if(f.readyState==4){if((f.status>=200&&f.status<300)||f.status==304){if(f.response!=""){g(d,b,f.response);return}}a.jsfallback(d,b)}};f.send(null)}catch(c){a.jsfallback(d,b)}};lsloader.iocss=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.iofonts=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.runjs=function(f,c,e){if(!!c&&!!e){for(var b in this.jsRunSequence){if(this.jsRunSequence[b].name==c){this.jsRunSequence[b].code=e}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var a=document.createElement("script");a.appendChild(document.createTextNode(this.jsRunSequence[0].code));a.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(a);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else{if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var d=this;var a=document.createElement("script");a.src=this.jsRunSequence[0].path;a.type="text/javascript";this.jsRunSequence[0].status="loading";a.onload=function(){d.jsRunSequence.shift();if(d.jsRunSequence.length>0){d.runjs()}};document.body.appendChild(a)}}};lsloader.tagLoad=function(b,a){this.jsRunSequence.push({name:a,code:"",path:b,status:"failed"});this.runjs()};lsloader.jsfallback=function(c,b){if(!!this.jsnamemap[b]){return}else{this.jsnamemap[b]=b}for(var a in this.jsRunSequence){if(this.jsRunSequence[a].name==b){this.jsRunSequence[a].code="";this.jsRunSequence[a].status="failed";this.jsRunSequence[a].path=c}}this.runjs()};lsloader.cssfallback=function(e,c,b){if(!!this.cssnamemap[c]){return}else{this.cssnamemap[c]=1}var d=document.createElement("link");d.type="text/css";d.href=e;d.rel="stylesheet";d.onload=d.onerror=b;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(d,a)};lsloader.runInlineScript=function(c,b){var a=document.getElementById(b).innerText;this.jsRunSequence.push({name:c,code:a});this.runjs()}})();</script>
 
-    <!-- Import CSS & jQuery -->
+    <!-- Import queue -->
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
+
+    <!-- Import CSS -->
     
-        <style id="css/material.min.css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("css/material.min.css","/css/material.min.css?fJTiM/K1J3dWIruo3pxtAw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";})</script>
-        <style id="css/style.min.css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("css/style.min.css","/css/style.min.css?t6ikxPWsvw5PQpsUH5Ltfg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";})</script>
-        
-        
-            <style>
-    
-    
-    
-    
-    
-    
-    
-    .footer-sns-github {
-        background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgY2xhc3M9Imljb24iIHZpZXdCb3g9IjAgMCAxMDI0IDEwMjQiPjxwYXRoIGQ9Ik0xMzguNCA3OGMtNi40IDEuNC0yNi40IDE0LjItMzYgMjIuOC04IDcuMi0yMiAyOS44LTI0LjQgMzkuMi0xLjYgNi40LTIgMTEzLjItMS42IDM2OCAuNiAyOTkuNCAxIDM1OS44IDMuNCAzNjQgMTEgMjAuMiAyMS42IDMyLjQgMzcuMiA0MyAxNS42IDEwLjYgMTcuMiAxMS4yIDM0LjIgMTMuMiAxMC42IDEuMiA2My40IDEuNiAxMjcuNiAxLjRsMTA5LjYtLjYgNi02LjggNi4yLTYuOC0xLjItMjUuMmMtLjgtMTUuOC0uMi0zMy40IDEuNC00Ny4yIDMtMjUuNCAxLjQtMzYuMi02LTQzLjItNS00LjYtNi4yLTQuOC0zMC42LTQuMi0yNy42LjgtMjQgMS42LTY4LjgtMTYtOC42LTMuNC0yMi42LTE4LTI4LjQtMjkuOC0xMS40LTIyLjgtMjctNDUtMzkuMi01NS42LTE0LTEyLjItMTkuOC0yMC44LTE5LjgtMjguNiAwLTExLjYgMTMuNi0xMi42IDMzLjItMi40IDE2LjYgOC44IDIwLjggMTIuNCA0MC44IDM2LjIgMjQuMiAyOC42IDMxIDMzLjYgNTQgMzkuNiAxNS4yIDQgNDIuMiAzIDUxLjQtMS44IDktNC42IDE4LTE1LjIgMjQuNC0yOS4yIDExLjQtMjQuMiA3LjQtMzEuMi0yMC42LTM2LjgtOS44LTItMjkuMi04LTQzLjQtMTMuNC00MC40LTE1LjgtNjQuNi0zNy40LTg1LjQtNzYuMi0xMS42LTIxLjgtMTUuNC0zMy0xOC4yLTUzLjYtNC4yLTMyLjItNC44LTYwLjItMS40LTg0IDMuNC0yMy44IDYuOC0zMi44IDIwLjItNTQgNC02IDguOC0xNS42IDExLTIxLjQgMy44LTEwIDMuOC0xMS42IDEtMzAtNS4yLTM0LjItMy4yLTUyLjQgNy42LTcwLjIgNy4yLTEyLjIgMTUtMTcuMiAyNC4yLTE1LjggMTIuOCAyLjIgNTIgMTcuNCA2Ni44IDI2LjIgMjYgMTUgMjkgMTUuNCA4Mi40IDcuMiAyNC42LTMuOCAzMy44LTQuMiA2MC0zLjIgMTcgLjYgNDEuNCAzIDU0IDUuMiAzOC40IDYuNiA0OS42IDUuMiA3My0xMCA2LjYtNC4yIDE3LjQtOS40IDI0LTExLjYgNi42LTIuMiAxNi01LjggMjEtOC4yIDEzLTYgMjgtNS42IDM1LjYuOCAxMi40IDEwLjQgMTguNiA0MS40IDE0LjQgNzEuNi00LjQgMzAuNi0zIDM5LjQgOC40IDUzLjggMy40IDQuNCAxMS4yIDE5LjIgMTcuNCAzMy4yTDc3NSA0NDN2NzhsLTEwIDI4Yy0xNS4yIDQzLjItMzYuOCA3My4yLTY2LjIgOTIuOC0xMy40IDguOC01NyAyNS40LTc2LjggMjktMjguMiA1LjItMzMuMiAxMi42LTIyIDMyLjIgMTEuMiAxOS40IDEyLjQgMzIuOCAxMS42IDEyOS42bC0uNiA4NS44IDUuNCA0LjZjMy42IDMgOS4yIDUuMiAxNiA2IDUuOC44IDYwLjIgMSAxMjAuNi42IDEwOC40LS42IDExMC4yLS42IDExOS01IDI0LTExLjYgNDAtMjcuNCA1MS42LTUwLjZsNS40LTExIC42LTM0N2MuNC0yMjMtLjItMzUzLjQtMS40LTM2NS0yLTE3LTIuNi0xOC42LTEzLTM0LTEwLjYtMTUuNC0yMi44LTI2LjItNDMuMi0zNy4yLTQuMi0yLjQtNjQuNi0yLjgtMzY2LTMuMi0xOTguNiAwLTM2NCAuNC0zNjcuNiAxLjR6Ii8+PC9zdmc+);
-    }
-    
-    
-    
-    
-    .footer-sns-bilibili {
-        background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgY2xhc3M9Imljb24iIHZpZXdCb3g9IjAgMCAxMDI0IDEwMjQiPjxwYXRoIGQ9Ik0xMzguOCA3Ny44Yy03LjggMi0zMiAxNy44LTM4LjggMjUuNi05LjYgMTAuNi0xOC40IDI1LTIxLjIgMzQtNC4yIDE0LjItNC4yIDcyMy42IDAgNzMzLjYgOC40IDIwLjIgMjkuNCA0MS42IDUzLjIgNTQuMiA2LjggMy42IDE4LjggMy44IDM3MCAzLjhoMzYzbDktNC4yYzE0LTYuOCAzMS42LTIyLjQgNDIuNi0zOCA5LjQtMTMuOCAxMC0xNS4yIDExLjYtMzIuNiAxLjItMTAuNCAxLjYtMTY2LjggMS40LTM2NS42LS42LTMxNy44LS44LTM0OC4yLTMuOC0zNTQuNi05LjItMTkuMi0yMC44LTMzLTM4LjYtNDVsLTE3LjYtMTItMzYyLjQtLjRjLTE5OS4yIDAtMzY1IC40LTM2OC40IDEuMnpNMzcxLjIgMjUxYzQuMiAxLjYgMjIuNiAxOC4yIDQ0LjYgMzkuOCAyOS44IDI5LjIgMzkgMzcuMiA0NS40IDM5IDEwLjYgMyA3My4yIDIuOCA4My4yLS4yIDYtMS44IDE1LjgtMTAuNCA0My40LTM3LjggMTkuOC0xOS42IDM5LjQtMzcuNCA0NC0zOS42IDE1LjItNy44IDMxLjYtNCA0MSA5LjQgMTAuNCAxNS4yIDguOCAyOC02IDQ0LjYtMTUgMTYuOC0xMSAyNC40IDE0LjIgMjYuOCAxOC44IDEuNiAyNS4yIDMuOCA0My44IDE0LjggMTkuMiAxMS4yIDI4IDIxIDQwLjYgNDQuOEw3NzUgNDExdjI1MGwtOS44IDE5LjZjLTEwLjQgMjAuNi0yMy44IDM1LjYtNDMgNDcuNi0xOC44IDEyLTE4LjYgMTItMjI2LjIgMTEuNGwtMTg5LS42LTExLjgtNC44Yy02LjQtMi42LTE4LjYtMTAuMi0yNi44LTE3LTE2LTEyLjgtMjUuNi0yNi40LTM1LTQ5LjItNC40LTExLTQuNC0xMS40LTQuNC0xMzIuMlY0MTQuNmwxMC40LTIxYzguNC0xNi44IDEzLTIzLjQgMjIuNi0zMi4yIDE3LjItMTYgMzkuMi0yNi40IDU5LjItMjguNCAyNy4yLTIuNCAzMS4yLTkuMiAxNS44LTI3LjItNS01LjgtOS42LTEzLjQtMTAuMi0xNy4yLTUuMi0yNy40IDE5LjQtNDguMiA0NC40LTM3LjZ6Ii8+PHBhdGggZD0iTTMzMC4yIDQwMC40Yy05IDEuNi0xNSA1LjQtMjMgMTUtMTEuNCAxMy40LTExLjIgMTItMTEuMiAxMjAuNnMtLjIgMTA1LjYgMTEuMiAxMjIuNEMzMTggNjczLjggMzA3IDY3MyA0OTIgNjczLjZjOTAuOC40IDE3MC42IDAgMTc3LjQtLjYgMTUuNi0xLjYgMjMuNi02LjggMzIuMi0yMWw2LjQtMTAuOFY1MzcuOGMwLTY4LS44LTEwNS40LTIuMi0xMDkuMi0zLTgtMTUuMi0yMi4yLTIyLjItMjUuOC01LjItMi42LTI2LjYtMy4yLTE3NS42LTMuNC05My40LS4yLTE3My40LjItMTc3LjggMXptNzguNCA3MC40YzkuNiA0IDIyLjggMTcuOCAyNS4yIDI2LjYgMi44IDkuOCAyLjggMzMuNCAwIDQzLjItMi40IDguNi0xMS44IDIwLjItMjAgMjQuNi04IDQtMjMuNiAzLjYtMzEtMS0zLjYtMi4yLTguNC04LTExLTEzLjYtNC4yLTguNC00LjgtMTIuNC00LjgtMzEuOCAwLTIxIC4yLTIyLjYgNi0zMS44IDQtNi40IDktMTEuMiAxNC44LTE0LjQgMTAuMi01LjQgMTIuMi01LjYgMjAuOC0xLjh6bTIwNiAwYzIwIDguMiAyOS4yIDM2LjQgMjIuMiA2Ny40LTIuOCAxMi00LjggMTYuMi0xMC44IDIyLjItNyA3LTguNCA3LjYtMTguOCA3LjYtMTkgMC0zMC42LTkuMi0zNi40LTI5LjItMy42LTEyLjQtMi40LTM3LjggMi4yLTQ2LjggNS05LjYgMjQtMjQgMzEuNi0yNCAyIDAgNi40IDEuMiAxMCAyLjh6Ii8+PC9zdmc+);
-    }
-    
-    
-</style>
+        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?WiPBlpo2Bzk3TPQTwZO/vw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
         
-        <!-- Config CSS -->
+
+    
+
+    
+
+    <!-- Config CSS -->
 
 <!-- Other Styles -->
 <style>
   body, html {
     font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    overflow-x: hidden !important;
+  }
+  
+  code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   }
 
   a {
@@ -238,9 +163,6 @@ WSL真是一个神奇的小妖精啊&amp;#x3D;￣ω￣&amp;#x3D;
     color: #00838F;
     text-decoration: underline;
   }
-  pre{
-    text-indent: 0em;
-  }
 
 </style>
 
@@ -281,6 +203,7 @@ WSL真是一个神奇的小妖精啊&amp;#x3D;￣ω￣&amp;#x3D;
 
 
 <!-- Import Font -->
+<!-- Import Roboto -->
 
     <style>
         @font-face {
@@ -306,22 +229,111 @@ WSL真是一个神奇的小妖精啊&amp;#x3D;￣ω￣&amp;#x3D;
             src: url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-500.eot);
             src: local('Roboto'),local('Roboto-Normal'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-500.eot?#iefix) format('embedded-opentype'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-500.woff2) format('woff2'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-500.woff) format('woff'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-500.ttf) format('truetype'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-500.svg#Roboto) format('svg')
         }
-
-        @font-face {
-            font-family: 'Material Icons';
-            font-style: normal;
-            font-weight: 400;
-            src: url(https://lib.baomitu.com/material-design-icons/3.0.1/iconfont/MaterialIcons-Regular.eot);
-            src: url(https://lib.baomitu.com/material-design-icons/3.0.1/iconfont/MaterialIcons-Regular.woff2) format('woff2'),url(https://lib.baomitu.com/material-design-icons/3.0.1/iconfont/MaterialIcons-Regular.woff) format('woff'),url(https://lib.baomitu.com/material-design-icons/3.0.1/iconfont/MaterialIcons-Regular.ttf) format('truetype')
-        }
     </style>
 
 
-        <script>lsloader.load("js/jquery.min.js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==")</script>
-    
+<!-- Import Material Icons -->
+
+
+    <style id="material_icons"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_icons","/css/material-icons.css?pqhB/Rd/ab0H2+kZp0RDmw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+
+
+
     <!-- PrismJS -->
-    <style id="css/prism.tomorrow-night.full.min.css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("css/prism.tomorrow-night.full.min.css","/css/prism.tomorrow-night.full.min.css?5Dxq4uOe6Xn7tHqepw+/FQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";})</script>
+    <style id="css/prism.tomorrow-night.full.min.css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("css/prism.tomorrow-night.full.min.css","/css/prism.tomorrow-night.full.min.css?5Dxq4uOe6Xn7tHqepw+/FQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+    <!-- Import jQuery -->
+    
+        <script>lsloader.load("jq_js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==", true)</script>
+    
+
+    <!-- WebAPP Icons -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="猪蹄宝宝的博客n(*≧▽≦*)n">
+    <meta name="msapplication-starturl" content="https://blog.gadfly.vip/2017/07/WSL-GUI/">
+    <meta name="msapplication-navbutton-color" content="#0097A7">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="猪蹄宝宝的博客n(*≧▽≦*)n">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="https://q.qlogo.cn/headimg_dl?dst_uin=2427303995&amp;spec=140">
+
+    <!-- Site Verification -->
+    <meta name="google-site-verification" content="MOBmMnlG4FLxPhQfX-_7yxv5LpI6xyDNZAHcTmO6U3A" />
+    
+
+    <!-- RSS -->
+    
+        
+            <link rel=alternate type="application/atom+xml" href="/atom.xml">
+        
+    
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="https://blog.gadfly.vip/2017/07/WSL-GUI/">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="【纪实】WSL初探索 - 神奇的GUI | 猪蹄宝宝的博客n(*≧▽≦*)n">
+    <meta property="og:image" content="https://q.qlogo.cn/headimg_dl?dst_uin=2427303995&amp;spec=140">
+    <meta property="og:description" content="
+WSL真是一个神奇的小妖精啊&amp;#x3D;￣ω￣&amp;#x3D;
+">
+    <meta property="og:article:tag" content="WSL"> <meta property="og:article:tag" content="X Server"> <meta property="og:article:tag" content="Windows"> <meta property="og:article:tag" content="Linux"> <meta property="og:article:tag" content="子系统"> <meta property="og:article:tag" content="虚拟机"> <meta property="og:article:tag" content="纪实"> 
+
+    
+        <meta property="article:published_time" content="Wed Jul 05 2017 17:42:05 GMT+0800">
+        <meta property="article:modified_time" content="Wed Feb 16 2022 18:21:03 GMT+0800">
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="https://blog.gadfly.vip/2017/07/WSL-GUI/index.html" />
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "https://blog.gadfly.vip/2017/07/WSL-GUI/index.html",
+    "headline": "【纪实】WSL初探索 - 神奇的GUI",
+    "datePublished": "Wed Jul 05 2017 17:42:05 GMT+0800",
+    "dateModified": "Wed Feb 16 2022 18:21:03 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "猪蹄宝宝",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://q.qlogo.cn/headimg_dl?dst_uin=2427303995&amp;spec=140"
+        },
+        "description": "有人问我，我就会讲，但是无人来",
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "猪蹄宝宝的博客n(*≧▽≦*)n",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "https://q.qlogo.cn/headimg_dl?dst_uin=2427303995&amp;spec=140"
+        }
+    },
+    "keywords": ",WSL,X Server,Windows,Linux,子系统,虚拟机,纪实猪蹄 技术 博客",
+    "description": "
+WSL真是一个神奇的小妖精啊&amp;#x3D;￣ω￣&amp;#x3D;
+",
+}
+</script>
+
+
+    
+
     <!-- Analytics -->
+    
     
         <script>
     var _hmt = _hmt || [];
@@ -333,26 +345,21 @@ WSL真是一个神奇的小妖精啊&amp;#x3D;￣ω￣&amp;#x3D;
 </script>
     
     
-    
-
-    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
 
     <!-- Custom Head -->
     
-<meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="猪蹄宝宝的博客n(*≧▽≦*)n" type="application/atom+xml">
-</head>
+
+<meta name="generator" content="Hexo 6.0.0"></head>
 
 
     
         <body id="scheme-Paradox" class="lazy">
-            <canvas id="Mycanvas" style="position:fixed;z-index:-99;display:block;">你这是什么垃圾浏览器，这都不能显示(╯‵□′)╯︵┻━┻</canvas>
-                    <script src="/js/tiniballs.js"></script>
-            
+            <canvas id="tinyball-canvas" style="position:fixed;z-index:-99;display:block;">你这是什么垃圾浏览器，这都不能显示(╯‵□′)╯︵┻━┻</canvas>
+            <script>lsloader.load("tiniballs_js","/js/tiniballs.js?zsNtF/7ZIdwUSBTaoRM2jg==", true)</script>
             <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
                 
 
                 <!-- Main Container -->
-                
                 <main class="material-layout__content" id="main">
 
                     <!-- Top Anchor -->
@@ -361,7 +368,7 @@ WSL真是一个神奇的小妖精啊&amp;#x3D;￣ω￣&amp;#x3D;
                     
                         <!-- Hamburger Button -->
                         <button class="MD-burger-icon sidebar-toggle">
-                            <span class="MD-burger-layer"></span>
+                            <span id="MD-burger-id" class="MD-burger-layer"></span>
                         </button>
                     
 
@@ -384,29 +391,15 @@ WSL真是一个神奇的小妖精啊&amp;#x3D;￣ω￣&amp;#x3D;
     </div>
     -->
 
+
     <!-- Left aligned menu below button -->
-    <button id="post-toc-trigger-btn"
-        class="mdl-button mdl-js-button mdl-button--icon">
-        <i class="material-icons">format_list_numbered</i>
-    </button>
-
     
-    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        
-        <!--
-        <li class="mdl-menu__item">
-            Some Action
-        </li>
-        -->
-    </ul>
     
-
 
 
 
 
 <!-- Layouts -->
-
 
     <!-- Post Module -->
     <div class="material-post_container">
@@ -475,6 +468,7 @@ WSL真是一个神奇的小妖精啊&amp;#x3D;￣ω￣&amp;#x3D;
         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACZElEQVR42u3aS27DMAwFwNz/0u22QGHnkZRUNxivjMQfjRei8MTX10cfLzw8PDw8PDw8vIfxXvFx+bgf/15dnzwzv+vNc/Dw8PCO8N5MtRfX/H5B9QPdI3tjw8PDwzvJuxpQft6b3HNqdBceHh7eI3n54rhXEvDw8PA+j3d/fbVs4OHh4f1fXh7U5hN9dWk+D0rw8PDwzvB6kcGZ86P7e3h4eHgBr9zS1GopSJ62pekKDw8PbwNvsvGfL77zGGI+Hjw8PLwzvElom2xlJcXgvoUrL0t4eHh4u3nVJW+1SEzi2mqDFx4eHt4ZXi8ImGxuVQPi6vIaDw8PbzcvDwvKS9tg0bwqtsDDw8M7z7uffKtDyfG9UKPZOoCHh4e3iDdvhKqGC70Fd7Mw4OHh4W3jrQpYkyvz8pP/joeHh3eS15vKq+FsdbpPfrksLXh4eHibeb3CkA9ubey7oKcMDw8Pb1E/56SFtLnB33pOdC8eHh7eZl6yzK0Wg+pCvBpblDfA8PDw8JbyVkWxveih13Dw5pPh4eHhbeblgWk1npiHFM1f8PDw8A7y8uFWg4xJG1ZeEvDw8PDO85KWpiqvWjzyhoYFdQ8PDw9vzOu9phpM9K7MPzoeHh7ebl71qMYHq57QbFfFw8PD28BbPCkv3frKSXh4eHjnecmg89B2EkYsaITFw8PDO8irTtD5FJ8HvtUIo7kBhoeHh/dHvPvzSaNVXng2FgY8PDy8I4Wh1ygwJ+Hh4eH9FS8JI5IXV4tHNQTBw8PDewKvFwH0rplsg0WBLx4eHt5m3ucdeHh4eHh4eHh4Dzi+AasY419cY1doAAAAAElFTkSuQmCC">
     
 </ul>
+
     
 
     <!-- Tags (bookmark) -->
@@ -490,7 +484,8 @@ WSL真是一个神奇的小妖精啊&amp;#x3D;￣ω￣&amp;#x3D;
     
 
     <!-- Share -->
-    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
     <i class="material-icons" role="presentation">share</i>
     <span class="visuallyhidden">share</span>
 </button>
@@ -501,7 +496,7 @@ WSL真是一个神奇的小妖精啊&amp;#x3D;￣ω￣&amp;#x3D;
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=【纪实】WSL初探索 - 神奇的GUI&url=https://blog.gadfly.vip/2017/07/WSL-GUI/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=【纪实】WSL初探索 - 神奇的GUI&url=https://blog.gadfly.vip/2017/07/WSL-GUI/index.html&pic=https://blog.gadfly.viphttps://q.qlogo.cn/headimg_dl?dst_uin=2427303995&spec=140&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -551,19 +546,15 @@ WSL真是一个神奇的小妖精啊&amp;#x3D;￣ω￣&amp;#x3D;
     
 </ul>
 
+    
 </div>
 
                 
 
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
-
-  
-    <span class="post-count"><i class="material-icons post-count-i">vertical_split</i>
-      284 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i>
-      1 分钟</span>
-    <hr>
-    <blockquote>
+    
+        <blockquote>
 <p>WSL真是一个神奇的小妖精啊&#x3D;￣ω￣&#x3D;</p>
 </blockquote>
 <span id="more"></span>
@@ -573,17 +564,10 @@ WSL真是一个神奇的小妖精啊&amp;#x3D;￣ω￣&amp;#x3D;
 
 <p>firefox在这里仅作为一个例子，你可以用这个方法启动任何GUI应用\(^o^)&#x2F;~<br><img src="/images/227387.gif" data-original="/images/posts/2017/07/firefox_bash.png"><br>哦对了，使用这个命令前，记得要启动X Server，否则会提示拒绝连接哦！</p>
 
-      <hr>
-      <div id="src_link">本文链接：加载中……</div>
-      <script type="text/javascript">
-        $(function(){
-          var oA = (`<a href="${window.location.href}" target="_blank">${decodeURI(window.location.href)}</a>`);
-          document.getElementById('src_link').innerHTML = `本文链接：${oA}`;
-        });
-      </script>
-  
+        
+    
 
-  
+    
 </div>
 
 
@@ -622,12 +606,13 @@ WSL真是一个神奇的小妖精啊&amp;#x3D;￣ω￣&amp;#x3D;
             box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
             color: #fff;
             background-color: #757575;
-            text-shadow: 0
+            text-shadow: 0;
+            display: none
         }
 </style>
 	
 <div class="btn_click_load"> 
-    <button class="disqus_click_btn">阅读评论（请确保您并非处在 公开、平等、有序的网络审查地区）</button>
+    <button class="disqus_click_btn">阅读评论（请确保 disqus 可以正常加载）</button>
 </div>
 
 <script type="text/javascript">
@@ -638,6 +623,22 @@ WSL真是一个神奇的小妖精啊&amp;#x3D;￣ω￣&amp;#x3D;
 </script>
 
 <script type="text/ls-javascript" id="disqus-lazy-load-script">
+    $.ajax({
+        url: 'https://disqus.com/next/config.json',
+        timeout: 4000,
+        type: 'GET',
+        success: (function() {
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//gadfly3173.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+            $('.disqus_click_btn').css('display','none');
+        })(),
+        error: function() {
+          $('.disqus_click_btn').css('display','block');
+        }
+    });
     $('.btn_click_load').click(function() {  //click to load comments
         (function() { // DON'T EDIT BELOW THIS LINE
             var d = document;
@@ -646,7 +647,7 @@ WSL真是一个神奇的小妖精啊&amp;#x3D;￣ω￣&amp;#x3D;
             s.setAttribute('data-timestamp', + new Date());
             (d.head || d.body).appendChild(s);
         })();
-        $('.btn_click_load').css('display','none');
+        $('.disqus_click_btn').css('display','none');
     });
 </script>
   	
@@ -680,7 +681,7 @@ WSL真是一个神奇的小妖精啊&amp;#x3D;￣ω￣&amp;#x3D;
 
     <!-- Next Nav -->
     
-        <a href="/2017/07/搭建纪实/" id="post_nav-older" class="next-content">
+        <a href="/2017/07/%E6%90%AD%E5%BB%BA%E7%BA%AA%E5%AE%9E/" id="post_nav-older" class="next-content">
             旧篇
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
@@ -692,7 +693,6 @@ WSL真是一个神奇的小妖精啊&amp;#x3D;￣ω￣&amp;#x3D;
 
         </div>
     </div>
-
 
 
 
@@ -982,13 +982,24 @@ It will not impact the appearance and can give developers a lot of support :)
 
     <!-- Telegram -->
     
+
+    <!-- V2EX -->
+    
+
+    <!-- Segmentfault -->
+    
 </div>
 
 
         <!--Copyright-->
         <div id="copyright">
-            Copyright&nbsp;©&nbsp;2017&nbsp;-<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>猪蹄宝宝
-            <p>互联网ICP备案：沪ICP备17034114号-1</p>
+            Copyright&nbsp;©&nbsp;<span year></span>&nbsp;猪蹄宝宝的博客n(*≧▽≦*)n
+            
+                <br>
+                
+                    <a class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content" style="text-decoration: none" target="_blank" href="https://beian.miit.gov.cn/" rel="nofollow noopener">沪ICP备17034114号-1</a>
+                
+            
         </div>
 
         <!-- Paradox Footer Right Section -->
@@ -1011,15 +1022,17 @@ It will not impact the appearance and can give developers a lot of support :)
 </footer>
 
 
-                    <!-- Import File -->
+                    <!-- Import JS File -->
 
-
-    <script>lsloader.load("js/lazyload.min.js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==")</script>
-    <script>lsloader.load("js/js.min.js","/js/js.min.js?oAl/+lvaqTFV31JXTmbrNA==")</script>
+    <script>lsloader.load("lazyload_js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==", true)</script>
 
 
 
-    <script>lsloader.load("js/nprogress.js","/js/nprogress.js?8ZgRfNJMGsXF1xjM7gVIjQ==")</script>
+    <script>lsloader.load("js_js","/js/js.min.js?Bn9UzEm8RrBSxqyZB0zPjA==", true)</script>
+
+
+
+    <script>lsloader.load("np_js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==", true)</script>
 
 
 <script type="text/ls-javascript" id="NProgress-script">
@@ -1059,25 +1072,35 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 <!-- UC Browser Compatible -->
-<script>
+<!-- <script>
 	var agent = navigator.userAgent.toLowerCase();
 	if(agent.indexOf('ucbrowser')>0) {
-		document.write(`
-<link rel="stylesheet" href="/css/uc.css">
-`);
-	  alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+		document.write('<link rel="stylesheet" href="/css/uc.css">');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
 	}
-</script>
+</script> -->
 
-<!-- Window Load-->
+<!-- Import prettify js  -->
+
+
+
+<!-- Window Load -->
+<!-- add class for prettify -->
 <script type="text/ls-javascript" id="window-load">
     $(window).on('load', function() {
         // Post_Toc parent position fixed
         $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
     });
+
+    
+    
 </script>
 
 <!-- MathJax Load-->
+
+
+<!-- Bing Background -->
+
 
 <script type="text/ls-javascript" id="lazy-load">
     // Offer LazyLoad
@@ -1095,10 +1118,21 @@ It will not impact the appearance and can give developers a lot of support :)
     });
 </script>
 
-<!-- Bing Background -->
+<!-- Custom Footer -->
+
 
 
 <script>
+    var copyrightNow = new Date().getFullYear();
+    var textContent = document.querySelector('span[year]')
+
+    copyrightSince = 2017;
+    if (copyrightSince === copyrightNow||copyrightSince === 0000) {
+        textContent.textContent = copyrightNow
+    } else {
+        textContent.textContent = copyrightSince + ' - ' + copyrightNow
+    }
+
     (function(){
         var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
 
@@ -1107,13 +1141,11 @@ It will not impact the appearance and can give developers a lot of support :)
             lsloader.runInlineScript(item.id,item.id);
         }
     })()
-console.log('\n %c © Material Theme | Version: 1.4.0 | https://github.com/bollnh/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+console.log('\n %c © Material Theme | Version: 1.5.6 | https://github.com/bollnh/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
 </script>
 
-                    
                 </main>
             </div>
-
         <script>
             window.imageLazyLoadSetting = {
                 isSPA: false,
