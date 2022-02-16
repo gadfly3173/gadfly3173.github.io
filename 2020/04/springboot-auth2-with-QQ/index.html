@@ -74,7 +74,7 @@
 
     
         <meta property="article:published_time" content="4月 08, 2020" />
-        <meta property="article:modified_time" content="2月 15, 2022" />
+        <meta property="article:modified_time" content="2月 16, 2022" />
     
 
     <!-- The Twitter Card protocol -->
@@ -115,7 +115,7 @@
     "headline": "Spring Boot 开发笔记 - 使用 Spring Boot 完成 Server-Side 模式的 QQ 第三方登录",
     "url": "https://blog.gadfly.vip/2020/04/springboot-auth2-with-QQ/index.html",
     "datePublished": "4月 08, 2020",
-    "dateModified": "2月 15, 2022",
+    "dateModified": "2月 16, 2022",
     "description": "写这个主要是为了整理开发思路与记录，顺便表示 QQ 的接口真的写的很奇怪。。。",
     "mainEntityOfPage": {
         "@type": "WebPage",
@@ -604,6 +604,7 @@
 
     <span class="token keyword">return</span> url<span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>其中 <code>GlobalJSONResult</code> 是我编写的全局 JSON 返回类，有空会在其他文章中说明。QQ 在文档中要求生成 CSRF Token 一类的东西作为 state 参数上传，以避免 CSRF 攻击，不过由于我的登录系统是只有授权 QQ 登录之后才会生成账户，因此基本没有这方面的风险，就把 state 写死了。接收的 <code>reqParams</code> 则是直接前端将路由中的参数返回，Vue.js 中使用 <code>this.$route.query</code> 就可以将参数以 JSON 形式获取。</p>
 <h4 id="解析接口返回的数据"><a href="#解析接口返回的数据" class="headerlink" title="解析接口返回的数据"></a>解析接口返回的数据</h4><blockquote>
 <p>之后就是跳转这个URL去获取 access_token，这里就是第一个坑了，按照官方文档，搞得好像这次我们跳转到这个获取 access_token 的URL后，腾讯那边会跳转我们设定的回调地址并带上我们需要的参数，就像之前获取 authorization code 一样。但完全不是这样的！！！你按照要求向这个获取 access_token 的URL发送请求后，对方并不会再跳转，而是直接返回你一个数据，希望你获得这个数据然后处理。这有点像前端JS的异步请求后后回调函数处理data。</p>
@@ -617,6 +618,7 @@
     <span class="token keyword">this</span><span class="token punctuation">.</span>userInfoRepository <span class="token operator">=</span> userInfoRepository<span class="token punctuation">;</span>
     <span class="token keyword">this</span><span class="token punctuation">.</span>restTemplate <span class="token operator">=</span> restTemplate<span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>restTemplate可以接收所有的返回参数，然而 QQ 这里采用了一个非常神奇的接口返回形式：<code>access_token=FE04**CCE2&amp;expires_in=7776000&amp;refresh_token=88E4**BE14</code>。请<strong>不要</strong>认为这是在回调地址后面加上的参数，这个就是 token 接口返回的一个<strong>字符串</strong>。这接口真是绝了，写的人不觉得别扭吗？？？拿到这个字符串之后只能根据 &amp; 和 &#x3D; 拆分来获取数据了。</p>
 <p>我这边使用前端将参数上传而不是直接把回调地址设为后端地址的原因主要是考虑到拿到 Code 之后，后端处理需要一定的时间，如果不能在前端展示动画之类的内容，容易让用户不明所以，因此前端拿到参数再提交给后端，同时前端展示等待动画是更好的选择。</p>
 <h3 id="获取-Open-Id"><a href="#获取-Open-Id" class="headerlink" title="获取 Open Id"></a>获取 Open Id</h3><p>拿到这个 token 之后就可以去获取用户的 openid 了。</p>
@@ -640,6 +642,7 @@
 
   <span class="token class-name">String</span> openid <span class="token operator">=</span> hashMap<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"openid"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token comment">// 下略</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>这里 QQ 又返回了什么呢，返回了一个 JSONP 。。。形如：<code>callback( &#123;&quot;client_id&quot;:&quot;YOUR_APPID&quot;,&quot;openid&quot;:&quot;YOUR_OPENID&quot;&#125; )</code>不是，腾讯你们这玩意是分了几个人写啊，怎么每个接口返回格式都这么奇怪啊喂！！！处理这个则是使用正则，先把 <code>callback</code> 里的对象取出来，用 Spring Boot 自带的 Jackson 解析为 Map。</p>
 <blockquote>
 <p>这里有两点值得一说</p>
@@ -686,6 +689,7 @@
     <span class="token punctuation">&#125;</span>
     <span class="token keyword">return</span> <span class="token class-name">JWTUtil</span><span class="token punctuation">.</span><span class="token function">sign</span><span class="token punctuation">(</span>openid<span class="token punctuation">,</span> access_level<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>获取用户信息的接口正常多了，返回的是 JSON。主要可以聊聊的是 JWT，不过这个也放到下次再讲吧。</p>
 
       <hr>

@@ -74,7 +74,7 @@
 
     
         <meta property="article:published_time" content="9月 26, 2019" />
-        <meta property="article:modified_time" content="2月 15, 2022" />
+        <meta property="article:modified_time" content="2月 16, 2022" />
     
 
     <!-- The Twitter Card protocol -->
@@ -115,7 +115,7 @@
     "headline": "proxmark3固件编译",
     "url": "https://blog.gadfly.vip/2019/09/proxmark3-fm-make/index.html",
     "datePublished": "9月 26, 2019",
-    "dateModified": "2月 15, 2022",
+    "dateModified": "2月 16, 2022",
     "description": "我们知道在Github上有proxmark3的最新固件，今天聊一聊在windows下如何编译固件源码并刷入proxmark3。",
     "mainEntityOfPage": {
         "@type": "WebPage",
@@ -565,10 +565,12 @@
 <p><img src="/images/227387.gif" data-original="/images/posts/2019/09/proxspace.png"><br>然后准备PM3的源码：<a target="_blank" rel="noopener" href="https://github.com/Proxmark/proxmark3/">Proxmark&#x2F;proxmark3</a>把他全部解压到ProxSpace的pm3文件夹中（没有的话就自己新建一个,如图即可）。<br><img src="/images/227387.gif" data-original="/images/posts/2019/09/pm3.png"></p>
 <h3 id="编译固件"><a href="#编译固件" class="headerlink" title="编译固件"></a>编译固件</h3><p>双击打开<code>runme64.bat</code>（如果还是32位系统的话，则使用<code>runme.bat</code>），然后会开始自动配置环境，时间可能很长（视网速和本机性能而定），包括MinGW、QT之类的<del>什么奇奇怪怪的东西</del>，接着执行</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">make</span> clean <span class="token operator">&amp;&amp;</span> <span class="token function">make</span> all<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
 <p>等待固件自动编译完成即可。</p>
 <h3 id="刷入固件"><a href="#刷入固件" class="headerlink" title="刷入固件"></a>刷入固件</h3><p>在刚才编译完的窗口中执行</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">./client/flasher comx -b ./bootrom/obj/bootrom.elf
 ./client/flasher comx ./armsrc/obj/fullimage.elf<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
 <p>其中comx代表Proxmark的端口号，根据本机情况修改x即可。如果刷完第一个ELF以后机器无反应或者掉线的话，拔掉数据线，按住机身按钮，再插上，不要松手，几秒钟后电脑就会识别到机器，然后再刷入第二个固件即可。第一个固件是pm3的bootloader，第二个是完整镜像，更新固件需要全部刷入，并且需要先更新bootloader以防出错。如果在刷入第一个固件时就出现了刷到一半端口号改变的情况，则需要使用脚本对其强制多次刷入，可以参考以下脚本（存为bat）自行修改制作。若脚本执行过程中依然执行不下去，则重新连接后再次启动即可。</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">@echo off
 color 0a
@@ -646,6 +648,7 @@ cls
 MODE CON <span class="token assign-left variable">COLS</span><span class="token operator">=</span><span class="token number">130</span> <span class="token assign-left variable"><span class="token environment constant">LINES</span></span><span class="token operator">=</span><span class="token number">36</span>
 cmd.exe
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>而proxspace工作目录下的<code>.\pm3\client\proxmark3.exe</code>就是匹配最新固件的pm3的命令行客户端了。</p>
 
       <hr>

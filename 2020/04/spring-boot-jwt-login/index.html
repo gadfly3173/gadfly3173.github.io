@@ -74,7 +74,7 @@
 
     
         <meta property="article:published_time" content="4月 09, 2020" />
-        <meta property="article:modified_time" content="2月 15, 2022" />
+        <meta property="article:modified_time" content="2月 16, 2022" />
     
 
     <!-- The Twitter Card protocol -->
@@ -115,7 +115,7 @@
     "headline": "Spring Boot 开发笔记 - JSON Web Token 与登录鉴权设计",
     "url": "https://blog.gadfly.vip/2020/04/spring-boot-jwt-login/index.html",
     "datePublished": "4月 09, 2020",
-    "dateModified": "2月 15, 2022",
+    "dateModified": "2月 16, 2022",
     "description": "Spring Boot 开发笔记系列第二弹，这次来聊聊 JWT 和登录鉴权系统的设计。",
     "mainEntityOfPage": {
         "@type": "WebPage",
@@ -637,6 +637,7 @@
     <span class="token punctuation">&#125;</span>
 
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>这里我使用的是 <code>com.auth0.java-jwt</code>，换成 <code>io.jsonwebtoken.jjwt</code> 也不会有太大的区别，都是对 JWT 标准的实现，只是接口上不太相同。我在 JWT 的载荷中存放了用户的 open id 和权限级别，这样在不查询数据库的情况下就可以判断用户是否有权操作部分敏感接口。签名部分的加密方式选择了默认的 SHA-256，换成其他的也可以。至于上面那一串非静态方法注入，则是因为我在 Redis 的工具类中做成了非静态方法，这个 JWT 工具类又做成了静态方法，而把这个静态方法都换成非静态方法又遇到了一堆问题，于是我就直接把非静态方法注入这个类，再去用静态对象调用这个非静态方法。。。<br>下面贴一下 Redis 的工具类：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Component</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RedisUtils</span> <span class="token punctuation">&#123;</span>
@@ -689,6 +690,7 @@
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>本身写的时候还有很多其他方法，这里就只展示用到的了。总的来说比较简单，Redis 也是属于 non-SQL 数据库，只有键值对，操作很方便。需要注意的是 <code>redisTemplate</code> 设置过期时间时，默认是以秒为单位，有需要的话就在后面加上 <code>TimeUnit</code>。</p>
 <h3 id="鉴权系统的设计"><a href="#鉴权系统的设计" class="headerlink" title="鉴权系统的设计"></a>鉴权系统的设计</h3><p>显然鉴权处理不应该在每个 Controller 里分别判断，而应该作为一个全局方法，在请求到达 Controller 之前就处理完成。Spring Boot 自带 <code>HandlerInterceptor</code> 接口，因此我们只需要将其实现。</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LoginInterceptor</span> <span class="token keyword">implements</span> <span class="token class-name">HandlerInterceptor</span> <span class="token punctuation">&#123;</span>
@@ -728,6 +730,7 @@
     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">afterCompletion</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> request<span class="token punctuation">,</span> <span class="token class-name">HttpServletResponse</span> response<span class="token punctuation">,</span> <span class="token class-name">Object</span> handler<span class="token punctuation">,</span> <span class="token class-name">Exception</span> ex<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">&#123;</span>
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>由于我按照 Restful API 的思路来构建的后端，因此登录处理失败时的返回也应该为 JSON。然而正常情况下在这里只能返回文字流。于是我在这里做了一个 <code>returnJson</code> 的方法，将我需要返回的 JSON 转为 String，再在返回的 Header 上加上 ContentType，使得客户端浏览器将其转为 JSON。鉴权则很简单，客户端发起请求时把 Token 放在请求头里，这里从 <code>HttpServletRequest</code> 中获得请求头中的字段进行认证即可。<br>现在完成了登录的鉴权处理，但是后端接收的请求并不会自己跑过来，需要配置一个全局拦截器。Spring Boot 有着 <code>WebMvcConfigurer</code> 的接口，将其实现即可完成我们的想法。</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Configuration</span>
 <span class="token annotation punctuation">@EnableWebMvc</span>
@@ -737,6 +740,7 @@
         registry<span class="token punctuation">.</span><span class="token function">addInterceptor</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">LoginInterceptor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addPathPatterns</span><span class="token punctuation">(</span><span class="token string">"/**"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">excludePathPatterns</span><span class="token punctuation">(</span><span class="token string">"/login/**"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>把它注册为一个配置类，在其中注册刚才的登录拦截器，添加 <code>/**</code> 路径，把所有请求都转到拦截器中，当然，登录之类的接口不能走拦截器，因此还要添加例外。</p>
 <p>这样，一个基本的未登录用户的拦截功能就做完了。由于我的项目中权限只有两级，敏感权限也没几个，所以只是另外写了个工具类判断是否有高级权限，并没有做进拦截器里。</p>
 

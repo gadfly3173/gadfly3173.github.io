@@ -78,7 +78,7 @@
 
     
         <meta property="article:published_time" content="5月 17, 2018" />
-        <meta property="article:modified_time" content="2月 15, 2022" />
+        <meta property="article:modified_time" content="2月 16, 2022" />
     
 
     <!-- The Twitter Card protocol -->
@@ -121,7 +121,7 @@
     "headline": "一个比较完美的网页模板",
     "url": "https://blog.gadfly.vip/2018/05/perfect-html-template/index.html",
     "datePublished": "5月 17, 2018",
-    "dateModified": "2月 15, 2022",
+    "dateModified": "2月 16, 2022",
     "description": "
 在制作网页的时候，我们常常需要在页面中出现：HEADER、CONTENT和FOOTER三大部分，而如何让他们三个呆在自己该呆着的地方困扰着很多人。
 ",
@@ -552,7 +552,7 @@
   
     <span class="post-count"><i class="material-icons post-count-i">vertical_split</i>
       1.2k 字&nbsp;&nbsp;|&nbsp;&nbsp;<i class="material-icons post-count-i">timer</i>
-      4 分钟</span>
+      5 分钟</span>
     <hr>
     <blockquote>
 <p>在制作网页的时候，我们常常需要在页面中出现：HEADER、CONTENT和FOOTER三大部分，而如何让他们三个呆在自己该呆着的地方困扰着很多人。</p>
@@ -578,7 +578,8 @@
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>现在你给了这个div的高度为100%，它有两个父元素<body>和<html>。为了让你的div的百分比高度能起作用，你必须设定<body>和<html>的高度。</p>
+
+<p>现在你给了这个div的高度为100%，它有两个父元素&lt;body&gt;和&lt;html&gt;。为了让你的div的百分比高度能起作用，你必须设定&lt;body&gt;和&lt;html&gt;的高度。</p>
 <pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">height</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">height</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">height</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span>
@@ -588,6 +589,7 @@
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>接下来我们就可以解决让footer固定在底部的问题了。在查阅了很多资料之后，我选择了absolute定位，最终结果如下：<br>HTML：</p>
 <pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>main<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>wrapper<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
@@ -599,12 +601,13 @@
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>footer<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>...
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>CSS：</p>
 <pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.footer</span> <span class="token punctuation">&#123;</span>
     <span class="token property">background-color</span><span class="token punctuation">:</span> #ffffff<span class="token punctuation">;</span>
     <span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>
-	<span class="token property">bottom</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
-	<span class="token property">width</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span>
+    <span class="token property">bottom</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+    <span class="token property">width</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span>
     <span class="token property">height</span><span class="token punctuation">:</span> 60pt<span class="token punctuation">;</span>
     <span class="token property">z-index</span><span class="token punctuation">:</span> 1<span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span>
@@ -623,6 +626,7 @@
 <span class="token selector">html,
 body</span> <span class="token punctuation">&#123;</span> <span class="token property">height</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span> <span class="token property">padding</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span> <span class="token property">margin</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span> <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>在这里面中，main是整个页面的容器，将其最小高度设为100%可以保证整个页面都被元素填满，既可以保证footer可以通过<code>bottom: 0;</code>放在页面底部，也可以实现一些前文中提高的有趣功能。在<a target="_blank" rel="noopener" href="https://tools.gadfly.vip/">https://tools.gadfly.vip</a>（我的工具箱网站）中可以体验一下，在它的页面上随意点击，会随机出现一些文字。</p>
 
       <hr>

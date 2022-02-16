@@ -74,7 +74,7 @@
 
     
         <meta property="article:published_time" content="4月 28, 2021" />
-        <meta property="article:modified_time" content="2月 15, 2022" />
+        <meta property="article:modified_time" content="2月 16, 2022" />
     
 
     <!-- The Twitter Card protocol -->
@@ -115,7 +115,7 @@
     "headline": "Re:从零开始的问卷模块",
     "url": "https://blog.gadfly.vip/2021/04/make-a-questionnaire-module-step-by-step/index.html",
     "datePublished": "4月 28, 2021",
-    "dateModified": "2月 15, 2022",
+    "dateModified": "2月 16, 2022",
     "description": "问卷模块是我的毕业设计的一部分。毕设论文里要求代码不能超过三页，导致我写的时候很难受，在这里写上完整的设计实现思路。",
     "mainEntityOfPage": {
         "@type": "WebPage",
@@ -1043,8 +1043,6 @@
   <span class="token keyword">COLLATE</span> <span class="token operator">=</span> utf8mb4_general_ci
   ROW_FORMAT <span class="token operator">=</span> Dynamic<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-
-
 <p>数据模型中我并没有写上序号一项，因为前端提交时是一个数组的形式，本身就带有数据索引，后端接收到数据后，只要将这个索引作为序号填入数据库即可。对于排序的工作，由前端实现即可。因此，我们可以给出发布问卷使用的json示例：</p>
 <pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
   <span class="token property">"class_id"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
@@ -1188,7 +1186,7 @@
                 <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> k <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> k <span class="token operator">&lt;</span> questionDTO<span class="token punctuation">.</span><span class="token function">getOptions</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> k<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
                     <span class="token class-name">NewOptionDTO</span> optionDTO <span class="token operator">=</span> questionDTO<span class="token punctuation">.</span><span class="token function">getOptions</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>k<span class="token punctuation">)</span><span class="token punctuation">;</span>
                     <span class="token class-name">QuestionnaireQuestionOptionDO</span> questionnaireQuestionOptionDO <span class="token operator">=</span>
-                        	<span class="token class-name">QuestionnaireQuestionOptionDO</span><span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                         <span class="token class-name">QuestionnaireQuestionOptionDO</span><span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
                             <span class="token punctuation">.</span><span class="token function">questionId</span><span class="token punctuation">(</span>questionnaireQuestionDO<span class="token punctuation">.</span><span class="token function">getId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
                             <span class="token punctuation">.</span><span class="token function">title</span><span class="token punctuation">(</span>optionDTO<span class="token punctuation">.</span><span class="token function">getTitle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
                             <span class="token punctuation">.</span><span class="token function">order</span><span class="token punctuation">(</span>k<span class="token punctuation">)</span>
@@ -1746,7 +1744,6 @@
             <span class="token punctuation">.</span><span class="token function">filename</span><span class="token punctuation">(</span>filename<span class="token punctuation">)</span>
             <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 
       <hr>
       <div id="src_link">本文链接：加载中……</div>

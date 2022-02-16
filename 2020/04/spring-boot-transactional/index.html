@@ -74,7 +74,7 @@
 
     
         <meta property="article:published_time" content="4月 12, 2020" />
-        <meta property="article:modified_time" content="2月 15, 2022" />
+        <meta property="article:modified_time" content="2月 16, 2022" />
     
 
     <!-- The Twitter Card protocol -->
@@ -115,7 +115,7 @@
     "headline": "Spring Boot 开发笔记 - @Transactional 注解使用浅析",
     "url": "https://blog.gadfly.vip/2020/04/spring-boot-transactional/index.html",
     "datePublished": "4月 12, 2020",
-    "dateModified": "2月 15, 2022",
+    "dateModified": "2月 16, 2022",
     "description": "Spring Boot 中对方法开启事务管理非常轻松，只需要 @Transactional 注解就可以让方法开启事务，然而不了解其机制时使用可能会导致其失效。",
     "mainEntityOfPage": {
         "@type": "WebPage",
@@ -561,27 +561,31 @@
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Service</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">UserService</span> <span class="token punctuation">&#123;</span>
 
-	<span class="token annotation punctuation">@Autowired</span>
-	<span class="token keyword">private</span> <span class="token class-name">UserMapper</span> userMapper<span class="token punctuation">;</span>
+ <span class="token annotation punctuation">@Autowired</span>
+ <span class="token keyword">private</span> <span class="token class-name">UserMapper</span> userMapper<span class="token punctuation">;</span>
 
-	<span class="token annotation punctuation">@Transactional</span><span class="token punctuation">(</span>propagation<span class="token operator">=</span><span class="token class-name">Propagation</span><span class="token punctuation">.</span>REQUIRED<span class="token punctuation">,</span>isolation<span class="token operator">=</span><span class="token class-name">Isolation</span><span class="token punctuation">.</span>DEFAULT<span class="token punctuation">,</span>readOnly<span class="token operator">=</span><span class="token boolean">false</span><span class="token punctuation">)</span>
-	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">insert01</span><span class="token punctuation">(</span><span class="token class-name">User</span> u<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-		<span class="token keyword">this</span><span class="token punctuation">.</span>userMapper<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>u<span class="token punctuation">)</span><span class="token punctuation">;</span>
-		<span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">RuntimeException</span><span class="token punctuation">(</span><span class="token string">"测试插入事务"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token punctuation">&#125;</span>
+ <span class="token annotation punctuation">@Transactional</span><span class="token punctuation">(</span>propagation<span class="token operator">=</span><span class="token class-name">Propagation</span><span class="token punctuation">.</span>REQUIRED<span class="token punctuation">,</span>isolation<span class="token operator">=</span><span class="token class-name">Isolation</span><span class="token punctuation">.</span>DEFAULT<span class="token punctuation">,</span>readOnly<span class="token operator">=</span><span class="token boolean">false</span><span class="token punctuation">)</span>
+ <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">insert01</span><span class="token punctuation">(</span><span class="token class-name">User</span> u<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>userMapper<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>u<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">RuntimeException</span><span class="token punctuation">(</span><span class="token string">"测试插入事务"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">&#125;</span>
 
-	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">insert02</span><span class="token punctuation">(</span><span class="token class-name">User</span> u<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-		<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">insert01</span><span class="token punctuation">(</span>u<span class="token punctuation">)</span><span class="token punctuation">;</span>
-		<span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">RuntimeException</span><span class="token punctuation">(</span><span class="token string">"测试插入事务"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+ <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">insert02</span><span class="token punctuation">(</span><span class="token class-name">User</span> u<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">insert01</span><span class="token punctuation">(</span>u<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">RuntimeException</span><span class="token punctuation">(</span><span class="token string">"测试插入事务"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>在这个例子中，调用 <code>insert01</code> 时，事务的执行不会有任何问题，但是调用 <code>insert02</code> 时，异常被正常抛出，但是数据依然被插入了数据库，说明事务没有被正常执行。<br>在外部调用 <code>insert01</code> 时，调用的就是被动态代理的 <code>insert01</code>，但是如果在一个类里自调用时，这样是无法调用到代理对象的，所以 <code>insert02</code> 中调用的不是代理对象 <code>insert01</code>，而是原本的方法。当然，原本的对象中是没有切片做事务增强的，自然也不能进行事务回滚。</p>
 <p>一般的事务代理机制：<br><img src="/images/227387.gif" data-original="/images/posts/2020/04/20170608105830399.jpg"></p>
 <p>自调用时，通过 <code>this</code> 只能取到原本的方法：<br><img src="/images/227387.gif" data-original="/images/posts/2020/04/20170608110005451.jpg"></p>
 <p>那么如何解决自调用失效的问题呢？</p>
 <ul>
-<li>最佳实践自然是不要产生自调用。</li>
-<li>如果无法避免的话，那么可以只在 <code>insert02</code> 上注解事务。（如果两个方法都要被外部调用，那就两个都写上）</li>
-<li><code>insert01</code> 开启事务，并且在 <code>insert02</code> 中不使用 <code>this</code> 调用，而是获取代理<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">insert02</span><span class="token punctuation">(</span><span class="token class-name">User</span> u<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+<li><p>最佳实践自然是不要产生自调用。</p>
+</li>
+<li><p>如果无法避免的话，那么可以只在 <code>insert02</code> 上注解事务。（如果两个方法都要被外部调用，那就两个都写上）</p>
+</li>
+<li><p><code>insert01</code> 开启事务，并且在 <code>insert02</code> 中不使用 <code>this</code> 调用，而是获取代理</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">insert02</span><span class="token punctuation">(</span><span class="token class-name">User</span> u<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
     <span class="token function">getService</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">insert01</span><span class="token punctuation">(</span>u<span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">&#125;</span>
   <span class="token keyword">private</span> <span class="token class-name">UserService</span> <span class="token function">getService</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
@@ -589,8 +593,10 @@
     <span class="token comment">// @EnableAspectJAutoProxy(exposeProxy=true,proxyTargetClass=true)</span>
     <span class="token comment">// 必须设置为true</span>
     <span class="token keyword">return</span> <span class="token class-name">AopContext</span><span class="token punctuation">.</span><span class="token function">currentProxy</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token operator">?</span> <span class="token punctuation">(</span><span class="token class-name">UserService</span><span class="token punctuation">)</span><span class="token class-name">AopContext</span><span class="token punctuation">.</span><span class="token function">currentProxy</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
-  <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
-<li>从 <code>beanFactory</code> 中获取对象。Controller 中的 <code>UserService</code> 是代理对象，它是从 <code>beanFactory</code> 中得来的，那么 Service 类内调用其他方法时，也先从 <code>beanFacotry</code> 中拿出来就OK了。<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">insert02</span><span class="token punctuation">(</span><span class="token class-name">User</span> u<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+  <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>从 <code>beanFactory</code> 中获取对象。Controller 中的 <code>UserService</code> 是代理对象，它是从 <code>beanFactory</code> 中得来的，那么 Service 类内调用其他方法时，也先从 <code>beanFacotry</code> 中拿出来就OK了。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">insert02</span><span class="token punctuation">(</span><span class="token class-name">User</span> u<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
   <span class="token function">getService</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">insert01</span><span class="token punctuation">(</span>u<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span>
 <span class="token keyword">private</span> <span class="token class-name">UserService</span> <span class="token function">getService</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
@@ -603,6 +609,7 @@
 <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">rollbackOn</span><span class="token punctuation">(</span><span class="token class-name">Throwable</span> ex<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
   <span class="token keyword">return</span> <span class="token punctuation">(</span>ex <span class="token keyword">instanceof</span> <span class="token class-name">RuntimeException</span> <span class="token operator">||</span> ex <span class="token keyword">instanceof</span> <span class="token class-name">Error</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>所以需要捕获其他异常时，必须把注解写成</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Transactional</span><span class="token punctuation">(</span> rollbackFor <span class="token operator">=</span> <span class="token class-name">Exception</span><span class="token punctuation">.</span><span class="token keyword">class</span> <span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
