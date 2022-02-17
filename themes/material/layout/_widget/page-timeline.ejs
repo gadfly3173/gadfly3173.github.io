@@ -47,7 +47,7 @@
 		text-align: right;
 	}
 	.md-timeline-excerpt {
-	    	clear: right; 
+	    	clear: right;
 	}
 	@media only screen and (min-width: 1170px) {
 		#md-timeline {
@@ -91,7 +91,8 @@
 		left: 0;
 		width: 60px;
 		height: 40px;
-		border-radius: box-shadow: 0 0 0 4px white, inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
+		border-radius: 2px;
+    box-shadow: 0 0 0 4px white, inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
 	}
 	.md-timeline-date.blue {
 		background: #0D395F;
@@ -404,7 +405,7 @@
 					<div class="md-timeline-info">
 						<span class="md-timeline-info-span">Categories:
 							<%- list_categories(post.categories, {
-								show_count: false, 
+								show_count: false,
 								style: 'none'
 							}) %>
 						</span>
@@ -414,7 +415,7 @@
 								style: 'none'
 							}) %>
 						</span>
-						
+
 					</div>
 					<p class="md-timeline-excerpt">
 						<% if(post.excerpt) { %>
@@ -424,19 +425,7 @@
 						<% } %>...
 					</p>
                     		</div>
-			</div>	
-   		<% }) %>	   	  		
+			</div>
+   		<% }) %>
    	<% } -%>
 </section>
-
-<script type="text/ls-javascript" id="page-timeline-script">
-    var adjustFooter = function() {
-        if( ($('#bottom').offset().top + $('#bottom').outerHeight() )<$(window).height() ) {
-            var footerBottom = $(window).height() - $('#bottom').outerHeight() - $('#bottom').offset().top;
-            $('#bottom').css('bottom', '-' + footerBottom + 'px');
-        }
-    };
-    $(document).ready(function() {
-        adjustFooter();
-    });
-</script>

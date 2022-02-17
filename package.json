@@ -12,7 +12,7 @@
     "build": "hexo g",
     "release": "hexo clean && hexo d -g",
     "publish": "hexo clean && hexo d -g",
-    "new": "hexo new"
+    "new-post": "node bin/hexo-new-date.js"
   },
   "dependencies": {
     "gitment": "0.0.3",
@@ -37,5 +37,8 @@
     "hexo-renderer-stylus": "^2.0.1",
     "hexo-server": "^3.0.0",
     "hexo-wordcount": "^6.0.1"
+  },
+  "devDependencies": {
+    "shelljs": "^0.8.5"
   }
 }
