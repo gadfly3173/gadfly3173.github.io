@@ -313,7 +313,7 @@ vendors:
 # Third party library
 #   You can load these files from public cdn.
 #   For example
-#       jquery: https://cdn.bootcss.com/jquery/2.2.1/jquery.js
+#       jquery: https://cdn.staticfile.org/jquery/2.2.1/jquery.js
     # jQuery 2.2.0
     jquery:
     # nprogress 0.2.0
