@@ -13,7 +13,9 @@ hide_post_info:
 ---
 现在有一个接口提供下载服务，在发生异常时，这个接口会返回 JSON 数据，来告诉前端是什么样的异常。默认情况下，Axios 只能处理 JSON 数据，如何让二者兼容是本文讨论的核心。
 
-Axios 的核心是 `XMLHttpRequest`。可以设置 `XMLHttpRequest` 对象的 `responseType` 属性以改变从服务器端获取的预期响应。可接受的值为空字符串（默认）、`arraybuffer`、`blob`、`json`、`text`、`document`。而 Axios 默认配置为 `json`，如果将其配置为 `blob`，虽然可以处理下载文件了，但是接口返回的 JSON 数据很难**同步**转换为 JSON 进行处理（因为 Blob 转 JSON 需要使用 `FileReader().readAsText()`，这是一个异步的操作）。因此我们可以设置 `responseType` 为 `arraybuffer`，`ArrayBuffer` 对象用来表示通用的、固定长度的原始二进制数据缓冲区。它是一个字节数组，通常在其他语言中称为“byte array”，`ArrayBuffer`可以简单的转换为 JSON 或 Blob。
+Axios 的核心是 `XMLHttpRequest`。可以设置 `XMLHttpRequest` 对象的 `responseType` 属性以改变从服务器端获取的预期响应。可接受的值为空字符串（默认）、`arraybuffer`、`blob`、`json`、`text`、`document`。
+而 Axios 默认配置为 `json`，如果将其配置为 `blob`，虽然可以处理下载文件了，但是接口返回的 JSON 数据很难**同步**转换为 JSON 进行处理（因为 Blob 转 JSON 需要使用 `FileReader().readAsText()`，这是一个异步的操作）。
+因此我们可以设置 `responseType` 为 `arraybuffer`，`ArrayBuffer` 对象用来表示通用的、固定长度的原始二进制数据缓冲区。它是一个字节数组，通常在其他语言中称为“byte array”，`ArrayBuffer`可以简单的转换为 JSON 或 Blob。
 
 ```javascript
 // ajax 封装插件, 使用 axios

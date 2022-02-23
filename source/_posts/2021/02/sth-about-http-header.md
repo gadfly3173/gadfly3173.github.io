@@ -11,7 +11,7 @@ tags:
 permalink:
 hide_post_info:
 ---
-关于HTTP Header，网上找到的大部分教程，设置header都是非常简单粗暴的new一个`HttpHeaders()`，然后直接add的形式（甚至连StackOverflow上也有很多回答是这么做的），如：
+关于 HTTP Header，网上找到的大部分教程，设置 header 都是非常简单粗暴的 new 一个`HttpHeaders()`，然后直接 add 的形式（甚至连 StackOverflow 上也有很多回答是这么做的），如：
 
 ```java
 public ResponseEntity<FileSystemResource> export(File file) {
@@ -35,9 +35,9 @@ public ResponseEntity<FileSystemResource> export(File file) {
 }
 ```
 
-但是这样代码里会有很多魔法值，而对于`Content-Disposition`这样的header中，filename如果直接把中文填进去还会导致乱码，对它进行转码就又要多写几行。其实Spring本身对于header就提供了很多简单的设置方法，可以有效提高代码的可读性。
+但是这样代码里会有很多魔法值，而对于`Content-Disposition`这样的 header 中，filename 如果直接把中文填进去还会导致乱码，对它进行转码就又要多写几行。其实 Spring 本身对于 header 就提供了很多简单的设置方法，可以有效提高代码的可读性。
 
-将上面的代码用Spring中提供了方法改写的话，可以写成：
+将上面的代码用 Spring 中提供了方法改写的话，可以写成：
 
 ```java
 private ResponseEntity<FileSystemResource> export(File file) {
@@ -60,4 +60,4 @@ private ResponseEntity<FileSystemResource> export(File file) {
 }
 ```
 
-这样编码的转换也不需要自己写了，也可以很简单设置header，不会有打错字的困扰（雾
+这样编码的转换也不需要自己写了，也可以很简单设置 header，不会有打错字的困扰（雾

@@ -36,7 +36,7 @@ typora-copy-images-to: ..\images\posts\2021\04
 | update_time | datetime(3)      | datetime | NO       | CURRENT_TIMESTAMP(3) |          |
 | delete_time | datetime(3)      | datetime | YES      |                      |          |
 
-questionnaire表是问卷信息表，记录了问卷的标题、简介、所属的班级id、问卷的结束时间等信息。
+questionnaire 表是问卷信息表，记录了问卷的标题、简介、所属的班级 id、问卷的结束时间等信息。
 
 | 列名             | 数据类型             | 字段类型 | 是否为空 | 默认值               | 备注                    |
 | ---------------- | -------------------- | -------- | -------- | -------------------- | ----------------------- |
@@ -50,7 +50,7 @@ questionnaire表是问卷信息表，记录了问卷的标题、简介、所属�
 | update_time      | datetime(3)          | datetime | NO       | CURRENT_TIMESTAMP(3) |                         |
 | delete_time      | datetime(3)          | datetime | YES      |                      |                         |
 
-questionnaire_question表是问题信息表，记录了问题的标题、对应的问卷id、排序、问题类型、上限等信息。
+questionnaire_question 表是问题信息表，记录了问题的标题、对应的问卷 id、排序、问题类型、上限等信息。
 
 | 列名        | 数据类型             | 字段类型 | 是否为空 | 默认值               | 备注     |
 | ----------- | -------------------- | -------- | -------- | -------------------- | -------- |
@@ -62,7 +62,7 @@ questionnaire_question表是问题信息表，记录了问题的标题、对应�
 | update_time | datetime(3)          | datetime | NO       | CURRENT_TIMESTAMP(3) |          |
 | delete_time | datetime(3)          | datetime | YES      |                      |          |
 
-questionnaire_question_option表是问卷的选择题的选项表，记录了选项名、对应的问题id、选项的排序等信息
+questionnaire_question_option 表是问卷的选择题的选项表，记录了选项名、对应的问题 id、选项的排序等信息
 
 | 列名             | 数据类型         | 字段类型 | 是否为空 | 默认值               | 备注   |
 | ---------------- | ---------------- | -------- | -------- | -------------------- | ------ |
@@ -74,7 +74,7 @@ questionnaire_question_option表是问卷的选择题的选项表，记录了选
 | update_time      | datetime(3)      | datetime | NO       | CURRENT_TIMESTAMP(3) |        |
 | delete_time      | datetime(3)      | datetime | YES      |                      |        |
 
- student_questionnaire表是学生与问卷的关系表，即学生的问卷提交记录，记录了用户id、问卷id、IP地址等信息。
+ student_questionnaire 表是学生与问卷的关系表，即学生的问卷提交记录，记录了用户 id、问卷 id、IP 地址等信息。
 
 | 列名                     | 数据类型         | 字段类型 | 是否为空 | 默认值               | 备注                 |
 | ------------------------ | ---------------- | -------- | -------- | -------------------- | -------------------- |
@@ -87,9 +87,9 @@ questionnaire_question_option表是问卷的选择题的选项表，记录了选
 | update_time              | datetime(3)      | datetime | NO       | CURRENT_TIMESTAMP(3) |                      |
 | delete_time              | datetime(3)      | datetime | YES      |                      |                      |
 
-student_questionnaire_question_answer表是学生提交的每个问题的具体回答的记录表，记录了对应student_questionnaire的id、对应的问题id、简答题的回答内容、选择题的选项等信息。
+student_questionnaire_question_answer 表是学生提交的每个问题的具体回答的记录表，记录了对应 student_questionnaire 的 id、对应的问题 id、简答题的回答内容、选择题的选项等信息。
 
-sql建表语句如下：
+sql 建表语句如下：
 
 ```sql
 -- ----------------------------
@@ -192,7 +192,7 @@ CREATE TABLE `student_questionnaire_question_answer`
   ROW_FORMAT = Dynamic;
 ```
 
-数据模型中我并没有写上序号一项，因为前端提交时是一个数组的形式，本身就带有数据索引，后端接收到数据后，只要将这个索引作为序号填入数据库即可。对于排序的工作，由前端实现即可。因此，我们可以给出发布问卷使用的json示例：
+数据模型中我并没有写上序号一项，因为前端提交时是一个数组的形式，本身就带有数据索引，后端接收到数据后，只要将这个索引作为序号填入数据库即可。对于排序的工作，由前端实现即可。因此，我们可以给出发布问卷使用的 json 示例：
 
 ```json
 {
@@ -295,7 +295,7 @@ public class NewOptionDTO {
 }
 ```
 
-接下来给出service类的实现，controller就省略了。由于数据库表结构上文也已经给出，对应的model类DO也不再给出。
+接下来给出 service 类的实现，controller 就省略了。由于数据库表结构上文也已经给出，对应的 model 类 DO 也不再给出。
 
 ```java
 /**
@@ -355,7 +355,7 @@ public class QuestionTypeConstant {
     }
 ```
 
-可以看到代码逻辑很简单，直接循环DTO中接收到的所有参数，一一对应插入数据库即可。因为DTO中没有给到排序编号，因此使用的是普通fori循环来得到数组每项的下标作为编号。
+可以看到代码逻辑很简单，直接循环 DTO 中接收到的所有参数，一一对应插入数据库即可。因为 DTO 中没有给到排序编号，因此使用的是普通 fori 循环来得到数组每项的下标作为编号。
 
 然后来看看前端部分，新建问卷页面关键代码如下：
 
@@ -835,11 +835,13 @@ export default {
 </style>
 ```
 
-拖拽排序使用的是vuedraggable，使用方法请自行查阅官方文档。
+拖拽排序使用的是 vuedraggable，使用方法请自行查阅官方文档。
 
-学生提交问卷时，则需要上传问卷id、自己的回答列表即可。回答本身可能有简答与选择的选项两种情况，由于两者类型不同，因此使用两个不同的字段answer和option_id存储。对于学生提交问卷回答部分就不再展示代码，
+学生提交问卷时，则需要上传问卷 id、自己的回答列表即可。回答本身可能有简答与选择的选项两种情况，由于两者类型不同，因此使用两个不同的字段 answer 和 option_id 存储。对于学生提交问卷回答部分就不再展示代码，
 
-教师查询学生的提交记录时则是下载一个包含所有提交记录的Excel文件。Excel的写入可以使用Apache POI来完成。Apache POI对Excel类型的文件有三种创建方式，HSSF、XSSF、SXSSF。HSSF是用于生成Office 97-2003的旧版本xls文件，XSSF用于生成新版本的xlsx文件，而SXSSF则是在XSSF的基础上进行扩展，可以避免过大的数据导致内存溢出。由于问卷是针对班级为单位发布的，数据量不会超过100行，因此使用XSSF形式进行生成即可。POI对Excel的操作是以行为单位的，每行每列都是从0开始。因此需要通过createRow方法先创建标题行，然后遍历学生提交的答案来填充数据，最后写入临时文件并返回。
+教师查询学生的提交记录时则是下载一个包含所有提交记录的 Excel 文件。Excel 的写入可以使用 Apache POI 来完成。Apache POI 对 Excel 类型的文件有三种创建方式，HSSF、XSSF、SXSSF。
+HSSF 是用于生成 Office 97-2003 的旧版本 xls 文件，XSSF 用于生成新版本的 xlsx 文件，而 SXSSF 则是在 XSSF 的基础上进行扩展，可以避免过大的数据导致内存溢出。
+由于问卷是针对班级为单位发布的，数据量不会超过 100 行，因此使用 XSSF 形式进行生成即可。POI 对 Excel 的操作是以行为单位的，每行每列都是从 0 开始。因此需要通过 createRow 方法先创建标题行，然后遍历学生提交的答案来填充数据，最后写入临时文件并返回。
 
 ```java
     @Override

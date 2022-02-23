@@ -22,7 +22,7 @@ hide_post_info:
 •    新功能/产品的交互设计过程
 •    娱乐导向产品的设计优化
 •    产品概念、功能层次的优化
-•    适合每一类型产品的tips
+•    适合每一类型产品的 tips
 •    具体的优化方法
 
 ### 一、需要优化什么 (Considerations)
@@ -77,17 +77,17 @@ hide_post_info:
 
 ##### •    易于操作
 
-优化的最重要的目的，是让产品更好用，使设计符合Jakob Nielsen的十条可用性准则：
+优化的最重要的目的，是让产品更好用，使设计符合 Jakob Nielsen 的十条可用性准则：
 
 * 1.状态可见原则（Visibility of system status ）：系统应该让用户时刻清楚当前发生了什么事情，也就是快速的让用户了解自己处于何种状态、对过去发生、当前目标、以及对未来去向有所了解，一般的方法是在合适的时间给用户适当的反馈，防止用户使用出现错误。
 * 2.环境贴切原则（Match between system and the real world）软件系统应该使用用户熟悉的语言、文字、语句，或者其他用户熟悉的概念，而非系统语言。软件中的信息应该尽量贴近真实世界，让信息更自然，逻辑上也更容易被用户理解。
 * 3.用户可控原则（User control and freedom）：用户常常会误触到某些功能，我们应该让用户可以方便的退出。这种情况下，我们应该把“紧急出口”按钮做的明显一点，而且不要在退出时弹出额外的对话框。很多用户发送一条消息、总会有他忽然意识到自己不对的地方，这个叫做临界效应
 * 4.一致性原则（Consistency and standards）：对于用户来说，同样的文字、状态、按钮，都应该触发相同的事情，遵从通用的平台惯例；也就是，同一用语、功能、操作保持一致。软件产品的一致性包括以下五个方面：
-  * 结构一致性：保持一种类似的结构，新的结构变化会让用户思考，规则的排列顺序能减轻用户的思考负担；
-  * 色彩一致性：产品所使用的主要色调应该是统一的，而不是换一个页面颜色就不同；
-  * 操作一致性：能让产品更新换代时仍然让用户保持对原产品的认知，减小用户的学习成本；
-  * 反馈一致性：用户在操作按钮或者条目的时候，点击的反馈效果应该是一致的；
-  * 文字一致性：产品中呈现给用户阅读的文字大小、样式、颜色、布局等都应该是一致的；
+  - 结构一致性：保持一种类似的结构，新的结构变化会让用户思考，规则的排列顺序能减轻用户的思考负担；
+  - 色彩一致性：产品所使用的主要色调应该是统一的，而不是换一个页面颜色就不同；
+  - 操作一致性：能让产品更新换代时仍然让用户保持对原产品的认知，减小用户的学习成本；
+  - 反馈一致性：用户在操作按钮或者条目的时候，点击的反馈效果应该是一致的；
+  - 文字一致性：产品中呈现给用户阅读的文字大小、样式、颜色、布局等都应该是一致的；
 * 5.错原则（Error prevention）：比一个优秀错误提醒弹窗更好的设计方式，是在这个错误发生之前就避免它。可以帮助用户排除一些容易出错的情况，或在用户提交之前给他一个确认的选项。在此，特别要注意在用户操作具有毁灭性效果的功能时要有提示，防止用户犯不可挽回的错误。
 * 6.易取原则（Recognition rather than recall）：通过把组件、按钮及选项可见化，来降低用户的记忆负荷。用户不需要记住各个对话框中的信息。软件的使用指南应该是可见的，且在合适的时候可以再次查看。
 * 7.灵活高效原则（Flexibility and efficiency of use）：汽车油门—新手用户常常看不见，而且对于高手来说可以通过它快速与汽车互动。这样的系统可以同时满足有经验和无经验的用户。允许用户定制常用功能。
@@ -101,7 +101,7 @@ hide_post_info:
 
 ### 三、快速检查清单 (Check list)
 
-为了达到优化的目标，整理了一个简易的checklist（pdf版本下载链接请见文末），方便在走查时对架构、布局、内容、行为四个方面对照检查：
+为了达到优化的目标，整理了一个简易的 checklist（pdf 版本下载链接请见文末），方便在走查时对架构、布局、内容、行为四个方面对照检查：
 
 #### 1.架构和导航Architecture and navigation
 
@@ -144,30 +144,31 @@ hide_post_info:
 
 以上只是一个不完全的清单，同学们可以根据自己的实践经验修改，也可以参考更全面、权威的可用性测试检查表，如[普渡大学可用性测试检查列表](http://oldwww.acm.org/perlman/question.cgi?form=PUTQ)。
 
-| 1 | 总的来说，我对使用这个系统的容易程度感到满意   | strongly disagree   |    | strongly agree   |    |
-|:----|:----|:----|:----|:----|:----|
-| 2 | 使用这个系统很简单   | strongly disagree   |    | strongly agree   |    |
-| 3 | 我可以有效地完成我的工作使用这个系统   | strongly disagree   |    | strongly agree   |    |
-| 4 | 使用这个系统，我可以很快地完成我的工作   | strongly disagree   |    | strongly agree   |    |
-| 5 | 我能够有效地完成我的工作使用这个系统    | strongly disagree   |    | strongly agree   |    |
-| 6 | 我觉得使用这个系统很舒服    | strongly disagree   |    | strongly agree   |    |
-| 7 | 学会使用这个系统很容易   | strongly disagree   |    | strongly agree   |    |
-| 8 | 学会使用这个系统很容易   | strongly disagree   |    | strongly agree   |    |
-| 9 | The system gives error messages that clearly tell me how to fix problems    | strongly disagree   |    | strongly agree   |    |
-| 10 | Whenever I make a mistake using the system, I recover easily and quickly    | strongly disagree   |    | strongly agree   |    |
-| 11 | The information (such as online help, on-screen messages, and other documentation) provided with this system is clear    | strongly disagree   |    | strongly agree   |    |
-| 12 | It is easy to find the information I needed    | strongly disagree   |    | strongly agree   |    |
-| 13 | The information provided for the system is easy to understand    | strongly disagree   |    | strongly agree   |    |
-| 14 | The information is effective in helping me complete the tasks and scenarios    | strongly disagree   |    | strongly agree   |    |
-| 15 | The organization of information on the system screens is clear    | strongly disagree   |    | strongly agree   |    |
-| 16 | The interface of this system is pleasant    | strongly disagree   |    | strongly agree   |    |
-| 17 | I like using the interface of this system    | strongly disagree   |    | strongly agree   |    |
-| 18 | This system has all the functions and capabilities I expect it to have    | strongly disagree   |    | strongly agree   |    |
-| 19 | 总的来说，我对这个系统很满意    | strongly disagree   |    | strongly agree   |    |
+|  | title   | strongly disagree |  strongly agree  |
+|:----|:----|:----|:----|
+| 1 | 总的来说，我对使用这个系统的容易程度感到满意   |  |    |
+| 2 | 使用这个系统很简单   |  |    |
+| 3 | 我可以有效地完成我的工作使用这个系统   |  |    |
+| 4 | 使用这个系统，我可以很快地完成我的工作   |  |    |
+| 5 | 我能够有效地完成我的工作使用这个系统    |  |    |
+| 6 | 我觉得使用这个系统很舒服    |  |    |
+| 7 | 学会使用这个系统很容易   |  |    |
+| 8 | 学会使用这个系统很容易   |  |    |
+| 9 | The system gives error messages that clearly tell me how to fix problems    |  |    |
+| 10 | Whenever I make a mistake using the system, I recover easily and quickly    |  |    |
+| 11 | The information (such as online help, on-screen messages, and other documentation) provided with this system is clear |  | |  |
+| 12 | It is easy to find the information I needed    |  |    |
+| 13 | The information provided for the system is easy to understand    |  |    |
+| 14 | The information is effective in helping me complete the tasks and scenarios    |  |    |
+| 15 | The organization of information on the system screens is clear    |  |    |
+| 16 | The interface of this system is pleasant    |  |    |
+| 17 | I like using the interface of this system    |  |    |
+| 18 | This system has all the functions and capabilities I expect it to have    |  |    |
+| 19 | 总的来说，我对这个系统很满意    |  |    |
 
 ### 四、确定优先级 (Priority)
 
-当我们通过checklist将需要优化的问题筛选出来以后，可以根据问题的严重性和解决的问题的成本（时间、人力等）来综合考虑问题的优先级，例如，问题严重性得分高而且优化成本低的问题，应该优先解决。
+当我们通过 checklist 将需要优化的问题筛选出来以后，可以根据问题的严重性和解决的问题的成本（时间、人力等）来综合考虑问题的优先级，例如，问题严重性得分高而且优化成本低的问题，应该优先解决。
 
 ### 五、小结
 

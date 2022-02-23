@@ -13,7 +13,8 @@ hide_post_info:
 你看不见我！看不见我！略略略
 <!--More-->
 最近开始在博客上写日记，我希望它们可以在首页不显示，但是在归档里还能找到，研究了几篇文章之后，我做了如下改动：
-index.ejs中
+index.ejs 中
+
 ```ejs
     <!-- Normal Post -->
     <% page.posts.each(function(post) { %>
@@ -36,8 +37,10 @@ index.ejs中
         <% } %>
     <% }); %>
 ```
-else后面的部分用来表示这里少了一篇文章，以免发生因为连发了十篇隐藏文章，而导致首页空白的情况。
-post.md中
+
+else 后面的部分用来表示这里少了一篇文章，以免发生因为连发了十篇隐藏文章，而导致首页空白的情况。
+post.md 中
+
 ```markdown
 ---
 title: {{ title }}
@@ -49,6 +52,7 @@ layout: post
 hide_post_info:
 ---
 ```
-visible属性只有在为``hide``的时候才会使文章在首页不可见，其他时候均为可见状态。
+
+visible 属性只有在为``hide``的时候才会使文章在首页不可见，其他时候均为可见状态。
 参考资料：1、<https://github.com/bollnh/hexo-theme-material/issues/483>
 　　　　　2、<https://forwardkth.github.io/2016/05/08/next-theme-post-visibility/>

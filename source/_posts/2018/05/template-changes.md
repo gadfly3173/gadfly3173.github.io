@@ -15,14 +15,14 @@ permalink:
 ---
 ### 背景
 
-在./themes/material/layout/layout.ejs的``<body>``中加入
+在./themes/material/layout/layout.ejs 的``<body>``中加入
 
 ```ejs
 <canvas id="tinyball-canvas" style="position:fixed;z-index:-99;display:block;">你这是什么垃圾浏览器，这都不能显示(╯‵□′)╯︵┻━┻</canvas>
 <%- jsLsload({path:('js/tiniballs.js'),key:'tiniballs_js'}) %>
 ```
 
-tiniballs.js存放于./themes/material/source/js/中，内容如下：
+tiniballs.js 存放于./themes/material/source/js/中，内容如下：
 
 ```javascript
 var WIDTH = window.innerWidth, HEIGHT = window.innerHeight, POINT = 15;
@@ -127,7 +127,7 @@ $(document).ready(function () {
 
 ### ~~首行缩进(deprecated)~~
 
-将./node_modules/marked/lib/marked.js中的``Renderer.prototype.br = function()``部分修改为
+将./node_modules/marked/lib/marked.js 中的``Renderer.prototype.br = function()``部分修改为
 
 ```javascript
 Renderer.prototype.br = function() {
@@ -135,7 +135,7 @@ Renderer.prototype.br = function() {
 };
 ```
 
-这样可以保证每个文章的md中的换行符被转义为``<p>``标签。
+这样可以保证每个文章的 md 中的换行符被转义为``<p>``标签。
 然后，将``./themes/material/source/css/style.min.css``中的``#post-content p``部分修改为
 
 ```css
@@ -147,7 +147,7 @@ Renderer.prototype.br = function() {
 }
 ```
 
-这样，所有使用了post-content这个class的父元素中的p标签都会首行缩进两个字符。但是这样也影响了代码块。可以在``style.min.css``继续修改，也可以在``./themes/material/layout/_partial/config_css.ejs``中的``<!-- Other Styles -->``后的``<style>``标签中加上
+这样，所有使用了 post-content 这个 class 的父元素中的 p 标签都会首行缩进两个字符。但是这样也影响了代码块。可以在``style.min.css``继续修改，也可以在``./themes/material/layout/_partial/config_css.ejs``中的``<!-- Other Styles -->``后的``<style>``标签中加上
 
 ```css
 pre{
@@ -157,7 +157,7 @@ pre{
 
 ### Slogan/欢迎语
 
-我使用了Hitokoto（一言·纯净）的API，将``./themes/material/_config.yml``中的``uiux``部分的``slogan``属性修改为
+我使用了 Hitokoto（一言·纯净）的 API，将``./themes/material/_config.yml``中的``uiux``部分的``slogan``属性修改为
 
 ```html
 slogan: <div id="hitokoto" style="text-shadow:2px 2px 4px rgb(51,51,51);">一言·Hitokoto</div><script async type="text/javascript" src="https://v1.hitokoto.cn/?encode=js&select=%23hitokoto"></script>
@@ -177,7 +177,7 @@ url:
 
 ### 发布
 
-为了可以通过``hexo d -g``命令直接发布到我的Github，需要将``./_config.yml``中的``# Deployment``部分修改为
+为了可以通过``hexo d -g``命令直接发布到我的 Github，需要将``./_config.yml``中的``# Deployment``部分修改为
 
 ```yml
 deploy:
@@ -189,11 +189,11 @@ deploy:
 
 ### 代码高亮
 
-为了使用PrismJs，需要先下载对应的CSS，然后在`./themes/material/layout/_partial/head.ejs`中添加
+为了使用 PrismJs，需要先下载对应的 CSS，然后在`./themes/material/layout/_partial/head.ejs`中添加
 
 ```ejs
     <!-- PrismJS -->
     <%- cssLsload('css/prism.tomorrow-night.full.min.css') %>
 ```
 
-并删除主题的`pre`标签的css
+并删除主题的`pre`标签的 css

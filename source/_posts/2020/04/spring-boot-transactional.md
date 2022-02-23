@@ -60,7 +60,7 @@ public class UserService {
     }
   ```
 
-- 从 `beanFactory` 中获取对象。Controller 中的 `UserService` 是代理对象，它是从 `beanFactory` 中得来的，那么 Service 类内调用其他方法时，也先从 `beanFacotry` 中拿出来就OK了。
+- 从 `beanFactory` 中获取对象。Controller 中的 `UserService` 是代理对象，它是从 `beanFactory` 中得来的，那么 Service 类内调用其他方法时，也先从 `beanFacotry` 中拿出来就 OK 了。
 
   ```java
   public void insert02(User u){

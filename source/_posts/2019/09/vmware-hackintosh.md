@@ -11,25 +11,25 @@ tags:
 permalink:
 hide_post_info:
 ---
-由于学校有个Ios开发课程，不得不开始使用我最厌恶的MACos。
+由于学校有个 Ios 开发课程，不得不开始使用我最厌恶的 MACos。
 <!--More-->
 #### 安装过程
 
 ##### 首先Google一个Vmware出来装好
 
-然后找一下合适的MACos镜像。我这边用的是：
+然后找一下合适的 MACos 镜像。我这边用的是：
 百度网盘：链接: [https://pan.baidu.com/s/1Y-SAspAY-28pccir9JsDhA](https://pan.baidu.com/s/1Y-SAspAY-28pccir9JsDhA) 提取码: kegh
-然后前往[https://github.com/DrDonk/unlocker](https://github.com/DrDonk/unlocker)下载vmware-unlocker以便解除Vmware对MAC虚拟机的限制
+然后前往[https://github.com/DrDonk/unlocker](https://github.com/DrDonk/unlocker)下载 vmware-unlocker 以便解除 Vmware 对 MAC 虚拟机的限制
 
 ##### unlocker
 
-关闭vmware的所有服务
-解压并打开下载的UnLocker文件夹, 右键win-install, 选择以管理员身份运行
+关闭 vmware 的所有服务
+解压并打开下载的 UnLocker 文件夹, 右键 win-install, 选择以管理员身份运行
 ![](/images/posts/2019/09/unlocker.webp)
 
 ##### 创建
 
-打开VMWare WorkStation, 点击创建新的虚拟机，选择自定义高级
+打开 VMWare WorkStation, 点击创建新的虚拟机，选择自定义高级
 ![](/images/posts/2019/09/newVM.webp)
 
 ##### 选择虚拟机版本
@@ -39,8 +39,8 @@ hide_post_info:
 ##### 选择操作系统类型
 
 ![](/images/posts/2019/09/systemType.webp)
-操作系统类型选择Apple Mac OS X
-版本选择你的镜像版本, 网盘中分享的是Mac OS 10.13版本
+操作系统类型选择 Apple Mac OS X
+版本选择你的镜像版本, 网盘中分享的是 Mac OS 10.13 版本
 ![](/images/posts/2019/09/continueInstall.webp)
 
 ##### 网络NAT即可，其他默认
@@ -50,7 +50,7 @@ hide_post_info:
 
 ##### 修正文件
 
-打开你虚拟机存放的文件夹, 找到这个vmx扩展名的文件, 右键用记事本打开
+打开你虚拟机存放的文件夹, 找到这个 vmx 扩展名的文件, 右键用记事本打开
 ![](/images/posts/2019/09/vmx.webp)
 ![](/images/posts/2019/09/vmxEdit.webp)
 在这两个之间, 插入如下代码
@@ -68,7 +68,7 @@ cpuid.1.edx = "0000:1111:1010:1011:1111:1011:1111:1111"
 featureCompat.enable = "FALSE"
 ```
 
-安装MACos的过程中可能会遇到找不到vmware分配的虚拟磁盘的情况，此时选择磁盘工具，对没有格式化的虚拟磁盘进行格式化即可
+安装 MACos 的过程中可能会遇到找不到 vmware 分配的虚拟磁盘的情况，此时选择磁盘工具，对没有格式化的虚拟磁盘进行格式化即可
 
 #### 更改分辨率
 
@@ -87,8 +87,8 @@ sudo nvram AC20C489-DD86-4E99-992C-B7C742C1DDA9:height=%70%08%00%00
 ```
 
 解释：
-width=%00%0F%00%00 是宽度的16进制表示，将四个数字倒过来写就是 00 00 0f 00, 相当于十进制的3840
-height=%70%08%00%00 是高度的16进制表示，将四个数字倒过来写就是 00 00 08 70, 相当于十进制的2160
+width=%00%0F%00%00 是宽度的 16 进制表示，将四个数字倒过来写就是 00 00 0f 00, 相当于十进制的 3840
+height=%70%08%00%00 是高度的 16 进制表示，将四个数字倒过来写就是 00 00 08 70, 相当于十进制的 2160
 所以，上面的两条命令执行完之后，分辨率将被设置为 3840*2160， 其他的分辨率依此类推
 
 #### 参考资料
