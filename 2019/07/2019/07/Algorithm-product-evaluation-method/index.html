@@ -277,7 +277,7 @@
 
     
         <meta property="article:published_time" content="Wed Jul 03 2019 15:34:07 GMT+0800">
-        <meta property="article:modified_time" content="Fri Feb 18 2022 11:36:38 GMT+0800">
+        <meta property="article:modified_time" content="Wed Feb 23 2022 18:42:24 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -300,7 +300,7 @@
     "mainEntityOfPage": "https://blog.gadfly.vip/2019/07/2019/07/Algorithm-product-evaluation-method/index.html",
     "headline": "算法评估方法",
     "datePublished": "Wed Jul 03 2019 15:34:07 GMT+0800",
-    "dateModified": "Fri Feb 18 2022 11:36:38 GMT+0800",
+    "dateModified": "Wed Feb 23 2022 18:42:24 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "猪蹄宝宝",
@@ -587,20 +587,20 @@
    = TP /(TP+FN)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>针对我们原来的正样本而言的，它表示的是正例样本中有多少被预测正确了。大白话就是“正例样本里你的预测对了多少”</p>
-<p>例如，使用算法扩写文章100篇，10篇没有扩写成功，90篇成功进行了扩写，人工对于扩写质量给于正反评分，为正的文章23篇，那么扩写算法召回率：23&#x2F;100 &#x3D; 0.23；</p>
+<p>例如，使用算法扩写文章 100 篇，10 篇没有扩写成功，90 篇成功进行了扩写，人工对于扩写质量给于正反评分，为正的文章 23 篇，那么扩写算法召回率：23&#x2F;100 &#x3D; 0.23；</p>
 <p>在针对搜索：召回率为查全率：</p>
 <pre class="line-numbers language-text" data-language="text"><code class="language-text">查全率＝检索出的相关信息量 / 系统中的相关信息总量<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p>例如，使用关键词“马云”搜索出一张马云和100张马和云的图片，数据库系统中实际上有10篇马云，那么查全率：1&#x2F;10 &#x3D; 0.10；</p>
+<p>例如，使用关键词“马云”搜索出一张马云和 100 张马和云的图片，数据库系统中实际上有 10 篇马云，那么查全率：1&#x2F;10 &#x3D; 0.10；</p>
 <h2 id="二、精确率（Precision）"><a href="#二、精确率（Precision）" class="headerlink" title="二、精确率（Precision）"></a>二、精确率（Precision）</h2><pre class="line-numbers language-text" data-language="text"><code class="language-text">P = 预测对的正样本 / 预测为正预测结果
   = TP/ (TP+FP)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>预测为正的样本中有多少是真正的正样本。那么预测为正就有两种可能了，一种就是把正类预测为正类(TP)，另一种就是把负类预测为正类(FP)，也就是“ 你预测为正例的里面有多少是对的”</p>
-<p>例如，纠错算法，测试100个词的文本，识别出错误词有20个（TP+FP&#x3D;20），其中被误判为错词14个（FP&#x3D;14），6个错词判断正确（TP&#x3D;6），4个错词没有识别出来（FN&#x3D;4），人工对于成功纠出错结果正反打分，6&#x2F;20 &#x3D; 0.3 。</p>
+<p>例如，纠错算法，测试 100 个词的文本，识别出错误词有 20 个（TP+FP&#x3D;20），其中被误判为错词 14 个（FP&#x3D;14），6 个错词判断正确（TP&#x3D;6），4 个错词没有识别出来（FN&#x3D;4），人工对于成功纠出错结果正反打分，6&#x2F;20 &#x3D; 0.3 。</p>
 <p>在针对搜索：精确率为查准率</p>
 <pre class="line-numbers language-text" data-language="text"><code class="language-text">查准率 = 检索出的相关信息量 / 检索出的信息总量<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p>例如，使用关键词“马云”搜索出一张马云和99张马和云的图片，那么查准率：1&#x2F;100 &#x3D; 0.01；</p>
+<p>例如，使用关键词“马云”搜索出一张马云和 99 张马和云的图片，那么查准率：1&#x2F;100 &#x3D; 0.01；</p>
 <h2 id="三、准确率（Accuracy）"><a href="#三、准确率（Accuracy）" class="headerlink" title="三、准确率（Accuracy）"></a>三、准确率（Accuracy）</h2><pre class="line-numbers language-text" data-language="text"><code class="language-text">A = 预测对的/所有样本
   = (TP+TN)/(TP+TN+FP+FN)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
@@ -818,7 +818,7 @@
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2021/04/">四月 2021<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/02/">二月 2021<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/04/">四月 2020<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/09/">九月 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">七月 2019<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/07/">七月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/05/">五月 2018<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/08/">八月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">3</span></a>
+                <a class="sidebar_archives-link" href="/archives/2022/02/">二月 2022<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/04/">四月 2021<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/02/">二月 2021<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/04/">四月 2020<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/09/">九月 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">七月 2019<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/07/">七月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/05/">五月 2018<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/08/">八月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">3</span></a>
             </ul>
         </li>
         
@@ -836,7 +836,7 @@
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/NFC/">NFC<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/RFID/">RFID<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E4%BC%98%E5%8C%96/">优化<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E5%BB%BA%E7%AB%99/">建站<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E5%BC%80%E5%8F%91/">开发<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E7%94%B5%E8%84%91/">电脑<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E7%B3%BB%E7%BB%9F/">系统<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E7%BA%AA%E5%AE%9E/">纪实<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E9%80%9A%E4%BF%A1/">通信<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E9%9A%8F%E7%AC%94/">随笔<span class="sidebar_archives-count">1</span></a>
+                <a class="sidebar_archives-link" href="/categories/Electron/">Electron<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/NFC/">NFC<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/RFID/">RFID<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E4%BC%98%E5%8C%96/">优化<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E5%BB%BA%E7%AB%99/">建站<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E5%BC%80%E5%8F%91/">开发<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E7%94%B5%E8%84%91/">电脑<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E7%B3%BB%E7%BB%9F/">系统<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E7%BA%AA%E5%AE%9E/">纪实<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E9%80%9A%E4%BF%A1/">通信<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E9%9A%8F%E7%AC%94/">随笔<span class="sidebar_archives-count">1</span></a>
             </ul>
         </li>
         
@@ -910,7 +910,7 @@
         <li>
             <a href="/archives">
                 文章总数
-                <span class="sidebar-badge">26</span>
+                <span class="sidebar-badge">27</span>
             </a>
         </li>
         

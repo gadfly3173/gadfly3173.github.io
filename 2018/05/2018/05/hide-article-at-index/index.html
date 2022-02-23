@@ -277,7 +277,7 @@
 
     
         <meta property="article:published_time" content="Sun May 20 2018 21:57:55 GMT+0800">
-        <meta property="article:modified_time" content="Fri Feb 18 2022 11:36:38 GMT+0800">
+        <meta property="article:modified_time" content="Wed Feb 23 2022 18:42:24 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -300,7 +300,7 @@
     "mainEntityOfPage": "https://blog.gadfly.vip/2018/05/2018/05/hide-article-at-index/index.html",
     "headline": "在首页隐藏文章",
     "datePublished": "Sun May 20 2018 21:57:55 GMT+0800",
-    "dateModified": "Fri Feb 18 2022 11:36:38 GMT+0800",
+    "dateModified": "Wed Feb 23 2022 18:42:24 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "猪蹄宝宝",
@@ -550,7 +550,7 @@
     
         <p>你看不见我！看不见我！略略略</p>
 <span id="more"></span>
-<p>最近开始在博客上写日记，我希望它们可以在首页不显示，但是在归档里还能找到，研究了几篇文章之后，我做了如下改动：<br>index.ejs中</p>
+<p>最近开始在博客上写日记，我希望它们可以在首页不显示，但是在归档里还能找到，研究了几篇文章之后，我做了如下改动：<br>index.ejs 中</p>
 <pre class="line-numbers language-ejs" data-language="ejs"><code class="language-ejs"><span class="token comment">&lt;!-- Normal Post --></span>
 <span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%</span><span class="token language-javascript"> page<span class="token punctuation">.</span>posts<span class="token punctuation">.</span><span class="token function">each</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">post</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> </span><span class="token delimiter punctuation">%></span></span>
     <span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%</span><span class="token language-javascript"> <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> hasposttop <span class="token operator">===</span> <span class="token string">'function'</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> post<span class="token punctuation">.</span>top<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> </span><span class="token delimiter punctuation">%></span></span>
@@ -571,7 +571,8 @@
         <span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%</span><span class="token language-javascript"> <span class="token punctuation">&#125;</span> </span><span class="token delimiter punctuation">%></span></span>
     <span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%</span><span class="token language-javascript"> <span class="token punctuation">&#125;</span> </span><span class="token delimiter punctuation">%></span></span>
 <span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%</span><span class="token language-javascript"> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> </span><span class="token delimiter punctuation">%></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>else后面的部分用来表示这里少了一篇文章，以免发生因为连发了十篇隐藏文章，而导致首页空白的情况。<br>post.md中</p>
+
+<p>else 后面的部分用来表示这里少了一篇文章，以免发生因为连发了十篇隐藏文章，而导致首页空白的情况。<br>post.md 中</p>
 <pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown"><span class="token front-matter-block"><span class="token punctuation">---</span>
 <span class="token font-matter yaml language-yaml">title: &#123;&#123; title &#125;&#125;
 date: &#123;&#123; date &#125;&#125;
@@ -581,7 +582,8 @@ permalink:
 layout: post
 hide_post_info:</span>
 <span class="token punctuation">---</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>visible属性只有在为<code>hide</code>的时候才会使文章在首页不可见，其他时候均为可见状态。<br>参考资料：1、<a target="_blank" rel="noopener" href="https://github.com/bollnh/hexo-theme-material/issues/483">https://github.com/bollnh/hexo-theme-material/issues/483</a><br>　　　　　2、<a target="_blank" rel="noopener" href="https://forwardkth.github.io/2016/05/08/next-theme-post-visibility/">https://forwardkth.github.io/2016/05/08/next-theme-post-visibility/</a></p>
+
+<p>visible 属性只有在为<code>hide</code>的时候才会使文章在首页不可见，其他时候均为可见状态。<br>参考资料：1、<a target="_blank" rel="noopener" href="https://github.com/bollnh/hexo-theme-material/issues/483">https://github.com/bollnh/hexo-theme-material/issues/483</a><br>　　　　　2、<a target="_blank" rel="noopener" href="https://forwardkth.github.io/2016/05/08/next-theme-post-visibility/">https://forwardkth.github.io/2016/05/08/next-theme-post-visibility/</a></p>
 
         
     
@@ -792,7 +794,7 @@ hide_post_info:</span>
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2021/04/">四月 2021<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/02/">二月 2021<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/04/">四月 2020<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/09/">九月 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">七月 2019<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/07/">七月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/05/">五月 2018<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/08/">八月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">3</span></a>
+                <a class="sidebar_archives-link" href="/archives/2022/02/">二月 2022<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/04/">四月 2021<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/02/">二月 2021<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/04/">四月 2020<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/09/">九月 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">七月 2019<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/07/">七月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/05/">五月 2018<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/08/">八月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">3</span></a>
             </ul>
         </li>
         
@@ -810,7 +812,7 @@ hide_post_info:</span>
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/NFC/">NFC<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/RFID/">RFID<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E4%BC%98%E5%8C%96/">优化<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E5%BB%BA%E7%AB%99/">建站<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E5%BC%80%E5%8F%91/">开发<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E7%94%B5%E8%84%91/">电脑<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E7%B3%BB%E7%BB%9F/">系统<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E7%BA%AA%E5%AE%9E/">纪实<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E9%80%9A%E4%BF%A1/">通信<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E9%9A%8F%E7%AC%94/">随笔<span class="sidebar_archives-count">1</span></a>
+                <a class="sidebar_archives-link" href="/categories/Electron/">Electron<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/NFC/">NFC<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/RFID/">RFID<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E4%BC%98%E5%8C%96/">优化<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E5%BB%BA%E7%AB%99/">建站<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E5%BC%80%E5%8F%91/">开发<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E7%94%B5%E8%84%91/">电脑<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E7%B3%BB%E7%BB%9F/">系统<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E7%BA%AA%E5%AE%9E/">纪实<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E9%80%9A%E4%BF%A1/">通信<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E9%9A%8F%E7%AC%94/">随笔<span class="sidebar_archives-count">1</span></a>
             </ul>
         </li>
         
@@ -884,7 +886,7 @@ hide_post_info:</span>
         <li>
             <a href="/archives">
                 文章总数
-                <span class="sidebar-badge">26</span>
+                <span class="sidebar-badge">27</span>
             </a>
         </li>
         
