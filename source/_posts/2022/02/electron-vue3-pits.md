@@ -79,3 +79,27 @@ if (!gotTheLock) {
   })
 }
 ```
+
+## NSIS 安装、卸载程序执行时关闭正在运行的应用
+
+NSIS 默认情况下不会在执行时关闭正在运行的应用，并且不会报错。。。好在 electron-builder 提供了自行修改 nsh 的功能，
+可以自行编写以下脚本，通过 electron-builder 的 include 配置注入。
+
+```nsh
+; http://bcoder.com/others/kill-process-when-install-or-uninstall-programs-by-the-package-made-by-nsis
+; https://www.electron.build/configuration/nsis#custom-nsis-script
+; This callback will be called when the installer is nearly finished initializing. If the '.onInit' function calls Abort, the installer will quit instantly
+!macro customInit
+  ; File /oname=$PLUGINSDIR\KillProcDLL.dll "${BUILD_RESOURCES_DIR}\KillProcDLL.dll"
+  ${nsProcess::KillProcess} "${PRODUCT_FILENAME}.exe" $R0
+!macroend
+
+; This callback will be called when the uninstaller is nearly finished initializing. If the 'un.onInit' function calls Abort, the uninstaller will quit instantly. Note that this function can verify and/or modify $INSTDIR if necessary.
+!macro customUnInit
+  ; File /oname=$PLUGINSDIR\KillProcDLL.dll "${BUILD_RESOURCES_DIR}\KillProcDLL.dll"
+  MessageBox MB_ICONQUESTION|MB_YESNO|MB_DEFBUTTON2 "是否确认卸载 ${SHORTCUT_NAME} 及其所有组件?" IDYES NoAbort IDYES +2
+  Abort
+  NoAbort:
+    ${nsProcess::KillProcess} "${PRODUCT_FILENAME}.exe" $R0
+!macroend
+```
