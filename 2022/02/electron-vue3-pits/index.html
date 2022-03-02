@@ -277,7 +277,7 @@
 
     
         <meta property="article:published_time" content="Wed Feb 23 2022 17:01:49 GMT+0800">
-        <meta property="article:modified_time" content="Wed Mar 02 2022 17:22:48 GMT+0800">
+        <meta property="article:modified_time" content="Wed Mar 02 2022 17:25:39 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -300,7 +300,7 @@
     "mainEntityOfPage": "https://blog.gadfly.vip/2022/02/electron-vue3-pits/index.html",
     "headline": "Electron Vue3 踩坑笔记",
     "datePublished": "Wed Feb 23 2022 17:01:49 GMT+0800",
-    "dateModified": "Wed Mar 02 2022 17:22:48 GMT+0800",
+    "dateModified": "Wed Mar 02 2022 17:25:39 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "猪蹄宝宝",
@@ -561,7 +561,7 @@
 <span id="more"></span>
 <h2 id="空项目-SSL-握手异常"><a href="#空项目-SSL-握手异常" class="headerlink" title="空项目 SSL 握手异常"></a>空项目 SSL 握手异常</h2><pre class="line-numbers language-log" data-language="log"><code class="language-log"><span class="token punctuation">[</span><span class="token number">6104</span><span class="token operator">:</span><span class="token number">0223</span><span class="token operator">/</span><span class="token number">170435.000</span><span class="token operator">:</span><span class="token level error important">ERROR</span><span class="token operator">:</span>ssl_client_socket_impl<span class="token punctuation">.</span>cc<span class="token operator">(</span><span class="token number">983</span><span class="token operator">)</span><span class="token punctuation">]</span> handshake failed<span class="token operator">;</span> returned <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> SSL error code <span class="token number">1</span><span class="token punctuation">,</span> net_error <span class="token operator">-</span><span class="token number">101</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p>原因是 Electron 默认开启 DoH，使用的是<code>https://chrome.cloudflare-dns.com/</code>。然而这东西在国内当然是会随时抽风的。<br>Electron 文档内提到可以配置<code>app.configureHostResolver</code>，<del>但是一旦配置就会起不来，只能等 Electron 更新了。</del><br><code>app.configureHostResolver</code>必须在 ready 事件出发后设置，否则会报错。</p>
+<p>原因是 Electron 默认开启 DoH，使用的是<code>https://chrome.cloudflare-dns.com/</code>。然而这东西在国内当然是会随时抽风的。Electron 文档内提到可以配置<code>app.configureHostResolver</code>，<del>但是一旦配置就会起不来，只能等 Electron 更新了。</del><code>app.configureHostResolver</code>必须在 ready 事件出发后设置，否则会报错。</p>
 <h2 id="单实例"><a href="#单实例" class="headerlink" title="单实例"></a>单实例</h2><p>正常情况下 Electron 是可以多实例启动的，现在需要保证单实例启动。在主进程里进行如下配置</p>
 <pre class="line-numbers language-typescript" data-language="typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">&#123;</span> app<span class="token punctuation">,</span> protocol<span class="token punctuation">,</span> BrowserWindow <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'electron'</span>
 <span class="token keyword">import</span> <span class="token punctuation">&#123;</span> createProtocol <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'vue-cli-plugin-electron-builder/lib'</span>
@@ -613,7 +613,7 @@ protocol<span class="token punctuation">.</span><span class="token function">reg
   <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="NSIS-安装、卸载程序执行时关闭正在运行的应用"><a href="#NSIS-安装、卸载程序执行时关闭正在运行的应用" class="headerlink" title="NSIS 安装、卸载程序执行时关闭正在运行的应用"></a>NSIS 安装、卸载程序执行时关闭正在运行的应用</h2><p>NSIS 默认情况下不会在执行时关闭正在运行的应用，并且不会报错。。。好在 electron-builder 提供了自行修改 nsh 的功能，<br>可以自行编写以下脚本，通过 electron-builder 的 include 配置注入。</p>
+<h2 id="NSIS-安装、卸载程序执行时关闭正在运行的应用"><a href="#NSIS-安装、卸载程序执行时关闭正在运行的应用" class="headerlink" title="NSIS 安装、卸载程序执行时关闭正在运行的应用"></a>NSIS 安装、卸载程序执行时关闭正在运行的应用</h2><p>NSIS 默认情况下不会在执行时关闭正在运行的应用，并且不会报错。。。好在 electron-builder 提供了自行修改 nsh 的功能，可以自行编写以下脚本，通过 electron-builder 的 include 配置注入。</p>
 <pre class="line-numbers language-nsh" data-language="nsh"><code class="language-nsh">; http:&#x2F;&#x2F;bcoder.com&#x2F;others&#x2F;kill-process-when-install-or-uninstall-programs-by-the-package-made-by-nsis
 ; https:&#x2F;&#x2F;www.electron.build&#x2F;configuration&#x2F;nsis#custom-nsis-script
 ; This callback will be called when the installer is nearly finished initializing. If the &#39;.onInit&#39; function calls Abort, the installer will quit instantly
@@ -631,7 +631,7 @@ protocol<span class="token punctuation">.</span><span class="token function">reg
     $&#123;nsProcess::KillProcess&#125; &quot;$&#123;PRODUCT_FILENAME&#125;.exe&quot; $R0
 !macroend<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="启动时最大化窗口"><a href="#启动时最大化窗口" class="headerlink" title="启动时最大化窗口"></a>启动时最大化窗口</h2><p>需要创建窗口时设置<code>show: false</code>，然后捕获<code>ready-to-show</code>事件，进行最大化和显示的处理。<br>直接最大化会出现窗口不在最上面的问题，因此需要在最大化之前设置窗口在顶部，最后再取消该设置。</p>
+<h2 id="启动时最大化窗口"><a href="#启动时最大化窗口" class="headerlink" title="启动时最大化窗口"></a>启动时最大化窗口</h2><p>需要创建窗口时设置<code>show: false</code>，然后捕获<code>ready-to-show</code>事件，进行最大化和显示的处理。直接最大化会出现窗口不在最上面的问题，因此需要在最大化之前设置窗口在顶部，最后再取消该设置。</p>
 <pre class="line-numbers language-ts" data-language="ts"><code class="language-ts">mainWindow <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">BrowserWindow</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
   show<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
   <span class="token comment">// ...</span>
