@@ -105,7 +105,7 @@ NSIS 默认情况下不会在执行时关闭正在运行的应用，并且不会
 
 需要创建窗口时设置`show: false`，然后捕获`ready-to-show`事件，进行最大化和显示的处理。直接最大化会出现窗口不在最上面的问题，因此需要在最大化之前设置窗口在顶部，最后再取消该设置。
 
-```ts
+```typescript
   mainWindow = new BrowserWindow({
     show: false,
     // ...
@@ -124,7 +124,7 @@ NSIS 默认情况下不会在执行时关闭正在运行的应用，并且不会
 
 为避免用户误操作关闭窗口丢失数据，需要在关闭窗口时二次确认。这是调用 electron 默认 dialog 的方式，如果需要结合渲染层，需要另外进行 IPC 调用。
 
-```ts
+```typescript
   mainWindow.on('close', async e => {
     // 阻止默认行为，一定要有
     e.preventDefault()
