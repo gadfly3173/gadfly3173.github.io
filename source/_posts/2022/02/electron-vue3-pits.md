@@ -20,9 +20,7 @@ hide_post_info:
 [6104:0223/170435.000:ERROR:ssl_client_socket_impl.cc(983)] handshake failed; returned -1, SSL error code 1, net_error -101
 ```
 
-原因是 Electron 默认开启 DoH，使用的是`https://chrome.cloudflare-dns.com/`。然而这东西在国内当然是会随时抽风的。
-Electron 文档内提到可以配置`app.configureHostResolver`，~~但是一旦配置就会起不来，只能等 Electron 更新了。~~
-`app.configureHostResolver`必须在 ready 事件出发后设置，否则会报错。
+原因是 Electron 默认开启 DoH，使用的是`https://chrome.cloudflare-dns.com/`。然而这东西在国内当然是会随时抽风的。Electron 文档内提到可以配置`app.configureHostResolver`，~~但是一旦配置就会起不来，只能等 Electron 更新了。~~`app.configureHostResolver`必须在 ready 事件出发后设置，否则会报错。
 
 ## 单实例
 
@@ -82,8 +80,7 @@ if (!gotTheLock) {
 
 ## NSIS 安装、卸载程序执行时关闭正在运行的应用
 
-NSIS 默认情况下不会在执行时关闭正在运行的应用，并且不会报错。。。好在 electron-builder 提供了自行修改 nsh 的功能，
-可以自行编写以下脚本，通过 electron-builder 的 include 配置注入。
+NSIS 默认情况下不会在执行时关闭正在运行的应用，并且不会报错。。。好在 electron-builder 提供了自行修改 nsh 的功能，可以自行编写以下脚本，通过 electron-builder 的 include 配置注入。
 
 ```nsh
 ; http://bcoder.com/others/kill-process-when-install-or-uninstall-programs-by-the-package-made-by-nsis
@@ -106,8 +103,7 @@ NSIS 默认情况下不会在执行时关闭正在运行的应用，并且不会
 
 ## 启动时最大化窗口
 
-需要创建窗口时设置`show: false`，然后捕获`ready-to-show`事件，进行最大化和显示的处理。
-直接最大化会出现窗口不在最上面的问题，因此需要在最大化之前设置窗口在顶部，最后再取消该设置。
+需要创建窗口时设置`show: false`，然后捕获`ready-to-show`事件，进行最大化和显示的处理。直接最大化会出现窗口不在最上面的问题，因此需要在最大化之前设置窗口在顶部，最后再取消该设置。
 
 ```ts
   mainWindow = new BrowserWindow({
