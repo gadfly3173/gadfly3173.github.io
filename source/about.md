@@ -1,6 +1,6 @@
 ---
 title: "关于"
-description: "猪蹄宝宝的博客n(*≧▽≦*)n"
+description: "猪蹄宝宝的博客 n(*≧▽≦*)n"
 group: navigation
 comment: false
 notag: true

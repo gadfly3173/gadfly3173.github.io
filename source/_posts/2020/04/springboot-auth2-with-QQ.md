@@ -13,10 +13,10 @@ hide_post_info:
 写这个主要是为了整理开发思路与记录，顺便表示 QQ 的接口真的写的很奇怪。。。
 <!--More-->
 整个项目是一个课程作业，我选择了后端使用 Spring Boot，前端使用 Vue.js 作为项目的技术栈。首先说一下 Auth 2.0。这个在 QQ 的文档里倒也写的很清楚
-[OAuth2.0简介 — QQ互联WIKI](https://wiki.connect.qq.com/oauth2-0%E7%AE%80%E4%BB%8B)。它采用第三方应用在客户端根据自己的 AppId 和 Redirect URI（回调地址）来请求 QQ 的授权页面，
+[OAuth2.0 简介 — QQ 互联 WIKI](https://wiki.connect.qq.com/oauth2-0%E7%AE%80%E4%BB%8B)。它采用第三方应用在客户端根据自己的 AppId 和 Redirect URI（回调地址）来请求 QQ 的授权页面，
 用户授权后将 Authentication Code 作为 params 跳转到回调地址，回调地址将这个 Code 传给后端，由后端根据 AppId 和 Secret 再向 QQ 申请用户登录的 Access Token，
 根据这个 Token 后端才能去获取用户授权的相关信息。第三方应用中每个用户都有一个唯一的 OpenId 用于对应唯一的用户，但是不同第三方应用对相同的用户拿到的 OpenId 则是不同的。
-开发中参考了 [使用java后端的springboot环境下实现网站接入QQ第三方登录](https://segmentfault.com/a/1190000020181967)，因此避免了很多坑。
+开发中参考了 [使用 java 后端的 springboot 环境下实现网站接入 QQ 第三方登录](https://segmentfault.com/a/1190000020181967)，因此避免了很多坑。
 
 ### 获取 Access Token
 
@@ -78,7 +78,7 @@ private static String getUrlForAccessToken(String authorization_code) {
 
 #### 解析接口返回的数据
 
->之后就是跳转这个URL去获取 access_token，这里就是第一个坑了，按照官方文档，搞得好像这次我们跳转到这个获取 access_token 的URL后，腾讯那边会跳转我们设定的回调地址并带上我们需要的参数，就像之前获取 authorization code 一样。
+>之后就是跳转这个 URL 去获取 access_token，这里就是第一个坑了，按照官方文档，搞得好像这次我们跳转到这个获取 access_token 的 URL 后，腾讯那边会跳转我们设定的回调地址并带上我们需要的参数，就像之前获取 authorization code 一样。
 但完全不是这样的！！！你按照要求向这个获取 access_token 的 URL 发送请求后，对方并不会再跳转，而是直接返回你一个数据，希望你获得这个数据然后处理。这有点像前端 JS 的异步请求后后回调函数处理 data。
 
 所以这里使用了 `restTemplate` 来发起请求。虽然很多教程里都会说使用 `@Autowired` 来注入实例，但是你会发现 IDEA 中会提示这种写法不被推荐，使用构造函数注入是更好的选择。
@@ -131,9 +131,9 @@ restTemplate 可以接收所有的返回参数，然而 QQ 这里采用了一个
 
 >这里有两点值得一说
 >
->其一，为什么String regex = "&#92;&#92;{.*&#92;&#92;}";，正则表达式中有&#92;&#92;这东西呢？这时因为正则表达式中{和}都是有意义的，非字符的，我们希望正则表达式把它们理解成字符，就需要对它们进行转义，所以这里需要一个转义符&#92;，但&#92;自身在java字符串中并不是字符，所以我们还要转义&#92;自身，所以会出现&#92;&#92;。
+>其一，为什么 String regex = "&#92;&#92;{.*&#92;&#92;}";，正则表达式中有&#92;&#92;这东西呢？这时因为正则表达式中{和}都是有意义的，非字符的，我们希望正则表达式把它们理解成字符，就需要对它们进行转义，所以这里需要一个转义符&#92;，但&#92;自身在 java 字符串中并不是字符，所以我们还要转义&#92;自身，所以会出现&#92;&#92;。
 >
->其二，matcher如果不经历matcher.find()，则就算有合适的匹配内容，也仍然不会有任何匹配能得到。所以matcher.find()是必须的，同时matcher.find()一次后再来一次，那完了，返回false。
+>其二，matcher 如果不经历 matcher.find()，则就算有合适的匹配内容，也仍然不会有任何匹配能得到。所以 matcher.find()是必须的，同时 matcher.find()一次后再来一次，那完了，返回 false。
 
 ### 获取用户信息与登录 Token 下发
 

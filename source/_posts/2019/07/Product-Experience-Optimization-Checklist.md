@@ -103,7 +103,7 @@ hide_post_info:
 
 为了达到优化的目标，整理了一个简易的 checklist（pdf 版本下载链接请见文末），方便在走查时对架构、布局、内容、行为四个方面对照检查：
 
-#### 1.架构和导航Architecture and navigation
+#### 1.架构和导航 Architecture and navigation
 
 * [ ]    是否采用了用户熟悉或容易理解的结构？
 * [ ]    是否能识别当前在网站中的位置？
@@ -112,7 +112,7 @@ hide_post_info:
 * [ ]    链接名称与页面名称是否相对应？
 * [ ]    当前页面的结构和布局是否清晰？
 
-#### 2.布局和设计Layout and design
+#### 2.布局和设计 Layout and design
 
 * [ ]    是否采用了用户熟悉的界面元素和控件？
 * [ ]    界面元素和控件的文字、位置、布局、分组、大小、颜色、形状等是否合理、容易识别、一致？
@@ -120,7 +120,7 @@ hide_post_info:
 * [ ]    主要操作/阅读区域的视线是否流畅？
 * [ ]    其他文本（称谓、提示语、提供反馈）是否一致？
 
-#### 3.内容和可读性Content and readability
+#### 3.内容和可读性 Content and readability
 
 * [ ]    文字内容的交流对象是用户吗？
 * [ ]    语言是否简洁、易懂、礼貌？
@@ -129,7 +129,7 @@ hide_post_info:
 * [ ]    是否在需要时提供必要的信息？
 * [ ]    是否有干扰视线和注意力的元素？
 
-#### 4.行为和互动Behavior and interaction
+#### 4.行为和互动 Behavior and interaction
 
 * [ ]    是否告知、引导用户可以做什么？
 * [ ]    是否告知需要进行哪些步骤？

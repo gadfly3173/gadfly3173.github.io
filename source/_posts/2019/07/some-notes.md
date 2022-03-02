@@ -56,7 +56,7 @@ git remote rename 命令用于远程主机的改名。
 git remote rename <原主机名> <新主机名>
 ```
 
-### 3、取回commit
+### 3、取回 commit
 
 一旦远程主机的版本库有了更新（Git 术语叫做 commit），需要将这些更新取回本地，这时就要用到 git fetch 命令。
 

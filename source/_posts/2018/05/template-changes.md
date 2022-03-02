@@ -1,5 +1,5 @@
 ---
-title: 记录一下对模板和hexo做过的改动
+title: 记录一下对模板和 hexo 做过的改动
 layout: post
 date: 2018-05-18 00:04:46
 categories: 建站

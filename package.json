@@ -13,8 +13,7 @@
     "release": "hexo clean && hexo d -g",
     "publish": "hexo clean && hexo d -g",
     "new-post": "node bin/hexo-new-date.js",
-    "textlint:fix": "textlint --fix **/*.md",
-    "markdownlint:fix": "markdownlint --fix **/*.md"
+    "lintmd:fix": "lint-md source/**/*.md --fix"
   },
   "dependencies": {
     "gitment": "0.0.3",
@@ -40,9 +39,7 @@
     "hexo-wordcount": "^6.0.1"
   },
   "devDependencies": {
-    "markdownlint-cli": "^0.31.1",
-    "shelljs": "^0.8.5",
-    "textlint": "^12.1.1",
-    "textlint-rule-ja-space-between-half-and-full-width": "^2.2.0"
+    "@lint-md/cli": "^0.1.6",
+    "shelljs": "^0.8.5"
   }
 }

@@ -1,5 +1,5 @@
 ---
-title: Vmware安装黑苹果全记录
+title: Vmware 安装黑苹果全记录
 layout: post
 date: 2019-09-20 17:05:09
 categories:
@@ -15,7 +15,7 @@ hide_post_info:
 <!--More-->
 #### 安装过程
 
-##### 首先Google一个Vmware出来装好
+##### 首先 Google 一个 Vmware 出来装好
 
 然后找一下合适的 MACos 镜像。我这边用的是：
 百度网盘：链接: [https://pan.baidu.com/s/1Y-SAspAY-28pccir9JsDhA](https://pan.baidu.com/s/1Y-SAspAY-28pccir9JsDhA) 提取码: kegh
@@ -43,7 +43,7 @@ hide_post_info:
 版本选择你的镜像版本, 网盘中分享的是 Mac OS 10.13 版本
 ![](/images/posts/2019/09/continueInstall.webp)
 
-##### 网络NAT即可，其他默认
+##### 网络 NAT 即可，其他默认
 
 新建磁盘，大小自己决定，建议使用**单个文件**而不是多个文件
 ![](/images/posts/2019/09/newDisk.webp)
@@ -93,5 +93,5 @@ height=%70%08%00%00 是高度的 16 进制表示，将四个数字倒过来写�
 
 #### 参考资料
 
-- [(AMD Ryzen, Inter)在VMWare中安装Mac OS 10.13 High Sierra,黑苹果安装教程 - 简书](https://www.jianshu.com/p/4d83f2d51abe)
-- [VMware15 安装 mac OS 10.14 分辨率调整为1920*1080？_电脑基础_Dkukoc](https://www.dkukoc.com/post/226.html)
+- [(AMD Ryzen, Inter)在 VMWare 中安装 Mac OS 10.13 High Sierra,黑苹果安装教程 - 简书](https://www.jianshu.com/p/4d83f2d51abe)
+- [VMware15 安装 mac OS 10.14 分辨率调整为 1920*1080？_电脑基础_Dkukoc](https://www.dkukoc.com/post/226.html)

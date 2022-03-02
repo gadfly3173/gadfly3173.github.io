@@ -71,7 +71,7 @@ public class UserService {
   }
   ```
 
-有关 AOP 和代理的问题可以看 [从代理机制到Spring AOP](https://juejin.im/post/5b90e648f265da0aea695672) 和 [Spring AOP就是这么简单啦](https://juejin.im/post/5b06bf2df265da0de2574ee1)。这两篇文章讲得很清楚了。
+有关 AOP 和代理的问题可以看 [从代理机制到 Spring AOP](https://juejin.im/post/5b90e648f265da0aea695672) 和 [Spring AOP 就是这么简单啦](https://juejin.im/post/5b06bf2df265da0de2574ee1)。这两篇文章讲得很清楚了。
 
 除了代理导致的自调用失效，还有一个问题是方法抛出异常时，事务也没有回滚。这个则是因为 `@Transactional` 中捕获的异常只有 `RuntimeException`。
 DefaultTransactionAttribute.java 源码中写的是：
