@@ -47,42 +47,6 @@
   </url>
   
   <url>
-    <loc>https://blog.gadfly.vip/gallery/index.html</loc>
-    
-    <lastmod>2022-03-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/2017/07/WSL-GUI/</loc>
-    
-    <lastmod>2022-03-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/2017/07/hello-world/</loc>
-    
-    <lastmod>2022-03-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/2017/07/%E6%90%AD%E5%BB%BA%E7%BA%AA%E5%AE%9E/</loc>
-    
-    <lastmod>2022-03-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.gadfly.vip/2017/08/choose-your-notebook-2/</loc>
     
     <lastmod>2022-03-02</lastmod>
@@ -309,6 +273,42 @@
   
   <url>
     <loc>https://blog.gadfly.vip/about.html</loc>
+    
+    <lastmod>2022-03-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/gallery/index.html</loc>
+    
+    <lastmod>2022-03-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/2017/07/WSL-GUI/</loc>
+    
+    <lastmod>2022-03-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/2017/07/hello-world/</loc>
+    
+    <lastmod>2022-03-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/2017/07/%E6%90%AD%E5%BB%BA%E7%BA%AA%E5%AE%9E/</loc>
     
     <lastmod>2022-03-02</lastmod>
     

@@ -240,6 +240,7 @@
 
     <!-- PrismJS -->
     <style id="css/prism.tomorrow-night.full.min.css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("css/prism.tomorrow-night.full.min.css","/css/prism.tomorrow-night.full.min.css?5Dxq4uOe6Xn7tHqepw+/FQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+    <style id="css/prism.vsc-dark-plus.css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("css/prism.vsc-dark-plus.css","/css/prism.vsc-dark-plus.css?MCsPqEF4JyVwhrE//PHQ5A==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
     <!-- Import jQuery -->
     
@@ -277,7 +278,7 @@
 
     
         <meta property="article:published_time" content="Wed Feb 23 2022 17:01:49 GMT+0800">
-        <meta property="article:modified_time" content="Wed Mar 02 2022 17:25:39 GMT+0800">
+        <meta property="article:modified_time" content="Wed Mar 02 2022 17:57:18 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -300,7 +301,7 @@
     "mainEntityOfPage": "https://blog.gadfly.vip/2022/02/electron-vue3-pits/index.html",
     "headline": "Electron Vue3 踩坑笔记",
     "datePublished": "Wed Feb 23 2022 17:01:49 GMT+0800",
-    "dateModified": "Wed Mar 02 2022 17:25:39 GMT+0800",
+    "dateModified": "Wed Mar 02 2022 17:57:18 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "猪蹄宝宝",
@@ -632,7 +633,7 @@ protocol<span class="token punctuation">.</span><span class="token function">reg
 !macroend<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="启动时最大化窗口"><a href="#启动时最大化窗口" class="headerlink" title="启动时最大化窗口"></a>启动时最大化窗口</h2><p>需要创建窗口时设置<code>show: false</code>，然后捕获<code>ready-to-show</code>事件，进行最大化和显示的处理。直接最大化会出现窗口不在最上面的问题，因此需要在最大化之前设置窗口在顶部，最后再取消该设置。</p>
-<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts">mainWindow <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">BrowserWindow</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+<pre class="line-numbers language-typescript" data-language="typescript"><code class="language-typescript">mainWindow <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">BrowserWindow</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
   show<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
   <span class="token comment">// ...</span>
 <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
@@ -646,7 +647,7 @@ mainWindow<span class="token punctuation">.</span><span class="token function">o
 <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="关闭窗口时二次确认"><a href="#关闭窗口时二次确认" class="headerlink" title="关闭窗口时二次确认"></a>关闭窗口时二次确认</h2><p>为避免用户误操作关闭窗口丢失数据，需要在关闭窗口时二次确认。这是调用 electron 默认 dialog 的方式，如果需要结合渲染层，需要另外进行 IPC 调用。</p>
-<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts">mainWindow<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'close'</span><span class="token punctuation">,</span> <span class="token keyword">async</span> e <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+<pre class="line-numbers language-typescript" data-language="typescript"><code class="language-typescript">mainWindow<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'close'</span><span class="token punctuation">,</span> <span class="token keyword">async</span> e <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
   <span class="token comment">// 阻止默认行为，一定要有</span>
   e<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
   <span class="token keyword">const</span> <span class="token punctuation">&#123;</span> response <span class="token punctuation">&#125;</span> <span class="token operator">=</span> <span class="token keyword">await</span> dialog<span class="token punctuation">.</span><span class="token function">showMessageBox</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
