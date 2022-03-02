@@ -1,0 +1,10 @@
+{
+  "rules": {
+    "no-long-code": 0
+  },
+  "excludeFiles": [
+    "themes/**",
+    "node_modules/**",
+    "scaffold/**"
+  ]
+}

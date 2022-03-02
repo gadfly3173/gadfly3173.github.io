@@ -68,7 +68,7 @@ questionnaire_question_option 表是问卷的选择题的选项表，记录了�
 | ---------------- | ---------------- | -------- | -------- | -------------------- | ------ |
 | id               | int(10) unsigned | int      | NO       |                      |        |
 | user_id          | int(10) unsigned | int      | NO       |                      | 学生 id |
-| questionnaire_id | int(10) unsigned | int      | NO       |                      | 问卷id |
+| questionnaire_id | int(10) unsigned | int      | NO       |                      | 问卷 id |
 | ip               | varchar(39)      | varchar  | YES      |                      |        |
 | create_time      | datetime(3)      | datetime | NO       | CURRENT_TIMESTAMP(3) |        |
 | update_time      | datetime(3)      | datetime | NO       | CURRENT_TIMESTAMP(3) |        |
@@ -79,7 +79,7 @@ questionnaire_question_option 表是问卷的选择题的选项表，记录了�
 | 列名                     | 数据类型         | 字段类型 | 是否为空 | 默认值               | 备注                 |
 | ------------------------ | ---------------- | -------- | -------- | -------------------- | -------------------- |
 | id                       | int(10) unsigned | int      | NO       |                      |                      |
-| student_questionnaire_id | int(10)          | int      | NO       |                      | 对应的学生提交信息id |
+| student_questionnaire_id | int(10)          | int      | NO       |                      | 对应的学生提交信息 id |
 | question_id              | int(10) unsigned | int      | NO       |                      | 问题 id               |
 | answer                   | varchar(255)     | varchar  | YES      |                      |                      |
 | option_id                | int(10) unsigned | int      | YES      |                      |                      |
