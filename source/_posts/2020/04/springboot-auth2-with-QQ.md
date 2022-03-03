@@ -8,7 +8,7 @@ tags:
 - spring
 - 后端
 permalink:
-hide_post_info:
+hide_post_info: false
 ---
 写这个主要是为了整理开发思路与记录，顺便表示 QQ 的接口真的写的很奇怪。。。
 <!--More-->

@@ -9,7 +9,7 @@ tags:
 - 前端
 - HTTP
 permalink:
-hide_post_info:
+hide_post_info: false
 ---
 现在有一个接口提供下载服务，在发生异常时，这个接口会返回 JSON 数据，来告诉前端是什么样的异常。默认情况下，Axios 只能处理 JSON 数据，如何让二者兼容是本文讨论的核心。
 

@@ -10,7 +10,7 @@ tags:
   - 前端
   - 客户端
 permalink:
-hide_post_info:
+hide_post_info: false
 ---
 记录一下 Electron 踩坑
 <!-- More -->

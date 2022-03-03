@@ -8,7 +8,7 @@ tags:
 - 建站
 - Hexo
 permalink:
-hide_post_info:
+hide_post_info: false
 ---
 ## 介绍
 

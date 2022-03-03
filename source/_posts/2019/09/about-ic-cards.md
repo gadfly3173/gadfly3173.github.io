@@ -8,7 +8,7 @@ tags:
 - 单片机
 - 近场通信
 permalink:
-hide_post_info:
+hide_post_info: false
 typora-root-url: ..
 ---
 <small>*本文中提到的`卡片`，若非特别注明，均为非接触式卡片，不再另外声明。*</small>

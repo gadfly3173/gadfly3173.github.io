@@ -8,7 +8,7 @@ tags:
 - spring
 - 后端
 permalink:
-hide_post_info:
+hide_post_info: false
 ---
 Spring Boot 中对方法开启事务管理非常轻松，只需要 `@Transactional` 注解就可以让方法开启事务，然而不了解其机制时使用可能会导致其失效。
 <!--More-->

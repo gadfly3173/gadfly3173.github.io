@@ -8,7 +8,7 @@ tags:
 - EJS
 - Hexo
 permalink:
-hide_post_info:
+hide_post_info: false
 ---
 你看不见我！看不见我！略略略
 <!--More-->
@@ -49,7 +49,7 @@ categories:
 tags:
 permalink:
 layout: post
-hide_post_info:
+hide_post_info: false
 ---
 ```
 

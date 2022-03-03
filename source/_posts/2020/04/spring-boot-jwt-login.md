@@ -8,7 +8,7 @@ tags:
 - spring
 - 后端
 permalink:
-hide_post_info:
+hide_post_info: false
 ---
 Spring Boot 开发笔记系列第二弹，这次来聊聊 JWT 和登录鉴权系统的设计。
 <!--More-->

@@ -11,7 +11,7 @@ tags:
   - Docker Compose
   - 部署
 permalink:
-hide_post_info:
+hide_post_info: false
 ---
 # 安装
 
