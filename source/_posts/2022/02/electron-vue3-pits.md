@@ -143,3 +143,30 @@ NSIS 默认情况下不会在执行时关闭正在运行的应用，并且不会
     }
   })
 ```
+
+## 自定义主进程与渲染进程文件位置
+
+默认情况下，vue-cli-plugin-electron-builder 在初始化时会将主进程和渲染进程的文件都放在 `src` 目录下，分别为 `background.ts` 和 `main.ts` 但是如果需要自定义主进程和渲染进程的文件位置，可以通过在 `vue.config.js` 中配置。
+
+```typescript
+// @ts-check
+/** @type {import('@vue/cli-service/types/ProjectOptions').ProjectOptions} */
+module.exports = {
+  pages: {
+    index: {
+      entry: 'src/renderer/main.ts',
+      template: 'public/index.html',
+    },
+  },
+  pluginOptions: {
+    /** @type {import('vue-cli-plugin-electron-builder').PluginOptions} */
+    electronBuilder: {
+      mainProcessFile: 'src/main/background.ts',
+      mainProcessWatch: ['src/main'],
+      preload: 'src/main/preload/index.ts',
+      // 不要用这个配置项，会导致渲染进程没有被挂载到html上
+      // rendererProcessFile: 'src/renderer/main.ts',
+    }
+  }
+}
+```
