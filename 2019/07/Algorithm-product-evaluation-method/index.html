@@ -278,7 +278,7 @@
 
     
         <meta property="article:published_time" content="Wed Jul 03 2019 15:34:07 GMT+0800">
-        <meta property="article:modified_time" content="Wed Mar 09 2022 17:04:37 GMT+0800">
+        <meta property="article:modified_time" content="Fri Mar 11 2022 11:19:17 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -301,7 +301,7 @@
     "mainEntityOfPage": "https://blog.gadfly.vip/2019/07/Algorithm-product-evaluation-method/index.html",
     "headline": "算法评估方法",
     "datePublished": "Wed Jul 03 2019 15:34:07 GMT+0800",
-    "dateModified": "Wed Mar 09 2022 17:04:37 GMT+0800",
+    "dateModified": "Fri Mar 11 2022 11:19:17 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "猪蹄宝宝",
@@ -562,53 +562,55 @@
 <table>
 <thead>
 <tr>
-<th align="left">实际值 \ 预测值</th>
-<th align="left">正样本</th>
-<th align="left">负样本</th>
+<th style="text-align:left">实际值 \ 预测值</th>
+<th style="text-align:left">正样本</th>
+<th style="text-align:left">负样本</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">正</td>
-<td align="left">TP</td>
-<td align="left">FN</td>
+<tbody>
+<tr>
+<td style="text-align:left">正</td>
+<td style="text-align:left">TP</td>
+<td style="text-align:left">FN</td>
 </tr>
 <tr>
-<td align="left">负</td>
-<td align="left">FP</td>
-<td align="left">TN</td>
+<td style="text-align:left">负</td>
+<td style="text-align:left">FP</td>
+<td style="text-align:left">TN</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <ul>
 <li>TP，将正的样本预测为正，True Positive，预测对了</li>
 <li>FN，将正样本预测为负值，False Negtive，预测错了</li>
 <li>TN，将负样本与预测为负值，True  Negtive 预测对了</li>
 <li>FP，将负样本预测为正，False Positive， 预测错了</li>
 </ul>
-<h2 id="一、召回率（recall）"><a href="#一、召回率（recall）" class="headerlink" title="一、召回率（recall）"></a>一、召回率（recall）</h2><pre class="line-numbers language-text" data-language="text"><code class="language-text">R  = 预测为正的对的样本/ 实际为正样本
+<h2 id="一、召回率（recall）">一、召回率（recall）</h2>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">R  = 预测为正的对的样本/ 实际为正样本
    = TP /(TP+FN)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
 <p>针对我们原来的正样本而言的，它表示的是正例样本中有多少被预测正确了。大白话就是“正例样本里你的预测对了多少”</p>
-<p>例如，使用算法扩写文章 100 篇，10 篇没有扩写成功，90 篇成功进行了扩写，人工对于扩写质量给于正反评分，为正的文章 23 篇，那么扩写算法召回率：23&#x2F;100 &#x3D; 0.23；</p>
+<p>例如，使用算法扩写文章 100 篇，10 篇没有扩写成功，90 篇成功进行了扩写，人工对于扩写质量给于正反评分，为正的文章 23 篇，那么扩写算法召回率：23/100 = 0.23；</p>
 <p>在针对搜索：召回率为查全率：</p>
 <pre class="line-numbers language-text" data-language="text"><code class="language-text">查全率＝检索出的相关信息量 / 系统中的相关信息总量<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>例如，使用关键词“马云”搜索出一张马云和 100 张马和云的图片，数据库系统中实际上有 10 篇马云，那么查全率：1&#x2F;10 &#x3D; 0.10；</p>
-<h2 id="二、精确率（Precision）"><a href="#二、精确率（Precision）" class="headerlink" title="二、精确率（Precision）"></a>二、精确率（Precision）</h2><pre class="line-numbers language-text" data-language="text"><code class="language-text">P = 预测对的正样本 / 预测为正预测结果
+<p>例如，使用关键词“马云”搜索出一张马云和 100 张马和云的图片，数据库系统中实际上有 10 篇马云，那么查全率：1/10 = 0.10；</p>
+<h2 id="二、精确率（Precision）">二、精确率（Precision）</h2>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">P = 预测对的正样本 / 预测为正预测结果
   = TP/ (TP+FP)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
 <p>预测为正的样本中有多少是真正的正样本。那么预测为正就有两种可能了，一种就是把正类预测为正类(TP)，另一种就是把负类预测为正类(FP)，也就是“ 你预测为正例的里面有多少是对的”</p>
-<p>例如，纠错算法，测试 100 个词的文本，识别出错误词有 20 个（TP+FP&#x3D;20），其中被误判为错词 14 个（FP&#x3D;14），6 个错词判断正确（TP&#x3D;6），4 个错词没有识别出来（FN&#x3D;4），人工对于成功纠出错结果正反打分，6&#x2F;20 &#x3D; 0.3 。</p>
+<p>例如，纠错算法，测试 100 个词的文本，识别出错误词有 20 个（TP+FP=20），其中被误判为错词 14 个（FP=14），6 个错词判断正确（TP=6），4 个错词没有识别出来（FN=4），人工对于成功纠出错结果正反打分，6/20 = 0.3 。</p>
 <p>在针对搜索：精确率为查准率</p>
 <pre class="line-numbers language-text" data-language="text"><code class="language-text">查准率 = 检索出的相关信息量 / 检索出的信息总量<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>例如，使用关键词“马云”搜索出一张马云和 99 张马和云的图片，那么查准率：1&#x2F;100 &#x3D; 0.01；</p>
-<h2 id="三、准确率（Accuracy）"><a href="#三、准确率（Accuracy）" class="headerlink" title="三、准确率（Accuracy）"></a>三、准确率（Accuracy）</h2><pre class="line-numbers language-text" data-language="text"><code class="language-text">A = 预测对的/所有样本
+<p>例如，使用关键词“马云”搜索出一张马云和 99 张马和云的图片，那么查准率：1/100 = 0.01；</p>
+<h2 id="三、准确率（Accuracy）">三、准确率（Accuracy）</h2>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">A = 预测对的/所有样本
   = (TP+TN)/(TP+TN+FP+FN)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
 <p>针对我们原来所有样本而言的，它表示的是所有样本有多少被准确预测了。</p>
-<h2 id="四、F1"><a href="#四、F1" class="headerlink" title="四、F1"></a>四、F1</h2><pre class="line-numbers language-text" data-language="text"><code class="language-text">2/F1 = 1/P + 1/R<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h2 id="F1-值为精确率和召回率的调和平均数，值越大越好"><a href="#F1-值为精确率和召回率的调和平均数，值越大越好" class="headerlink" title="F1 值为精确率和召回率的调和平均数，值越大越好"></a>F1 值为精确率和召回率的调和平均数，值越大越好</h2><p>五、误报率和漏报率<br>误报率（虚报率）和漏报率，误报率&#x3D;1-查准率，漏报率&#x3D;1-查全率。</p>
+<h2 id="四、F1">四、F1</h2>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">2/F1 = 1/P + 1/R<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="F1-值为精确率和召回率的调和平均数，值越大越好">F1 值为精确率和召回率的调和平均数，值越大越好</h2>
+<p>五、误报率和漏报率<br>
+误报率（虚报率）和漏报率，误报率=1-查准率，漏报率=1-查全率。</p>
 
         
     
@@ -819,7 +821,7 @@
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2022/03/">三月 2022<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2022/02/">二月 2022<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/04/">四月 2021<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/02/">二月 2021<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/04/">四月 2020<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/09/">九月 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">七月 2019<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/07/">七月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/05/">五月 2018<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/08/">八月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">3</span></a>
+                <a class="sidebar_archives-link" href="/archives/2022/03/">三月 2022<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2022/02/">二月 2022<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/04/">四月 2021<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/02/">二月 2021<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/04/">四月 2020<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/09/">九月 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">七月 2019<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/07/">七月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/05/">五月 2018<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/08/">八月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">3</span></a>
             </ul>
         </li>
         
@@ -911,7 +913,7 @@
         <li>
             <a href="/archives">
                 文章总数
-                <span class="sidebar-badge">29</span>
+                <span class="sidebar-badge">30</span>
             </a>
         </li>
         

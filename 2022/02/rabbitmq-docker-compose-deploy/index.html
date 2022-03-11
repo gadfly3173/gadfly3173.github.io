@@ -278,7 +278,7 @@
 
     
         <meta property="article:published_time" content="Thu Feb 24 2022 15:35:07 GMT+0800">
-        <meta property="article:modified_time" content="Wed Mar 09 2022 17:04:37 GMT+0800">
+        <meta property="article:modified_time" content="Fri Mar 11 2022 11:19:17 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -301,7 +301,7 @@
     "mainEntityOfPage": "https://blog.gadfly.vip/2022/02/rabbitmq-docker-compose-deploy/index.html",
     "headline": "RabbitMQ Docker Compose Deploy",
     "datePublished": "Thu Feb 24 2022 15:35:07 GMT+0800",
-    "dateModified": "Wed Mar 09 2022 17:04:37 GMT+0800",
+    "dateModified": "Fri Mar 11 2022 11:19:17 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "猪蹄宝宝",
@@ -558,7 +558,8 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>rabbitmq 官方文档有详细的指导，但是没有提供 docker-compose 的安装，这里就给出一个简单的安装方法，比较简单，但是不够完整。</p>
+        <h1 id="安装">安装</h1>
+<p>rabbitmq 官方文档有详细的指导，但是没有提供 docker-compose 的安装，这里就给出一个简单的安装方法，比较简单，但是不够完整。</p>
 <p>docker-compose.yml:</p>
 <pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">"3.9"</span>
 <span class="token key atrule">services</span><span class="token punctuation">:</span>
@@ -577,9 +578,10 @@
 <span class="token key atrule">networks</span><span class="token punctuation">:</span>
     <span class="token key atrule">rabbitmq_go_net</span><span class="token punctuation">:</span>
         <span class="token key atrule">driver</span><span class="token punctuation">:</span> bridge<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p>rabbitmq 有内置 SSL 支持，不过一般都是内网使用，倒也不必打开。</p>
-<h1 id="管理"><a href="#管理" class="headerlink" title="管理"></a>管理</h1><h2 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h2><p>RabbitMQ 安装完成后，会有一个默认用户(guest guest)</p>
+<h1 id="管理">管理</h1>
+<h2 id="用户管理">用户管理</h2>
+<p>RabbitMQ 安装完成后，会有一个默认用户(guest guest)</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 查看用户</span>
 rabbitmqctl list_users
 <span class="token comment"># 新增用户</span>
@@ -588,12 +590,13 @@ rabbitmqctl add_user developer <span class="token number">123456</span>
 rabbitmqctl delete_user developer
 <span class="token comment"># 修改密码</span>
 rabbitmqctl change_password developer <span class="token number">654321</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="角色设置"><a href="#角色设置" class="headerlink" title="角色设置"></a>角色设置</h2><p>RabbitMQ 中主要有 administrator，monitoring，policymaker，management，impersonator，none 几种角色。<br>默认的用户 guest 是 administrator 角色，新建的 developer 用户没有设置角色，即为 none。</p>
+<h2 id="角色设置">角色设置</h2>
+<p>RabbitMQ 中主要有 administrator，monitoring，policymaker，management，impersonator，none 几种角色。<br>
+默认的用户 guest 是 administrator 角色，新建的 developer 用户没有设置角色，即为 none。</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 可以设置多个角色</span>
 rabbitmqctl set_user_tags developer administrator monitoring<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<h2 id="权限（vhost）"><a href="#权限（vhost）" class="headerlink" title="权限（vhost）"></a>权限（vhost）</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 设置权限</span>
+<h2 id="权限（vhost）">权限（vhost）</h2>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 设置权限</span>
 rabbitmqctl set_permissions -p / developer <span class="token string">".*"</span> <span class="token string">".*"</span> <span class="token string">".*"</span>
 <span class="token comment"># 查看所有用户的权限</span>
 rabbitmqctl list_permissions
@@ -603,8 +606,10 @@ rabbitmqctl list_permissions -p /
 rabbitmqctl  list_user_permissions developer
 <span class="token comment"># 清除用户权限</span>
 rabbitmqctl  clear_permissions developer<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="路由设置"><a href="#路由设置" class="headerlink" title="路由设置"></a>路由设置</h2><p>rabbitmq 中有交换机（exchange）、路由（routing）、队列（queue）的概念。消息需要被发送到交换机，交换机根据路由将消息转发到队列。<br>所以创建完交换机和队列后，需要再进入交换机&#x2F;队列的配置，为其指定路由。在其中一个地方配置后，另一端的配置中就能看到了。然后才可以正常将消息存入队列。</p>
+<h1 id="使用">使用</h1>
+<h2 id="路由设置">路由设置</h2>
+<p>rabbitmq 中有交换机（exchange）、路由（routing）、队列（queue）的概念。消息需要被发送到交换机，交换机根据路由将消息转发到队列。<br>
+所以创建完交换机和队列后，需要再进入交换机/队列的配置，为其指定路由。在其中一个地方配置后，另一端的配置中就能看到了。然后才可以正常将消息存入队列。</p>
 
         
     
@@ -815,7 +820,7 @@ rabbitmqctl  clear_permissions developer<span aria-hidden="true" class="line-num
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2022/03/">三月 2022<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2022/02/">二月 2022<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/04/">四月 2021<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/02/">二月 2021<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/04/">四月 2020<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/09/">九月 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">七月 2019<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/07/">七月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/05/">五月 2018<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/08/">八月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">3</span></a>
+                <a class="sidebar_archives-link" href="/archives/2022/03/">三月 2022<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2022/02/">二月 2022<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/04/">四月 2021<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/02/">二月 2021<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/04/">四月 2020<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/09/">九月 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">七月 2019<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/07/">七月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/05/">五月 2018<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/08/">八月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">3</span></a>
             </ul>
         </li>
         
@@ -907,7 +912,7 @@ rabbitmqctl  clear_permissions developer<span aria-hidden="true" class="line-num
         <li>
             <a href="/archives">
                 文章总数
-                <span class="sidebar-badge">29</span>
+                <span class="sidebar-badge">30</span>
             </a>
         </li>
         

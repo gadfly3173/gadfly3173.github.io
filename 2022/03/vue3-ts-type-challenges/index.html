@@ -50,7 +50,7 @@
     
     <title>
         
-            标签: axios | 
+            vue3 中的 ts 类型体操 | 
         
         猪蹄宝宝的博客n(*≧▽≦*)n
     </title>
@@ -60,7 +60,7 @@
     <link rel="icon" href="https://q.qlogo.cn/headimg_dl?dst_uin=2427303995&amp;spec=140">
 
     <meta name="format-detection" content="telephone=no"/>
-    <meta name="description" itemprop="description" content="有人问我，我就会讲，但是无人来">
+    <meta name="description" itemprop="description" content="一些在 vue3 里舒服使用 ts 需要做的体操">
     <meta name="keywords" content="猪蹄 技术 博客">
     <meta name="theme-color" content="#0097A7">
 
@@ -250,7 +250,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="猪蹄宝宝的博客n(*≧▽≦*)n">
-    <meta name="msapplication-starturl" content="https://blog.gadfly.vip/tags/axios/">
+    <meta name="msapplication-starturl" content="https://blog.gadfly.vip/2022/03/vue3-ts-type-challenges/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="猪蹄宝宝的博客n(*≧▽≦*)n">
@@ -269,13 +269,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="https://blog.gadfly.vip/tags/axios/">
+    <meta property="og:url" content="https://blog.gadfly.vip/2022/03/vue3-ts-type-challenges/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="标签: axios | 猪蹄宝宝的博客n(*≧▽≦*)n">
+    <meta property="og:title" content="vue3 中的 ts 类型体操 | 猪蹄宝宝的博客n(*≧▽≦*)n">
     <meta property="og:image" content="https://q.qlogo.cn/headimg_dl?dst_uin=2427303995&amp;spec=140">
-    <meta property="og:description" content="有人问我，我就会讲，但是无人来">
+    <meta property="og:description" content="一些在 vue3 里舒服使用 ts 需要做的体操">
     
 
+    
+        <meta property="article:published_time" content="Fri Mar 11 2022 10:48:12 GMT+0800">
+        <meta property="article:modified_time" content="Fri Mar 11 2022 11:19:17 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -283,13 +286,43 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="https://blog.gadfly.vip/tags/axios/index.html" />
+        <link rel="canonical" href="https://blog.gadfly.vip/2022/03/vue3-ts-type-challenges/index.html" />
     
 
     <!-- Structured-data for SEO -->
     
         
 
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "https://blog.gadfly.vip/2022/03/vue3-ts-type-challenges/index.html",
+    "headline": "vue3 中的 ts 类型体操",
+    "datePublished": "Fri Mar 11 2022 10:48:12 GMT+0800",
+    "dateModified": "Fri Mar 11 2022 11:19:17 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "猪蹄宝宝",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://q.qlogo.cn/headimg_dl?dst_uin=2427303995&amp;spec=140"
+        },
+        "description": "有人问我，我就会讲，但是无人来",
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "猪蹄宝宝的博客n(*≧▽≦*)n",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "https://q.qlogo.cn/headimg_dl?dst_uin=2427303995&amp;spec=140"
+        }
+    },
+    "keywords": "猪蹄 技术 博客",
+    "description": "一些在 vue3 里舒服使用 ts 需要做的体操",
+}
+</script>
 
 
     
@@ -334,161 +367,315 @@
                         </button>
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
-    
-    <div class="locate-thumbnail-symbol"></div>
+                    <!-- Post TOC -->
 
-    <!-- Pin on top -->
     
-        
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Vuex-4"><span class="post-toc-number">1.</span> <span class="post-toc-text">Vuex 4</span></a></li></ol>
+    </ul>
     
 
-    <!-- Normal Post -->
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
     
         
             <!-- Random Thumbnail -->
             <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
 
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2021/02/axios-xhr-with-cookie/">Axios 发送请求时携带 Cookies</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            前文提到过，Axios 的核心是 XMLHttpRequest。XMLHttpRequest 对...
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2021/02/axios-xhr-with-cookie/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="https://q.qlogo.cn/headimg_dl?dst_uin=2427303995&amp;spec=140" width="44px" height="44px" alt="猪蹄宝宝's avatar">
-            </div>
-            <div>
-                <strong>猪蹄宝宝</strong>
-                <span>2月 26, 2021</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-              <!-- Category -->
-              <span class="post_entry-category">
-                  <a class="post_category-link" href="/categories/%E5%BC%80%E5%8F%91/">开发</a>
-              </span>
-            
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2021/02/axios-download-file/">Axios 同一实例配置下载文件与 JSON 处理</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            现在有一个接口提供下载服务，在发生异常时，这个接口会返回 JSON 数据，来告诉前端是什么样的异常。默认情况下，Axios 只能处理 JSON 数据...
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2021/02/axios-download-file/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="https://q.qlogo.cn/headimg_dl?dst_uin=2427303995&amp;spec=140" width="44px" height="44px" alt="猪蹄宝宝's avatar">
-            </div>
-            <div>
-                <strong>猪蹄宝宝</strong>
-                <span>2月 26, 2021</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-              <!-- Category -->
-              <span class="post_entry-category">
-                  <a class="post_category-link" href="/categories/%E5%BC%80%E5%8F%91/">开发</a>
-              </span>
-            
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-
-    
-
-    
-        <script type="text/ls-javascript" id="thumbnail-script">
-    var randomNum;
-
-    var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 10; i++) {
-        randomNum = Math.floor(Math.random() * 19 + 1);
-
-        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
     $('.post_thumbnail-random').addClass('lazy');
-
-        locatePost = locatePost.next();
-    }
 </script>
 
+        
+    
+            <p class="article-headline-p">
+                vue3 中的 ts 类型体操
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="https://q.qlogo.cn/headimg_dl?dst_uin=2427303995&spec=140" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>猪蹄宝宝</strong>
+        <span>3月 11, 2022</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">devices other</i>
+    <span class="visuallyhidden">devices other</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+    <li class="mdl-menu__item">在其它设备中阅读本文章</li>
+    
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAAC20lEQVR42u3aQW4bMRAEQP3/0841gKNVN2cdrMniKTAkisXLZKb5+jpyvbCxsbGxsbGxsbEfyX7F6/u3/rH1X39/991kn3zn4szY2NjYW7Pzn7y+sndHTPZ8t09+6R/2x8bGxj6AnTOuS0V+xOSCrj+ZnBkbGxsbOy8qeRm7/sv1hWJjY2Njz9ltYXuV66EFDBsbG/vx7LWGob2gtlFJSD8+S8PGxsZ+PDsvKs/593/Nt7GxsbEfzG5X/pRnftD2Wc+Hk2NjY2Nvys4PV/ynfxDf5k8/63NiY2Njb8rOi1MSx7bjp3xglEfFb3fAxsbG3pqdY/IS0rYr850//C42Njb21uw8Xk0OmpSipHmYh8TY2NjY57DzR5PXRW7yyLL9TD2KwsbGxj6GnTcSd41+1uLeNgDGxsbG3pXdNhh3HXTyyDI/ITY2NvYJ7Hncm8cM+XC/DRJ+MB7AxsbG/uXsu57yrIW4+TArKmnY2NjYW7PzSCD/VhLlJoBJY4ONjY19ArstEpNQIdmzjX6LQRg2Njb2puy8IVlrVNpgOC91dTiBjY2NvSl77UHkpEVpYfOBFzY2Nvbe7LUCtjYeyg/dti5RY4ONjY29KXsSDOSfaR/uTEKIYpaGjY2NvQV7rSzl1MkTnLUoopilYWNjY2/EzhuDfPTTthD50D95rIONjY19Dntt0N+WluQq1x705I0NNjY29gnsu0KCex/xtA906lkaNjY29kbstg3IC0zLmBTUUdCLjY2NvR07GfHnR1y73Fe5FodK2NjY2L+W3a61Jz6TUHkSGGBjY2OfwG4Lw1qxacFrge6HEouNjY29NbstWm0kcNcQqr16bGxs7NPYbfFILqL9rXsHSdjY2NjYkxHPJBjOH+4UcQU2NjY2dsyeIO9qabCxsbHPZE/GPZM2Jo8Q1iIHbGxs7BPY7eDmhmF9PHJai5axsbGxz2Gfs7CxsbGxsbGxsbEfs/4AuTmRAz8V8r8AAAAASUVORK5CYII=">
+    
+</ul>
+
+    
+
+    <!-- Tags (bookmark) -->
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=vue3 中的 ts 类型体操&url=https://blog.gadfly.vip/2022/03/vue3-ts-type-challenges/index.html&pic=https://blog.gadfly.viphttps://q.qlogo.cn/headimg_dl?dst_uin=2427303995&spec=140&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=vue3 中的 ts 类型体操&url=https://blog.gadfly.vip/2022/03/vue3-ts-type-challenges/index.html&via=猪蹄宝宝" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.gadfly.vip/2022/03/vue3-ts-type-challenges/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://blog.gadfly.vip/2022/03/vue3-ts-type-challenges/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=猪蹄宝宝的博客n(*≧▽≦*)n&title=vue3 中的 ts 类型体操&summary=有人问我，我就会讲，但是无人来&pics=https://blog.gadfly.viphttps://q.qlogo.cn/headimg_dl?dst_uin=2427303995&spec=140&url=https://blog.gadfly.vip/2022/03/vue3-ts-type-challenges/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 QQ
+            </li>
+        </a>
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
     
 </div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p>一些在 vue3 里舒服使用 ts 需要做的体操</p>
+<span id="more"></span>
+<h2 id="Vuex-4">Vuex 4</h2>
+<p>vuex 对于 ts 的支持目前来说还是不怎么够用的，有许多 any 的地方，还没法简单修改。参考：<a target="_blank" rel="noopener" href="https://dev.to/3vilarthas/vuex-typescript-m4j">https://dev.to/3vilarthas/vuex-typescript-m4j</a></p>
+
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #757575;
+            text-shadow: 0;
+            display: none
+        }
+</style>
+	
+<div class="btn_click_load"> 
+    <button class="disqus_click_btn">阅读评论（请确保 disqus 可以正常加载）</button>
+</div>
+
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://blog.gadfly.vip/2022/03/vue3-ts-type-challenges/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'https://blog.gadfly.vip/2022/03/vue3-ts-type-challenges/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/ls-javascript" id="disqus-lazy-load-script">
+    $.ajax({
+        url: 'https://disqus.com/next/config.json',
+        timeout: 4000,
+        type: 'GET',
+        success: (function() {
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//gadfly3173.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+            $('.disqus_click_btn').css('display','none');
+        })(),
+        error: function() {
+          $('.disqus_click_btn').css('display','block');
+        }
+    });
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//gadfly3173.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.disqus_click_btn').css('display','none');
+    });
+</script>
+  	
+
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2022/03/leveraging-type-only-imports-and-exports-with-typescript/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
 
 
                     
@@ -717,6 +904,14 @@ It will not impact the appearance and can give developers a lot of support :)
 </aside>
 
                     
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
 
                     
 

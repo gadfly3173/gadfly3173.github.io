@@ -282,7 +282,7 @@
 
     
         <meta property="article:published_time" content="Thu May 17 2018 20:35:29 GMT+0800">
-        <meta property="article:modified_time" content="Wed Mar 09 2022 17:04:37 GMT+0800">
+        <meta property="article:modified_time" content="Fri Mar 11 2022 11:19:17 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -305,7 +305,7 @@
     "mainEntityOfPage": "https://blog.gadfly.vip/2018/05/perfect-html-template/index.html",
     "headline": "一个比较完美的网页模板",
     "datePublished": "Thu May 17 2018 20:35:29 GMT+0800",
-    "dateModified": "Wed Mar 09 2022 17:04:37 GMT+0800",
+    "dateModified": "Fri Mar 11 2022 11:19:17 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "猪蹄宝宝",
@@ -559,17 +559,23 @@
 <p>在制作网页的时候，我们常常需要在页面中出现：HEADER、CONTENT 和 FOOTER 三大部分，而如何让他们三个呆在自己该呆着的地方困扰着很多人。</p>
 </blockquote>
 <span id="more"></span>
-
-<p>首先，我们网页的内容不是固定的，用户的窗口大小也是不固定的，我们希望当内容不多的时候，网页能撑满全屏而不溢出，内容足够多的时候，每个东西能依次排好而不互相重叠。<br><img src="/images/227387.gif" data-original="/images/posts/2018/05/sticky-footer-1.svg"><br>同时，为了满足一些需求，比如在页面上任意位置点击就能出现一些效果，我们需要整个页面被元素填满。</p>
+<p>首先，我们网页的内容不是固定的，用户的窗口大小也是不固定的，我们希望当内容不多的时候，网页能撑满全屏而不溢出，内容足够多的时候，每个东西能依次排好而不互相重叠。<br>
+<img src="/images/227387.gif" data-original="/images/posts/2018/05/sticky-footer-1.svg" alt=""><br>
+同时，为了满足一些需求，比如在页面上任意位置点击就能出现一些效果，我们需要整个页面被元素填满。</p>
 <blockquote>
 <p>当你设置一个页面元素的高度(height)为 100%时，期望这样元素能撑满整个浏览器窗口的高度，但大多数情况下，这样的做法没有任何效果。</p>
 </blockquote>
-<p>按常理，当我们用 CSS 的 height 属性定义一个元素的高度时，这个元素应该按照设定在浏览器的纵向空间里扩展相应的空间距离。例如，如果一个 div 元素的 CSS 是<code>height: 100px;</code>，那它应该在页面的竖向空间里占满 100px 的高度。<br>而根据 W3C 的规范，百分比的高度在设定时需要根据这个元素的父元素容器的高度来计算。所以，如果你把一个 div 的高度设定为<code>height: 50%;</code>，而它的父元素的高度是 100px，那么，这个 div 的高度应该是 50px。</p>
-<h3 id="那为什么-height-100-不起作用"><a href="#那为什么-height-100-不起作用" class="headerlink" title="那为什么 height:100%; 不起作用"></a>那为什么 height:100%; 不起作用</h3><p>当设计一个页面时，你在里面放置了一个 div 元素，你希望它占满整个窗口高度，最自然的做法，你会给这个 div 添加<code>height: 100%;</code>的 css 属性。如果你要是设置宽度为<code>width: 100%;</code>，那这个元素的宽度会立刻扩展到窗口的整个横向宽度。然而，高度也会这样吗？</p>
+<p>按常理，当我们用 CSS 的 height 属性定义一个元素的高度时，这个元素应该按照设定在浏览器的纵向空间里扩展相应的空间距离。例如，如果一个 div 元素的 CSS 是<code>height: 100px;</code>，那它应该在页面的竖向空间里占满 100px 的高度。<br>
+而根据 W3C 的规范，百分比的高度在设定时需要根据这个元素的父元素容器的高度来计算。所以，如果你把一个 div 的高度设定为<code>height: 50%;</code>，而它的父元素的高度是 100px，那么，这个 div 的高度应该是 50px。</p>
+<h3 id="那为什么-height-100-不起作用">那为什么 height:100%; 不起作用</h3>
+<p>当设计一个页面时，你在里面放置了一个 div 元素，你希望它占满整个窗口高度，最自然的做法，你会给这个 div 添加<code>height: 100%;</code>的 css 属性。如果你要是设置宽度为<code>width: 100%;</code>，那这个元素的宽度会立刻扩展到窗口的整个横向宽度。然而，高度也会这样吗？</p>
 <blockquote>
 <p><strong>错。</strong></p>
 </blockquote>
-<p>为了理解为什么不会，我们需要理解浏览器是如何计算高度和宽度的。Web 浏览器在计算有效宽度时会考虑浏览器窗口的打开宽度。如果你不给宽度设定任何缺省值，那浏览器会自动将页面内容平铺填满整个横向宽度。<br>但是高度的计算方式完全不一样。事实上，浏览器根本就不计算内容的高度，除非内容超出了视窗范围（导致滚动条出现）。或者你给整个页面设置一个绝对高度。否则，浏览器就会简单的让内容往下堆砌，页面的高度根本就无需考虑。<br>因为页面并没有缺省的高度值，所以，当你让一个元素的高度设定为百分比高度时，无法根据获取父元素的高度，也就无法计算自己的高度。换句话说，父元素的高度只是一个缺省值：<code>height: auto;</code>。当你要求浏览器根据这样一个缺省值来计算百分比高度时，只能得到<code>undefined</code>的结果。也就是一个<code>null</code>值，浏览器不会对这个值有任何的反应。<br>那么，如果想让一个元素的百分比高度<code>height: 100%;</code>起作用，你需要给这个元素的所有父元素的高度设定一个有效值。所以，你需要这样做：</p>
+<p>为了理解为什么不会，我们需要理解浏览器是如何计算高度和宽度的。Web 浏览器在计算有效宽度时会考虑浏览器窗口的打开宽度。如果你不给宽度设定任何缺省值，那浏览器会自动将页面内容平铺填满整个横向宽度。<br>
+但是高度的计算方式完全不一样。事实上，浏览器根本就不计算内容的高度，除非内容超出了视窗范围（导致滚动条出现）。或者你给整个页面设置一个绝对高度。否则，浏览器就会简单的让内容往下堆砌，页面的高度根本就无需考虑。<br>
+因为页面并没有缺省的高度值，所以，当你让一个元素的高度设定为百分比高度时，无法根据获取父元素的高度，也就无法计算自己的高度。换句话说，父元素的高度只是一个缺省值：<code>height: auto;</code>。当你要求浏览器根据这样一个缺省值来计算百分比高度时，只能得到<code>undefined</code>的结果。也就是一个<code>null</code>值，浏览器不会对这个值有任何的反应。<br>
+那么，如果想让一个元素的百分比高度<code>height: 100%;</code>起作用，你需要给这个元素的所有父元素的高度设定一个有效值。所以，你需要这样做：</p>
 <pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">height</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span>
@@ -579,7 +585,6 @@
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p>现在你给了这个 div 的高度为 100%，它有两个父元素&lt;body&gt;和&lt;html&gt;。为了让你的 div 的百分比高度能起作用，你必须设定&lt;body&gt;和&lt;html&gt;的高度。</p>
 <pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">height</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">height</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span>
@@ -590,8 +595,8 @@
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>接下来我们就可以解决让 footer 固定在底部的问题了。在查阅了很多资料之后，我选择了 absolute 定位，最终结果如下：<br>HTML：</p>
+<p>接下来我们就可以解决让 footer 固定在底部的问题了。在查阅了很多资料之后，我选择了 absolute 定位，最终结果如下：<br>
+HTML：</p>
 <pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>main<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>wrapper<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>header<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>...
@@ -602,7 +607,6 @@
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>footer<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>...
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p>CSS：</p>
 <pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.footer</span> <span class="token punctuation">&#123;</span>
     <span class="token property">background-color</span><span class="token punctuation">:</span> #ffffff<span class="token punctuation">;</span>
@@ -627,8 +631,7 @@
 <span class="token selector">html,
 body</span> <span class="token punctuation">&#123;</span> <span class="token property">height</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span> <span class="token property">padding</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span> <span class="token property">margin</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span> <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>在这里面中，main 是整个页面的容器，将其最小高度设为 100%可以保证整个页面都被元素填满，既可以保证 footer 可以通过<code>bottom: 0;</code>放在页面底部，也可以实现一些前文中提高的有趣功能。在<a target="_blank" rel="noopener" href="https://tools.gadfly.vip/">https://tools.gadfly.vip</a>（我的工具箱网站）中可以体验一下，在它的页面上随意点击，会随机出现一些文字。</p>
+<p>在这里面中，main 是整个页面的容器，将其最小高度设为 100%可以保证整个页面都被元素填满，既可以保证 footer 可以通过<code>bottom: 0;</code>放在页面底部，也可以实现一些前文中提高的有趣功能。在<a target="_blank" rel="noopener" href="https://tools.gadfly.vip">https://tools.gadfly.vip</a>（我的工具箱网站）中可以体验一下，在它的页面上随意点击，会随机出现一些文字。</p>
 
         
     
@@ -839,7 +842,7 @@ body</span> <span class="token punctuation">&#123;</span> <span class="token pro
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2022/03/">三月 2022<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2022/02/">二月 2022<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/04/">四月 2021<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/02/">二月 2021<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/04/">四月 2020<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/09/">九月 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">七月 2019<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/07/">七月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/05/">五月 2018<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/08/">八月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">3</span></a>
+                <a class="sidebar_archives-link" href="/archives/2022/03/">三月 2022<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2022/02/">二月 2022<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/04/">四月 2021<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/02/">二月 2021<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/04/">四月 2020<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/09/">九月 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">七月 2019<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/07/">七月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/05/">五月 2018<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/08/">八月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">3</span></a>
             </ul>
         </li>
         
@@ -931,7 +934,7 @@ body</span> <span class="token punctuation">&#123;</span> <span class="token pro
         <li>
             <a href="/archives">
                 文章总数
-                <span class="sidebar-badge">29</span>
+                <span class="sidebar-badge">30</span>
             </a>
         </li>
         

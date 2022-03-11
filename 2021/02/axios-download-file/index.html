@@ -278,7 +278,7 @@
 
     
         <meta property="article:published_time" content="Fri Feb 26 2021 17:21:15 GMT+0800">
-        <meta property="article:modified_time" content="Wed Mar 09 2022 17:04:37 GMT+0800">
+        <meta property="article:modified_time" content="Fri Mar 11 2022 11:19:17 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -301,7 +301,7 @@
     "mainEntityOfPage": "https://blog.gadfly.vip/2021/02/axios-download-file/index.html",
     "headline": "Axios 同一实例配置下载文件与 JSON 处理",
     "datePublished": "Fri Feb 26 2021 17:21:15 GMT+0800",
-    "dateModified": "Wed Mar 09 2022 17:04:37 GMT+0800",
+    "dateModified": "Fri Mar 11 2022 11:19:17 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "猪蹄宝宝",
@@ -550,7 +550,9 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <p>现在有一个接口提供下载服务，在发生异常时，这个接口会返回 JSON 数据，来告诉前端是什么样的异常。默认情况下，Axios 只能处理 JSON 数据，如何让二者兼容是本文讨论的核心。</p>
-<p>Axios 的核心是 <code>XMLHttpRequest</code>。可以设置 <code>XMLHttpRequest</code> 对象的 <code>responseType</code> 属性以改变从服务器端获取的预期响应。可接受的值为空字符串（默认）、<code>arraybuffer</code>、<code>blob</code>、<code>json</code>、<code>text</code>、<code>document</code>。<br>而 Axios 默认配置为 <code>json</code>，如果将其配置为 <code>blob</code>，虽然可以处理下载文件了，但是接口返回的 JSON 数据很难<strong>同步</strong>转换为 JSON 进行处理（因为 Blob 转 JSON 需要使用 <code>FileReader().readAsText()</code>，这是一个异步的操作）。<br>因此我们可以设置 <code>responseType</code> 为 <code>arraybuffer</code>，<code>ArrayBuffer</code> 对象用来表示通用的、固定长度的原始二进制数据缓冲区。它是一个字节数组，通常在其他语言中称为“byte array”，<code>ArrayBuffer</code>可以简单的转换为 JSON 或 Blob。</p>
+<p>Axios 的核心是 <code>XMLHttpRequest</code>。可以设置 <code>XMLHttpRequest</code> 对象的 <code>responseType</code> 属性以改变从服务器端获取的预期响应。可接受的值为空字符串（默认）、<code>arraybuffer</code>、<code>blob</code>、<code>json</code>、<code>text</code>、<code>document</code>。<br>
+而 Axios 默认配置为 <code>json</code>，如果将其配置为 <code>blob</code>，虽然可以处理下载文件了，但是接口返回的 JSON 数据很难<strong>同步</strong>转换为 JSON 进行处理（因为 Blob 转 JSON 需要使用 <code>FileReader().readAsText()</code>，这是一个异步的操作）。<br>
+因此我们可以设置 <code>responseType</code> 为 <code>arraybuffer</code>，<code>ArrayBuffer</code> 对象用来表示通用的、固定长度的原始二进制数据缓冲区。它是一个字节数组，通常在其他语言中称为“byte array”，<code>ArrayBuffer</code>可以简单的转换为 JSON 或 Blob。</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// ajax 封装插件, 使用 axios</span>
 <span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span>
 <span class="token keyword">import</span> axios <span class="token keyword">from</span> <span class="token string">'axios'</span>
@@ -782,7 +784,6 @@ Plugin<span class="token punctuation">.</span><span class="token function-variab
 <span class="token punctuation">&#125;</span>
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> _axio<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p>参考：<a target="_blank" rel="noopener" href="http://blog.tubumu.com/2017/12/27/axios-extension-01/">Axios 同时支持下载和 JSON 数据格式</a></p>
 
         
@@ -994,7 +995,7 @@ Plugin<span class="token punctuation">.</span><span class="token function-variab
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2022/03/">三月 2022<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2022/02/">二月 2022<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/04/">四月 2021<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/02/">二月 2021<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/04/">四月 2020<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/09/">九月 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">七月 2019<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/07/">七月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/05/">五月 2018<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/08/">八月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">3</span></a>
+                <a class="sidebar_archives-link" href="/archives/2022/03/">三月 2022<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2022/02/">二月 2022<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/04/">四月 2021<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/02/">二月 2021<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/04/">四月 2020<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/09/">九月 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">七月 2019<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/07/">七月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/05/">五月 2018<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/08/">八月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">3</span></a>
             </ul>
         </li>
         
@@ -1086,7 +1087,7 @@ Plugin<span class="token punctuation">.</span><span class="token function-variab
         <li>
             <a href="/archives">
                 文章总数
-                <span class="sidebar-badge">29</span>
+                <span class="sidebar-badge">30</span>
             </a>
         </li>
         

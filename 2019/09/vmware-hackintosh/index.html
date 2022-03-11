@@ -278,7 +278,7 @@
 
     
         <meta property="article:published_time" content="Fri Sep 20 2019 17:05:09 GMT+0800">
-        <meta property="article:modified_time" content="Wed Mar 09 2022 17:04:37 GMT+0800">
+        <meta property="article:modified_time" content="Fri Mar 11 2022 11:19:17 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -301,7 +301,7 @@
     "mainEntityOfPage": "https://blog.gadfly.vip/2019/09/vmware-hackintosh/index.html",
     "headline": "Vmware 安装黑苹果全记录",
     "datePublished": "Fri Sep 20 2019 17:05:09 GMT+0800",
-    "dateModified": "Wed Mar 09 2022 17:04:37 GMT+0800",
+    "dateModified": "Fri Mar 11 2022 11:19:17 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "猪蹄宝宝",
@@ -560,13 +560,33 @@
     
         <p>由于学校有个 Ios 开发课程，不得不开始使用我最厌恶的 MACos。</p>
 <span id="more"></span>
-<h4 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h4><h5 id="首先-Google-一个-Vmware-出来装好"><a href="#首先-Google-一个-Vmware-出来装好" class="headerlink" title="首先 Google 一个 Vmware 出来装好"></a>首先 Google 一个 Vmware 出来装好</h5><p>然后找一下合适的 MACos 镜像。我这边用的是：<br>百度网盘：链接: <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1Y-SAspAY-28pccir9JsDhA">https://pan.baidu.com/s/1Y-SAspAY-28pccir9JsDhA</a> 提取码: kegh<br>然后前往<a target="_blank" rel="noopener" href="https://github.com/DrDonk/unlocker">https://github.com/DrDonk/unlocker</a>下载 vmware-unlocker 以便解除 Vmware 对 MAC 虚拟机的限制</p>
-<h5 id="unlocker"><a href="#unlocker" class="headerlink" title="unlocker"></a>unlocker</h5><p>关闭 vmware 的所有服务<br>解压并打开下载的 UnLocker 文件夹, 右键 win-install, 选择以管理员身份运行<br><img src="/images/227387.gif" data-original="/images/posts/2019/09/unlocker.webp"></p>
-<h5 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h5><p>打开 VMWare WorkStation, 点击创建新的虚拟机，选择自定义高级<br><img src="/images/227387.gif" data-original="/images/posts/2019/09/newVM.webp"></p>
-<h5 id="选择虚拟机版本"><a href="#选择虚拟机版本" class="headerlink" title="选择虚拟机版本"></a>选择虚拟机版本</h5><p><img src="/images/227387.gif" data-original="/images/posts/2019/09/compatibility.webp"></p>
-<h5 id="选择操作系统类型"><a href="#选择操作系统类型" class="headerlink" title="选择操作系统类型"></a>选择操作系统类型</h5><p><img src="/images/227387.gif" data-original="/images/posts/2019/09/systemType.webp"><br>操作系统类型选择 Apple Mac OS X<br>版本选择你的镜像版本, 网盘中分享的是 Mac OS 10.13 版本<br><img src="/images/227387.gif" data-original="/images/posts/2019/09/continueInstall.webp"></p>
-<h5 id="网络-NAT-即可，其他默认"><a href="#网络-NAT-即可，其他默认" class="headerlink" title="网络 NAT 即可，其他默认"></a>网络 NAT 即可，其他默认</h5><p>新建磁盘，大小自己决定，建议使用<strong>单个文件</strong>而不是多个文件<br><img src="/images/227387.gif" data-original="/images/posts/2019/09/newDisk.webp"></p>
-<h5 id="修正文件"><a href="#修正文件" class="headerlink" title="修正文件"></a>修正文件</h5><p>打开你虚拟机存放的文件夹, 找到这个 vmx 扩展名的文件, 右键用记事本打开<br><img src="/images/227387.gif" data-original="/images/posts/2019/09/vmx.webp"><br><img src="/images/227387.gif" data-original="/images/posts/2019/09/vmxEdit.webp"><br>在这两个之间, 插入如下代码</p>
+<h4 id="安装过程">安装过程</h4>
+<h5 id="首先-Google-一个-Vmware-出来装好">首先 Google 一个 Vmware 出来装好</h5>
+<p>然后找一下合适的 MACos 镜像。我这边用的是：<br>
+百度网盘：链接: <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1Y-SAspAY-28pccir9JsDhA">https://pan.baidu.com/s/1Y-SAspAY-28pccir9JsDhA</a> 提取码: kegh<br>
+然后前往<a target="_blank" rel="noopener" href="https://github.com/DrDonk/unlocker">https://github.com/DrDonk/unlocker</a>下载 vmware-unlocker 以便解除 Vmware 对 MAC 虚拟机的限制</p>
+<h5 id="unlocker">unlocker</h5>
+<p>关闭 vmware 的所有服务<br>
+解压并打开下载的 UnLocker 文件夹, 右键 win-install, 选择以管理员身份运行<br>
+<img src="/images/227387.gif" data-original="/images/posts/2019/09/unlocker.webp" alt=""></p>
+<h5 id="创建">创建</h5>
+<p>打开 VMWare WorkStation, 点击创建新的虚拟机，选择自定义高级<br>
+<img src="/images/227387.gif" data-original="/images/posts/2019/09/newVM.webp" alt=""></p>
+<h5 id="选择虚拟机版本">选择虚拟机版本</h5>
+<p><img src="/images/227387.gif" data-original="/images/posts/2019/09/compatibility.webp" alt=""></p>
+<h5 id="选择操作系统类型">选择操作系统类型</h5>
+<p><img src="/images/227387.gif" data-original="/images/posts/2019/09/systemType.webp" alt=""><br>
+操作系统类型选择 Apple Mac OS X<br>
+版本选择你的镜像版本, 网盘中分享的是 Mac OS 10.13 版本<br>
+<img src="/images/227387.gif" data-original="/images/posts/2019/09/continueInstall.webp" alt=""></p>
+<h5 id="网络-NAT-即可，其他默认">网络 NAT 即可，其他默认</h5>
+<p>新建磁盘，大小自己决定，建议使用<strong>单个文件</strong>而不是多个文件<br>
+<img src="/images/227387.gif" data-original="/images/posts/2019/09/newDisk.webp" alt=""></p>
+<h5 id="修正文件">修正文件</h5>
+<p>打开你虚拟机存放的文件夹, 找到这个 vmx 扩展名的文件, 右键用记事本打开<br>
+<img src="/images/227387.gif" data-original="/images/posts/2019/09/vmx.webp" alt=""><br>
+<img src="/images/227387.gif" data-original="/images/posts/2019/09/vmxEdit.webp" alt=""><br>
+在这两个之间, 插入如下代码</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">smc.version <span class="token operator">=</span> <span class="token string">"0"</span>
 cpuid.0.eax <span class="token operator">=</span> <span class="token string">"0000:0000:0000:0000:0000:0000:0000:1011"</span>
 cpuid.0.ebx <span class="token operator">=</span> <span class="token string">"0111:0101:0110:1110:0110:0101:0100:0111"</span>
@@ -577,9 +597,11 @@ cpuid.1.ebx <span class="token operator">=</span> <span class="token string">"00
 cpuid.1.ecx <span class="token operator">=</span> <span class="token string">"1000:0010:1001:1000:0010:0010:0000:0011"</span>
 cpuid.1.edx <span class="token operator">=</span> <span class="token string">"0000:1111:1010:1011:1111:1011:1111:1111"</span>
 featureCompat.enable <span class="token operator">=</span> <span class="token string">"FALSE"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p>安装 MACos 的过程中可能会遇到找不到 vmware 分配的虚拟磁盘的情况，此时选择磁盘工具，对没有格式化的虚拟磁盘进行格式化即可</p>
-<h4 id="更改分辨率"><a href="#更改分辨率" class="headerlink" title="更改分辨率"></a>更改分辨率</h4><p>首先提高虚拟机设置中此处的分辨率<br><img src="/images/227387.gif" data-original="/images/posts/2019/09/fenbianlv.webp"><br>然后进入系统中，在终端输入：</p>
+<h4 id="更改分辨率">更改分辨率</h4>
+<p>首先提高虚拟机设置中此处的分辨率<br>
+<img src="/images/227387.gif" data-original="/images/posts/2019/09/fenbianlv.webp" alt=""><br>
+然后进入系统中，在终端输入：</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token number">1920</span>*1080分辨率：
 <span class="token function">sudo</span> nvram AC20C489-DD86-4E99-992C-B7C742C1DDA9:width<span class="token operator">=</span>%80%07%00%00
 <span class="token function">sudo</span> nvram AC20C489-DD86-4E99-992C-B7C742C1DDA9:height<span class="token operator">=</span>%38%04%00%00
@@ -587,9 +609,12 @@ featureCompat.enable <span class="token operator">=</span> <span class="token st
  <span class="token number">3840</span>*2160分辨率：
 <span class="token function">sudo</span> nvram AC20C489-DD86-4E99-992C-B7C742C1DDA9:width<span class="token operator">=</span>%00%0F%00%00
 <span class="token function">sudo</span> nvram AC20C489-DD86-4E99-992C-B7C742C1DDA9:height<span class="token operator">=</span>%70%08%00%00<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>解释：<br>width&#x3D;%00%0F%00%00 是宽度的 16 进制表示，将四个数字倒过来写就是 00 00 0f 00, 相当于十进制的 3840<br>height&#x3D;%70%08%00%00 是高度的 16 进制表示，将四个数字倒过来写就是 00 00 08 70, 相当于十进制的 2160<br>所以，上面的两条命令执行完之后，分辨率将被设置为 3840*2160， 其他的分辨率依此类推</p>
-<h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><ul>
+<p>解释：<br>
+width=%00%0F%00%00 是宽度的 16 进制表示，将四个数字倒过来写就是 00 00 0f 00, 相当于十进制的 3840<br>
+height=%70%08%00%00 是高度的 16 进制表示，将四个数字倒过来写就是 00 00 08 70, 相当于十进制的 2160<br>
+所以，上面的两条命令执行完之后，分辨率将被设置为 3840*2160， 其他的分辨率依此类推</p>
+<h4 id="参考资料">参考资料</h4>
+<ul>
 <li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/4d83f2d51abe">(AMD Ryzen, Inter)在 VMWare 中安装 Mac OS 10.13 High Sierra,黑苹果安装教程 - 简书</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.dkukoc.com/post/226.html">VMware15 安装 mac OS 10.14 分辨率调整为 1920*1080？_电脑基础_Dkukoc</a></li>
 </ul>
@@ -803,7 +828,7 @@ featureCompat.enable <span class="token operator">=</span> <span class="token st
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2022/03/">三月 2022<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2022/02/">二月 2022<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/04/">四月 2021<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/02/">二月 2021<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/04/">四月 2020<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/09/">九月 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">七月 2019<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/07/">七月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/05/">五月 2018<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/08/">八月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">3</span></a>
+                <a class="sidebar_archives-link" href="/archives/2022/03/">三月 2022<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2022/02/">二月 2022<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/04/">四月 2021<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/02/">二月 2021<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/04/">四月 2020<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/09/">九月 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">七月 2019<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/07/">七月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/05/">五月 2018<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/08/">八月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">3</span></a>
             </ul>
         </li>
         
@@ -895,7 +920,7 @@ featureCompat.enable <span class="token operator">=</span> <span class="token st
         <li>
             <a href="/archives">
                 文章总数
-                <span class="sidebar-badge">29</span>
+                <span class="sidebar-badge">30</span>
             </a>
         </li>
         

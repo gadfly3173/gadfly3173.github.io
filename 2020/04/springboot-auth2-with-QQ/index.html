@@ -278,7 +278,7 @@
 
     
         <meta property="article:published_time" content="Wed Apr 08 2020 17:29:38 GMT+0800">
-        <meta property="article:modified_time" content="Wed Mar 09 2022 17:04:37 GMT+0800">
+        <meta property="article:modified_time" content="Fri Mar 11 2022 11:19:17 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -301,7 +301,7 @@
     "mainEntityOfPage": "https://blog.gadfly.vip/2020/04/springboot-auth2-with-QQ/index.html",
     "headline": "Spring Boot 开发笔记 - 使用 Spring Boot 完成 Server-Side 模式的 QQ 第三方登录",
     "datePublished": "Wed Apr 08 2020 17:29:38 GMT+0800",
-    "dateModified": "Wed Mar 09 2022 17:04:37 GMT+0800",
+    "dateModified": "Fri Mar 11 2022 11:19:17 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "猪蹄宝宝",
@@ -560,8 +560,14 @@
     
         <p>写这个主要是为了整理开发思路与记录，顺便表示 QQ 的接口真的写的很奇怪。。。</p>
 <span id="more"></span>
-<p>整个项目是一个课程作业，我选择了后端使用 Spring Boot，前端使用 Vue.js 作为项目的技术栈。首先说一下 Auth 2.0。这个在 QQ 的文档里倒也写的很清楚<br><a target="_blank" rel="noopener" href="https://wiki.connect.qq.com/oauth2-0%E7%AE%80%E4%BB%8B">OAuth2.0 简介 — QQ 互联 WIKI</a>。它采用第三方应用在客户端根据自己的 AppId 和 Redirect URI（回调地址）来请求 QQ 的授权页面，<br>用户授权后将 Authentication Code 作为 params 跳转到回调地址，回调地址将这个 Code 传给后端，由后端根据 AppId 和 Secret 再向 QQ 申请用户登录的 Access Token，<br>根据这个 Token 后端才能去获取用户授权的相关信息。第三方应用中每个用户都有一个唯一的 OpenId 用于对应唯一的用户，但是不同第三方应用对相同的用户拿到的 OpenId 则是不同的。<br>开发中参考了 <a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000020181967">使用 java 后端的 springboot 环境下实现网站接入 QQ 第三方登录</a>，因此避免了很多坑。</p>
-<h3 id="获取-Access-Token"><a href="#获取-Access-Token" class="headerlink" title="获取 Access Token"></a>获取 Access Token</h3><p>QQ 官方文档在这里 <a target="_blank" rel="noopener" href="https://wiki.connect.qq.com/%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C_oauth2-0">传送门</a>。这份文档对于没有开发经验的人来说坑实在是太多，不过相比其他平台还是比较友好的。<br>参考文章中是使用了读取配置的方式，我则是写了一个返回 secret 等内容的工具类来获取 QQ 相关配置。</p>
+<p>整个项目是一个课程作业，我选择了后端使用 Spring Boot，前端使用 Vue.js 作为项目的技术栈。首先说一下 Auth 2.0。这个在 QQ 的文档里倒也写的很清楚<br>
+<a target="_blank" rel="noopener" href="https://wiki.connect.qq.com/oauth2-0%E7%AE%80%E4%BB%8B">OAuth2.0 简介 — QQ 互联 WIKI</a>。它采用第三方应用在客户端根据自己的 AppId 和 Redirect URI（回调地址）来请求 QQ 的授权页面，<br>
+用户授权后将 Authentication Code 作为 params 跳转到回调地址，回调地址将这个 Code 传给后端，由后端根据 AppId 和 Secret 再向 QQ 申请用户登录的 Access Token，<br>
+根据这个 Token 后端才能去获取用户授权的相关信息。第三方应用中每个用户都有一个唯一的 OpenId 用于对应唯一的用户，但是不同第三方应用对相同的用户拿到的 OpenId 则是不同的。<br>
+开发中参考了 <a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000020181967">使用 java 后端的 springboot 环境下实现网站接入 QQ 第三方登录</a>，因此避免了很多坑。</p>
+<h3 id="获取-Access-Token">获取 Access Token</h3>
+<p>QQ 官方文档在这里 <a target="_blank" rel="noopener" href="https://wiki.connect.qq.com/%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C_oauth2-0">传送门</a>。这份文档对于没有开发经验的人来说坑实在是太多，不过相比其他平台还是比较友好的。<br>
+参考文章中是使用了读取配置的方式，我则是写了一个返回 secret 等内容的工具类来获取 QQ 相关配置。</p>
 <p>基本代码如下：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"/login/callback"</span><span class="token punctuation">,</span> consumes<span class="token operator">=</span> <span class="token punctuation">&#123;</span> <span class="token class-name">MediaType</span><span class="token punctuation">.</span>APPLICATION_JSON_VALUE<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token class-name">GlobalJSONResult</span> <span class="token function">handleCallbackCode</span><span class="token punctuation">(</span><span class="token annotation punctuation">@RequestBody</span> <span class="token class-name">LoginCode</span> reqParams<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">JsonProcessingException</span> <span class="token punctuation">&#123;</span>
@@ -608,10 +614,12 @@
 
     <span class="token keyword">return</span> url<span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>其中 <code>GlobalJSONResult</code> 是我编写的全局 JSON 返回类，有空会在其他文章中说明。QQ 在文档中要求生成 CSRF Token 一类的东西作为 state 参数上传，以避免 CSRF 攻击。<br>不过由于我的登录系统是只有授权 QQ 登录之后才会生成账户，因此基本没有这方面的风险，就把 state 写死了。接收的 <code>reqParams</code> 则是直接前端将路由中的参数返回，Vue.js 中使用 <code>this.$route.query</code> 就可以将参数以 JSON 形式获取。</p>
-<h4 id="解析接口返回的数据"><a href="#解析接口返回的数据" class="headerlink" title="解析接口返回的数据"></a>解析接口返回的数据</h4><blockquote>
-<p>之后就是跳转这个 URL 去获取 access_token，这里就是第一个坑了，按照官方文档，搞得好像这次我们跳转到这个获取 access_token 的 URL 后，腾讯那边会跳转我们设定的回调地址并带上我们需要的参数，就像之前获取 authorization code 一样。<br>但完全不是这样的！！！你按照要求向这个获取 access_token 的 URL 发送请求后，对方并不会再跳转，而是直接返回你一个数据，希望你获得这个数据然后处理。这有点像前端 JS 的异步请求后后回调函数处理 data。</p>
+<p>其中 <code>GlobalJSONResult</code> 是我编写的全局 JSON 返回类，有空会在其他文章中说明。QQ 在文档中要求生成 CSRF Token 一类的东西作为 state 参数上传，以避免 CSRF 攻击。<br>
+不过由于我的登录系统是只有授权 QQ 登录之后才会生成账户，因此基本没有这方面的风险，就把 state 写死了。接收的 <code>reqParams</code> 则是直接前端将路由中的参数返回，Vue.js 中使用 <code>this.$route.query</code> 就可以将参数以 JSON 形式获取。</p>
+<h4 id="解析接口返回的数据">解析接口返回的数据</h4>
+<blockquote>
+<p>之后就是跳转这个 URL 去获取 access_token，这里就是第一个坑了，按照官方文档，搞得好像这次我们跳转到这个获取 access_token 的 URL 后，腾讯那边会跳转我们设定的回调地址并带上我们需要的参数，就像之前获取 authorization code 一样。<br>
+但完全不是这样的！！！你按照要求向这个获取 access_token 的 URL 发送请求后，对方并不会再跳转，而是直接返回你一个数据，希望你获得这个数据然后处理。这有点像前端 JS 的异步请求后后回调函数处理 data。</p>
 </blockquote>
 <p>所以这里使用了 <code>restTemplate</code> 来发起请求。虽然很多教程里都会说使用 <code>@Autowired</code> 来注入实例，但是你会发现 IDEA 中会提示这种写法不被推荐，使用构造函数注入是更好的选择。</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">//注入实例</span>
@@ -622,10 +630,11 @@
     <span class="token keyword">this</span><span class="token punctuation">.</span>userInfoRepository <span class="token operator">=</span> userInfoRepository<span class="token punctuation">;</span>
     <span class="token keyword">this</span><span class="token punctuation">.</span>restTemplate <span class="token operator">=</span> restTemplate<span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>restTemplate 可以接收所有的返回参数，然而 QQ 这里采用了一个非常神奇的接口返回形式：<code>access_token=FE04**CCE2&amp;expires_in=7776000&amp;refresh_token=88E4**BE14</code>。<br>请<strong>不要</strong>认为这是在回调地址后面加上的参数，这个就是 token 接口返回的一个<strong>字符串</strong>。这接口真是绝了，写的人不觉得别扭吗？？？拿到这个字符串之后只能根据 &amp; 和 &#x3D; 拆分来获取数据了。</p>
+<p>restTemplate 可以接收所有的返回参数，然而 QQ 这里采用了一个非常神奇的接口返回形式：<code>access_token=FE04**CCE2&amp;expires_in=7776000&amp;refresh_token=88E4**BE14</code>。<br>
+请<strong>不要</strong>认为这是在回调地址后面加上的参数，这个就是 token 接口返回的一个<strong>字符串</strong>。这接口真是绝了，写的人不觉得别扭吗？？？拿到这个字符串之后只能根据 &amp; 和 = 拆分来获取数据了。</p>
 <p>我这边使用前端将参数上传而不是直接把回调地址设为后端地址的原因主要是考虑到拿到 Code 之后，后端处理需要一定的时间，如果不能在前端展示动画之类的内容，容易让用户不明所以，因此前端拿到参数再提交给后端，同时前端展示等待动画是更好的选择。</p>
-<h3 id="获取-Open-Id"><a href="#获取-Open-Id" class="headerlink" title="获取 Open Id"></a>获取 Open Id</h3><p>拿到这个 token 之后就可以去获取用户的 openid 了。</p>
+<h3 id="获取-Open-Id">获取 Open Id</h3>
+<p>拿到这个 token 之后就可以去获取用户的 openid 了。</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 上略</span>
   <span class="token class-name">String</span> url <span class="token operator">=</span> <span class="token class-name">String</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token string">"https://graph.qq.com/oauth2.0/me?access_token=%s"</span><span class="token punctuation">,</span> access_token<span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token comment">//第二次模拟客户端发出请求后得到的是带openid的返回数据,格式如下</span>
@@ -646,14 +655,15 @@
 
   <span class="token class-name">String</span> openid <span class="token operator">=</span> hashMap<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"openid"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token comment">// 下略</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>这里 QQ 又返回了什么呢，返回了一个 JSONP 。。。形如：<code>callback( &#123;&quot;client_id&quot;:&quot;YOUR_APPID&quot;,&quot;openid&quot;:&quot;YOUR_OPENID&quot;&#125; )</code>不是，腾讯你们这玩意是分了几个人写啊，怎么每个接口返回格式都这么奇怪啊喂！！！<br>处理这个则是使用正则，先把 <code>callback</code> 里的对象取出来，用 Spring Boot 自带的 Jackson 解析为 Map。</p>
+<p>这里 QQ 又返回了什么呢，返回了一个 JSONP 。。。形如：<code>callback( &#123;&quot;client_id&quot;:&quot;YOUR_APPID&quot;,&quot;openid&quot;:&quot;YOUR_OPENID&quot;&#125; )</code>不是，腾讯你们这玩意是分了几个人写啊，怎么每个接口返回格式都这么奇怪啊喂！！！<br>
+处理这个则是使用正则，先把 <code>callback</code> 里的对象取出来，用 Spring Boot 自带的 Jackson 解析为 Map。</p>
 <blockquote>
 <p>这里有两点值得一说</p>
-<p>其一，为什么 String regex &#x3D; “&amp;#92;&amp;#92;{.*&amp;#92;&amp;#92;}”;，正则表达式中有&amp;#92;&amp;#92;这东西呢？这时因为正则表达式中{和}都是有意义的，非字符的，我们希望正则表达式把它们理解成字符，就需要对它们进行转义，所以这里需要一个转义符&amp;#92;，但&amp;#92;自身在 java 字符串中并不是字符，所以我们还要转义&amp;#92;自身，所以会出现&amp;#92;&amp;#92;。</p>
+<p>其一，为什么 String regex = &quot;\\{.*\\}&quot;;，正则表达式中有\\这东西呢？这时因为正则表达式中{和}都是有意义的，非字符的，我们希望正则表达式把它们理解成字符，就需要对它们进行转义，所以这里需要一个转义符\，但\自身在 java 字符串中并不是字符，所以我们还要转义\自身，所以会出现\\。</p>
 <p>其二，matcher 如果不经历 matcher.find()，则就算有合适的匹配内容，也仍然不会有任何匹配能得到。所以 matcher.find()是必须的，同时 matcher.find()一次后再来一次，那完了，返回 false。</p>
 </blockquote>
-<h3 id="获取用户信息与登录-Token-下发"><a href="#获取用户信息与登录-Token-下发" class="headerlink" title="获取用户信息与登录 Token 下发"></a>获取用户信息与登录 Token 下发</h3><p>教程到这里结束了，而我还需要完成获取用户信息等操作才能完成整个登录接口。</p>
+<h3 id="获取用户信息与登录-Token-下发">获取用户信息与登录 Token 下发</h3>
+<p>教程到这里结束了，而我还需要完成获取用户信息等操作才能完成整个登录接口。</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java">  <span class="token comment">// 上略</span>
     <span class="token comment">// 获取QQ用户信息</span>
     <span class="token class-name">String</span> user_info_url <span class="token operator">=</span> <span class="token function">getUserInfoUrl</span><span class="token punctuation">(</span>access_token<span class="token punctuation">,</span> openid<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -693,7 +703,6 @@
     <span class="token punctuation">&#125;</span>
     <span class="token keyword">return</span> <span class="token class-name">JWTUtil</span><span class="token punctuation">.</span><span class="token function">sign</span><span class="token punctuation">(</span>openid<span class="token punctuation">,</span> access_level<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p>获取用户信息的接口正常多了，返回的是 JSON。主要可以聊聊的是 JWT，不过这个也放到下次再讲吧。</p>
 
         
@@ -905,7 +914,7 @@
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2022/03/">三月 2022<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2022/02/">二月 2022<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/04/">四月 2021<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/02/">二月 2021<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/04/">四月 2020<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/09/">九月 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">七月 2019<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/07/">七月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/05/">五月 2018<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/08/">八月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">3</span></a>
+                <a class="sidebar_archives-link" href="/archives/2022/03/">三月 2022<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2022/02/">二月 2022<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/04/">四月 2021<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/02/">二月 2021<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/04/">四月 2020<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/09/">九月 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">七月 2019<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/07/">七月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/05/">五月 2018<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/08/">八月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">3</span></a>
             </ul>
         </li>
         
@@ -997,7 +1006,7 @@
         <li>
             <a href="/archives">
                 文章总数
-                <span class="sidebar-badge">29</span>
+                <span class="sidebar-badge">30</span>
             </a>
         </li>
         
