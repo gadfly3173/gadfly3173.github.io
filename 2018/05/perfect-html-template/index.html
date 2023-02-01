@@ -282,7 +282,7 @@
 
     
         <meta property="article:published_time" content="Thu May 17 2018 20:35:29 GMT+0800">
-        <meta property="article:modified_time" content="Sat Jan 28 2023 17:02:41 GMT+0800">
+        <meta property="article:modified_time" content="Wed Feb 01 2023 12:54:03 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -305,7 +305,7 @@
     "mainEntityOfPage": "https://blog.gadfly.vip/2018/05/perfect-html-template/index.html",
     "headline": "一个比较完美的网页模板",
     "datePublished": "Thu May 17 2018 20:35:29 GMT+0800",
-    "dateModified": "Sat Jan 28 2023 17:02:41 GMT+0800",
+    "dateModified": "Wed Feb 01 2023 12:54:03 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "猪蹄宝宝",
@@ -350,7 +350,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 6.1.0"></head>
+<meta name="generator" content="Hexo 6.3.0"></head>
 
 
     
@@ -576,7 +576,7 @@
 但是高度的计算方式完全不一样。事实上，浏览器根本就不计算内容的高度，除非内容超出了视窗范围（导致滚动条出现）。或者你给整个页面设置一个绝对高度。否则，浏览器就会简单的让内容往下堆砌，页面的高度根本就无需考虑。<br>
 因为页面并没有缺省的高度值，所以，当你让一个元素的高度设定为百分比高度时，无法根据获取父元素的高度，也就无法计算自己的高度。换句话说，父元素的高度只是一个缺省值：<code>height: auto;</code>。当你要求浏览器根据这样一个缺省值来计算百分比高度时，只能得到<code>undefined</code>的结果。也就是一个<code>null</code>值，浏览器不会对这个值有任何的反应。<br>
 那么，如果想让一个元素的百分比高度<code>height: 100%;</code>起作用，你需要给这个元素的所有父元素的高度设定一个有效值。所以，你需要这样做：</p>
-<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">height</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span>
       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>
@@ -586,7 +586,7 @@
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>现在你给了这个 div 的高度为 100%，它有两个父元素&lt;body&gt;和&lt;html&gt;。为了让你的 div 的百分比高度能起作用，你必须设定&lt;body&gt;和&lt;html&gt;的高度。</p>
-<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">height</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">height</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">height</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">height</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span>
       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>
@@ -597,7 +597,7 @@
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>接下来我们就可以解决让 footer 固定在底部的问题了。在查阅了很多资料之后，我选择了 absolute 定位，最终结果如下：<br>
 HTML：</p>
-<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>main<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>main<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>wrapper<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>header<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>...
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
@@ -1215,12 +1215,19 @@ console.log('\n %c © Material Theme | Version: 1.5.6 | https://github.com/bolln
 
                 </main>
             </div>
+        
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
         <script>
             window.imageLazyLoadSetting = {
                 isSPA: false,
                 preloadRatio: 1,
                 processImages: null,
             };
-        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(n){n.imageLazyLoadSetting.processImages=t;var i=n.imageLazyLoadSetting.isSPA,o=n.imageLazyLoadSetting.preloadRatio||1,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function t(){i&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var a=0;a<r.length;a++)t=r[a],void 0,0<=(e=t.getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(n.innerHeight*o||document.documentElement.clientHeight*o)&&function(){var t,e,n,i,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},n=new Image,i=t.getAttribute("data-original"),n.onload=function(){t.src=i,e&&e()},t.src!==i&&(n.src=i)}();var t,e}t(),n.addEventListener("scroll",function(){!function(t,e){clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)}(t,n)})}(this);</script></body>
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(a){a.imageLazyLoadSetting.processImages=t;var i=a.imageLazyLoadSetting.isSPA,o=a.imageLazyLoadSetting.preloadRatio||1,r=c();function c(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function d(t,e){if(t.hasAttribute("bg-lazy"))return t.removeAttribute("bg-lazy"),void(e&&e());var n=new Image,a=t.getAttribute("data-original");n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a)}function t(){i&&(r=c());for(var t=0;t<r.length;t++)e=r[t],void 0,0<=(n=e.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(a.innerHeight*o||document.documentElement.clientHeight*o)&&function(){var e=r[t];d(e,function(){r=r.filter(function(t){return e!==t}),a.imageLazyLoadSetting.onImageLoaded&&a.imageLazyLoadSetting.onImageLoaded(e)})}();var e,n}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),a.addEventListener("resize",e),a.addEventListener("orientationchange",e)}(this);</script></body>
     
 </html>
