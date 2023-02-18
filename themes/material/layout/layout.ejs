@@ -6,7 +6,7 @@
         <!-- Single Gallery Page -->
         <%- partial('_widget/page-gallery') %>
     <% } else { %>
-        <body id="scheme-<%= theme.scheme %>" class="lazy">
+        <body id="scheme-<%= theme.scheme %>" class="lazy" data-theme="<%= theme.default_theme_color %>">
             <canvas id="tinyball-canvas" style="position:fixed;z-index:-99;display:block;">你这是什么垃圾浏览器，这都不能显示(╯‵□′)╯︵┻━┻</canvas>
             <%- jsLsload({path:('js/tiniballs.js'),key:'tiniballs_js'}) %>
             <div class="material-layout  mdl-js-layout has-drawer is-upgraded">

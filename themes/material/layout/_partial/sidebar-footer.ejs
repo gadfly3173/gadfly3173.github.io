@@ -9,33 +9,88 @@ It will not impact the appearance and can give developers a lot of support :)
 -->
 
 <!-- Sidebar Divider -->
-<% if(theme.sidebar.footer.divider === true) { %>
+<% if(theme.sidebar.footer.divider===true) { %>
   <div class="sidebar-divider"></div>
 <% } %>
 
 <!-- Theme Color Switch -->
 
-<% if(theme.sidebar.footer.theme_switch === true) { %>
-    <div class="sidebar-text mdl-button mdl-js-button sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
-        深色模式
-        <div class="sidebar-badge theme-color-switch material-icons">
-          <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect">
-            <input type="checkbox" id="theme-color-switch-input" class="mdl-switch__input">
-            <span class="mdl-switch__label"></span>
-          </label>
-        </div>
+<% if(theme.sidebar.footer.theme_switch===true) { %>
+  <div class="sidebar-text mdl-button mdl-js-button sidebar-footer-text-div"
+    data-upgraded=",MaterialButton,MaterialRipple">
+    深色模式
+    <div class="sidebar-badge theme-color-switch material-icons">
+      <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect">
+        <input type="checkbox" id="theme-color-switch-input" class="mdl-switch__input">
+        <span class="mdl-switch__label"></span>
+      </label>
     </div>
+  </div>
+  <script>
+    $(document).ready(function () {
+      // darkMode Detection
+      const rememberThemeColorStorageKey = 'theme-color';
+      const darkMode =
+        window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)");
+      const themeColorSwitchInput = document.getElementById('theme-color-switch-input');
+      const rememberThemeColor = localStorage.getItem(rememberThemeColorStorageKey);
+      // 判断是否匹配深色模式
+      if ('dark' === rememberThemeColor || (darkMode && darkMode.matches)) {
+        tinyBallSwitchTheme(true);
+        document.body.setAttribute('data-theme', 'dark');
+        document.getElementById('theme-color-switch-input').setAttribute('checked', 'checked');
+      } else {
+        document.body.setAttribute('data-theme', '');
+      }
+      // 监听主题切换事件
+      themeColorSwitchInput.addEventListener('change', () => {
+        tinyBallSwitchTheme(themeColorSwitchInput.checked);
+        if (themeColorSwitchInput.checked) {
+          document.body.setAttribute('data-theme', 'dark');
+          localStorage.setItem(rememberThemeColorStorageKey, 'dark');
+        } else {
+          document.body.setAttribute('data-theme', '');
+          localStorage.setItem(rememberThemeColorStorageKey, 'light');
+        }
+      });
+      darkMode &&
+        darkMode.addEventListener("change", (e) => {
+          tinyBallSwitchTheme(e.matches);
+          if (e.matches) {
+            document.body.setAttribute('data-theme', 'dark');
+            themeColorSwitchInput.setAttribute('checked', 'checked');
+            localStorage.setItem(rememberThemeColorStorageKey, 'dark');
+          } else {
+            document.body.setAttribute('data-theme', '');
+            themeColorSwitchInput.removeAttribute('checked');
+            localStorage.setItem(rememberThemeColorStorageKey, 'light');
+          }
+        });
+      function tinyBallSwitchTheme(isDark) {
+        const tinyBallCanvas = document.getElementById('tinyball-canvas');
+        const tinyBallContext = tinyBallCanvas.getContext('2d');
+        if (isDark) {
+          tinyBallContext.strokeStyle = 'rgba(255,255,255,0.02)',
+            tinyBallContext.fillStyle = 'rgba(255,255,255,0.05)';
+        } else {
+          tinyBallContext.strokeStyle = 'rgba(0,0,0,0.02)',
+            tinyBallContext.fillStyle = 'rgba(0,0,0,0.05)';
+        }
+      }
+    });
+  </script>
 <% } %>
 
 <!-- Theme Material -->
-<% if(theme.sidebar.footer.theme === true) { %>
-    <a href="https://github.com/gadfly3173/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
-        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
-            <%= __('misc.theme') %> - Material
-            <span class="sidebar-badge badge-circle">i</span>
-        </div>
-    </a>
-<% } %>
+<% if(theme.sidebar.footer.theme===true) { %>
+  <a href="https://github.com/gadfly3173/hexo-theme-material" class="sidebar-footer-text-a" target="_blank">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div"
+      data-upgraded=",MaterialButton,MaterialRipple">
+      <%= __('misc.theme') %> - Material
+        <span class="sidebar-badge badge-circle">i</span>
+    </div>
+  </a>
+  <% } %>
 
 <!-- Help & Support -->
 <!--

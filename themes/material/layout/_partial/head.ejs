@@ -86,9 +86,9 @@
 
     <!-- Import CSS -->
     <% if(theme.vendors.materialcdn) { %>
+        <%- css(theme.vendors.materialcdn + '/css/style-dark.css') %>
         <%- cssLsload({path:(theme.vendors.materialcdn + '/css/material.css'),key:'material_css'}) %>
         <%- cssLsload({path:(theme.vendors.materialcdn + '/css/style.css'),key:'style_css'}) %>
-        <%- css(theme.vendors.materialcdn + '/css/style-dark.css') %>
 
         <% if (theme.prettify.enable){ %>
             <% if ( (is_post()) ) { %>
@@ -98,9 +98,9 @@
         <% } %>
 
     <% } else { %>
+        <%- css('css/style-dark.css') %>
         <%- cssLsload({path:('css/material.css'),key:'material_css'}) %>
         <%- cssLsload({path:('css/style.css'),key:'style_css'}) %>
-        <%- css('css/style-dark.css') %>
 
         <% if (theme.prettify.enable){ %>
             <% if ( (is_post()) ) { %>

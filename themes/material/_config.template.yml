@@ -30,6 +30,8 @@ url:
 # Schemes
 scheme: Paradox
 #scheme: Isolation
+# only 'dark', other value will be ignored and use default light theme
+default_theme_color: dark
 
 # UI & UX: slogan, color, effect
 uiux:
@@ -224,6 +226,7 @@ sidebar:
         support: false
         feedback: false
         material: false
+        theme_switch: true
 
 
 # ---------------------------------------------------------------

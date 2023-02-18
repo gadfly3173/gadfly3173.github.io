@@ -30,6 +30,7 @@ url:
 # Schemes
 scheme: Paradox
 #scheme: Isolation
+default_theme_color: dark
 
 # UI & UX: slogan, color, effect
 uiux:
