@@ -85,11 +85,11 @@
 
     <!-- Import CSS -->
     
-        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.css?J3ekFjv+5KKiAFYA59/qdQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.css?R3Z5fr3H3ruXMBBBz5yTqQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
         
 <link rel="stylesheet" href="/css/style-dark.css">
 
+        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.css?J3ekFjv+5KKiAFYA59/qdQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.css?R3Z5fr3H3ruXMBBBz5yTqQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
         
 
@@ -324,7 +324,7 @@
 
 
     
-        <body id="scheme-Paradox" class="lazy">
+        <body id="scheme-Paradox" class="lazy" data-theme="dark">
             <canvas id="tinyball-canvas" style="position:fixed;z-index:-99;display:block;">你这是什么垃圾浏览器，这都不能显示(╯‵□′)╯︵┻━┻</canvas>
             <script>lsloader.load("tiniballs_js","/js/tiniballs.js?RbhMd4vex2k4fPUeDg+pWA==", true)</script>
             <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
@@ -757,26 +757,81 @@ It will not impact the appearance and can give developers a lot of support :)
 <!-- Theme Color Switch -->
 
 
-    <div class="sidebar-text mdl-button mdl-js-button sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
-        深色模式
-        <div class="sidebar-badge theme-color-switch material-icons">
-          <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect">
-            <input type="checkbox" id="theme-color-switch-input" class="mdl-switch__input">
-            <span class="mdl-switch__label"></span>
-          </label>
-        </div>
+  <div class="sidebar-text mdl-button mdl-js-button sidebar-footer-text-div"
+    data-upgraded=",MaterialButton,MaterialRipple">
+    深色模式
+    <div class="sidebar-badge theme-color-switch material-icons">
+      <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect">
+        <input type="checkbox" id="theme-color-switch-input" class="mdl-switch__input">
+        <span class="mdl-switch__label"></span>
+      </label>
     </div>
+  </div>
+  <script>
+    $(document).ready(function () {
+      // darkMode Detection
+      const rememberThemeColorStorageKey = 'theme-color';
+      const darkMode =
+        window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)");
+      const themeColorSwitchInput = document.getElementById('theme-color-switch-input');
+      const rememberThemeColor = localStorage.getItem(rememberThemeColorStorageKey);
+      // 判断是否匹配深色模式
+      if ('dark' === rememberThemeColor || (darkMode && darkMode.matches)) {
+        tinyBallSwitchTheme(true);
+        document.body.setAttribute('data-theme', 'dark');
+        document.getElementById('theme-color-switch-input').setAttribute('checked', 'checked');
+      } else {
+        document.body.setAttribute('data-theme', '');
+      }
+      // 监听主题切换事件
+      themeColorSwitchInput.addEventListener('change', () => {
+        tinyBallSwitchTheme(themeColorSwitchInput.checked);
+        if (themeColorSwitchInput.checked) {
+          document.body.setAttribute('data-theme', 'dark');
+          localStorage.setItem(rememberThemeColorStorageKey, 'dark');
+        } else {
+          document.body.setAttribute('data-theme', '');
+          localStorage.setItem(rememberThemeColorStorageKey, 'light');
+        }
+      });
+      darkMode &&
+        darkMode.addEventListener("change", (e) => {
+          tinyBallSwitchTheme(e.matches);
+          if (e.matches) {
+            document.body.setAttribute('data-theme', 'dark');
+            themeColorSwitchInput.setAttribute('checked', 'checked');
+            localStorage.setItem(rememberThemeColorStorageKey, 'dark');
+          } else {
+            document.body.setAttribute('data-theme', '');
+            themeColorSwitchInput.removeAttribute('checked');
+            localStorage.setItem(rememberThemeColorStorageKey, 'light');
+          }
+        });
+      function tinyBallSwitchTheme(isDark) {
+        const tinyBallCanvas = document.getElementById('tinyball-canvas');
+        const tinyBallContext = tinyBallCanvas.getContext('2d');
+        if (isDark) {
+          tinyBallContext.strokeStyle = 'rgba(255,255,255,0.02)',
+            tinyBallContext.fillStyle = 'rgba(255,255,255,0.05)';
+        } else {
+          tinyBallContext.strokeStyle = 'rgba(0,0,0,0.02)',
+            tinyBallContext.fillStyle = 'rgba(0,0,0,0.05)';
+        }
+      }
+    });
+  </script>
 
 
 <!-- Theme Material -->
 
-    <a href="https://github.com/gadfly3173/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
-        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
-            主题 - Material
-            <span class="sidebar-badge badge-circle">i</span>
-        </div>
-    </a>
-
+  <a href="https://github.com/gadfly3173/hexo-theme-material" class="sidebar-footer-text-a" target="_blank">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div"
+      data-upgraded=",MaterialButton,MaterialRipple">
+      主题 - Material
+        <span class="sidebar-badge badge-circle">i</span>
+    </div>
+  </a>
+  
 
 <!-- Help & Support -->
 <!--
@@ -907,7 +962,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 
-    <script>lsloader.load("js_js","/js/js.js?zMMjDEGI0fKmd6sx1dB4OQ==", true)</script>
+    <script>lsloader.load("js_js","/js/js.js?zsFu+9rwaO7ecBfpqqcgyA==", true)</script>
 
 
 

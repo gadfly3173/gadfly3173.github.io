@@ -47,15 +47,6 @@
   </url>
   
   <url>
-    <loc>https://blog.gadfly.vip/2018/07/dual-gpu-switch/</loc>
-    
-    <lastmod>2023-02-18</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.gadfly.vip/2019/05/campus-card-research/</loc>
     
     <lastmod>2023-02-18</lastmod>
@@ -336,6 +327,15 @@
   
   <url>
     <loc>https://blog.gadfly.vip/2018/05/template-changes/</loc>
+    
+    <lastmod>2023-02-18</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/2018/07/dual-gpu-switch/</loc>
     
     <lastmod>2023-02-18</lastmod>
     

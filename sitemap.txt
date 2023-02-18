@@ -3,7 +3,6 @@ https://blog.gadfly.vip/messages.html
 https://blog.gadfly.vip/links/index.html
 https://blog.gadfly.vip/tags/index.html
 https://blog.gadfly.vip/timeline/index.html
-https://blog.gadfly.vip/2018/07/dual-gpu-switch/
 https://blog.gadfly.vip/2019/05/campus-card-research/
 https://blog.gadfly.vip/2019/07/Algorithm-product-evaluation-method/
 https://blog.gadfly.vip/2019/07/Product-Experience-Optimization-Checklist/
@@ -36,6 +35,7 @@ https://blog.gadfly.vip/2018/01/shmetro-metropolis-app/
 https://blog.gadfly.vip/2018/05/hide-article-at-index/
 https://blog.gadfly.vip/2018/05/perfect-html-template/
 https://blog.gadfly.vip/2018/05/template-changes/
+https://blog.gadfly.vip/2018/07/dual-gpu-switch/
 https://blog.gadfly.vip/404.html
 https://blog.gadfly.vip/
 https://blog.gadfly.vip/tags/WSL/
