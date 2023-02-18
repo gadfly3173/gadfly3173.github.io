@@ -89,7 +89,7 @@
 <link rel="stylesheet" href="/css/style-dark.css">
 
         <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.css?J3ekFjv+5KKiAFYA59/qdQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.css?R3Z5fr3H3ruXMBBBz5yTqQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.css?uf5nPaly0bIzU5+shc+Kuw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
         
 
@@ -287,7 +287,7 @@
 
     
         <meta property="article:published_time" content="Thu Apr 09 2020 12:49:04 GMT+0800">
-        <meta property="article:modified_time" content="Sun Feb 19 2023 02:08:50 GMT+0800">
+        <meta property="article:modified_time" content="Sun Feb 19 2023 04:35:55 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -310,7 +310,7 @@
     "mainEntityOfPage": "https://blog.gadfly.vip/2020/04/spring-boot-jwt-login/index.html",
     "headline": "Spring Boot 开发笔记 - JSON Web Token 与登录鉴权设计",
     "datePublished": "Thu Apr 09 2020 12:49:04 GMT+0800",
-    "dateModified": "Sun Feb 19 2023 02:08:50 GMT+0800",
+    "dateModified": "Sun Feb 19 2023 04:35:55 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "猪蹄宝宝",
@@ -456,7 +456,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>猪蹄宝宝</strong>
-        <span>4月 09, 2020</span>
+        <span>2020-04-09</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -573,190 +573,190 @@
 当然这样的设计也有局限性，比如我的项目中需要保证用户不会在多处同时登录，但是 JWT 验证 Token 只根据它其中包含的过期时间信息，后端不能在用户使用第二台设备登录时作废第一台设备的登录信息，这可能导致一定的安全隐患。因此我在项目中引入了 Redis 缓存，每次下发 Token 时生成随机密钥，这个密钥与用户信息绑定，与 Token 拥有相同的过期时间并存在 Redis 中。Redis 的原理使得这样的操作不会增加太多的开销，又能让 JWT 依然承担传递信息的任务。</p>
 <h3 id="JWT-相关的设计">JWT 相关的设计</h3>
 <p>首先来一个 JWT 的工具类：</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">@Component
-public class JWTUtil &#123;
-    private final RedisUtils nonStaticRedisUtils;
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Component</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">JWTUtil</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">RedisUtils</span> nonStaticRedisUtils<span class="token punctuation">;</span>
 
-    private static RedisUtils redisUtils;
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token class-name">RedisUtils</span> redisUtils<span class="token punctuation">;</span>
 
-    public JWTUtil(RedisUtils nonStaticRedisUtils) &#123;
-        this.nonStaticRedisUtils &#x3D; nonStaticRedisUtils;
-    &#125;
+    <span class="token keyword">public</span> <span class="token class-name">JWTUtil</span><span class="token punctuation">(</span><span class="token class-name">RedisUtils</span> nonStaticRedisUtils<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>nonStaticRedisUtils <span class="token operator">=</span> nonStaticRedisUtils<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
 
-    @PostConstruct
-    public void init() &#123;
-        redisUtils &#x3D; nonStaticRedisUtils;
-    &#125;
+    <span class="token annotation punctuation">@PostConstruct</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        redisUtils <span class="token operator">=</span> nonStaticRedisUtils<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
 
-    &#x2F;&#x2F; 过期时间7天
-    private static final long EXPIRE_TIME &#x3D; 7 * 24 * 60 * 60 * 1000;
+    <span class="token comment">// 过期时间7天</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">long</span> <span class="token constant">EXPIRE_TIME</span> <span class="token operator">=</span> <span class="token number">7</span> <span class="token operator">*</span> <span class="token number">24</span> <span class="token operator">*</span> <span class="token number">60</span> <span class="token operator">*</span> <span class="token number">60</span> <span class="token operator">*</span> <span class="token number">1000</span><span class="token punctuation">;</span>
 
-    &#x2F;**
+    <span class="token comment">/**
      * 生成签名,7days后过期
      *
      * @param openid qq_openid
      * @return 加密的token
-     *&#x2F;
-    public static String sign(String openid, String access_level) &#123;
-        Date date &#x3D; new Date(System.currentTimeMillis() + EXPIRE_TIME);
-        if (redisUtils.hasKey(openid)) &#123;
-            redisUtils.del(openid);
-        &#125;
-        String secret &#x3D; UUID.randomUUID().toString();
-        Algorithm algorithm &#x3D; Algorithm.HMAC256(secret);
-        redisUtils.set(openid, secret, EXPIRE_TIME);
-        logger.info(openid + &quot;&amp;&quot; + secret);
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">String</span> <span class="token function">sign</span><span class="token punctuation">(</span><span class="token class-name">String</span> openid<span class="token punctuation">,</span> <span class="token class-name">String</span> access_level<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token class-name">Date</span> date <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token constant">EXPIRE_TIME</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>redisUtils<span class="token punctuation">.</span><span class="token function">hasKey</span><span class="token punctuation">(</span>openid<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            redisUtils<span class="token punctuation">.</span><span class="token function">del</span><span class="token punctuation">(</span>openid<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token class-name">String</span> secret <span class="token operator">=</span> <span class="token constant">UUID</span><span class="token punctuation">.</span><span class="token function">randomUUID</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Algorithm</span> algorithm <span class="token operator">=</span> <span class="token class-name">Algorithm</span><span class="token punctuation">.</span><span class="token function">HMAC256</span><span class="token punctuation">(</span>secret<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        redisUtils<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>openid<span class="token punctuation">,</span> secret<span class="token punctuation">,</span> <span class="token constant">EXPIRE_TIME</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        logger<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span>openid <span class="token operator">+</span> <span class="token string">"&amp;"</span> <span class="token operator">+</span> secret<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        &#x2F;&#x2F; 附带openid信息
-        return JWT.create()
-                .withClaim(&quot;openid&quot;, openid)
-                .withClaim(&quot;access_level&quot;, access_level)
-                .withExpiresAt(date)
-                .sign(algorithm);
-    &#125;
+        <span class="token comment">// 附带openid信息</span>
+        <span class="token keyword">return</span> <span class="token constant">JWT</span><span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">withClaim</span><span class="token punctuation">(</span><span class="token string">"openid"</span><span class="token punctuation">,</span> openid<span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">withClaim</span><span class="token punctuation">(</span><span class="token string">"access_level"</span><span class="token punctuation">,</span> access_level<span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">withExpiresAt</span><span class="token punctuation">(</span>date<span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">sign</span><span class="token punctuation">(</span>algorithm<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
 
-    &#x2F;**
+    <span class="token comment">/**
      * 校验token是否正确
      *
      * @param token  密钥
      * @return 是否正确
-     *&#x2F;
-    public static boolean verify(String token, String openid, String access_level) &#123;
-        try &#123;
-            String secret &#x3D; redisUtils.get(openid);
-            Algorithm algorithm &#x3D; Algorithm.HMAC256(secret);
-            JWTVerifier verifier &#x3D; JWT.require(algorithm)
-                    .withClaim(&quot;openid&quot;, openid)
-                    .withClaim(&quot;access_level&quot;, access_level)
-                    .build();
-            DecodedJWT jwt &#x3D; verifier.verify(token);
-        &#125; catch (JWTVerificationException exception) &#123;
-            return false;
-        &#125;
-        return true;
-    &#125;
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">boolean</span> <span class="token function">verify</span><span class="token punctuation">(</span><span class="token class-name">String</span> token<span class="token punctuation">,</span> <span class="token class-name">String</span> openid<span class="token punctuation">,</span> <span class="token class-name">String</span> access_level<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+            <span class="token class-name">String</span> secret <span class="token operator">=</span> redisUtils<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>openid<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">Algorithm</span> algorithm <span class="token operator">=</span> <span class="token class-name">Algorithm</span><span class="token punctuation">.</span><span class="token function">HMAC256</span><span class="token punctuation">(</span>secret<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">JWTVerifier</span> verifier <span class="token operator">=</span> <span class="token constant">JWT</span><span class="token punctuation">.</span><span class="token function">require</span><span class="token punctuation">(</span>algorithm<span class="token punctuation">)</span>
+                    <span class="token punctuation">.</span><span class="token function">withClaim</span><span class="token punctuation">(</span><span class="token string">"openid"</span><span class="token punctuation">,</span> openid<span class="token punctuation">)</span>
+                    <span class="token punctuation">.</span><span class="token function">withClaim</span><span class="token punctuation">(</span><span class="token string">"access_level"</span><span class="token punctuation">,</span> access_level<span class="token punctuation">)</span>
+                    <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">DecodedJWT</span> jwt <span class="token operator">=</span> verifier<span class="token punctuation">.</span><span class="token function">verify</span><span class="token punctuation">(</span>token<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">JWTVerificationException</span> exception<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
 
-    &#x2F;**
+    <span class="token comment">/**
      * 获得token中的信息无需secret解密也能获得
      *
      * @return token中包含的openid
-     *&#x2F;
-    public static String getOpenid(String token) &#123;
-        DecodedJWT jwt &#x3D; JWT.decode(token);
-        return jwt.getClaim(&quot;openid&quot;).asString();
-    &#125;
-    public static String getAccessLevel(String token) &#123;
-        DecodedJWT jwt &#x3D; JWT.decode(token);
-        return jwt.getClaim(&quot;access_level&quot;).asString();
-    &#125;
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">String</span> <span class="token function">getOpenid</span><span class="token punctuation">(</span><span class="token class-name">String</span> token<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token class-name">DecodedJWT</span> jwt <span class="token operator">=</span> <span class="token constant">JWT</span><span class="token punctuation">.</span><span class="token function">decode</span><span class="token punctuation">(</span>token<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> jwt<span class="token punctuation">.</span><span class="token function">getClaim</span><span class="token punctuation">(</span><span class="token string">"openid"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">asString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">String</span> <span class="token function">getAccessLevel</span><span class="token punctuation">(</span><span class="token class-name">String</span> token<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token class-name">DecodedJWT</span> jwt <span class="token operator">=</span> <span class="token constant">JWT</span><span class="token punctuation">.</span><span class="token function">decode</span><span class="token punctuation">(</span>token<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> jwt<span class="token punctuation">.</span><span class="token function">getClaim</span><span class="token punctuation">(</span><span class="token string">"access_level"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">asString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
 
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>这里我使用的是 <code>com.auth0.java-jwt</code>，换成 <code>io.jsonwebtoken.jjwt</code> 也不会有太大的区别，都是对 JWT 标准的实现，只是接口上不太相同。我在 JWT 的载荷中存放了用户的 open id 和权限级别，<br>
 这样在不查询数据库的情况下就可以判断用户是否有权操作部分敏感接口。签名部分的加密方式选择了默认的 SHA-256，换成其他的也可以。至于上面那一串非静态方法注入，<br>
 则是因为我在 Redis 的工具类中做成了非静态方法，这个 JWT 工具类又做成了静态方法，而把这个静态方法都换成非静态方法又遇到了一堆问题，于是我就直接把非静态方法注入这个类，再去用静态对象调用这个非静态方法。。。<br>
 下面贴一下 Redis 的工具类：</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">@Component
-public class RedisUtils &#123;
-    private final StringRedisTemplate redisTemplate;
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Component</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RedisUtils</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">StringRedisTemplate</span> redisTemplate<span class="token punctuation">;</span>
 
-    public RedisUtils(StringRedisTemplate redisTemplate) &#123;
-        this.redisTemplate &#x3D; redisTemplate;
-    &#125;
+    <span class="token keyword">public</span> <span class="token class-name">RedisUtils</span><span class="token punctuation">(</span><span class="token class-name">StringRedisTemplate</span> redisTemplate<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>redisTemplate <span class="token operator">=</span> redisTemplate<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
 
-    public static RedisUtils redisUtils;
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">RedisUtils</span> redisUtils<span class="token punctuation">;</span>
 
-    &#x2F;**
+    <span class="token comment">/**
      * 实现命令：DEL key，删除一个key
      *
      * @param key
-     *&#x2F;
-    public void del(String key) &#123;
-        redisTemplate.delete(key);
-    &#125;
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">del</span><span class="token punctuation">(</span><span class="token class-name">String</span> key<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        redisTemplate<span class="token punctuation">.</span><span class="token function">delete</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
 
-    &#x2F;**
+    <span class="token comment">/**
      * 实现命令：HAS key，返回bool
      *
      * @param key
-     *&#x2F;
-    public boolean hasKey(String key) &#123;
-        return redisTemplate.hasKey(key);
-    &#125;
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">hasKey</span><span class="token punctuation">(</span><span class="token class-name">String</span> key<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> redisTemplate<span class="token punctuation">.</span><span class="token function">hasKey</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
 
-    &#x2F;**
+    <span class="token comment">/**
      * 实现命令：SET key value EX seconds，设置key-value和超时时间（秒）
      *
      * @param key
      * @param value
      * @param timeout
      *            （以ms为单位）
-     *&#x2F;
-    public void set(String key, String value, long timeout) &#123;
-        redisTemplate.opsForValue().set(key, value, timeout, TimeUnit.MILLISECONDS);
-    &#125;
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">set</span><span class="token punctuation">(</span><span class="token class-name">String</span> key<span class="token punctuation">,</span> <span class="token class-name">String</span> value<span class="token punctuation">,</span> <span class="token keyword">long</span> timeout<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        redisTemplate<span class="token punctuation">.</span><span class="token function">opsForValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">,</span> timeout<span class="token punctuation">,</span> <span class="token class-name">TimeUnit</span><span class="token punctuation">.</span><span class="token constant">MILLISECONDS</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
 
-    &#x2F;**
+    <span class="token comment">/**
      * 实现命令：GET key，返回 key所关联的字符串值。
      *
      * @param key
      * @return value
-     *&#x2F;
-    public String get(String key) &#123;
-        return redisTemplate.opsForValue().get(key);
-    &#125;
-&#125;
+     */</span>
+    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">get</span><span class="token punctuation">(</span><span class="token class-name">String</span> key<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> redisTemplate<span class="token punctuation">.</span><span class="token function">opsForValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>本身写的时候还有很多其他方法，这里就只展示用到的了。总的来说比较简单，Redis 也是属于 non-SQL 数据库，只有键值对，操作很方便。需要注意的是 <code>redisTemplate</code> 设置过期时间时，默认是以秒为单位，有需要的话就在后面加上 <code>TimeUnit</code>。</p>
 <h3 id="鉴权系统的设计">鉴权系统的设计</h3>
 <p>显然鉴权处理不应该在每个 Controller 里分别判断，而应该作为一个全局方法，在请求到达 Controller 之前就处理完成。Spring Boot 自带 <code>HandlerInterceptor</code> 接口，因此我们只需要将其实现。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">public class LoginInterceptor implements HandlerInterceptor &#123;
-    @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception &#123;
-        String token &#x3D; request.getHeader(&quot;X-token&quot;);
-        if (&quot;&quot;.equals(token) || token &#x3D;&#x3D; null || !JWTUtil.verify(token, JWTUtil.getOpenid(token), JWTUtil.getAccessLevel(token)))  &#123;
-            returnJson(response, GlobalJSONResult.errorTokenMsg(&quot;登录信息无效，请重新登录！&quot;));
-            return false;
-        &#125;
-        return true;
-    &#125;
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LoginInterceptor</span> <span class="token keyword">implements</span> <span class="token class-name">HandlerInterceptor</span> <span class="token punctuation">&#123;</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">preHandle</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> request<span class="token punctuation">,</span> <span class="token class-name">HttpServletResponse</span> response<span class="token punctuation">,</span> <span class="token class-name">Object</span> handler<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">&#123;</span>
+        <span class="token class-name">String</span> token <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">getHeader</span><span class="token punctuation">(</span><span class="token string">"X-token"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>token<span class="token punctuation">)</span> <span class="token operator">||</span> token <span class="token operator">==</span> <span class="token keyword">null</span> <span class="token operator">||</span> <span class="token operator">!</span><span class="token class-name">JWTUtil</span><span class="token punctuation">.</span><span class="token function">verify</span><span class="token punctuation">(</span>token<span class="token punctuation">,</span> <span class="token class-name">JWTUtil</span><span class="token punctuation">.</span><span class="token function">getOpenid</span><span class="token punctuation">(</span>token<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token class-name">JWTUtil</span><span class="token punctuation">.</span><span class="token function">getAccessLevel</span><span class="token punctuation">(</span>token<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token punctuation">&#123;</span>
+            <span class="token function">returnJson</span><span class="token punctuation">(</span>response<span class="token punctuation">,</span> <span class="token class-name">GlobalJSONResult</span><span class="token punctuation">.</span><span class="token function">errorTokenMsg</span><span class="token punctuation">(</span><span class="token string">"登录信息无效，请重新登录！"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
 
 
-    private void returnJson(HttpServletResponse response, Object json) throws Exception&#123;
-        ObjectMapper mapper &#x3D; new ObjectMapper();
-        String strJson &#x3D; mapper.writeValueAsString(json);
-        PrintWriter writer &#x3D; null;
-        response.setCharacterEncoding(&quot;UTF-8&quot;);
-        response.setContentType(&quot;application&#x2F;json; charset&#x3D;utf-8&quot;);
-        try &#123;
-            writer &#x3D; response.getWriter();
-            writer.write(strJson);
+    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">returnJson</span><span class="token punctuation">(</span><span class="token class-name">HttpServletResponse</span> response<span class="token punctuation">,</span> <span class="token class-name">Object</span> json<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span><span class="token punctuation">&#123;</span>
+        <span class="token class-name">ObjectMapper</span> mapper <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ObjectMapper</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">String</span> strJson <span class="token operator">=</span> mapper<span class="token punctuation">.</span><span class="token function">writeValueAsString</span><span class="token punctuation">(</span>json<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">PrintWriter</span> writer <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+        response<span class="token punctuation">.</span><span class="token function">setCharacterEncoding</span><span class="token punctuation">(</span><span class="token string">"UTF-8"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        response<span class="token punctuation">.</span><span class="token function">setContentType</span><span class="token punctuation">(</span><span class="token string">"application/json; charset=utf-8"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+            writer <span class="token operator">=</span> response<span class="token punctuation">.</span><span class="token function">getWriter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            writer<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>strJson<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        &#125; catch (IOException e) &#123;
-        &#125; finally &#123;
-            if (writer !&#x3D; null)
-                writer.close();
-        &#125;
-    &#125;
+        <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token punctuation">&#125;</span> <span class="token keyword">finally</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>writer <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span>
+                writer<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
 
-    @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception &#123;
-    &#125;
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">postHandle</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> request<span class="token punctuation">,</span> <span class="token class-name">HttpServletResponse</span> response<span class="token punctuation">,</span> <span class="token class-name">Object</span> handler<span class="token punctuation">,</span> <span class="token class-name">ModelAndView</span> modelAndView<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">&#123;</span>
+    <span class="token punctuation">&#125;</span>
 
-    @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception &#123;
-    &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">afterCompletion</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> request<span class="token punctuation">,</span> <span class="token class-name">HttpServletResponse</span> response<span class="token punctuation">,</span> <span class="token class-name">Object</span> handler<span class="token punctuation">,</span> <span class="token class-name">Exception</span> ex<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">&#123;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>由于我按照 Restful API 的思路来构建的后端，因此登录处理失败时的返回也应该为 JSON。然而正常情况下在这里只能返回文字流。于是我在这里做了一个 <code>returnJson</code> 的方法，将我需要返回的 JSON 转为 String，<br>
 再在返回的 Header 上加上 ContentType，使得客户端浏览器将其转为 JSON。鉴权则很简单，客户端发起请求时把 Token 放在请求头里，这里从 <code>HttpServletRequest</code> 中获得请求头中的字段进行认证即可。<br>
 现在完成了登录的鉴权处理，但是后端接收的请求并不会自己跑过来，需要配置一个全局拦截器。Spring Boot 有着 <code>WebMvcConfigurer</code> 的接口，将其实现即可完成我们的想法。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">@Configuration
-@EnableWebMvc
-public class CustomWebConfigurer implements WebMvcConfigurer &#123;
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) &#123;
-        registry.addInterceptor(new LoginInterceptor()).addPathPatterns(&quot;&#x2F;**&quot;).excludePathPatterns(&quot;&#x2F;login&#x2F;**&quot;);
-    &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Configuration</span>
+<span class="token annotation punctuation">@EnableWebMvc</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">CustomWebConfigurer</span> <span class="token keyword">implements</span> <span class="token class-name">WebMvcConfigurer</span> <span class="token punctuation">&#123;</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">addInterceptors</span><span class="token punctuation">(</span><span class="token class-name">InterceptorRegistry</span> registry<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        registry<span class="token punctuation">.</span><span class="token function">addInterceptor</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">LoginInterceptor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addPathPatterns</span><span class="token punctuation">(</span><span class="token string">"/**"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">excludePathPatterns</span><span class="token punctuation">(</span><span class="token string">"/login/**"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>把它注册为一个配置类，在其中注册刚才的登录拦截器，添加 <code>/**</code> 路径，把所有请求都转到拦截器中，当然，登录之类的接口不能走拦截器，因此还要添加例外。</p>
 <p>这样，一个基本的未登录用户的拦截功能就做完了。由于我的项目中权限只有两级，敏感权限也没几个，所以只是另外写了个工具类判断是否有高级权限，并没有做进拦截器里。</p>
 
@@ -1424,6 +1424,6 @@ It will not impact the appearance and can give developers a lot of support :)
                 preloadRatio: 1,
                 processImages: null,
             };
-        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(a){a.imageLazyLoadSetting.processImages=t;var i=a.imageLazyLoadSetting.isSPA,o=a.imageLazyLoadSetting.preloadRatio||1,r=c();function c(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function d(t,e){if(t.hasAttribute("bg-lazy"))return t.removeAttribute("bg-lazy"),void(e&&e());var n=new Image,a=t.getAttribute("data-original");n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a)}function t(){i&&(r=c());for(var t=0;t<r.length;t++)e=r[t],void 0,0<=(n=e.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(a.innerHeight*o||document.documentElement.clientHeight*o)&&function(){var e=r[t];d(e,function(){r=r.filter(function(t){return e!==t}),a.imageLazyLoadSetting.onImageLoaded&&a.imageLazyLoadSetting.onImageLoaded(e)})}();var e,n}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),a.addEventListener("resize",e),a.addEventListener("orientationchange",e)}(this);</script></body>
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body>
     
 </html>

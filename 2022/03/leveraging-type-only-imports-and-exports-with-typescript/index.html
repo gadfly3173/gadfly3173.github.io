@@ -89,7 +89,7 @@
 <link rel="stylesheet" href="/css/style-dark.css">
 
         <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.css?J3ekFjv+5KKiAFYA59/qdQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.css?R3Z5fr3H3ruXMBBBz5yTqQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.css?uf5nPaly0bIzU5+shc+Kuw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
         
 
@@ -287,7 +287,7 @@
 
     
         <meta property="article:published_time" content="Thu Mar 03 2022 09:37:40 GMT+0800">
-        <meta property="article:modified_time" content="Sun Feb 19 2023 02:08:50 GMT+0800">
+        <meta property="article:modified_time" content="Sun Feb 19 2023 04:35:55 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -310,7 +310,7 @@
     "mainEntityOfPage": "https://blog.gadfly.vip/2022/03/leveraging-type-only-imports-and-exports-with-typescript/index.html",
     "headline": "使用 TypeScript 的仅类型导入和导出",
     "datePublished": "Thu Mar 03 2022 09:37:40 GMT+0800",
-    "dateModified": "Sun Feb 19 2023 02:08:50 GMT+0800",
+    "dateModified": "Sun Feb 19 2023 04:35:55 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "猪蹄宝宝",
@@ -447,7 +447,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>猪蹄宝宝</strong>
-        <span>3月 03, 2022</span>
+        <span>2022-03-03</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -552,47 +552,47 @@
         <p>解决类型被作为值导入导出引发的警告</p>
 <span id="more"></span>
 <p>如果在 ts 文件中导出一个类型（type），那么在另一个 ts 文件中导入时，webpack 会报如下警告：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">WARNING Compiled with 1 warning
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">WARNING Compiled with <span class="token number">1</span> warning
 
-warning in .&#x2F;src&#x2F;component&#x2F;vue-tabs-chrome&#x2F;index.ts
+warning <span class="token keyword">in</span> ./src/component/vue-tabs-chrome/index.ts
 
-export &#39;Tab&#39; (reexported as &#39;Tab&#39;) was not found in &#39;.&#x2F;vue-tabs-chrome.vue&#39; (possible exports: default)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token builtin class-name">export</span> <span class="token string">'Tab'</span> <span class="token punctuation">(</span>reexported as <span class="token string">'Tab'</span><span class="token punctuation">)</span> was not found <span class="token keyword">in</span> <span class="token string">'./vue-tabs-chrome.vue'</span> <span class="token punctuation">(</span>possible exports: default<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>为了解决这样的问题，TypeScript 提供了一个特性，叫做类型导入（type import），它可以让你在一个文件中导出一个类型，并且可以在另一个文件中导入这个类型。</p>
-<pre class="line-numbers language-typescript" data-language="typescript"><code class="language-typescript">&#x2F;&#x2F; type
-export interface Tab &#123;
-  &#x2F;** 显示名称 *&#x2F;
-  label: string
-  &#x2F;** 唯一 key *&#x2F;
-  key: string
-  favico?: string
-  &#x2F;**
+<pre class="line-numbers language-typescript" data-language="typescript"><code class="language-typescript"><span class="token comment">// type</span>
+<span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">Tab</span> <span class="token punctuation">&#123;</span>
+  <span class="token comment">/** 显示名称 */</span>
+  label<span class="token operator">:</span> <span class="token builtin">string</span>
+  <span class="token comment">/** 唯一 key */</span>
+  key<span class="token operator">:</span> <span class="token builtin">string</span>
+  favico<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">string</span>
+  <span class="token comment">/**
    * 是否可关闭
-   *&#x2F;
-  closable?: boolean
-  &#x2F;**
+   */</span>
+  closable<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">boolean</span>
+  <span class="token comment">/**
    * 是否可被交换
-   *&#x2F;
-  swappable?: boolean
-  &#x2F;**
+   */</span>
+  swappable<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">boolean</span>
+  <span class="token comment">/**
    * 是否可拖拽
-   *&#x2F;
-  dragable?: boolean
-  $el?: HTMLElement
-  &#x2F;&#x2F; eslint-disable-next-line
-  _instance?: any
-  _x?: number
-&#125;
+   */</span>
+  dragable<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">boolean</span>
+  $el<span class="token operator">?</span><span class="token operator">:</span> HTMLElement
+  <span class="token comment">// eslint-disable-next-line</span>
+  _instance<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">any</span>
+  _x<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">number</span>
+<span class="token punctuation">&#125;</span>
 
-&#x2F;&#x2F; origin
-import VueTabsChrome, &#123; Tab &#125; from &#39;.&#x2F;vue-tabs-chrome.vue&#39;
+<span class="token comment">// origin</span>
+<span class="token keyword">import</span> VueTabsChrome<span class="token punctuation">,</span> <span class="token punctuation">&#123;</span> Tab <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'./vue-tabs-chrome.vue'</span>
 
-export &#123; VueTabsChrome, Tab &#125;
+<span class="token keyword">export</span> <span class="token punctuation">&#123;</span> VueTabsChrome<span class="token punctuation">,</span> Tab <span class="token punctuation">&#125;</span>
 
-&#x2F;&#x2F; changed
-import VueTabsChrome from &#39;.&#x2F;vue-tabs-chrome.vue&#39;
-import type &#123; Tab &#125; from &#39;.&#x2F;vue-tabs-chrome.vue&#39;
+<span class="token comment">// changed</span>
+<span class="token keyword">import</span> VueTabsChrome <span class="token keyword">from</span> <span class="token string">'./vue-tabs-chrome.vue'</span>
+<span class="token keyword">import</span> <span class="token keyword">type</span> <span class="token punctuation">&#123;</span> Tab <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'./vue-tabs-chrome.vue'</span>
 
-export &#123; VueTabsChrome, Tab &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">export</span> <span class="token punctuation">&#123;</span> VueTabsChrome<span class="token punctuation">,</span> Tab <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>references: <a target="_blank" rel="noopener" href="https://javascript.plainenglish.io/leveraging-type-only-imports-and-exports-with-typescript-3-8-5c1be8bd17fb">Leveraging Type-Only imports and exports with TypeScript 3.8</a></p>
 
         
@@ -1259,6 +1259,6 @@ It will not impact the appearance and can give developers a lot of support :)
                 preloadRatio: 1,
                 processImages: null,
             };
-        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(a){a.imageLazyLoadSetting.processImages=t;var i=a.imageLazyLoadSetting.isSPA,o=a.imageLazyLoadSetting.preloadRatio||1,r=c();function c(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function d(t,e){if(t.hasAttribute("bg-lazy"))return t.removeAttribute("bg-lazy"),void(e&&e());var n=new Image,a=t.getAttribute("data-original");n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a)}function t(){i&&(r=c());for(var t=0;t<r.length;t++)e=r[t],void 0,0<=(n=e.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(a.innerHeight*o||document.documentElement.clientHeight*o)&&function(){var e=r[t];d(e,function(){r=r.filter(function(t){return e!==t}),a.imageLazyLoadSetting.onImageLoaded&&a.imageLazyLoadSetting.onImageLoaded(e)})}();var e,n}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),a.addEventListener("resize",e),a.addEventListener("orientationchange",e)}(this);</script></body>
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body>
     
 </html>

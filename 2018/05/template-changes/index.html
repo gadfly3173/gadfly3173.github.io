@@ -89,7 +89,7 @@
 <link rel="stylesheet" href="/css/style-dark.css">
 
         <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.css?J3ekFjv+5KKiAFYA59/qdQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.css?R3Z5fr3H3ruXMBBBz5yTqQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.css?uf5nPaly0bIzU5+shc+Kuw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
         
 
@@ -287,7 +287,7 @@
 
     
         <meta property="article:published_time" content="Fri May 18 2018 00:04:46 GMT+0800">
-        <meta property="article:modified_time" content="Sun Feb 19 2023 02:08:50 GMT+0800">
+        <meta property="article:modified_time" content="Sun Feb 19 2023 04:35:55 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -310,7 +310,7 @@
     "mainEntityOfPage": "https://blog.gadfly.vip/2018/05/template-changes/index.html",
     "headline": "记录一下对模板和 hexo 做过的改动",
     "datePublished": "Fri May 18 2018 00:04:46 GMT+0800",
-    "dateModified": "Sun Feb 19 2023 02:08:50 GMT+0800",
+    "dateModified": "Sun Feb 19 2023 04:35:55 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "猪蹄宝宝",
@@ -456,7 +456,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>猪蹄宝宝</strong>
-        <span>5月 18, 2018</span>
+        <span>2018-05-18</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -569,8 +569,8 @@
     
         <h3 id="背景">背景</h3>
 <p>在./themes/material/layout/layout.ejs 的<code>&lt;body&gt;</code>中加入</p>
-<pre class="line-numbers language-ejs" data-language="ejs"><code class="language-ejs">&lt;canvas id&#x3D;&quot;tinyball-canvas&quot; style&#x3D;&quot;position:fixed;z-index:-99;display:block;&quot;&gt;你这是什么垃圾浏览器，这都不能显示(╯‵□′)╯︵┻━┻&lt;&#x2F;canvas&gt;
-&lt;%- jsLsload(&#123;path:(&#39;js&#x2F;tiniballs.js&#39;),key:&#39;tiniballs_js&#39;&#125;) %&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-ejs" data-language="ejs"><code class="language-ejs"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>canvas</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>tinyball-canvas<span class="token punctuation">"</span></span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">position</span><span class="token punctuation">:</span>fixed<span class="token punctuation">;</span><span class="token property">z-index</span><span class="token punctuation">:</span>-99<span class="token punctuation">;</span><span class="token property">display</span><span class="token punctuation">:</span>block<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span>你这是什么垃圾浏览器，这都不能显示(╯‵□′)╯︵┻━┻<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>canvas</span><span class="token punctuation">></span></span>
+<span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%-</span><span class="token language-javascript"> <span class="token function">jsLsload</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token literal-property property">path</span><span class="token operator">:</span><span class="token punctuation">(</span><span class="token string">'js/tiniballs.js'</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token literal-property property">key</span><span class="token operator">:</span><span class="token string">'tiniballs_js'</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>tiniballs.js 存放于./themes/material/source/js/中，内容如下：</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> <span class="token constant">WIDTH</span> <span class="token operator">=</span> window<span class="token punctuation">.</span>innerWidth<span class="token punctuation">,</span> <span class="token constant">HEIGHT</span> <span class="token operator">=</span> window<span class="token punctuation">.</span>innerHeight<span class="token punctuation">,</span> <span class="token constant">POINT</span> <span class="token operator">=</span> <span class="token number">15</span><span class="token punctuation">;</span>
 
@@ -692,22 +692,22 @@ context<span class="token punctuation">.</span>strokeStyle <span class="token op
 <pre class="line-numbers language-markup" data-language="markup"><code class="language-markup">slogan: <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hitokoto<span class="token punctuation">"</span></span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">text-shadow</span><span class="token punctuation">:</span>2px 2px 4px <span class="token function">rgb</span><span class="token punctuation">(</span>51<span class="token punctuation">,</span>51<span class="token punctuation">,</span>51<span class="token punctuation">)</span><span class="token punctuation">;</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span>一言·Hitokoto<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">async</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text/javascript<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://v1.hitokoto.cn/?encode=js&amp;select=%23hitokoto<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h3 id="首图-每日一图">首图/每日一图</h3>
 <p>在主题的<code>_config.yml</code>中</p>
-<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"># Jump Links Settings
-url:
-    rss: &#x2F;atom.xml
-    daily_pic: https:&#x2F;&#x2F;www.bing.com&#x2F;gallery&#x2F;
-    logo:<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># Jump Links Settings</span>
+<span class="token key atrule">url</span><span class="token punctuation">:</span>
+    <span class="token key atrule">rss</span><span class="token punctuation">:</span> /atom.xml
+    <span class="token key atrule">daily_pic</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//www.bing.com/gallery/
+    logo<span class="token punctuation">:</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="发布">发布</h3>
 <p>为了可以通过<code>hexo d -g</code>命令直接发布到我的 Github，需要将<code>./_config.yml</code>中的<code># Deployment</code>部分修改为</p>
-<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">deploy:
-  type: git
-  repo:
-    github: git@github.com:gadfly3173&#x2F;gadfly3173.github.io.git
-  branch: master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">deploy</span><span class="token punctuation">:</span>
+  <span class="token key atrule">type</span><span class="token punctuation">:</span> git
+  <span class="token key atrule">repo</span><span class="token punctuation">:</span>
+    <span class="token key atrule">github</span><span class="token punctuation">:</span> git@github.com<span class="token punctuation">:</span>gadfly3173/gadfly3173.github.io.git
+  <span class="token key atrule">branch</span><span class="token punctuation">:</span> master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="代码高亮">代码高亮</h3>
 <p>为了使用 PrismJs，需要先下载对应的 CSS，然后在<code>./themes/material/layout/_partial/head.ejs</code>中添加</p>
-<pre class="line-numbers language-ejs" data-language="ejs"><code class="language-ejs">&lt;!-- PrismJS --&gt;
-&lt;%- cssLsload(&#39;css&#x2F;prism.tomorrow-night.full.min.css&#39;) %&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-ejs" data-language="ejs"><code class="language-ejs"><span class="token comment">&lt;!-- PrismJS --></span>
+<span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%-</span><span class="token language-javascript"> <span class="token function">cssLsload</span><span class="token punctuation">(</span><span class="token string">'css/prism.tomorrow-night.full.min.css'</span><span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>并删除主题的<code>pre</code>标签的 css</p>
 
         
@@ -1374,6 +1374,6 @@ It will not impact the appearance and can give developers a lot of support :)
                 preloadRatio: 1,
                 processImages: null,
             };
-        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(a){a.imageLazyLoadSetting.processImages=t;var i=a.imageLazyLoadSetting.isSPA,o=a.imageLazyLoadSetting.preloadRatio||1,r=c();function c(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function d(t,e){if(t.hasAttribute("bg-lazy"))return t.removeAttribute("bg-lazy"),void(e&&e());var n=new Image,a=t.getAttribute("data-original");n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a)}function t(){i&&(r=c());for(var t=0;t<r.length;t++)e=r[t],void 0,0<=(n=e.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(a.innerHeight*o||document.documentElement.clientHeight*o)&&function(){var e=r[t];d(e,function(){r=r.filter(function(t){return e!==t}),a.imageLazyLoadSetting.onImageLoaded&&a.imageLazyLoadSetting.onImageLoaded(e)})}();var e,n}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),a.addEventListener("resize",e),a.addEventListener("orientationchange",e)}(this);</script></body>
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body>
     
 </html>

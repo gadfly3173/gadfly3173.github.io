@@ -89,7 +89,7 @@
 <link rel="stylesheet" href="/css/style-dark.css">
 
         <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.css?J3ekFjv+5KKiAFYA59/qdQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.css?R3Z5fr3H3ruXMBBBz5yTqQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.css?uf5nPaly0bIzU5+shc+Kuw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
         
 
@@ -287,7 +287,7 @@
 
     
         <meta property="article:published_time" content="Fri Feb 26 2021 17:21:15 GMT+0800">
-        <meta property="article:modified_time" content="Sun Feb 19 2023 02:08:50 GMT+0800">
+        <meta property="article:modified_time" content="Sun Feb 19 2023 04:35:55 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -310,7 +310,7 @@
     "mainEntityOfPage": "https://blog.gadfly.vip/2021/02/axios-download-file/index.html",
     "headline": "Axios 同一实例配置下载文件与 JSON 处理",
     "datePublished": "Fri Feb 26 2021 17:21:15 GMT+0800",
-    "dateModified": "Sun Feb 19 2023 02:08:50 GMT+0800",
+    "dateModified": "Sun Feb 19 2023 04:35:55 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "猪蹄宝宝",
@@ -447,7 +447,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>猪蹄宝宝</strong>
-        <span>2月 26, 2021</span>
+        <span>2021-02-26</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -568,10 +568,10 @@
 <span class="token keyword">import</span> Config <span class="token keyword">from</span> <span class="token string">'@/config'</span>
 
 <span class="token keyword">const</span> config <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
-  baseURL<span class="token operator">:</span> Config<span class="token punctuation">.</span>baseURL <span class="token operator">||</span> process<span class="token punctuation">.</span>env<span class="token punctuation">.</span>apiUrl <span class="token operator">||</span> <span class="token string">''</span><span class="token punctuation">,</span>
-  timeout<span class="token operator">:</span> <span class="token number">5</span> <span class="token operator">*</span> <span class="token number">1000</span><span class="token punctuation">,</span> <span class="token comment">// 请求超时时间设置</span>
-  crossDomain<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-  withCredentials<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token comment">// Check cross-site Access-Control</span>
+  <span class="token literal-property property">baseURL</span><span class="token operator">:</span> Config<span class="token punctuation">.</span>baseURL <span class="token operator">||</span> process<span class="token punctuation">.</span>env<span class="token punctuation">.</span>apiUrl <span class="token operator">||</span> <span class="token string">''</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">timeout</span><span class="token operator">:</span> <span class="token number">5</span> <span class="token operator">*</span> <span class="token number">1000</span><span class="token punctuation">,</span> <span class="token comment">// 请求超时时间设置</span>
+  <span class="token literal-property property">crossDomain</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">withCredentials</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token comment">// Check cross-site Access-Control</span>
   <span class="token comment">// 定义可获得的http响应状态码</span>
   <span class="token comment">// return true、设置为null或者undefined，promise将resolved,否则将rejected</span>
   <span class="token function">validateStatus</span><span class="token punctuation">(</span><span class="token parameter">status</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
@@ -591,8 +591,8 @@ _axios<span class="token punctuation">.</span>interceptors<span class="token pun
       <span class="token comment">/* eslint-disable-next-line */</span>
       console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">'request need url'</span><span class="token punctuation">)</span>
       <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-        source<span class="token operator">:</span> <span class="token string">'axiosInterceptors'</span><span class="token punctuation">,</span>
-        message<span class="token operator">:</span> <span class="token string">'request need url'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">source</span><span class="token operator">:</span> <span class="token string">'axiosInterceptors'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">message</span><span class="token operator">:</span> <span class="token string">'request need url'</span><span class="token punctuation">,</span>
       <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
     <span class="token punctuation">&#125;</span>
 
@@ -673,7 +673,7 @@ _axios<span class="token punctuation">.</span>interceptors<span class="token pun
 
       <span class="token class-name">Vue</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function">$message</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
         message<span class="token punctuation">,</span>
-        type<span class="token operator">:</span> <span class="token string">'error'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'error'</span><span class="token punctuation">,</span>
       <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
       <span class="token function">reject</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
     <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
@@ -681,9 +681,9 @@ _axios<span class="token punctuation">.</span>interceptors<span class="token pun
   <span class="token parameter">error</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>error<span class="token punctuation">.</span>response<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
       <span class="token class-name">Vue</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function">$notify</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-        title<span class="token operator">:</span> <span class="token string">'Network Error'</span><span class="token punctuation">,</span>
-        dangerouslyUseHTMLString<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-        message<span class="token operator">:</span> <span class="token string">'&lt;strong class="my-notify">请检查 API 是否异常&lt;/strong>'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">title</span><span class="token operator">:</span> <span class="token string">'Network Error'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">dangerouslyUseHTMLString</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">message</span><span class="token operator">:</span> <span class="token string">'&lt;strong class="my-notify">请检查 API 是否异常&lt;/strong>'</span><span class="token punctuation">,</span>
       <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
       console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'error'</span><span class="token punctuation">,</span> error<span class="token punctuation">)</span>
     <span class="token punctuation">&#125;</span>
@@ -691,8 +691,8 @@ _axios<span class="token punctuation">.</span>interceptors<span class="token pun
     <span class="token comment">// 判断请求超时</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span>error<span class="token punctuation">.</span>code <span class="token operator">===</span> <span class="token string">'ECONNABORTED'</span> <span class="token operator">&amp;&amp;</span> error<span class="token punctuation">.</span>message<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">'timeout'</span><span class="token punctuation">)</span> <span class="token operator">!==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
       <span class="token class-name">Vue</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function">$message</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-        type<span class="token operator">:</span> <span class="token string">'warning'</span><span class="token punctuation">,</span>
-        message<span class="token operator">:</span> <span class="token string">'请求超时'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'warning'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">message</span><span class="token operator">:</span> <span class="token string">'请求超时'</span><span class="token punctuation">,</span>
       <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
     <span class="token punctuation">&#125;</span>
     <span class="token keyword">return</span> Promise<span class="token punctuation">.</span><span class="token function">reject</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span>
@@ -705,12 +705,12 @@ Plugin<span class="token punctuation">.</span><span class="token function-variab
   Vue<span class="token punctuation">.</span>axios <span class="token operator">=</span> _axios
   window<span class="token punctuation">.</span>axios <span class="token operator">=</span> _axios
   Object<span class="token punctuation">.</span><span class="token function">defineProperties</span><span class="token punctuation">(</span><span class="token class-name">Vue</span><span class="token punctuation">.</span>prototype<span class="token punctuation">,</span> <span class="token punctuation">&#123;</span>
-    axios<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">axios</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
       <span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         <span class="token keyword">return</span> _axios
       <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
     <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-    $axios<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">$axios</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
       <span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         <span class="token keyword">return</span> _axios
       <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
@@ -731,7 +731,7 @@ Plugin<span class="token punctuation">.</span><span class="token function-variab
  */</span>
 <span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">post</span><span class="token punctuation">(</span><span class="token parameter">url<span class="token punctuation">,</span> data <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span> params <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span></span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
   <span class="token keyword">return</span> <span class="token function">_axios</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-    method<span class="token operator">:</span> <span class="token string">'post'</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">method</span><span class="token operator">:</span> <span class="token string">'post'</span><span class="token punctuation">,</span>
     url<span class="token punctuation">,</span>
     data<span class="token punctuation">,</span>
     params<span class="token punctuation">,</span>
@@ -744,7 +744,7 @@ Plugin<span class="token punctuation">.</span><span class="token function-variab
  */</span>
 <span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">get</span><span class="token punctuation">(</span><span class="token parameter">url<span class="token punctuation">,</span> params <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span></span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
   <span class="token keyword">return</span> <span class="token function">_axios</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-    method<span class="token operator">:</span> <span class="token string">'get'</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">method</span><span class="token operator">:</span> <span class="token string">'get'</span><span class="token punctuation">,</span>
     url<span class="token punctuation">,</span>
     params<span class="token punctuation">,</span>
   <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
@@ -757,12 +757,12 @@ Plugin<span class="token punctuation">.</span><span class="token function-variab
  */</span>
 <span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">download</span><span class="token punctuation">(</span><span class="token parameter">url<span class="token punctuation">,</span> params <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span></span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
   <span class="token keyword">return</span> <span class="token function">_axios</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-    method<span class="token operator">:</span> <span class="token string">'get'</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">method</span><span class="token operator">:</span> <span class="token string">'get'</span><span class="token punctuation">,</span>
     url<span class="token punctuation">,</span>
     params<span class="token punctuation">,</span>
     <span class="token comment">// 指定无超时、接收对象为arraybuffer</span>
-    timeout<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
-    responseType<span class="token operator">:</span> <span class="token string">'arraybuffer'</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">timeout</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">responseType</span><span class="token operator">:</span> <span class="token string">'arraybuffer'</span><span class="token punctuation">,</span>
   <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
 <span class="token punctuation">&#125;</span>
 
@@ -773,7 +773,7 @@ Plugin<span class="token punctuation">.</span><span class="token function-variab
  */</span>
 <span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">put</span><span class="token punctuation">(</span><span class="token parameter">url<span class="token punctuation">,</span> data <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span> params <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span></span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
   <span class="token keyword">return</span> <span class="token function">_axios</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-    method<span class="token operator">:</span> <span class="token string">'put'</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">method</span><span class="token operator">:</span> <span class="token string">'put'</span><span class="token punctuation">,</span>
     url<span class="token punctuation">,</span>
     params<span class="token punctuation">,</span>
     data<span class="token punctuation">,</span>
@@ -786,7 +786,7 @@ Plugin<span class="token punctuation">.</span><span class="token function-variab
  */</span>
 <span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">_delete</span><span class="token punctuation">(</span><span class="token parameter">url<span class="token punctuation">,</span> params <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span></span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
   <span class="token keyword">return</span> <span class="token function">_axios</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-    method<span class="token operator">:</span> <span class="token string">'delete'</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">method</span><span class="token operator">:</span> <span class="token string">'delete'</span><span class="token punctuation">,</span>
     url<span class="token punctuation">,</span>
     params<span class="token punctuation">,</span>
   <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
@@ -1459,6 +1459,6 @@ It will not impact the appearance and can give developers a lot of support :)
                 preloadRatio: 1,
                 processImages: null,
             };
-        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(a){a.imageLazyLoadSetting.processImages=t;var i=a.imageLazyLoadSetting.isSPA,o=a.imageLazyLoadSetting.preloadRatio||1,r=c();function c(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function d(t,e){if(t.hasAttribute("bg-lazy"))return t.removeAttribute("bg-lazy"),void(e&&e());var n=new Image,a=t.getAttribute("data-original");n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a)}function t(){i&&(r=c());for(var t=0;t<r.length;t++)e=r[t],void 0,0<=(n=e.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(a.innerHeight*o||document.documentElement.clientHeight*o)&&function(){var e=r[t];d(e,function(){r=r.filter(function(t){return e!==t}),a.imageLazyLoadSetting.onImageLoaded&&a.imageLazyLoadSetting.onImageLoaded(e)})}();var e,n}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),a.addEventListener("resize",e),a.addEventListener("orientationchange",e)}(this);</script></body>
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body>
     
 </html>

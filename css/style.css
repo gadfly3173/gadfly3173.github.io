@@ -431,8 +431,6 @@ a {
 
 #post-content code,
 #post-content tt {
-  margin: 0 2px;
-  padding: 0px 5px;
   background-color: rgba(0, 0, 0, 0.04);
   border-radius: 3px;
 }
@@ -574,9 +572,16 @@ a {
   padding-bottom: calc(120px + 5pc);
 }
 
+@media (min-width: 480px) and (max-width: 839px) {
+  #scheme-Paradox .material-layout .material-layout__content {
+    padding-bottom: calc(200px + 5pc);
+  }
+}
+
 @media screen and (max-width: 480px) {
   #scheme-Paradox .material-layout .material-layout__content {
     padding-top: 0;
+    padding-bottom: calc(200px + 5pc);
   }
 }
 

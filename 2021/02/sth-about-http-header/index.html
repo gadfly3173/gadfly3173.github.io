@@ -89,7 +89,7 @@
 <link rel="stylesheet" href="/css/style-dark.css">
 
         <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.css?J3ekFjv+5KKiAFYA59/qdQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.css?R3Z5fr3H3ruXMBBBz5yTqQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.css?uf5nPaly0bIzU5+shc+Kuw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
         
 
@@ -287,7 +287,7 @@
 
     
         <meta property="article:published_time" content="Sun Feb 21 2021 03:15:35 GMT+0800">
-        <meta property="article:modified_time" content="Sun Feb 19 2023 02:08:50 GMT+0800">
+        <meta property="article:modified_time" content="Sun Feb 19 2023 04:35:55 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -310,7 +310,7 @@
     "mainEntityOfPage": "https://blog.gadfly.vip/2021/02/sth-about-http-header/index.html",
     "headline": "关于 HTTP Header 的碎碎念",
     "datePublished": "Sun Feb 21 2021 03:15:35 GMT+0800",
-    "dateModified": "Sun Feb 19 2023 02:08:50 GMT+0800",
+    "dateModified": "Sun Feb 19 2023 04:35:55 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "猪蹄宝宝",
@@ -447,7 +447,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>猪蹄宝宝</strong>
-        <span>2月 21, 2021</span>
+        <span>2021-02-21</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -559,45 +559,45 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <p>关于 HTTP Header，网上找到的大部分教程，设置 header 都是非常简单粗暴的 new 一个<code>HttpHeaders()</code>，然后直接 add 的形式（甚至连 StackOverflow 上也有很多回答是这么做的），如：</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">public ResponseEntity&lt;FileSystemResource&gt; export(File file) &#123;
-    if (file &#x3D;&#x3D; null) &#123;
-        return null;
-    &#125;
-    HttpHeaders headers &#x3D; new HttpHeaders();
-    headers.add(&quot;Cache-Control&quot;, &quot;no-cache, no-store, must-revalidate&quot;);
-    headers.add(&quot;Content-Disposition&quot;, &quot;attachment; filename&#x3D;&quot; + System.currentTimeMillis() + &quot;.xls&quot;);
-    headers.add(&quot;Pragma&quot;, &quot;no-cache&quot;);
-    headers.add(&quot;Expires&quot;, &quot;0&quot;);
-    headers.add(&quot;Last-Modified&quot;, new Date().toString());
-    headers.add(&quot;ETag&quot;, String.valueOf(System.currentTimeMillis()));
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token class-name">ResponseEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">FileSystemResource</span><span class="token punctuation">></span></span> <span class="token function">export</span><span class="token punctuation">(</span><span class="token class-name">File</span> file<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>file <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token class-name">HttpHeaders</span> headers <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HttpHeaders</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    headers<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Cache-Control"</span><span class="token punctuation">,</span> <span class="token string">"no-cache, no-store, must-revalidate"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    headers<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Content-Disposition"</span><span class="token punctuation">,</span> <span class="token string">"attachment; filename="</span> <span class="token operator">+</span> <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">".xls"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    headers<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Pragma"</span><span class="token punctuation">,</span> <span class="token string">"no-cache"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    headers<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Expires"</span><span class="token punctuation">,</span> <span class="token string">"0"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    headers<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Last-Modified"</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    headers<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"ETag"</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span><span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    return ResponseEntity
-            .ok()
-            .headers(headers)
-            .contentLength(file.length())
-            .contentType(MediaType.parseMediaType(&quot;application&#x2F;octet-stream&quot;))
-            .body(new FileSystemResource(file));
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    <span class="token keyword">return</span> <span class="token class-name">ResponseEntity</span>
+            <span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">headers</span><span class="token punctuation">(</span>headers<span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">contentLength</span><span class="token punctuation">(</span>file<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">contentType</span><span class="token punctuation">(</span><span class="token class-name">MediaType</span><span class="token punctuation">.</span><span class="token function">parseMediaType</span><span class="token punctuation">(</span><span class="token string">"application/octet-stream"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">body</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">FileSystemResource</span><span class="token punctuation">(</span>file<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>但是这样代码里会有很多魔法值，而对于<code>Content-Disposition</code>这样的 header 中，filename 如果直接把中文填进去还会导致乱码，对它进行转码就又要多写几行。其实 Spring 本身对于 header 就提供了很多简单的设置方法，可以有效提高代码的可读性。</p>
 <p>将上面的代码用 Spring 中提供了方法改写的话，可以写成：</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">private ResponseEntity&lt;FileSystemResource&gt; export(File file) &#123;
-    if (file &#x3D;&#x3D; null) &#123;
-        return null;
-    &#125;
-    HttpHeaders headers &#x3D; new HttpHeaders();
-    headers.setCacheControl(CacheControl.noStore().mustRevalidate());
-    headers.setContentDisposition(ContentDisposition.attachment().filename(file.getName(), StandardCharsets.UTF_8).build());
-    headers.setPragma(&quot;no-cache&quot;);
-    headers.setExpires(0L);
-    headers.setLastModified(System.currentTimeMillis());
-    headers.setETag(String.valueOf(System.currentTimeMillis()));
-    return ResponseEntity
-            .ok()
-            .headers(headers)
-            .contentLength(file.length())
-            .contentType(MediaType.APPLICATION_OCTET_STREAM)
-            .body(new FileSystemResource(file));
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">private</span> <span class="token class-name">ResponseEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">FileSystemResource</span><span class="token punctuation">></span></span> <span class="token function">export</span><span class="token punctuation">(</span><span class="token class-name">File</span> file<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>file <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token class-name">HttpHeaders</span> headers <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HttpHeaders</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    headers<span class="token punctuation">.</span><span class="token function">setCacheControl</span><span class="token punctuation">(</span><span class="token class-name">CacheControl</span><span class="token punctuation">.</span><span class="token function">noStore</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">mustRevalidate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    headers<span class="token punctuation">.</span><span class="token function">setContentDisposition</span><span class="token punctuation">(</span><span class="token class-name">ContentDisposition</span><span class="token punctuation">.</span><span class="token function">attachment</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">filename</span><span class="token punctuation">(</span>file<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token class-name">StandardCharsets</span><span class="token punctuation">.</span><span class="token constant">UTF_8</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    headers<span class="token punctuation">.</span><span class="token function">setPragma</span><span class="token punctuation">(</span><span class="token string">"no-cache"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    headers<span class="token punctuation">.</span><span class="token function">setExpires</span><span class="token punctuation">(</span><span class="token number">0L</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    headers<span class="token punctuation">.</span><span class="token function">setLastModified</span><span class="token punctuation">(</span><span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    headers<span class="token punctuation">.</span><span class="token function">setETag</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span><span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token class-name">ResponseEntity</span>
+            <span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">headers</span><span class="token punctuation">(</span>headers<span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">contentLength</span><span class="token punctuation">(</span>file<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">contentType</span><span class="token punctuation">(</span><span class="token class-name">MediaType</span><span class="token punctuation">.</span><span class="token constant">APPLICATION_OCTET_STREAM</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">body</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">FileSystemResource</span><span class="token punctuation">(</span>file<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>这样编码的转换也不需要自己写了，也可以很简单设置 header，不会有打错字的困扰（雾</p>
 
         
@@ -1264,6 +1264,6 @@ It will not impact the appearance and can give developers a lot of support :)
                 preloadRatio: 1,
                 processImages: null,
             };
-        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(a){a.imageLazyLoadSetting.processImages=t;var i=a.imageLazyLoadSetting.isSPA,o=a.imageLazyLoadSetting.preloadRatio||1,r=c();function c(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function d(t,e){if(t.hasAttribute("bg-lazy"))return t.removeAttribute("bg-lazy"),void(e&&e());var n=new Image,a=t.getAttribute("data-original");n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a)}function t(){i&&(r=c());for(var t=0;t<r.length;t++)e=r[t],void 0,0<=(n=e.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(a.innerHeight*o||document.documentElement.clientHeight*o)&&function(){var e=r[t];d(e,function(){r=r.filter(function(t){return e!==t}),a.imageLazyLoadSetting.onImageLoaded&&a.imageLazyLoadSetting.onImageLoaded(e)})}();var e,n}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),a.addEventListener("resize",e),a.addEventListener("orientationchange",e)}(this);</script></body>
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body>
     
 </html>

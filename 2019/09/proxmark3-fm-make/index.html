@@ -89,7 +89,7 @@
 <link rel="stylesheet" href="/css/style-dark.css">
 
         <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.css?J3ekFjv+5KKiAFYA59/qdQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.css?R3Z5fr3H3ruXMBBBz5yTqQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.css?uf5nPaly0bIzU5+shc+Kuw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
         
 
@@ -287,7 +287,7 @@
 
     
         <meta property="article:published_time" content="Thu Sep 26 2019 22:04:26 GMT+0800">
-        <meta property="article:modified_time" content="Sun Feb 19 2023 02:08:50 GMT+0800">
+        <meta property="article:modified_time" content="Sun Feb 19 2023 04:35:55 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -310,7 +310,7 @@
     "mainEntityOfPage": "https://blog.gadfly.vip/2019/09/proxmark3-fm-make/index.html",
     "headline": "proxmark3 固件编译",
     "datePublished": "Thu Sep 26 2019 22:04:26 GMT+0800",
-    "dateModified": "Sun Feb 19 2023 02:08:50 GMT+0800",
+    "dateModified": "Sun Feb 19 2023 04:35:55 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "猪蹄宝宝",
@@ -456,7 +456,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>猪蹄宝宝</strong>
-        <span>9月 26, 2019</span>
+        <span>2019-09-26</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -580,40 +580,40 @@
 <img src="/images/227387.gif" data-original="/images/posts/2019/09/pm3.png" alt=""></p>
 <h3 id="编译固件">编译固件</h3>
 <p>双击打开<code>runme64.bat</code>（如果还是 32 位系统的话，则使用<code>runme.bat</code>），然后会开始自动配置环境，时间可能很长（视网速和本机性能而定），包括 MinGW、QT 之类的<s>什么奇奇怪怪的东西</s>，接着执行</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">make clean &amp;&amp; make all<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">make</span> clean <span class="token operator">&amp;&amp;</span> <span class="token function">make</span> all<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>等待固件自动编译完成即可。</p>
 <h3 id="刷入固件">刷入固件</h3>
 <p>在刚才编译完的窗口中执行</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">.&#x2F;client&#x2F;flasher comx -b .&#x2F;bootrom&#x2F;obj&#x2F;bootrom.elf
-.&#x2F;client&#x2F;flasher comx .&#x2F;armsrc&#x2F;obj&#x2F;fullimage.elf<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">./client/flasher comx <span class="token parameter variable">-b</span> ./bootrom/obj/bootrom.elf
+./client/flasher comx ./armsrc/obj/fullimage.elf<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>其中 comx 代表 Proxmark 的端口号，根据本机情况修改 x 即可。如果刷完第一个 ELF 以后机器无反应或者掉线的话，拔掉数据线，按住机身按钮，再插上，不要松手，几秒钟后电脑就会识别到机器，然后再刷入第二个固件即可。第一个固件是 pm3 的 bootloader，第二个是完整镜像，更新固件需要全部刷入，并且需要先更新 bootloader 以防出错。如果在刷入第一个固件时就出现了刷到一半端口号改变的情况，则需要使用脚本对其强制多次刷入，可以参考以下脚本（存为 bat）自行修改制作。若脚本执行过程中依然执行不下去，则重新连接后再次启动即可。</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">@echo off
 color 0a
-MODE CON COLS&#x3D;80 LINES&#x3D;36
+MODE CON <span class="token assign-left variable">COLS</span><span class="token operator">=</span><span class="token number">80</span> <span class="token assign-left variable"><span class="token environment constant">LINES</span></span><span class="token operator">=</span><span class="token number">36</span>
 title ！！！！！！！！！！！！！！！！！注意！！！！！！！！！！！！！！！！！
 echo.
 echo.
 echo.
-echo                 ┏─────────────────────┓
-echo                 │!!!!!!!!!!!!!!!!!!!注意!!!!!!!!!!!!!!!!!!!│
-echo                 │─────────────────────│
-echo                 │   请先关闭正在运行的GUI中文或英文软件    │
-echo                 │   如果依然连接不上，缓慢走省略号表示     │
-echo                 │   串口调用冲突，需要在任务管理器中关闭   │
-echo                 │   &quot;proxmark3.exe&quot;进程 。并重启刷机程序   │
-echo                 │                                          │
-echo                 │   刷机过程中如果长时间等待超过一分钟无   │
-echo                 │   反应，不要关闭窗口，按住按钮不放，重新 │
-echo                 │   拔插USB口即可强制刷入，直至升级完成    │
-echo                 │   即可松开按钮！                         │
-echo                 │                                          │
-echo                 │                                          │
-echo                 ┗─────────────────────┛
+<span class="token builtin class-name">echo</span>                 ┏─────────────────────┓
+<span class="token builtin class-name">echo</span>                 │<span class="token operator">!</span><span class="token operator">!</span><span class="token operator">!</span><span class="token operator">!</span><span class="token operator">!</span><span class="token operator">!</span><span class="token operator">!</span><span class="token operator">!</span><span class="token operator">!</span><span class="token operator">!</span><span class="token operator">!</span><span class="token operator">!</span><span class="token operator">!</span><span class="token operator">!</span><span class="token operator">!</span><span class="token operator">!</span><span class="token operator">!</span><span class="token operator">!</span><span class="token operator">!</span>注意<span class="token operator">!</span><span class="token operator">!</span><span class="token operator">!</span><span class="token operator">!</span><span class="token operator">!</span><span class="token operator">!</span><span class="token operator">!</span><span class="token operator">!</span><span class="token operator">!</span><span class="token operator">!</span><span class="token operator">!</span><span class="token operator">!</span><span class="token operator">!</span><span class="token operator">!</span><span class="token operator">!</span><span class="token operator">!</span><span class="token operator">!</span><span class="token operator">!</span><span class="token operator">!</span>│
+<span class="token builtin class-name">echo</span>                 │─────────────────────│
+<span class="token builtin class-name">echo</span>                 │   请先关闭正在运行的GUI中文或英文软件    │
+<span class="token builtin class-name">echo</span>                 │   如果依然连接不上，缓慢走省略号表示     │
+<span class="token builtin class-name">echo</span>                 │   串口调用冲突，需要在任务管理器中关闭   │
+<span class="token builtin class-name">echo</span>                 │   <span class="token string">"proxmark3.exe"</span>进程 。并重启刷机程序   │
+<span class="token builtin class-name">echo</span>                 │                                          │
+<span class="token builtin class-name">echo</span>                 │   刷机过程中如果长时间等待超过一分钟无   │
+<span class="token builtin class-name">echo</span>                 │   反应，不要关闭窗口，按住按钮不放，重新 │
+<span class="token builtin class-name">echo</span>                 │   拔插USB口即可强制刷入，直至升级完成    │
+<span class="token builtin class-name">echo</span>                 │   即可松开按钮！                         │
+<span class="token builtin class-name">echo</span>                 │                                          │
+<span class="token builtin class-name">echo</span>                 │                                          │
+<span class="token builtin class-name">echo</span>                 ┗─────────────────────┛
 echo.
 echo.
 echo.
-set num&#x3D;
-set &#x2F;p num&#x3D; 请输入【设备管理器—端口—Proxmark3】的串口号(例如&quot;5&quot;):
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">num</span><span class="token operator">=</span>
+<span class="token builtin class-name">set</span> /p <span class="token assign-left variable">num</span><span class="token operator">=</span> 请输入【设备管理器—端口—Proxmark3】的串口号<span class="token punctuation">(</span>例如<span class="token string">"5"</span><span class="token punctuation">)</span>:
 
 echo.
 echo.
@@ -623,44 +623,44 @@ goto :all
 
 :all
 cls
-title 正在烧写Proxmark3固件至[xxx固件],请等候片刻……
+title 正在烧写Proxmark3固件至<span class="token punctuation">[</span>xxx固件<span class="token punctuation">]</span>,请等候片刻……
 echo.
-echo                 ┏────────────────────┓
-echo                 │正在刷新 bootrom.elf,请等候片刻……     │
-echo                 ┗────────────────────┛
+<span class="token builtin class-name">echo</span>                 ┏────────────────────┓
+<span class="token builtin class-name">echo</span>                 │正在刷新 bootrom.elf,请等候片刻……     │
+<span class="token builtin class-name">echo</span>                 ┗────────────────────┛
 echo.
-.\client\flasher.exe com%num% -b  .\bootrom\obj\bootrom.elf
-ping 127.0.0.1 -n 8 &gt;nul
-taskkill &#x2F;f &#x2F;im flasher.exe
+.<span class="token punctuation">\</span>client<span class="token punctuation">\</span>flasher.exe com%num% <span class="token parameter variable">-b</span>  .<span class="token punctuation">\</span>bootrom<span class="token punctuation">\</span>obj<span class="token punctuation">\</span>bootrom.elf
+<span class="token function">ping</span> <span class="token number">127.0</span>.0.1 <span class="token parameter variable">-n</span> <span class="token number">8</span> <span class="token operator">></span>nul
+taskkill /f /im flasher.exe
 
 
 :next
 cls
 echo.
-echo                 ┏────────────────────┓
-echo                 │正在刷新 fullimage.elf,请等候片刻……   │
-echo                 ┗────────────────────┛
+<span class="token builtin class-name">echo</span>                 ┏────────────────────┓
+<span class="token builtin class-name">echo</span>                 │正在刷新 fullimage.elf,请等候片刻……   │
+<span class="token builtin class-name">echo</span>                 ┗────────────────────┛
 echo.
-.\client\flasher.exe com%num%  .\armsrc\obj\fullimage.elf
-ping 127.0.0.1 -n 3 &gt;nul
-taskkill &#x2F;f &#x2F;im flasher.exe
+.<span class="token punctuation">\</span>client<span class="token punctuation">\</span>flasher.exe com%num%  .<span class="token punctuation">\</span>armsrc<span class="token punctuation">\</span>obj<span class="token punctuation">\</span>fullimage.elf
+<span class="token function">ping</span> <span class="token number">127.0</span>.0.1 <span class="token parameter variable">-n</span> <span class="token number">3</span> <span class="token operator">></span>nul
+taskkill /f /im flasher.exe
 cls
 title 恭喜Proxmark3-xxx固件成功升级！
 echo.
 echo.
-echo                ┏──────────────────────┓
-echo                │    恭喜您！ xxx出厂固件全部刷写完成！    │
-echo                │                                            │
-echo                │日行一善，善如春园之草，不见其长，日有所增; │
-echo                │                                            │
-echo                │日行一恶，恶如磨刀之石，不见其亏，日有所减! │
-echo                │                                            │
-echo                │                                   BinAry   │
-echo                ┗──────────────────────┛
+<span class="token builtin class-name">echo</span>                ┏──────────────────────┓
+<span class="token builtin class-name">echo</span>                │    恭喜您！ xxx出厂固件全部刷写完成！    │
+<span class="token builtin class-name">echo</span>                │                                            │
+<span class="token builtin class-name">echo</span>                │日行一善，善如春园之草，不见其长，日有所增<span class="token punctuation">;</span> │
+<span class="token builtin class-name">echo</span>                │                                            │
+<span class="token builtin class-name">echo</span>                │日行一恶，恶如磨刀之石，不见其亏，日有所减<span class="token operator">!</span> │
+<span class="token builtin class-name">echo</span>                │                                            │
+<span class="token builtin class-name">echo</span>                │                                   BinAry   │
+<span class="token builtin class-name">echo</span>                ┗──────────────────────┛
 echo.
 pause.
 cls
-MODE CON COLS&#x3D;130 LINES&#x3D;36
+MODE CON <span class="token assign-left variable">COLS</span><span class="token operator">=</span><span class="token number">130</span> <span class="token assign-left variable"><span class="token environment constant">LINES</span></span><span class="token operator">=</span><span class="token number">36</span>
 cmd.exe
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>而 proxspace 工作目录下的<code>.\pm3\client\proxmark3.exe</code>就是匹配最新固件的 pm3 的命令行客户端了。</p>
@@ -1329,6 +1329,6 @@ It will not impact the appearance and can give developers a lot of support :)
                 preloadRatio: 1,
                 processImages: null,
             };
-        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(a){a.imageLazyLoadSetting.processImages=t;var i=a.imageLazyLoadSetting.isSPA,o=a.imageLazyLoadSetting.preloadRatio||1,r=c();function c(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function d(t,e){if(t.hasAttribute("bg-lazy"))return t.removeAttribute("bg-lazy"),void(e&&e());var n=new Image,a=t.getAttribute("data-original");n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a)}function t(){i&&(r=c());for(var t=0;t<r.length;t++)e=r[t],void 0,0<=(n=e.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(a.innerHeight*o||document.documentElement.clientHeight*o)&&function(){var e=r[t];d(e,function(){r=r.filter(function(t){return e!==t}),a.imageLazyLoadSetting.onImageLoaded&&a.imageLazyLoadSetting.onImageLoaded(e)})}();var e,n}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),a.addEventListener("resize",e),a.addEventListener("orientationchange",e)}(this);</script></body>
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body>
     
 </html>

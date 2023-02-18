@@ -89,7 +89,7 @@
 <link rel="stylesheet" href="/css/style-dark.css">
 
         <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.css?J3ekFjv+5KKiAFYA59/qdQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.css?R3Z5fr3H3ruXMBBBz5yTqQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.css?uf5nPaly0bIzU5+shc+Kuw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
         
 
@@ -287,7 +287,7 @@
 
     
         <meta property="article:published_time" content="Sun May 20 2018 21:57:55 GMT+0800">
-        <meta property="article:modified_time" content="Sun Feb 19 2023 02:08:50 GMT+0800">
+        <meta property="article:modified_time" content="Sun Feb 19 2023 04:35:55 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -310,7 +310,7 @@
     "mainEntityOfPage": "https://blog.gadfly.vip/2018/05/hide-article-at-index/index.html",
     "headline": "在首页隐藏文章",
     "datePublished": "Sun May 20 2018 21:57:55 GMT+0800",
-    "dateModified": "Sun Feb 19 2023 02:08:50 GMT+0800",
+    "dateModified": "Sun Feb 19 2023 04:35:55 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "猪蹄宝宝",
@@ -447,7 +447,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>猪蹄宝宝</strong>
-        <span>5月 20, 2018</span>
+        <span>2018-05-20</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -562,37 +562,37 @@
 <span id="more"></span>
 <p>最近开始在博客上写日记，我希望它们可以在首页不显示，但是在归档里还能找到，研究了几篇文章之后，我做了如下改动：<br>
 index.ejs 中</p>
-<pre class="line-numbers language-ejs" data-language="ejs"><code class="language-ejs">&lt;!-- Normal Post --&gt;
-&lt;% page.posts.each(function(post) &#123; %&gt;
-    &lt;% if(!((typeof hasposttop &#x3D;&#x3D;&#x3D; &#39;function&#39;) &amp;&amp; post.top)) &#123; %&gt;
-        &lt;% if ( !( (post.visible &#x3D;&#x3D;&#x3D; &#39;hide&#39;) &amp;&amp; (page.path &#x3D;&#x3D;&#x3D; &quot;index.html&quot;) ) )   &#123; %&gt;
+<pre class="line-numbers language-ejs" data-language="ejs"><code class="language-ejs"><span class="token comment">&lt;!-- Normal Post --></span>
+<span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%</span><span class="token language-javascript"> page<span class="token punctuation">.</span>posts<span class="token punctuation">.</span><span class="token function">each</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">post</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> </span><span class="token delimiter punctuation">%></span></span>
+    <span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%</span><span class="token language-javascript"> <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> hasposttop <span class="token operator">===</span> <span class="token string">'function'</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> post<span class="token punctuation">.</span>top<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> </span><span class="token delimiter punctuation">%></span></span>
+        <span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%</span><span class="token language-javascript"> <span class="token keyword">if</span> <span class="token punctuation">(</span> <span class="token operator">!</span><span class="token punctuation">(</span> <span class="token punctuation">(</span>post<span class="token punctuation">.</span>visible <span class="token operator">===</span> <span class="token string">'hide'</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>page<span class="token punctuation">.</span>path <span class="token operator">===</span> <span class="token string">"index.html"</span><span class="token punctuation">)</span> <span class="token punctuation">)</span> <span class="token punctuation">)</span>   <span class="token punctuation">&#123;</span> </span><span class="token delimiter punctuation">%></span></span>
 
-            &lt;% if(theme.scheme &#x3D;&#x3D;&#x3D; &#39;Paradox&#39;) &#123; %&gt;
+            <span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%</span><span class="token language-javascript"> <span class="token keyword">if</span><span class="token punctuation">(</span>theme<span class="token punctuation">.</span>scheme <span class="token operator">===</span> <span class="token string">'Paradox'</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> </span><span class="token delimiter punctuation">%></span></span>
 
-                &lt;!-- Paradox Thumbnail --&gt;
-                &lt;%- partial(&#39;_partial&#x2F;Paradox-post_entry&#39;, &#123; post: post, index: true, pin: false &#125;) %&gt;
+                <span class="token comment">&lt;!-- Paradox Thumbnail --></span>
+                <span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%-</span><span class="token language-javascript"> <span class="token function">partial</span><span class="token punctuation">(</span><span class="token string">'_partial/Paradox-post_entry'</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span> <span class="token literal-property property">post</span><span class="token operator">:</span> post<span class="token punctuation">,</span> <span class="token literal-property property">index</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token literal-property property">pin</span><span class="token operator">:</span> <span class="token boolean">false</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%></span></span>
 
-            &lt;% &#125; %&gt;
-            &lt;% if(theme.scheme &#x3D;&#x3D;&#x3D; &#39;Isolation&#39;) &#123; %&gt;
-                &lt;!-- Isolation Thumbnail --&gt;
-                &lt;%- partial(&#39;_partial&#x2F;Isolation-post_entry&#39;, &#123; post: post, index: true, pin: false &#125;) %&gt;
-            &lt;% &#125; %&gt;
-        &lt;% &#125; else &#123; %&gt;
-            &lt;div class&#x3D;&quot;post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-color-text--grey-600 mdl-card__supporting-text fade out&quot; style&#x3D;&quot;text-indent: 1.5em&quot;&gt;这里有一篇文章藏起来了哟！&lt;&#x2F;div&gt;
-        &lt;% &#125; %&gt;
-    &lt;% &#125; %&gt;
-&lt;% &#125;); %&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+            <span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%</span><span class="token language-javascript"> <span class="token punctuation">&#125;</span> </span><span class="token delimiter punctuation">%></span></span>
+            <span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%</span><span class="token language-javascript"> <span class="token keyword">if</span><span class="token punctuation">(</span>theme<span class="token punctuation">.</span>scheme <span class="token operator">===</span> <span class="token string">'Isolation'</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> </span><span class="token delimiter punctuation">%></span></span>
+                <span class="token comment">&lt;!-- Isolation Thumbnail --></span>
+                <span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%-</span><span class="token language-javascript"> <span class="token function">partial</span><span class="token punctuation">(</span><span class="token string">'_partial/Isolation-post_entry'</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span> <span class="token literal-property property">post</span><span class="token operator">:</span> post<span class="token punctuation">,</span> <span class="token literal-property property">index</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token literal-property property">pin</span><span class="token operator">:</span> <span class="token boolean">false</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%></span></span>
+            <span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%</span><span class="token language-javascript"> <span class="token punctuation">&#125;</span> </span><span class="token delimiter punctuation">%></span></span>
+        <span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%</span><span class="token language-javascript"> <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span> </span><span class="token delimiter punctuation">%></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-color-text--grey-600 mdl-card__supporting-text fade out<span class="token punctuation">"</span></span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">text-indent</span><span class="token punctuation">:</span> 1.5em</span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span>这里有一篇文章藏起来了哟！<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+        <span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%</span><span class="token language-javascript"> <span class="token punctuation">&#125;</span> </span><span class="token delimiter punctuation">%></span></span>
+    <span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%</span><span class="token language-javascript"> <span class="token punctuation">&#125;</span> </span><span class="token delimiter punctuation">%></span></span>
+<span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%</span><span class="token language-javascript"> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> </span><span class="token delimiter punctuation">%></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>else 后面的部分用来表示这里少了一篇文章，以免发生因为连发了十篇隐藏文章，而导致首页空白的情况。<br>
 <a target="_blank" rel="noopener" href="http://post.md">post.md</a> 中</p>
-<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown">---
-title: &#123;&#123; title &#125;&#125;
+<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown"><span class="token front-matter-block"><span class="token punctuation">---</span>
+<span class="token front-matter yaml language-yaml">title: &#123;&#123; title &#125;&#125;
 date: &#123;&#123; date &#125;&#125;
 categories:
 tags:
 permalink:
 layout: post
-hide_post_info: false
----<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+hide_post_info: false</span>
+<span class="token punctuation">---</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>visible 属性只有在为<code>hide</code>的时候才会使文章在首页不可见，其他时候均为可见状态。<br>
 参考资料：1、<a target="_blank" rel="noopener" href="https://github.com/bollnh/hexo-theme-material/issues/483">https://github.com/bollnh/hexo-theme-material/issues/483</a><br>
 　　　　　2、<a target="_blank" rel="noopener" href="https://forwardkth.github.io/2016/05/08/next-theme-post-visibility/">https://forwardkth.github.io/2016/05/08/next-theme-post-visibility/</a></p>
@@ -1261,6 +1261,6 @@ It will not impact the appearance and can give developers a lot of support :)
                 preloadRatio: 1,
                 processImages: null,
             };
-        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(a){a.imageLazyLoadSetting.processImages=t;var i=a.imageLazyLoadSetting.isSPA,o=a.imageLazyLoadSetting.preloadRatio||1,r=c();function c(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function d(t,e){if(t.hasAttribute("bg-lazy"))return t.removeAttribute("bg-lazy"),void(e&&e());var n=new Image,a=t.getAttribute("data-original");n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a)}function t(){i&&(r=c());for(var t=0;t<r.length;t++)e=r[t],void 0,0<=(n=e.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(a.innerHeight*o||document.documentElement.clientHeight*o)&&function(){var e=r[t];d(e,function(){r=r.filter(function(t){return e!==t}),a.imageLazyLoadSetting.onImageLoaded&&a.imageLazyLoadSetting.onImageLoaded(e)})}();var e,n}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),a.addEventListener("resize",e),a.addEventListener("orientationchange",e)}(this);</script></body>
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body>
     
 </html>

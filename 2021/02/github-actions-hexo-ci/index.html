@@ -89,7 +89,7 @@
 <link rel="stylesheet" href="/css/style-dark.css">
 
         <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.css?J3ekFjv+5KKiAFYA59/qdQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.css?R3Z5fr3H3ruXMBBBz5yTqQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.css?uf5nPaly0bIzU5+shc+Kuw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
         
 
@@ -287,7 +287,7 @@
 
     
         <meta property="article:published_time" content="Tue Feb 23 2021 19:39:07 GMT+0800">
-        <meta property="article:modified_time" content="Sun Feb 19 2023 02:08:50 GMT+0800">
+        <meta property="article:modified_time" content="Sun Feb 19 2023 04:35:55 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -310,7 +310,7 @@
     "mainEntityOfPage": "https://blog.gadfly.vip/2021/02/github-actions-hexo-ci/index.html",
     "headline": "利用 Github Actions 自动部署 Hexo 博客",
     "datePublished": "Tue Feb 23 2021 19:39:07 GMT+0800",
-    "dateModified": "Sun Feb 19 2023 02:08:50 GMT+0800",
+    "dateModified": "Sun Feb 19 2023 04:35:55 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "猪蹄宝宝",
@@ -456,7 +456,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>猪蹄宝宝</strong>
-        <span>2月 23, 2021</span>
+        <span>2021-02-23</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -574,7 +574,7 @@
 <h2 id="前提">前提</h2>
 <h3 id="生成部署密钥">生成部署密钥</h3>
 <p>一路按回车直到生成成功</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-keygen -f github-deploy-key<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-keygen <span class="token parameter variable">-f</span> github-deploy-key<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>当前目录下会有<code>github-deploy-key</code>和<code>github-deploy-key.pub</code>两个文件。</p>
 <h3 id="配置部署密钥">配置部署密钥</h3>
 <p>复制<code>github-deploy-key</code>文件内容，在博客源码仓库的 <code>Settings</code> -&gt; <code>Secrets</code> -&gt; <code>Add a new secret</code> 页面上添加。</p>
@@ -587,68 +587,68 @@
 <h2 id="编写-Github-Actions">编写 Github Actions</h2>
 <h3 id="Workflow-模版">Workflow 模版</h3>
 <p>在博客源码仓库下创建<code>.github/workflows/deploy.yml</code>文件，我这里是博客仓库的<code>source</code>分支，目录结构如下。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">blog (repository)
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">blog <span class="token punctuation">(</span>repository<span class="token punctuation">)</span>
 └── .github
     └── workflows
         └── deploy.yml<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>在 <code>deploy.yml</code> 文件中粘贴以下内容。</p>
-<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">name: Hexo CI
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">name</span><span class="token punctuation">:</span> Hexo CI
 
-on:
-  push:
-    branches:
-      - source
+<span class="token key atrule">on</span><span class="token punctuation">:</span>
+  <span class="token key atrule">push</span><span class="token punctuation">:</span>
+    <span class="token key atrule">branches</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> source
 
-env:
-  GIT_USER: Gadfly
-  GIT_EMAIL: gadfly@gadfly.vip
-  DEPLOY_REPO: gadfly3173&#x2F;gadfly3173.github.io
-  DEPLOY_BRANCH: master
-  TZ: Asia&#x2F;Shanghai
+<span class="token key atrule">env</span><span class="token punctuation">:</span>
+  <span class="token key atrule">GIT_USER</span><span class="token punctuation">:</span> Gadfly
+  <span class="token key atrule">GIT_EMAIL</span><span class="token punctuation">:</span> gadfly@gadfly.vip
+  <span class="token key atrule">DEPLOY_REPO</span><span class="token punctuation">:</span> gadfly3173/gadfly3173.github.io
+  <span class="token key atrule">DEPLOY_BRANCH</span><span class="token punctuation">:</span> master
+  <span class="token key atrule">TZ</span><span class="token punctuation">:</span> Asia/Shanghai
 
-jobs:
-  build:
-    name: Build on node $&#123;&#123; matrix.node_version &#125;&#125; and $&#123;&#123; matrix.os &#125;&#125;
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        node-version: [10.x]
+<span class="token key atrule">jobs</span><span class="token punctuation">:</span>
+  <span class="token key atrule">build</span><span class="token punctuation">:</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> Build on node $<span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span> matrix.node_version <span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span> and $<span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span> matrix.os <span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span>
+    <span class="token key atrule">runs-on</span><span class="token punctuation">:</span> ubuntu<span class="token punctuation">-</span>latest
+    <span class="token key atrule">strategy</span><span class="token punctuation">:</span>
+      <span class="token key atrule">matrix</span><span class="token punctuation">:</span>
+        <span class="token key atrule">os</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>ubuntu<span class="token punctuation">-</span>latest<span class="token punctuation">]</span>
+        <span class="token key atrule">node-version</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>10.x<span class="token punctuation">]</span>
 
-    steps:
-      - name: Checkout
-        uses: actions&#x2F;checkout@v2
+    <span class="token key atrule">steps</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Checkout
+        <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/checkout@v2
 
-      - name: Checkout deploy repo
-        uses: actions&#x2F;checkout@v2
-        with:
-          repository: $&#123;&#123; env.DEPLOY_REPO &#125;&#125;
-          ref: $&#123;&#123; env.DEPLOY_BRANCH &#125;&#125;
-          path: .deploy_git
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Checkout deploy repo
+        <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/checkout@v2
+        <span class="token key atrule">with</span><span class="token punctuation">:</span>
+          <span class="token key atrule">repository</span><span class="token punctuation">:</span> $<span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span> env.DEPLOY_REPO <span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span>
+          <span class="token key atrule">ref</span><span class="token punctuation">:</span> $<span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span> env.DEPLOY_BRANCH <span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span>
+          <span class="token key atrule">path</span><span class="token punctuation">:</span> .deploy_git
 
-      - name: Use Node.js $&#123;&#123; matrix.node-version &#125;&#125;
-        uses: actions&#x2F;setup-node@v1
-        with:
-          node-version: $&#123;&#123; matrix.node-version &#125;&#125;
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Use Node.js $<span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span> matrix.node<span class="token punctuation">-</span>version <span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span>
+        <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/setup<span class="token punctuation">-</span>node@v1
+        <span class="token key atrule">with</span><span class="token punctuation">:</span>
+          <span class="token key atrule">node-version</span><span class="token punctuation">:</span> $<span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span> matrix.node<span class="token punctuation">-</span>version <span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span>
 
-      - name: Configuration environment
-        env:
-          HEXO_DEPLOY_PRI: $&#123;&#123;secrets.HEXO_DEPLOY_PRI&#125;&#125;
-        run: |
-          mkdir -p ~&#x2F;.ssh&#x2F;
-          echo &quot;$HEXO_DEPLOY_PRI&quot; &gt; ~&#x2F;.ssh&#x2F;id_rsa
-          chmod 600 ~&#x2F;.ssh&#x2F;id_rsa
-          ssh-keyscan github.com &gt;&gt; ~&#x2F;.ssh&#x2F;known_hosts
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Configuration environment
+        <span class="token key atrule">env</span><span class="token punctuation">:</span>
+          <span class="token key atrule">HEXO_DEPLOY_PRI</span><span class="token punctuation">:</span> $<span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span>secrets.HEXO_DEPLOY_PRI<span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span>
+        <span class="token key atrule">run</span><span class="token punctuation">:</span> <span class="token punctuation">|</span><span class="token scalar string">
+          mkdir -p ~/.ssh/
+          echo "$HEXO_DEPLOY_PRI" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
           git config --global user.name $GIT_USER
-          git config --global user.email $GIT_EMAIL
+          git config --global user.email $GIT_EMAIL</span>
 
-      - name: Install dependencies
-        run: |
-          yarn
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Install dependencies
+        <span class="token key atrule">run</span><span class="token punctuation">:</span> <span class="token punctuation">|</span><span class="token scalar string">
+          yarn</span>
 
-      - name: Deploy hexo
-        run: |
-          yarn release<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Deploy hexo
+        <span class="token key atrule">run</span><span class="token punctuation">:</span> <span class="token punctuation">|</span><span class="token scalar string">
+          yarn release</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
         
     
@@ -1314,6 +1314,6 @@ It will not impact the appearance and can give developers a lot of support :)
                 preloadRatio: 1,
                 processImages: null,
             };
-        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(a){a.imageLazyLoadSetting.processImages=t;var i=a.imageLazyLoadSetting.isSPA,o=a.imageLazyLoadSetting.preloadRatio||1,r=c();function c(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function d(t,e){if(t.hasAttribute("bg-lazy"))return t.removeAttribute("bg-lazy"),void(e&&e());var n=new Image,a=t.getAttribute("data-original");n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a)}function t(){i&&(r=c());for(var t=0;t<r.length;t++)e=r[t],void 0,0<=(n=e.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(a.innerHeight*o||document.documentElement.clientHeight*o)&&function(){var e=r[t];d(e,function(){r=r.filter(function(t){return e!==t}),a.imageLazyLoadSetting.onImageLoaded&&a.imageLazyLoadSetting.onImageLoaded(e)})}();var e,n}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),a.addEventListener("resize",e),a.addEventListener("orientationchange",e)}(this);</script></body>
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body>
     
 </html>

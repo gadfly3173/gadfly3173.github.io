@@ -89,7 +89,7 @@
 <link rel="stylesheet" href="/css/style-dark.css">
 
         <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.css?J3ekFjv+5KKiAFYA59/qdQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.css?R3Z5fr3H3ruXMBBBz5yTqQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.css?uf5nPaly0bIzU5+shc+Kuw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
         
 
@@ -287,7 +287,7 @@
 
     
         <meta property="article:published_time" content="Thu Feb 24 2022 15:35:07 GMT+0800">
-        <meta property="article:modified_time" content="Sun Feb 19 2023 02:08:50 GMT+0800">
+        <meta property="article:modified_time" content="Sun Feb 19 2023 04:35:55 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -310,7 +310,7 @@
     "mainEntityOfPage": "https://blog.gadfly.vip/2022/02/rabbitmq-docker-compose-deploy/index.html",
     "headline": "RabbitMQ Docker Compose Deploy",
     "datePublished": "Thu Feb 24 2022 15:35:07 GMT+0800",
-    "dateModified": "Sun Feb 19 2023 02:08:50 GMT+0800",
+    "dateModified": "Sun Feb 19 2023 04:35:55 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "猪蹄宝宝",
@@ -456,7 +456,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>猪蹄宝宝</strong>
-        <span>2月 24, 2022</span>
+        <span>2022-02-24</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -570,50 +570,50 @@
         <h1 id="安装">安装</h1>
 <p>rabbitmq 官方文档有详细的指导，但是没有提供 docker-compose 的安装，这里就给出一个简单的安装方法，比较简单，但是不够完整。</p>
 <p>docker-compose.yml:</p>
-<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">version: &quot;3.9&quot;
-services:
-    rabbitmq:
-        image: rabbitmq:3.9.13-management-alpine
-        container_name: &#39;rabbitmq&#39;
-        restart: unless-stopped
-        ports:
-            - 5672:5672
-            - 15672:15672
-        volumes:
-            - &#x2F;data&#x2F;rabbitmq&#x2F;data&#x2F;:&#x2F;var&#x2F;lib&#x2F;rabbitmq&#x2F;
-            - &#x2F;data&#x2F;rabbitmq&#x2F;log&#x2F;:&#x2F;var&#x2F;log&#x2F;rabbitmq
-        networks:
-            - rabbitmq_go_net
-networks:
-    rabbitmq_go_net:
-        driver: bridge<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">"3.9"</span>
+<span class="token key atrule">services</span><span class="token punctuation">:</span>
+    <span class="token key atrule">rabbitmq</span><span class="token punctuation">:</span>
+        <span class="token key atrule">image</span><span class="token punctuation">:</span> rabbitmq<span class="token punctuation">:</span>3.9.13<span class="token punctuation">-</span>management<span class="token punctuation">-</span>alpine
+        <span class="token key atrule">container_name</span><span class="token punctuation">:</span> <span class="token string">'rabbitmq'</span>
+        <span class="token key atrule">restart</span><span class="token punctuation">:</span> unless<span class="token punctuation">-</span>stopped
+        <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+            <span class="token punctuation">-</span> 5672<span class="token punctuation">:</span><span class="token number">5672</span>
+            <span class="token punctuation">-</span> 15672<span class="token punctuation">:</span><span class="token number">15672</span>
+        <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+            <span class="token punctuation">-</span> /data/rabbitmq/data/<span class="token punctuation">:</span>/var/lib/rabbitmq/
+            <span class="token punctuation">-</span> /data/rabbitmq/log/<span class="token punctuation">:</span>/var/log/rabbitmq
+        <span class="token key atrule">networks</span><span class="token punctuation">:</span>
+            <span class="token punctuation">-</span> rabbitmq_go_net
+<span class="token key atrule">networks</span><span class="token punctuation">:</span>
+    <span class="token key atrule">rabbitmq_go_net</span><span class="token punctuation">:</span>
+        <span class="token key atrule">driver</span><span class="token punctuation">:</span> bridge<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>rabbitmq 有内置 SSL 支持，不过一般都是内网使用，倒也不必打开。</p>
 <h1 id="管理">管理</h1>
 <h2 id="用户管理">用户管理</h2>
 <p>RabbitMQ 安装完成后，会有一个默认用户(guest guest)</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"># 查看用户
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 查看用户</span>
 rabbitmqctl list_users
-# 新增用户
-rabbitmqctl add_user developer 123456
-# 删除用户
+<span class="token comment"># 新增用户</span>
+rabbitmqctl add_user developer <span class="token number">123456</span>
+<span class="token comment"># 删除用户</span>
 rabbitmqctl delete_user developer
-# 修改密码
-rabbitmqctl change_password developer 654321<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment"># 修改密码</span>
+rabbitmqctl change_password developer <span class="token number">654321</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="角色设置">角色设置</h2>
 <p>RabbitMQ 中主要有 administrator，monitoring，policymaker，management，impersonator，none 几种角色。<br>
 默认的用户 guest 是 administrator 角色，新建的 developer 用户没有设置角色，即为 none。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"># 可以设置多个角色
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 可以设置多个角色</span>
 rabbitmqctl set_user_tags developer administrator monitoring<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <h2 id="权限（vhost）">权限（vhost）</h2>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"># 设置权限
-rabbitmqctl set_permissions -p &#x2F; developer &quot;.*&quot; &quot;.*&quot; &quot;.*&quot;
-# 查看所有用户的权限
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 设置权限</span>
+rabbitmqctl set_permissions <span class="token parameter variable">-p</span> / developer <span class="token string">".*"</span> <span class="token string">".*"</span> <span class="token string">".*"</span>
+<span class="token comment"># 查看所有用户的权限</span>
 rabbitmqctl list_permissions
-# 查看virtual host为&#x2F;的所有用户权限
-rabbitmqctl list_permissions -p &#x2F;
-# 查看指定用户的权限
+<span class="token comment"># 查看virtual host为/的所有用户权限</span>
+rabbitmqctl list_permissions <span class="token parameter variable">-p</span> /
+<span class="token comment"># 查看指定用户的权限</span>
 rabbitmqctl  list_user_permissions developer
-# 清除用户权限
+<span class="token comment"># 清除用户权限</span>
 rabbitmqctl  clear_permissions developer<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="使用">使用</h1>
 <h2 id="路由设置">路由设置</h2>
@@ -1284,6 +1284,6 @@ It will not impact the appearance and can give developers a lot of support :)
                 preloadRatio: 1,
                 processImages: null,
             };
-        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(a){a.imageLazyLoadSetting.processImages=t;var i=a.imageLazyLoadSetting.isSPA,o=a.imageLazyLoadSetting.preloadRatio||1,r=c();function c(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function d(t,e){if(t.hasAttribute("bg-lazy"))return t.removeAttribute("bg-lazy"),void(e&&e());var n=new Image,a=t.getAttribute("data-original");n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a)}function t(){i&&(r=c());for(var t=0;t<r.length;t++)e=r[t],void 0,0<=(n=e.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(a.innerHeight*o||document.documentElement.clientHeight*o)&&function(){var e=r[t];d(e,function(){r=r.filter(function(t){return e!==t}),a.imageLazyLoadSetting.onImageLoaded&&a.imageLazyLoadSetting.onImageLoaded(e)})}();var e,n}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),a.addEventListener("resize",e),a.addEventListener("orientationchange",e)}(this);</script></body>
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body>
     
 </html>

@@ -89,7 +89,7 @@
 <link rel="stylesheet" href="/css/style-dark.css">
 
         <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.css?J3ekFjv+5KKiAFYA59/qdQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.css?R3Z5fr3H3ruXMBBBz5yTqQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.css?uf5nPaly0bIzU5+shc+Kuw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
         
 
@@ -287,7 +287,7 @@
 
     
         <meta property="article:published_time" content="Wed Apr 08 2020 17:29:38 GMT+0800">
-        <meta property="article:modified_time" content="Sun Feb 19 2023 02:08:50 GMT+0800">
+        <meta property="article:modified_time" content="Sun Feb 19 2023 04:35:55 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -310,7 +310,7 @@
     "mainEntityOfPage": "https://blog.gadfly.vip/2020/04/springboot-auth2-with-QQ/index.html",
     "headline": "Spring Boot 开发笔记 - 使用 Spring Boot 完成 Server-Side 模式的 QQ 第三方登录",
     "datePublished": "Wed Apr 08 2020 17:29:38 GMT+0800",
-    "dateModified": "Sun Feb 19 2023 02:08:50 GMT+0800",
+    "dateModified": "Sun Feb 19 2023 04:35:55 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "猪蹄宝宝",
@@ -456,7 +456,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>猪蹄宝宝</strong>
-        <span>4月 08, 2020</span>
+        <span>2020-04-08</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -578,51 +578,51 @@
 <p>QQ 官方文档在这里 <a target="_blank" rel="noopener" href="https://wiki.connect.qq.com/%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C_oauth2-0">传送门</a>。这份文档对于没有开发经验的人来说坑实在是太多，不过相比其他平台还是比较友好的。<br>
 参考文章中是使用了读取配置的方式，我则是写了一个返回 secret 等内容的工具类来获取 QQ 相关配置。</p>
 <p>基本代码如下：</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">@PostMapping(value &#x3D; &quot;&#x2F;login&#x2F;callback&quot;, consumes&#x3D; &#123; MediaType.APPLICATION_JSON_VALUE&#125;)
-public GlobalJSONResult handleCallbackCode(@RequestBody LoginCode reqParams) throws JsonProcessingException &#123;
-    String authorization_code &#x3D; reqParams.getCode();
-    if (StringUtils.isBlank(authorization_code)) &#123;
-        return GlobalJSONResult.errorMsg(&quot;code无效，请重新授权！&quot;);
-    &#125;
-    &#x2F;&#x2F;client端的状态值。用于第三方应用防止CSRF攻击。
-    String state &#x3D; reqParams.getState();
-    if (!state.equals(&quot;login&quot;)) &#123;
-        return GlobalJSONResult.errorMsg(&quot;state无效，请确认是否为本人操作！&quot;);
-    &#125;
-    String access_token &#x3D; getAccessToken(authorization_code);
-    if (StringUtils.isBlank(access_token)) &#123;
-        return GlobalJSONResult.errorMsg(&quot;access_token获取失败，请重新授权！&quot;);
-    &#125;
-    &#x2F;&#x2F; 下略
-&#125;
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"/login/callback"</span><span class="token punctuation">,</span> consumes<span class="token operator">=</span> <span class="token punctuation">&#123;</span> <span class="token class-name">MediaType</span><span class="token punctuation">.</span><span class="token constant">APPLICATION_JSON_VALUE</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token class-name">GlobalJSONResult</span> <span class="token function">handleCallbackCode</span><span class="token punctuation">(</span><span class="token annotation punctuation">@RequestBody</span> <span class="token class-name">LoginCode</span> reqParams<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">JsonProcessingException</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">String</span> authorization_code <span class="token operator">=</span> reqParams<span class="token punctuation">.</span><span class="token function">getCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token class-name">StringUtils</span><span class="token punctuation">.</span><span class="token function">isBlank</span><span class="token punctuation">(</span>authorization_code<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token class-name">GlobalJSONResult</span><span class="token punctuation">.</span><span class="token function">errorMsg</span><span class="token punctuation">(</span><span class="token string">"code无效，请重新授权！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">//client端的状态值。用于第三方应用防止CSRF攻击。</span>
+    <span class="token class-name">String</span> state <span class="token operator">=</span> reqParams<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>state<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span><span class="token string">"login"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token class-name">GlobalJSONResult</span><span class="token punctuation">.</span><span class="token function">errorMsg</span><span class="token punctuation">(</span><span class="token string">"state无效，请确认是否为本人操作！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token class-name">String</span> access_token <span class="token operator">=</span> <span class="token function">getAccessToken</span><span class="token punctuation">(</span>authorization_code<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token class-name">StringUtils</span><span class="token punctuation">.</span><span class="token function">isBlank</span><span class="token punctuation">(</span>access_token<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token class-name">GlobalJSONResult</span><span class="token punctuation">.</span><span class="token function">errorMsg</span><span class="token punctuation">(</span><span class="token string">"access_token获取失败，请重新授权！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">// 下略</span>
+<span class="token punctuation">&#125;</span>
 
-private String getAccessToken(String authorization_code) &#123;
-    String urlForAccessToken &#x3D; getUrlForAccessToken(authorization_code);
-    String firstCallbackInfo &#x3D; restTemplate.getForObject(urlForAccessToken, String.class);
-    String[] params &#x3D; firstCallbackInfo.split(&quot;&amp;&quot;);
-    String access_token &#x3D; null;
-    for (String param : params) &#123;
-        String[] keyvalue &#x3D; param.split(&quot;&#x3D;&quot;);
-        if (keyvalue[0].equals(&quot;access_token&quot;)) &#123;
-            access_token &#x3D; keyvalue[1];
-            break;
-        &#125;
-    &#125;
-    return access_token;
-&#125;
+<span class="token keyword">private</span> <span class="token class-name">String</span> <span class="token function">getAccessToken</span><span class="token punctuation">(</span><span class="token class-name">String</span> authorization_code<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">String</span> urlForAccessToken <span class="token operator">=</span> <span class="token function">getUrlForAccessToken</span><span class="token punctuation">(</span>authorization_code<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">String</span> firstCallbackInfo <span class="token operator">=</span> restTemplate<span class="token punctuation">.</span><span class="token function">getForObject</span><span class="token punctuation">(</span>urlForAccessToken<span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> params <span class="token operator">=</span> firstCallbackInfo<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">"&amp;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">String</span> access_token <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">String</span> param <span class="token operator">:</span> params<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> keyvalue <span class="token operator">=</span> param<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">"="</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>keyvalue<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span><span class="token string">"access_token"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            access_token <span class="token operator">=</span> keyvalue<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> access_token<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
 
-private static String getUrlForAccessToken(String authorization_code) &#123;
-    String grant_type &#x3D; &quot;authorization_code&quot;;
-    String client_id &#x3D; QQLoginUtil.getQQLoginClientId();
-    String client_secret &#x3D; QQLoginUtil.getQQLoginClientSecret();
-    String redirect_uri &#x3D; QQLoginUtil.getQQLoginRedirectUri();
+<span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token class-name">String</span> <span class="token function">getUrlForAccessToken</span><span class="token punctuation">(</span><span class="token class-name">String</span> authorization_code<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">String</span> grant_type <span class="token operator">=</span> <span class="token string">"authorization_code"</span><span class="token punctuation">;</span>
+    <span class="token class-name">String</span> client_id <span class="token operator">=</span> <span class="token class-name">QQLoginUtil</span><span class="token punctuation">.</span><span class="token function">getQQLoginClientId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">String</span> client_secret <span class="token operator">=</span> <span class="token class-name">QQLoginUtil</span><span class="token punctuation">.</span><span class="token function">getQQLoginClientSecret</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">String</span> redirect_uri <span class="token operator">=</span> <span class="token class-name">QQLoginUtil</span><span class="token punctuation">.</span><span class="token function">getQQLoginRedirectUri</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    String url &#x3D; String.format(&quot;https:&#x2F;&#x2F;graph.qq.com&#x2F;oauth2.0&#x2F;token&quot; +
-                    &quot;?grant_type&#x3D;%s&amp;client_id&#x3D;%s&amp;client_secret&#x3D;%s&amp;code&#x3D;%s&amp;redirect_uri&#x3D;%s&quot;,
-            grant_type, client_id, client_secret, authorization_code, redirect_uri);
+    <span class="token class-name">String</span> url <span class="token operator">=</span> <span class="token class-name">String</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token string">"https://graph.qq.com/oauth2.0/token"</span> <span class="token operator">+</span>
+                    <span class="token string">"?grant_type=%s&amp;client_id=%s&amp;client_secret=%s&amp;code=%s&amp;redirect_uri=%s"</span><span class="token punctuation">,</span>
+            grant_type<span class="token punctuation">,</span> client_id<span class="token punctuation">,</span> client_secret<span class="token punctuation">,</span> authorization_code<span class="token punctuation">,</span> redirect_uri<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    return url;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    <span class="token keyword">return</span> url<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>其中 <code>GlobalJSONResult</code> 是我编写的全局 JSON 返回类，有空会在其他文章中说明。QQ 在文档中要求生成 CSRF Token 一类的东西作为 state 参数上传，以避免 CSRF 攻击。<br>
 不过由于我的登录系统是只有授权 QQ 登录之后才会生成账户，因此基本没有这方面的风险，就把 state 写死了。接收的 <code>reqParams</code> 则是直接前端将路由中的参数返回，Vue.js 中使用 <code>this.$route.query</code> 就可以将参数以 JSON 形式获取。</p>
 <h4 id="解析接口返回的数据">解析接口返回的数据</h4>
@@ -631,39 +631,39 @@ private static String getUrlForAccessToken(String authorization_code) &#123;
 但完全不是这样的！！！你按照要求向这个获取 access_token 的 URL 发送请求后，对方并不会再跳转，而是直接返回你一个数据，希望你获得这个数据然后处理。这有点像前端 JS 的异步请求后后回调函数处理 data。</p>
 </blockquote>
 <p>所以这里使用了 <code>restTemplate</code> 来发起请求。虽然很多教程里都会说使用 <code>@Autowired</code> 来注入实例，但是你会发现 IDEA 中会提示这种写法不被推荐，使用构造函数注入是更好的选择。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F;注入实例
-private final UserInfoRepository userInfoRepository;
-private final RestTemplate restTemplate;
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">//注入实例</span>
+<span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">UserInfoRepository</span> userInfoRepository<span class="token punctuation">;</span>
+<span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">RestTemplate</span> restTemplate<span class="token punctuation">;</span>
 
-public LoginController(UserInfoRepository userInfoRepository, RestTemplate restTemplate) &#123;
-    this.userInfoRepository &#x3D; userInfoRepository;
-    this.restTemplate &#x3D; restTemplate;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">public</span> <span class="token class-name">LoginController</span><span class="token punctuation">(</span><span class="token class-name">UserInfoRepository</span> userInfoRepository<span class="token punctuation">,</span> <span class="token class-name">RestTemplate</span> restTemplate<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>userInfoRepository <span class="token operator">=</span> userInfoRepository<span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>restTemplate <span class="token operator">=</span> restTemplate<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>restTemplate 可以接收所有的返回参数，然而 QQ 这里采用了一个非常神奇的接口返回形式：<code>access_token=FE04**CCE2&amp;expires_in=7776000&amp;refresh_token=88E4**BE14</code>。<br>
 请<strong>不要</strong>认为这是在回调地址后面加上的参数，这个就是 token 接口返回的一个<strong>字符串</strong>。这接口真是绝了，写的人不觉得别扭吗？？？拿到这个字符串之后只能根据 &amp; 和 = 拆分来获取数据了。</p>
 <p>我这边使用前端将参数上传而不是直接把回调地址设为后端地址的原因主要是考虑到拿到 Code 之后，后端处理需要一定的时间，如果不能在前端展示动画之类的内容，容易让用户不明所以，因此前端拿到参数再提交给后端，同时前端展示等待动画是更好的选择。</p>
 <h3 id="获取-Open-Id">获取 Open Id</h3>
 <p>拿到这个 token 之后就可以去获取用户的 openid 了。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 上略
-  String url &#x3D; String.format(&quot;https:&#x2F;&#x2F;graph.qq.com&#x2F;oauth2.0&#x2F;me?access_token&#x3D;%s&quot;, access_token);
-  &#x2F;&#x2F;第二次模拟客户端发出请求后得到的是带openid的返回数据,格式如下
-  &#x2F;&#x2F;callback( &#123;&quot;client_id&quot;:&quot;YOUR_APPID&quot;,&quot;openid&quot;:&quot;YOUR_OPENID&quot;&#125; );
-  String secondCallbackInfo &#x3D; restTemplate.getForObject(url, String.class);
-  &#x2F;&#x2F;正则表达式处理
-  String regex &#x3D; &quot;\\&#123;.*\\&#125;&quot;;
-  Pattern pattern &#x3D; Pattern.compile(regex);
-  Matcher matcher &#x3D; pattern.matcher(secondCallbackInfo);
-  if (!matcher.find()) &#123;
-      logger.error(&quot;异常的回调值: &quot; + secondCallbackInfo);
-      return GlobalJSONResult.errorMsg(&quot;异常的回调值: &quot; + secondCallbackInfo);
-  &#125;
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 上略</span>
+  <span class="token class-name">String</span> url <span class="token operator">=</span> <span class="token class-name">String</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token string">"https://graph.qq.com/oauth2.0/me?access_token=%s"</span><span class="token punctuation">,</span> access_token<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">//第二次模拟客户端发出请求后得到的是带openid的返回数据,格式如下</span>
+  <span class="token comment">//callback( &#123;"client_id":"YOUR_APPID","openid":"YOUR_OPENID"&#125; );</span>
+  <span class="token class-name">String</span> secondCallbackInfo <span class="token operator">=</span> restTemplate<span class="token punctuation">.</span><span class="token function">getForObject</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">//正则表达式处理</span>
+  <span class="token class-name">String</span> regex <span class="token operator">=</span> <span class="token string">"\\&#123;.*\\&#125;"</span><span class="token punctuation">;</span>
+  <span class="token class-name">Pattern</span> pattern <span class="token operator">=</span> <span class="token class-name">Pattern</span><span class="token punctuation">.</span><span class="token function">compile</span><span class="token punctuation">(</span>regex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token class-name">Matcher</span> matcher <span class="token operator">=</span> pattern<span class="token punctuation">.</span><span class="token function">matcher</span><span class="token punctuation">(</span>secondCallbackInfo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>matcher<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      logger<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"异常的回调值: "</span> <span class="token operator">+</span> secondCallbackInfo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span> <span class="token class-name">GlobalJSONResult</span><span class="token punctuation">.</span><span class="token function">errorMsg</span><span class="token punctuation">(</span><span class="token string">"异常的回调值: "</span> <span class="token operator">+</span> secondCallbackInfo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
 
-  &#x2F;&#x2F;调用jackson
-  ObjectMapper objectMapper &#x3D; new ObjectMapper();
-  HashMap&lt;String, String&gt; hashMap &#x3D; objectMapper.readValue(matcher.group(0), HashMap.class);
+  <span class="token comment">//调用jackson</span>
+  <span class="token class-name">ObjectMapper</span> objectMapper <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ObjectMapper</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">></span></span> hashMap <span class="token operator">=</span> objectMapper<span class="token punctuation">.</span><span class="token function">readValue</span><span class="token punctuation">(</span>matcher<span class="token punctuation">.</span><span class="token function">group</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token class-name">HashMap</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-  String openid &#x3D; hashMap.get(&quot;openid&quot;);
-&#x2F;&#x2F; 下略<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  <span class="token class-name">String</span> openid <span class="token operator">=</span> hashMap<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"openid"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 下略</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>这里 QQ 又返回了什么呢，返回了一个 JSONP 。。。形如：<code>callback( &#123;&quot;client_id&quot;:&quot;YOUR_APPID&quot;,&quot;openid&quot;:&quot;YOUR_OPENID&quot;&#125; )</code>不是，腾讯你们这玩意是分了几个人写啊，怎么每个接口返回格式都这么奇怪啊喂！！！<br>
 处理这个则是使用正则，先把 <code>callback</code> 里的对象取出来，用 Spring Boot 自带的 Jackson 解析为 Map。</p>
 <blockquote>
@@ -673,45 +673,45 @@ public LoginController(UserInfoRepository userInfoRepository, RestTemplate restT
 </blockquote>
 <h3 id="获取用户信息与登录-Token-下发">获取用户信息与登录 Token 下发</h3>
 <p>教程到这里结束了，而我还需要完成获取用户信息等操作才能完成整个登录接口。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">  &#x2F;&#x2F; 上略
-    &#x2F;&#x2F; 获取QQ用户信息
-    String user_info_url &#x3D; getUserInfoUrl(access_token, openid);
-    String user_result &#x3D; restTemplate.getForObject(user_info_url, String.class);
-    Map&lt;String, Object&gt; user_info_qq &#x3D; objectMapper.readValue(user_result, Map.class);
-    if ((int) user_info_qq.get(&quot;ret&quot;) !&#x3D; 0) &#123;
-        return GlobalJSONResult.errorMsg(&quot;用户信息获取失败，请重试&quot;);
-    &#125;
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">  <span class="token comment">// 上略</span>
+    <span class="token comment">// 获取QQ用户信息</span>
+    <span class="token class-name">String</span> user_info_url <span class="token operator">=</span> <span class="token function">getUserInfoUrl</span><span class="token punctuation">(</span>access_token<span class="token punctuation">,</span> openid<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">String</span> user_result <span class="token operator">=</span> restTemplate<span class="token punctuation">.</span><span class="token function">getForObject</span><span class="token punctuation">(</span>user_info_url<span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">></span></span> user_info_qq <span class="token operator">=</span> objectMapper<span class="token punctuation">.</span><span class="token function">readValue</span><span class="token punctuation">(</span>user_result<span class="token punctuation">,</span> <span class="token class-name">Map</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span> user_info_qq<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"ret"</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token class-name">GlobalJSONResult</span><span class="token punctuation">.</span><span class="token function">errorMsg</span><span class="token punctuation">(</span><span class="token string">"用户信息获取失败，请重试"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
 
-    String token &#x3D; getToken(openid, user_info_qq);
+    <span class="token class-name">String</span> token <span class="token operator">=</span> <span class="token function">getToken</span><span class="token punctuation">(</span>openid<span class="token punctuation">,</span> user_info_qq<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    user_info_qq.put(&quot;token&quot;, token);
-    return GlobalJSONResult.ok(user_info_qq);
-  &#x2F;&#x2F; 下略
+    user_info_qq<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"token"</span><span class="token punctuation">,</span> token<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token class-name">GlobalJSONResult</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span>user_info_qq<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// 下略</span>
 
-private static String getUserInfoUrl(String access_token, String openid) &#123;
-    String client_id &#x3D; QQLoginUtil.getQQLoginClientId();
-    String url &#x3D; String.format(&quot;https:&#x2F;&#x2F;graph.qq.com&#x2F;user&#x2F;get_user_info&quot; +
-            &quot;?access_token&#x3D;%s&amp;oauth_consumer_key&#x3D;%s&amp;openid&#x3D;%s&quot;, access_token, client_id, openid);
-    return url;
-&#125;
+<span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token class-name">String</span> <span class="token function">getUserInfoUrl</span><span class="token punctuation">(</span><span class="token class-name">String</span> access_token<span class="token punctuation">,</span> <span class="token class-name">String</span> openid<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">String</span> client_id <span class="token operator">=</span> <span class="token class-name">QQLoginUtil</span><span class="token punctuation">.</span><span class="token function">getQQLoginClientId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">String</span> url <span class="token operator">=</span> <span class="token class-name">String</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token string">"https://graph.qq.com/user/get_user_info"</span> <span class="token operator">+</span>
+            <span class="token string">"?access_token=%s&amp;oauth_consumer_key=%s&amp;openid=%s"</span><span class="token punctuation">,</span> access_token<span class="token punctuation">,</span> client_id<span class="token punctuation">,</span> openid<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> url<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
 
-private String getToken(String openid, Map&lt;String, Object&gt; user_info_qq) &#123;
-    String uid &#x3D; UUID.nameUUIDFromBytes(openid.getBytes()).toString();
-    String access_level;
-    if (userInfoRepository.existsById(uid)) &#123;
-        UserInfo userInfo &#x3D; userInfoRepository.findById(uid).get();
-        userInfo.setNickname(user_info_qq.get(&quot;nickname&quot;).toString());
-        userInfo.setAvatarUrl(user_info_qq.get(&quot;figureurl_2&quot;).toString());
-        userInfoRepository.save(userInfo);
-        access_level &#x3D; userInfo.getAccessLevel();
-    &#125; else &#123;
-        UserInfo userInfo &#x3D; new UserInfo(uid, openid, user_info_qq.get(&quot;nickname&quot;).toString(),
-                user_info_qq.get(&quot;figureurl_2&quot;).toString(), System.currentTimeMillis());
-        userInfoRepository.save(userInfo);
-        access_level &#x3D; userInfo.getAccessLevel();
-    &#125;
-    return JWTUtil.sign(openid, access_level);
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">private</span> <span class="token class-name">String</span> <span class="token function">getToken</span><span class="token punctuation">(</span><span class="token class-name">String</span> openid<span class="token punctuation">,</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">></span></span> user_info_qq<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">String</span> uid <span class="token operator">=</span> <span class="token constant">UUID</span><span class="token punctuation">.</span><span class="token function">nameUUIDFromBytes</span><span class="token punctuation">(</span>openid<span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">String</span> access_level<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>userInfoRepository<span class="token punctuation">.</span><span class="token function">existsById</span><span class="token punctuation">(</span>uid<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token class-name">UserInfo</span> userInfo <span class="token operator">=</span> userInfoRepository<span class="token punctuation">.</span><span class="token function">findById</span><span class="token punctuation">(</span>uid<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        userInfo<span class="token punctuation">.</span><span class="token function">setNickname</span><span class="token punctuation">(</span>user_info_qq<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"nickname"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        userInfo<span class="token punctuation">.</span><span class="token function">setAvatarUrl</span><span class="token punctuation">(</span>user_info_qq<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"figureurl_2"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        userInfoRepository<span class="token punctuation">.</span><span class="token function">save</span><span class="token punctuation">(</span>userInfo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        access_level <span class="token operator">=</span> userInfo<span class="token punctuation">.</span><span class="token function">getAccessLevel</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+        <span class="token class-name">UserInfo</span> userInfo <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">UserInfo</span><span class="token punctuation">(</span>uid<span class="token punctuation">,</span> openid<span class="token punctuation">,</span> user_info_qq<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"nickname"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                user_info_qq<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"figureurl_2"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        userInfoRepository<span class="token punctuation">.</span><span class="token function">save</span><span class="token punctuation">(</span>userInfo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        access_level <span class="token operator">=</span> userInfo<span class="token punctuation">.</span><span class="token function">getAccessLevel</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> <span class="token class-name">JWTUtil</span><span class="token punctuation">.</span><span class="token function">sign</span><span class="token punctuation">(</span>openid<span class="token punctuation">,</span> access_level<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>获取用户信息的接口正常多了，返回的是 JSON。主要可以聊聊的是 JWT，不过这个也放到下次再讲吧。</p>
 
         
@@ -1378,6 +1378,6 @@ It will not impact the appearance and can give developers a lot of support :)
                 preloadRatio: 1,
                 processImages: null,
             };
-        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(a){a.imageLazyLoadSetting.processImages=t;var i=a.imageLazyLoadSetting.isSPA,o=a.imageLazyLoadSetting.preloadRatio||1,r=c();function c(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function d(t,e){if(t.hasAttribute("bg-lazy"))return t.removeAttribute("bg-lazy"),void(e&&e());var n=new Image,a=t.getAttribute("data-original");n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a)}function t(){i&&(r=c());for(var t=0;t<r.length;t++)e=r[t],void 0,0<=(n=e.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(a.innerHeight*o||document.documentElement.clientHeight*o)&&function(){var e=r[t];d(e,function(){r=r.filter(function(t){return e!==t}),a.imageLazyLoadSetting.onImageLoaded&&a.imageLazyLoadSetting.onImageLoaded(e)})}();var e,n}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),a.addEventListener("resize",e),a.addEventListener("orientationchange",e)}(this);</script></body>
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body>
     
 </html>
