@@ -88,6 +88,57 @@ $(document).ready(() => {
   $(document).click(() => {
     $('#local-search-result ul').css('display', 'none');
   });
+
+  // darkMode Detection
+  const rememberThemeColorStorageKey = 'theme-color';
+  const darkMode =
+    window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)");
+  const themeColorSwitchInput = document.getElementById('theme-color-switch-input');
+  const rememberThemeColor = localStorage.getItem(rememberThemeColorStorageKey);
+  // 判断是否匹配深色模式
+  if ('dark' === rememberThemeColor || (darkMode && darkMode.matches)) {
+    tinyBallSwitchTheme(true);
+    document.body.setAttribute('data-theme', 'dark');
+    document.getElementById('theme-color-switch-input').setAttribute('checked', 'checked');
+  } else {
+    document.body.setAttribute('data-theme', '');
+  }
+  // 监听主题切换事件
+  themeColorSwitchInput.addEventListener('change', () => {
+    tinyBallSwitchTheme(themeColorSwitchInput.checked);
+    if (themeColorSwitchInput.checked) {
+      document.body.setAttribute('data-theme', 'dark');
+      localStorage.setItem(rememberThemeColorStorageKey, 'dark');
+    } else {
+      document.body.setAttribute('data-theme', '');
+      localStorage.setItem(rememberThemeColorStorageKey, 'light');
+    }
+  });
+  darkMode &&
+    darkMode.addEventListener("change", (e) => {
+      tinyBallSwitchTheme(e.matches);
+      if (e.matches) {
+        document.body.setAttribute('data-theme', 'dark');
+        themeColorSwitchInput.setAttribute('checked', 'checked');
+        localStorage.setItem(rememberThemeColorStorageKey, 'dark');
+      } else {
+        document.body.setAttribute('data-theme', '');
+        themeColorSwitchInput.removeAttribute('checked');
+        localStorage.setItem(rememberThemeColorStorageKey, 'light');
+      }
+    });
+  function tinyBallSwitchTheme(isDark) {
+    const tinyBallCanvas = document.getElementById('tinyball-canvas');
+    const tinyBallContext = tinyBallCanvas.getContext('2d');
+    if (isDark) {
+      tinyBallContext.strokeStyle = 'rgba(255,255,255,0.02)',
+      tinyBallContext.fillStyle = 'rgba(255,255,255,0.05)';
+    } else {
+      tinyBallContext.strokeStyle = 'rgba(0,0,0,0.02)',
+      tinyBallContext.fillStyle = 'rgba(0,0,0,0.05)';
+    }
+  }
+
 });
 
 //* *********************************

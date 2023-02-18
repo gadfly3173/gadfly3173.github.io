@@ -3,9 +3,9 @@
     <!--
         © Material Theme
         https://github.com/bollnh/hexo-theme-material
-        Version: 1.5.6 -->
+        Version: 1.5.7 -->
     <script>
-        window.materialVersion = "1.5.6"
+        window.materialVersion = "1.5.7"
         // Delete localstorage with these tags
         window.oldVersion = [
             'codestartv1',
@@ -14,7 +14,8 @@
             '1.4.0b1',
             '1.5.0',
             '1.5.2',
-            '1.5.5'
+            '1.5.5',
+            '1.5.6'
         ]
     </script>
 
@@ -85,24 +86,26 @@
 
     <!-- Import CSS -->
     <% if(theme.vendors.materialcdn) { %>
-        <%- cssLsload({path:(theme.vendors.materialcdn + '/css/material.min.css'),key:'material_css'}) %>
-        <%- cssLsload({path:(theme.vendors.materialcdn + '/css/style.min.css'),key:'style_css'}) %>
+        <%- cssLsload({path:(theme.vendors.materialcdn + '/css/material.css'),key:'material_css'}) %>
+        <%- cssLsload({path:(theme.vendors.materialcdn + '/css/style.css'),key:'style_css'}) %>
+        <%- css(theme.vendors.materialcdn + '/css/style-dark.css') %>
 
         <% if (theme.prettify.enable){ %>
             <% if ( (is_post()) ) { %>
-                <%- cssLsload({path:(theme.vendors.materialcdn + '/css/prettify.min.css'),key:'prettify_css'}) %>
-                <%- cssLsload({path:(theme.vendors.materialcdn + '/css/prettify/' + theme.prettify.theme + '.min.css'),key:'prettify_theme'}) %>
+                <%- cssLsload({path:(theme.vendors.materialcdn + '/css/prettify.css'),key:'prettify_css'}) %>
+                <%- cssLsload({path:(theme.vendors.materialcdn + '/css/prettify/' + theme.prettify.theme + '.css'),key:'prettify_theme'}) %>
             <% } %>
         <% } %>
 
     <% } else { %>
-        <%- cssLsload({path:('css/material.min.css'),key:'material_css'}) %>
-        <%- cssLsload({path:('css/style.min.css'),key:'style_css'}) %>
+        <%- cssLsload({path:('css/material.css'),key:'material_css'}) %>
+        <%- cssLsload({path:('css/style.css'),key:'style_css'}) %>
+        <%- css('css/style-dark.css') %>
 
         <% if (theme.prettify.enable){ %>
             <% if ( (is_post()) ) { %>
-                <%- cssLsload({path:('css/prettify.min.css'),key:'prettify_css'}) %>
-                <%- cssLsload({path:('css/prettify/' + theme.prettify.theme + '.min.css'),key:'prettify_theme'}) %>
+                <%- cssLsload({path:('css/prettify.css'),key:'prettify_css'}) %>
+                <%- cssLsload({path:('css/prettify/' + theme.prettify.theme + '.css'),key:'prettify_theme'}) %>
             <% } %>
         <% } %>
 

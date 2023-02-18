@@ -174,7 +174,7 @@ sns:
     github: https://github.com/gadfly3173
     linkedin:
     zhihu:
-    bilibili: https://space.bilibili.com/17819592/#!/
+    bilibili: https://space.bilibili.com/17819592
     telegram:
     v2ex:
     segmentfault:
@@ -241,6 +241,7 @@ sidebar:
         support: false
         feedback: false
         material: false
+        theme_switch: true
 
 
 # ---------------------------------------------------------------

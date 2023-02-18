@@ -6,9 +6,9 @@
 <% } %>
 
 <% if(theme.vendors.materialcdn) { %>
-    <%- jsLsload({path:(theme.vendors.materialcdn + '/js/js.min.js'),key:'js_js'}) %>
+    <%- jsLsload({path:(theme.vendors.materialcdn + '/js/js.js'),key:'js_js'}) %>
 <% } else { %>
-    <%- jsLsload({path:('js/js.min.js'),key:'js_js'}) %>
+    <%- jsLsload({path:('js/js.js'),key:'js_js'}) %>
 <% } %>
 
 <%- partial('_widget/nprogress') %>
@@ -116,15 +116,6 @@
     <%- partial('_widget/mathjax') %>
 <% } %>
 
-<!-- Bing Background -->
-<% if(theme.background.bing.enable) { %>
-<script type="text/ls-javascript" id="Bing-Background-script">
-    queue.offer(function(){
-        $('body').attr('data-original', 'https://api.i-meto.com/bing?<%= theme.background.bing.parameter %>');
-    });
-</script>
-<% } %>
-
 <script type="text/ls-javascript" id="lazy-load">
     // Offer LazyLoad
     queue.offer(function(){
@@ -140,6 +131,15 @@
         },200);
     });
 </script>
+
+<!-- Bing Background -->
+<% if(theme.background.bing.enable) { %>
+<script type="text/ls-javascript" id="Bing-Background-script">
+    queue.offer(function(){
+        $('body').attr('data-original', 'https://api.i-meto.com/bing?<%= theme.background.bing.parameter %>');
+    });
+</script>
+<% } %>
 
 <!-- Custom Footer -->
 
@@ -168,5 +168,5 @@
             lsloader.runInlineScript(item.id,item.id);
         }
     })()
-console.log('\n %c © Material Theme | Version: 1.5.6 | https://github.com/bollnh/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+    console.log('\n %c © Material Theme | Version: 1.5.7 | https://github.com/gadfly3173/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
 </script>

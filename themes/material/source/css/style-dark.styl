@@ -1,0 +1,247 @@
+[data-theme='dark'] {
+  --card-background: #222425
+  --default-text: #bebebe
+  --default-line: #44484b
+  --scrollbar-background: #2a2c2d
+  &::-webkit-scrollbar {
+    background-color: var(--scrollbar-background)
+    color: #a7a096
+  }
+  &::-webkit-scrollbar-corner {
+    background-color: var(--card-background)
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #4b4f52
+  }
+  &::selection {
+    background-color: #0d52a6 !important
+    color: #dedcd9 !important
+  }
+  body&,
+  input,
+  textarea,
+  select,
+  button {
+    background-color: #424242
+    color: rgba(222, 220, 217, 0.87)
+  }
+  img {
+    background-color: #fff
+  }
+  .mdl-button {
+    outline-color: initial
+    border-color: initial
+    background-color: initial
+    background-image: initial
+    color: var(--default-text)
+    text-decoration-color: initial
+  }
+  a {
+    color: rgb(106, 231, 242)
+  }
+  .mdl-card {
+    background-color: var(--card-background)
+  }
+  .mdl-color-text--grey-600 {
+    color: var(--default-text) !important
+  }
+  .mdl-color-text--grey-50 {
+    color: #dbd9d5 !important
+  }
+  .mdl-color--white {
+    background-color: var(--card-background) !important
+  }
+  .mdl-color-text--grey-900 {
+    color: #cbc7c3 !important
+  }
+  .mdl-color-text--grey-700 {
+    color: #a79f96 !important
+  }
+  .mdl-menu__outline {
+    border-color: initial
+    background-color: var(--card-background)
+    box-shadow: rgb(13 13 13 / 14%) 0px 2px 2px 0px, rgb(13 13 13 / 20%) 0px 3px 1px -2px, rgb(13 13 13 / 12%) 0px 1px 5px 0px
+  }
+  .mdl-menu__item {
+    outline-color: #494e50
+    background-color: transparent
+    color: rgba(222, 220, 217, 0.87)
+    text-decoration-color: initial
+    &:hover {
+      background-color: #2b2d2f
+    }
+    &:active {
+      background-color: #333537
+    }
+  }
+  #md-timeline::before {
+    background-color: rgb(49, 52, 53)
+  }
+  .md-timeline-content {
+    background-color: var(--card-background)
+    box-shadow: rgb(13 13 13 / 75%) 0px 4px 15px 0px
+    &::before {
+      border-color: transparent #383c3d transparent transparent
+    }
+  }
+  .md-timeline-date.blue {
+    background-color: #163651
+    box-shadow: rgb(13 13 13 / 75%) 0px 4px 15px 0px
+  }
+  .md-date {
+    color: #dedcd9
+  }
+  .md-links-item {
+    background-color: var(--card-background)
+    box-shadow: rgb(13 13 13 / 14%) 0px 2px 2px 0px, rgb(13 13 13 / 20%) 0px 3px 1px -2px, rgb(13 13 13 / 12%) 0px 1px 5px 0px
+  }
+  .md-links a {
+    color: #c1bcb6
+  }
+  .material-tagscloud a {
+    filter: invert(1)
+  }
+  .material-layout .material-post > .material-nav,
+  .material-layout .material-index > .material-nav,
+  .material-nav a {
+    color: #9b9488
+  }
+  .MD-burger-icon {
+    outline-color: transparent
+    border-color: transparent
+    background-color: transparent
+    background-image: none
+  }
+  .toTop {
+    box-shadow: rgb(13 13 13 / 12%) 0px 0px 3px 0px, rgb(13 13 13 / 24%) 0px 3px 3px 0px
+    color: #dedcd9
+  }
+  .sidebar-colored {
+    background-color: var(--card-background)
+    .sidebar-nav li > a {
+      background-color: transparent
+      color: var(--default-text)
+    }
+    .sidebar-text {
+      color: var(--default-text)
+    }
+    .sidebar-divider,
+    .sidebar-nav .divider {
+      background-color: var(--default-line)
+    }
+    .sidebar-nav {
+      & > .dropdown > .dropdown-menu {
+        background-color: #333537
+      }
+      & > .open > a,
+      & > .open > a:focus,
+      & > .open > a:hover {
+        background-color: #333537
+      }
+      & li > a {
+        background-color: transparent
+      }
+      & > .dropdown > .dropdown-menu > li > a:hover {
+        background-color: #3c3f41
+      }
+    }
+  }
+  #scheme-Paradox& {
+    .material-layout .something-else {
+      .mdl-card__supporting-text {
+        background-color: var(--card-background) !important
+      }
+      .something-else-logo img {
+        background-color: transparent
+      }
+    }
+    .article-headline-p {
+      text-shadow: #3b3e41 1px 1px 8px
+    }
+    .MD-burger-layer {
+      filter: invert(1)
+    }
+    .mdl-mini-footer {
+      background-color: #181818
+    }
+    .mdl-mini-footer {
+      color: #a79f96
+    }
+    .mdl-mini-footer--right-section a {
+      color: #a09a8f
+    }
+    .social-btn {
+      filter: invert(1)
+    }
+    .material-layout .material-post > .material-nav .mdl-button,
+    .material-layout .material-index > .material-nav .mdl-button {
+      background-color: var(--card-background)
+      color: var(--default-text)
+    }
+    .material-nav .page-number.current {
+      color: var(--default-text)
+    }
+    .sidebar-colored .sidebar-nav > .dropdown > .dropdown-menu > li > a:hover,
+    .sidebar-colored .sidebar-nav > .dropdown > .dropdown-menu > li > a:focus {
+      color: #5be4f2 !important
+    }
+    #post-toc-trigger-btn {
+      color: rgb(155, 148, 136)
+    }
+  }
+  #local-search-result {
+    background-color: var(--card-background)
+    box-shadow: rgb(13 13 13 / 16%) 0px 2px 5px 0px, rgb(13 13 13 / 12%) 0px 2px 10px 0px
+    ul li {
+      border-top-color: #414548
+      .search-result {
+        color: #c1bcb6
+      }
+    }
+  }
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #5be4f2 !important
+  }
+  #post-content h1,
+  #post-content h2,
+  #post-content h3,
+  #post-content h4,
+  #post-content h5,
+  #post-content h6 {
+    border-bottom-color: #3c4042
+  }
+  .post-toc-wrap::-webkit-scrollbar {
+    background-color: var(--scrollbar-background)
+  }
+  .post-toc a {
+    color: #9d968a
+    &:hover {
+      color: #6ae7f2
+    }
+  }
+  #disqus-comment {
+    background-color: #2b2d2f
+    .dropdown-menu--refresh {
+      border-color: #686157
+      background-color: #222425
+      background-image: initial
+      box-shadow: none
+    }
+    > body.dark {
+      color: #dedcd9
+    }
+    > .textarea-outer-wrapper .textarea-wrapper {
+      border-color: #404546
+      background-color: var(--card-background)
+    }
+  }
+}

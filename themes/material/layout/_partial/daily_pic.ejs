@@ -2,7 +2,13 @@
 <div class="mdl-card <% if(theme.card_elevation) { %><%= 'mdl-shadow--' + theme.card_elevation + 'dp' %><% } %> daily-pic mdl-cell mdl-cell--8-col index-top-block">
 
     <!-- Pic & Slogan -->
-    <div class="mdl-card__media mdl-color-text--grey-50" style="background-image:url(<%= url_for(theme.img.daily_pic) %>)">
+    <div id="daily-pic-container" class="mdl-card__media mdl-color-text--grey-50">
+        <script>
+          $(window).load(function() {
+            const container = document.getElementById('daily-pic-container');
+            container.style.backgroundImage = 'url(<%= url_for(theme.img.daily_pic) %>)';
+          });
+        </script>
         <p class="index-top-block-slogan"><a href="<%= theme.url.daily_pic %>">
         <% if(theme.uiux.slogan) { %>
             <% if(Array.isArray(theme.uiux.slogan)) { %>

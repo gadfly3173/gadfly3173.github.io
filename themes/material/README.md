@@ -4,7 +4,7 @@
 <i>A pure Material Design theme for Hexo</i>
 
 <p>
-<img alt="Version" src="https://img.shields.io/badge/version-1.5.6-757575.svg?style=flat-square"/>
+<img alt="Version" src="https://img.shields.io/badge/version-1.5.7-757575.svg?style=flat-square"/>
 <a href="https://blh.im"><img alt="Author" src="https://img.shields.io/badge/author-bollnh-red.svg?style=flat-square"/></a>
 <a href="https://hexo.io"><img alt="Hexo" src="https://img.shields.io/badge/hexo-3.0+-0e83cd.svg?style=flat-square"/></a>
 <a href="https://nodejs.org/"><img alt="node.js" src="https://img.shields.io/badge/node.js-6.0%2B-43853d.svg?style=flat-square"/></a>

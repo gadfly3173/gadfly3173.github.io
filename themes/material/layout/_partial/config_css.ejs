@@ -6,7 +6,7 @@
     font-family: <%- theme.fonts.family %>;
     overflow-x: hidden !important;
   }
-  
+
   code {
     font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   }
@@ -22,6 +22,16 @@
   #scheme-Paradox .sidebar_archives-count,
   #scheme-Paradox .sidebar-colored .sidebar-header,
   #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: <%= theme.uiux.theme_color %> !important;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge-switch{
     background-color: <%= theme.uiux.theme_color %> !important;
   }
 
@@ -76,21 +86,11 @@
       body {
         background-color: <%= theme.background.purecolor %>;
       }
-
-      /* blog_info bottom background */
-      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text {
-        background-color: #fff;
-      }
     </style>
 <% } else if(!theme.background.bgimg) { %>
     <style>
       body{
         background-color: <%= theme.background.purecolor %>;
-      }
-
-      /* blog_info bottom background */
-      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
-        background-color: #fff;
       }
     </style>
 <% } else { %>

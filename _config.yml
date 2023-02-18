@@ -81,6 +81,10 @@ lazyload:
   onlypost: true
   loadingImg: /images/227387.gif
 
+stylus:
+  compress: true
+  plugins: 'nib'
+
 # @deprecated
 marked:
   gfm: true
