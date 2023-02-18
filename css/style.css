@@ -34,6 +34,7 @@ body {
   background-size: cover;
   background-attachment: fixed;
   content: "";
+  transition: all 0.3s ease-in-out;
 }
 
 .fa,
@@ -569,7 +570,7 @@ a {
   padding-top: 165px;
   margin: 0 auto;
   width: 100%;
-  min-height: 100%;
+  min-height: 100vh;
   padding-bottom: calc(120px + 5pc);
 }
 
@@ -2349,6 +2350,64 @@ a {
   border-radius: 50%;
 }
 
+.mdl-card__media,
+#search-label,
+#search-form-label:after,
+#scheme-Paradox .hot_tags-count,
+#scheme-Paradox .sidebar_archives-count,
+#scheme-Paradox .sidebar-colored .sidebar-header,
+#scheme-Paradox .sidebar-colored .sidebar-badge.theme-color-switch {
+  background-color: transparent !important;
+}
+
+.theme-color-switch .mdl-switch.is-upgraded {
+  padding-left: 38px;
+}
+
+.theme-color-switch .mdl-switch__track {
+  top: 0;
+  transition: all 0.3s ease-in-out;
+  height: 24px;
+  width: 48px;
+  background: #f1f1f1;
+  border: 1px solid rgba(60, 60, 60, .29);
+}
+
+.theme-color-switch .mdl-switch.is-checked .mdl-switch__track {
+  background: #2f2f2f;
+  border: 1px solid rgba(84, 84, 84, .65);
+}
+
+.theme-color-switch .mdl-switch__thumb {
+  left: 2px;
+  top: 2px;
+}
+
+.theme-color-switch .mdl-switch.is-checked .mdl-switch__thumb {
+  left: 26px;
+  background-color: #1a1a1a;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.theme-color-switch .mdl-switch .mdl-switch__thumb::after {
+  content: '\e430';
+  color: rgba(60, 60, 60, .7);
+  text-shadow: none;
+  width: 0;
+  line-height: 110%;
+  height: 110%;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: -60%;
+}
+
+.theme-color-switch .mdl-switch.is-checked .mdl-switch__thumb::after {
+  content: '\ea46';
+  color: #fff;
+  margin-left: -40%;
+}
+
 .sidebar .sidebar-divider,
 .sidebar .sidebar-nav .divider {
   position: relative;
@@ -2489,13 +2548,14 @@ a {
 }
 
 .sidebar-colored .sidebar-brand {
-  color: #e0e0e0;
+  color: #f5f5f5;
   background-color: transparent;
+  text-shadow: 1px 1px 2px #333;
 }
 
 .sidebar-colored .sidebar-brand:focus,
 .sidebar-colored .sidebar-brand:hover {
-  color: #f5f5f5;
+  color: #fff;
   background-color: rgba(0, 0, 0, 0.1);
 }
 
@@ -2855,20 +2915,19 @@ a {
 /*****************/
 
 .material-icons {
-  font-family: "Material Icons";
-  font-weight: 400;
+  font-family: 'Material Icons';
+  font-weight: normal;
   font-style: normal;
   font-size: 24px;
-  display: inline-block;
   line-height: 1;
-  text-transform: none;
   letter-spacing: normal;
-  word-wrap: normal;
+  text-transform: none;
+  display: inline-block;
   white-space: nowrap;
+  word-wrap: normal;
   direction: ltr;
+  -webkit-font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-  font-feature-settings: "liga";
 }
 /**************/
 /* Footer_Top */
@@ -2904,7 +2963,6 @@ a {
   }
 
   #back-to-top.btt-docked {
-    position: absolute;
     bottom: 180px;
   }
 }

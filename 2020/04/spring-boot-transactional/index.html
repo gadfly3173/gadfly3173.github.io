@@ -5,9 +5,9 @@
     <!--
         © Material Theme
         https://github.com/bollnh/hexo-theme-material
-        Version: 1.5.6 -->
+        Version: 1.5.7 -->
     <script>
-        window.materialVersion = "1.5.6"
+        window.materialVersion = "1.5.7"
         // Delete localstorage with these tags
         window.oldVersion = [
             'codestartv1',
@@ -16,7 +16,8 @@
             '1.4.0b1',
             '1.5.0',
             '1.5.2',
-            '1.5.5'
+            '1.5.5',
+            '1.5.6'
         ]
     </script>
 
@@ -84,8 +85,11 @@
 
     <!-- Import CSS -->
     
-        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?jz54e1VeEqY7rmv2y4hCiA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.css?J3ekFjv+5KKiAFYA59/qdQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.css?R3Z5fr3H3ruXMBBBz5yTqQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        
+<link rel="stylesheet" href="/css/style-dark.css">
+
 
         
 
@@ -101,7 +105,7 @@
     font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
     overflow-x: hidden !important;
   }
-  
+
   code {
     font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   }
@@ -117,6 +121,16 @@
   #scheme-Paradox .sidebar_archives-count,
   #scheme-Paradox .sidebar-colored .sidebar-header,
   #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge-switch{
     background-color: #0097A7 !important;
   }
 
@@ -170,11 +184,6 @@
     <style>
       body{
         background-color: #F5F5F5;
-      }
-
-      /* blog_info bottom background */
-      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
-        background-color: #fff;
       }
     </style>
 
@@ -233,7 +242,7 @@
 <!-- Import Material Icons -->
 
 
-    <style id="material_icons"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_icons","/css/material-icons.css?pqhB/Rd/ab0H2+kZp0RDmw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+    <style id="material_icons"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_icons","/css/material-icons.css?MF3y43zLOUJI1z72xtsg5w==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
 
 
@@ -278,7 +287,7 @@
 
     
         <meta property="article:published_time" content="Sun Apr 12 2020 15:08:19 GMT+0800">
-        <meta property="article:modified_time" content="Wed Feb 01 2023 12:54:03 GMT+0800">
+        <meta property="article:modified_time" content="Sun Feb 19 2023 01:17:57 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -301,7 +310,7 @@
     "mainEntityOfPage": "https://blog.gadfly.vip/2020/04/spring-boot-transactional/index.html",
     "headline": "Spring Boot 开发笔记 - @Transactional 注解使用浅析",
     "datePublished": "Sun Apr 12 2020 15:08:19 GMT+0800",
-    "dateModified": "Wed Feb 01 2023 12:54:03 GMT+0800",
+    "dateModified": "Sun Feb 19 2023 01:17:57 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "猪蹄宝宝",
@@ -350,7 +359,7 @@
     
         <body id="scheme-Paradox" class="lazy">
             <canvas id="tinyball-canvas" style="position:fixed;z-index:-99;display:block;">你这是什么垃圾浏览器，这都不能显示(╯‵□′)╯︵┻━┻</canvas>
-            <script>lsloader.load("tiniballs_js","/js/tiniballs.js?zsNtF/7ZIdwUSBTaoRM2jg==", true)</script>
+            <script>lsloader.load("tiniballs_js","/js/tiniballs.js?RbhMd4vex2k4fPUeDg+pWA==", true)</script>
             <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
                 
 
@@ -552,22 +561,22 @@
         <p>Spring Boot 中对方法开启事务管理非常轻松，只需要 <code>@Transactional</code> 注解就可以让方法开启事务，然而不了解其机制时使用可能会导致其失效。</p>
 <span id="more"></span>
 <p><code>@Transactional</code> 本质是一个 AOP 动态代理，不需要开发者干预。下面来一个代码例子：</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Service</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">UserService</span> <span class="token punctuation">&#123;</span>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">@Service
+public class UserService &#123;
 
- <span class="token annotation punctuation">@Autowired</span>
- <span class="token keyword">private</span> <span class="token class-name">UserMapper</span> userMapper<span class="token punctuation">;</span>
+ @Autowired
+ private UserMapper userMapper;
 
- <span class="token annotation punctuation">@Transactional</span><span class="token punctuation">(</span>propagation<span class="token operator">=</span><span class="token class-name">Propagation</span><span class="token punctuation">.</span>REQUIRED<span class="token punctuation">,</span>isolation<span class="token operator">=</span><span class="token class-name">Isolation</span><span class="token punctuation">.</span>DEFAULT<span class="token punctuation">,</span>readOnly<span class="token operator">=</span><span class="token boolean">false</span><span class="token punctuation">)</span>
- <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">insert01</span><span class="token punctuation">(</span><span class="token class-name">User</span> u<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-  <span class="token keyword">this</span><span class="token punctuation">.</span>userMapper<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>u<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">RuntimeException</span><span class="token punctuation">(</span><span class="token string">"测试插入事务"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
- <span class="token punctuation">&#125;</span>
+ @Transactional(propagation&#x3D;Propagation.REQUIRED,isolation&#x3D;Isolation.DEFAULT,readOnly&#x3D;false)
+ public void insert01(User u)&#123;
+  this.userMapper.insert(u);
+  throw new RuntimeException(&quot;测试插入事务&quot;);
+ &#125;
 
- <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">insert02</span><span class="token punctuation">(</span><span class="token class-name">User</span> u<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">insert01</span><span class="token punctuation">(</span>u<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">RuntimeException</span><span class="token punctuation">(</span><span class="token string">"测试插入事务"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
- <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+ public void insert02(User u)&#123;
+  this.insert01(u);
+  throw new RuntimeException(&quot;测试插入事务&quot;);
+ &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>在这个例子中，调用 <code>insert01</code> 时，事务的执行不会有任何问题，但是调用 <code>insert02</code> 时，异常被正常抛出，但是数据依然被插入了数据库，说明事务没有被正常执行。<br>
 在外部调用 <code>insert01</code> 时，调用的就是被动态代理的 <code>insert01</code>，但是如果在一个类里自调用时，这样是无法调用到代理对象的，所以 <code>insert02</code> 中调用的不是代理对象 <code>insert01</code>，而是原本的方法。当然，原本的对象中是没有切片做事务增强的，自然也不能进行事务回滚。</p>
 <p>一般的事务代理机制：<br>
@@ -584,35 +593,35 @@
 </li>
 <li>
 <p><code>insert01</code> 开启事务，并且在 <code>insert02</code> 中不使用 <code>this</code> 调用，而是获取代理</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">insert02</span><span class="token punctuation">(</span><span class="token class-name">User</span> u<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token function">getService</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">insert01</span><span class="token punctuation">(</span>u<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">&#125;</span>
-  <span class="token keyword">private</span> <span class="token class-name">UserService</span> <span class="token function">getService</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token comment">// 采取这种方式的话</span>
-    <span class="token comment">// @EnableAspectJAutoProxy(exposeProxy=true,proxyTargetClass=true)</span>
-    <span class="token comment">// 必须设置为true</span>
-    <span class="token keyword">return</span> <span class="token class-name">AopContext</span><span class="token punctuation">.</span><span class="token function">currentProxy</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token operator">?</span> <span class="token punctuation">(</span><span class="token class-name">UserService</span><span class="token punctuation">)</span><span class="token class-name">AopContext</span><span class="token punctuation">.</span><span class="token function">currentProxy</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
-  <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">public void insert02(User u)&#123;
+    getService().insert01(u);
+  &#125;
+  private UserService getService()&#123;
+    &#x2F;&#x2F; 采取这种方式的话
+    &#x2F;&#x2F; @EnableAspectJAutoProxy(exposeProxy&#x3D;true,proxyTargetClass&#x3D;true)
+    &#x2F;&#x2F; 必须设置为true
+    return AopContext.currentProxy() !&#x3D; null ? (UserService)AopContext.currentProxy() : this;
+  &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li>
 <p>从 <code>beanFactory</code> 中获取对象。Controller 中的 <code>UserService</code> 是代理对象，它是从 <code>beanFactory</code> 中得来的，那么 Service 类内调用其他方法时，也先从 <code>beanFacotry</code> 中拿出来就 OK 了。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">insert02</span><span class="token punctuation">(</span><span class="token class-name">User</span> u<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-  <span class="token function">getService</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">insert01</span><span class="token punctuation">(</span>u<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token keyword">private</span> <span class="token class-name">UserService</span> <span class="token function">getService</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-  <span class="token keyword">return</span> <span class="token class-name">SpringContextUtil</span><span class="token punctuation">.</span><span class="token function">getBean</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">public void insert02(User u)&#123;
+  getService().insert01(u);
+&#125;
+private UserService getService()&#123;
+  return SpringContextUtil.getBean(this.getClass());
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 </ul>
 <p>有关 AOP 和代理的问题可以看 <a target="_blank" rel="noopener" href="https://juejin.im/post/5b90e648f265da0aea695672">从代理机制到 Spring AOP</a> 和 <a target="_blank" rel="noopener" href="https://juejin.im/post/5b06bf2df265da0de2574ee1">Spring AOP 就是这么简单啦</a>。这两篇文章讲得很清楚了。</p>
 <p>除了代理导致的自调用失效，还有一个问题是方法抛出异常时，事务也没有回滚。这个则是因为 <code>@Transactional</code> 中捕获的异常只有 <code>RuntimeException</code>。<br>
 DefaultTransactionAttribute.java 源码中写的是：</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Override</span>
-<span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">rollbackOn</span><span class="token punctuation">(</span><span class="token class-name">Throwable</span> ex<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-  <span class="token keyword">return</span> <span class="token punctuation">(</span>ex <span class="token keyword">instanceof</span> <span class="token class-name">RuntimeException</span> <span class="token operator">||</span> ex <span class="token keyword">instanceof</span> <span class="token class-name">Error</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">@Override
+public boolean rollbackOn(Throwable ex) &#123;
+  return (ex instanceof RuntimeException || ex instanceof Error);
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>所以需要捕获其他异常时，必须把注解写成</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Transactional</span><span class="token punctuation">(</span> rollbackFor <span class="token operator">=</span> <span class="token class-name">Exception</span><span class="token punctuation">.</span><span class="token keyword">class</span> <span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">@Transactional( rollbackFor &#x3D; Exception.class )<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>更详细的使用要点可以看来自 IBM Developer 的 <a target="_blank" rel="noopener" href="https://www.ibm.com/developerworks/cn/java/j-master-spring-transactional-use/index.html">透彻的掌握 Spring 中@transactional 的使用</a></p>
 
         
@@ -937,12 +946,26 @@ It will not impact the appearance and can give developers a lot of support :)
 
 <!-- Sidebar Divider -->
 
-    <div class="sidebar-divider"></div>
+  <div class="sidebar-divider"></div>
+
+
+<!-- Theme Color Switch -->
+
+
+    <div class="sidebar-text mdl-button mdl-js-button sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+        深色模式
+        <div class="sidebar-badge theme-color-switch material-icons">
+          <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect">
+            <input type="checkbox" id="theme-color-switch-input" class="mdl-switch__input">
+            <span class="mdl-switch__label"></span>
+          </label>
+        </div>
+    </div>
 
 
 <!-- Theme Material -->
 
-    <a href="https://github.com/bollnh/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+    <a href="https://github.com/gadfly3173/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
         <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
             主题 - Material
             <span class="sidebar-badge badge-circle">i</span>
@@ -1024,7 +1047,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
     <!-- Bilibili -->
     
-        <a href="https://space.bilibili.com/17819592/#!/" target="_blank">
+        <a href="https://space.bilibili.com/17819592" target="_blank">
             <button class="mdl-mini-footer--social-btn social-btn footer-sns-bilibili">
                 <span class="visuallyhidden">Bilibili</span>
             </button><!--
@@ -1079,7 +1102,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 
-    <script>lsloader.load("js_js","/js/js.min.js?Bn9UzEm8RrBSxqyZB0zPjA==", true)</script>
+    <script>lsloader.load("js_js","/js/js.js?zMMjDEGI0fKmd6sx1dB4OQ==", true)</script>
 
 
 
@@ -1150,9 +1173,6 @@ It will not impact the appearance and can give developers a lot of support :)
 <!-- MathJax Load-->
 
 
-<!-- Bing Background -->
-
-
 <script type="text/ls-javascript" id="lazy-load">
     // Offer LazyLoad
     queue.offer(function(){
@@ -1168,6 +1188,9 @@ It will not impact the appearance and can give developers a lot of support :)
         },200);
     });
 </script>
+
+<!-- Bing Background -->
+
 
 <!-- Custom Footer -->
 
@@ -1192,7 +1215,7 @@ It will not impact the appearance and can give developers a lot of support :)
             lsloader.runInlineScript(item.id,item.id);
         }
     })()
-console.log('\n %c © Material Theme | Version: 1.5.6 | https://github.com/bollnh/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+    console.log('\n %c © Material Theme | Version: 1.5.7 | https://github.com/gadfly3173/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
 </script>
 
                 </main>

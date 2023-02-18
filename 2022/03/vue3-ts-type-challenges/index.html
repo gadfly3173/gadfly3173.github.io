@@ -5,9 +5,9 @@
     <!--
         © Material Theme
         https://github.com/bollnh/hexo-theme-material
-        Version: 1.5.6 -->
+        Version: 1.5.7 -->
     <script>
-        window.materialVersion = "1.5.6"
+        window.materialVersion = "1.5.7"
         // Delete localstorage with these tags
         window.oldVersion = [
             'codestartv1',
@@ -16,7 +16,8 @@
             '1.4.0b1',
             '1.5.0',
             '1.5.2',
-            '1.5.5'
+            '1.5.5',
+            '1.5.6'
         ]
     </script>
 
@@ -84,8 +85,11 @@
 
     <!-- Import CSS -->
     
-        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?jz54e1VeEqY7rmv2y4hCiA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.css?J3ekFjv+5KKiAFYA59/qdQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.css?R3Z5fr3H3ruXMBBBz5yTqQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        
+<link rel="stylesheet" href="/css/style-dark.css">
+
 
         
 
@@ -101,7 +105,7 @@
     font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
     overflow-x: hidden !important;
   }
-  
+
   code {
     font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   }
@@ -117,6 +121,16 @@
   #scheme-Paradox .sidebar_archives-count,
   #scheme-Paradox .sidebar-colored .sidebar-header,
   #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge-switch{
     background-color: #0097A7 !important;
   }
 
@@ -170,11 +184,6 @@
     <style>
       body{
         background-color: #F5F5F5;
-      }
-
-      /* blog_info bottom background */
-      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
-        background-color: #fff;
       }
     </style>
 
@@ -233,7 +242,7 @@
 <!-- Import Material Icons -->
 
 
-    <style id="material_icons"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_icons","/css/material-icons.css?pqhB/Rd/ab0H2+kZp0RDmw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+    <style id="material_icons"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_icons","/css/material-icons.css?MF3y43zLOUJI1z72xtsg5w==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
 
 
@@ -278,7 +287,7 @@
 
     
         <meta property="article:published_time" content="Fri Mar 11 2022 10:48:12 GMT+0800">
-        <meta property="article:modified_time" content="Wed Feb 01 2023 12:54:03 GMT+0800">
+        <meta property="article:modified_time" content="Sun Feb 19 2023 01:17:57 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -301,7 +310,7 @@
     "mainEntityOfPage": "https://blog.gadfly.vip/2022/03/vue3-ts-type-challenges/index.html",
     "headline": "vue3 中的 ts 类型体操",
     "datePublished": "Fri Mar 11 2022 10:48:12 GMT+0800",
-    "dateModified": "Wed Feb 01 2023 12:54:03 GMT+0800",
+    "dateModified": "Sun Feb 19 2023 01:17:57 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "猪蹄宝宝",
@@ -350,7 +359,7 @@
     
         <body id="scheme-Paradox" class="lazy">
             <canvas id="tinyball-canvas" style="position:fixed;z-index:-99;display:block;">你这是什么垃圾浏览器，这都不能显示(╯‵□′)╯︵┻━┻</canvas>
-            <script>lsloader.load("tiniballs_js","/js/tiniballs.js?zsNtF/7ZIdwUSBTaoRM2jg==", true)</script>
+            <script>lsloader.load("tiniballs_js","/js/tiniballs.js?RbhMd4vex2k4fPUeDg+pWA==", true)</script>
             <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
                 
 
@@ -876,12 +885,26 @@ It will not impact the appearance and can give developers a lot of support :)
 
 <!-- Sidebar Divider -->
 
-    <div class="sidebar-divider"></div>
+  <div class="sidebar-divider"></div>
+
+
+<!-- Theme Color Switch -->
+
+
+    <div class="sidebar-text mdl-button mdl-js-button sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+        深色模式
+        <div class="sidebar-badge theme-color-switch material-icons">
+          <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect">
+            <input type="checkbox" id="theme-color-switch-input" class="mdl-switch__input">
+            <span class="mdl-switch__label"></span>
+          </label>
+        </div>
+    </div>
 
 
 <!-- Theme Material -->
 
-    <a href="https://github.com/bollnh/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+    <a href="https://github.com/gadfly3173/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
         <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
             主题 - Material
             <span class="sidebar-badge badge-circle">i</span>
@@ -963,7 +986,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
     <!-- Bilibili -->
     
-        <a href="https://space.bilibili.com/17819592/#!/" target="_blank">
+        <a href="https://space.bilibili.com/17819592" target="_blank">
             <button class="mdl-mini-footer--social-btn social-btn footer-sns-bilibili">
                 <span class="visuallyhidden">Bilibili</span>
             </button><!--
@@ -1018,7 +1041,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 
-    <script>lsloader.load("js_js","/js/js.min.js?Bn9UzEm8RrBSxqyZB0zPjA==", true)</script>
+    <script>lsloader.load("js_js","/js/js.js?zMMjDEGI0fKmd6sx1dB4OQ==", true)</script>
 
 
 
@@ -1089,9 +1112,6 @@ It will not impact the appearance and can give developers a lot of support :)
 <!-- MathJax Load-->
 
 
-<!-- Bing Background -->
-
-
 <script type="text/ls-javascript" id="lazy-load">
     // Offer LazyLoad
     queue.offer(function(){
@@ -1107,6 +1127,9 @@ It will not impact the appearance and can give developers a lot of support :)
         },200);
     });
 </script>
+
+<!-- Bing Background -->
+
 
 <!-- Custom Footer -->
 
@@ -1131,7 +1154,7 @@ It will not impact the appearance and can give developers a lot of support :)
             lsloader.runInlineScript(item.id,item.id);
         }
     })()
-console.log('\n %c © Material Theme | Version: 1.5.6 | https://github.com/bollnh/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+    console.log('\n %c © Material Theme | Version: 1.5.7 | https://github.com/gadfly3173/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
 </script>
 
                 </main>

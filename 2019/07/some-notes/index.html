@@ -5,9 +5,9 @@
     <!--
         © Material Theme
         https://github.com/bollnh/hexo-theme-material
-        Version: 1.5.6 -->
+        Version: 1.5.7 -->
     <script>
-        window.materialVersion = "1.5.6"
+        window.materialVersion = "1.5.7"
         // Delete localstorage with these tags
         window.oldVersion = [
             'codestartv1',
@@ -16,7 +16,8 @@
             '1.4.0b1',
             '1.5.0',
             '1.5.2',
-            '1.5.5'
+            '1.5.5',
+            '1.5.6'
         ]
     </script>
 
@@ -84,8 +85,11 @@
 
     <!-- Import CSS -->
     
-        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?jz54e1VeEqY7rmv2y4hCiA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.css?J3ekFjv+5KKiAFYA59/qdQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.css?R3Z5fr3H3ruXMBBBz5yTqQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        
+<link rel="stylesheet" href="/css/style-dark.css">
+
 
         
 
@@ -101,7 +105,7 @@
     font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
     overflow-x: hidden !important;
   }
-  
+
   code {
     font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   }
@@ -117,6 +121,16 @@
   #scheme-Paradox .sidebar_archives-count,
   #scheme-Paradox .sidebar-colored .sidebar-header,
   #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge-switch{
     background-color: #0097A7 !important;
   }
 
@@ -170,11 +184,6 @@
     <style>
       body{
         background-color: #F5F5F5;
-      }
-
-      /* blog_info bottom background */
-      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
-        background-color: #fff;
       }
     </style>
 
@@ -233,7 +242,7 @@
 <!-- Import Material Icons -->
 
 
-    <style id="material_icons"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_icons","/css/material-icons.css?pqhB/Rd/ab0H2+kZp0RDmw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+    <style id="material_icons"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_icons","/css/material-icons.css?MF3y43zLOUJI1z72xtsg5w==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
 
 
@@ -278,7 +287,7 @@
 
     
         <meta property="article:published_time" content="Wed Jul 03 2019 15:06:05 GMT+0800">
-        <meta property="article:modified_time" content="Wed Feb 01 2023 12:54:03 GMT+0800">
+        <meta property="article:modified_time" content="Sun Feb 19 2023 01:17:57 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -301,7 +310,7 @@
     "mainEntityOfPage": "https://blog.gadfly.vip/2019/07/some-notes/index.html",
     "headline": "一些笔记",
     "datePublished": "Wed Jul 03 2019 15:06:05 GMT+0800",
-    "dateModified": "Wed Feb 01 2023 12:54:03 GMT+0800",
+    "dateModified": "Sun Feb 19 2023 01:17:57 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "猪蹄宝宝",
@@ -350,7 +359,7 @@
     
         <body id="scheme-Paradox" class="lazy">
             <canvas id="tinyball-canvas" style="position:fixed;z-index:-99;display:block;">你这是什么垃圾浏览器，这都不能显示(╯‵□′)╯︵┻━┻</canvas>
-            <script>lsloader.load("tiniballs_js","/js/tiniballs.js?zsNtF/7ZIdwUSBTaoRM2jg==", true)</script>
+            <script>lsloader.load("tiniballs_js","/js/tiniballs.js?RbhMd4vex2k4fPUeDg+pWA==", true)</script>
             <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
                 
 
@@ -560,101 +569,101 @@
     
         <h2 id="Git">Git</h2>
 <h3 id="1、从远程主机克隆一个版本库">1、从远程主机克隆一个版本库</h3>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> clone <span class="token operator">&lt;</span>版本库的网址<span class="token operator">></span> <span class="token operator">&lt;</span>本地目录名<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">git clone &lt;版本库的网址&gt; &lt;本地目录名&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>克隆版本库的时候，所使用的远程主机自动被 Git 命名为 origin。如果想用其他的主机名，需要用 git clone 命令的-o 选项指定。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> clone -o jQuery https://github.com/jquery/jquery.git<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">git clone -o jQuery https:&#x2F;&#x2F;github.com&#x2F;jquery&#x2F;jquery.git<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h3 id="2、管理远程主机名">2、管理远程主机名</h3>
 <p>使用-v 选项，可以参看远程主机的网址。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote -v<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">git remote -v<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>git remote show 命令加上主机名，可以查看该主机的详细信息。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote show <span class="token operator">&lt;</span>主机名<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">git remote show &lt;主机名&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>git remote add 命令用于添加远程主机。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token function">add</span> <span class="token operator">&lt;</span>主机名<span class="token operator">></span> <span class="token operator">&lt;</span>网址<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">git remote add &lt;主机名&gt; &lt;网址&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>git remote rm 命令用于删除远程主机。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token function">rm</span> <span class="token operator">&lt;</span>主机名<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">git remote rm &lt;主机名&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>git remote rename 命令用于远程主机的改名。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token function">rename</span> <span class="token operator">&lt;</span>原主机名<span class="token operator">></span> <span class="token operator">&lt;</span>新主机名<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">git remote rename &lt;原主机名&gt; &lt;新主机名&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h3 id="3、取回-commit">3、取回 commit</h3>
 <p>一旦远程主机的版本库有了更新（Git 术语叫做 commit），需要将这些更新取回本地，这时就要用到 git fetch 命令。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> fetch <span class="token operator">&lt;</span>远程主机名<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">git fetch &lt;远程主机名&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>上面命令将某个远程主机的更新，全部取回本地。<br>
 git fetch 命令通常用来查看其他人的进程，因为它取回的代码对你本地的开发代码没有影响。<br>
 默认情况下，git fetch 取回所有分支（branch）的更新。如果只想取回特定分支的更新，可以指定分支名。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> fetch <span class="token operator">&lt;</span>远程主机名<span class="token operator">></span> <span class="token operator">&lt;</span>分支名<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">git fetch &lt;远程主机名&gt; &lt;分支名&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>所取回的更新，在本地主机上要用&quot;远程主机名/分支名&quot;的形式读取。比如 origin 主机的 master，就要用 origin/master 读取。<br>
 git branch 命令的-r 选项，可以用来查看远程分支，-a 选项查看所有分支。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">git</span> branch -r
-  origin/master
-$ <span class="token function">git</span> branch -a
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ git branch -r
+  origin&#x2F;master
+$ git branch -a
   * master
-  remotes/origin/master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  remotes&#x2F;origin&#x2F;master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>上面命令表示，本地主机的当前分支是 master，远程分支是 origin/master。<br>
 取回远程主机的更新以后，可以在它的基础上，使用 git checkout 命令创建一个新的分支。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> checkout -b newBrach origin/master<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">git checkout -b newBrach origin&#x2F;master<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>上面命令表示，在 origin/master 的基础上，创建一个新分支。<br>
 此外，也可以使用 git merge 命令或者 git rebase 命令，在本地分支上合并远程分支。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">git</span> merge origin/master
-<span class="token comment"># 或者</span>
-$ <span class="token function">git</span> rebase origin/master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ git merge origin&#x2F;master
+# 或者
+$ git rebase origin&#x2F;master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>上面命令表示在当前分支上，合并 origin/master。</p>
 <h3 id="4、取回远程主机某个分支的更新，再与本地的指定分支合并">4、取回远程主机某个分支的更新，再与本地的指定分支合并</h3>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> pull <span class="token operator">&lt;</span>远程主机名<span class="token operator">></span> <span class="token operator">&lt;</span>远程分支名<span class="token operator">></span>:<span class="token operator">&lt;</span>本地分支名<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">git pull &lt;远程主机名&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>比如，取回 origin 主机的 next 分支，与本地的 master 分支合并，需要写成下面这样。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> pull origin next:master<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">git pull origin next:master<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>如果远程分支是与当前分支合并，则冒号后面的部分可以省略。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> pull origin next<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">git pull origin next<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>上面命令表示，取回 origin/next 分支，再与当前分支合并。实质上，这等同于先做 git fetch，再做 git merge。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> fetch origin
-<span class="token function">git</span> merge origin/next<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">git fetch origin
+git merge origin&#x2F;next<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>在某些场合，Git 会自动在本地分支与远程分支之间，建立一种追踪关系（tracking）。比如，在 git clone 的时候，所有本地分支默认与远程主机的同名分支，建立追踪关系，也就是说，本地的 master 分支自动&quot;追踪&quot;origin/master 分支。<br>
 Git 也允许手动建立追踪关系。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> branch --set-upstream master origin/next<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">git branch --set-upstream master origin&#x2F;next<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>上面命令指定 master 分支追踪 origin/next 分支。<br>
 如果当前分支与远程分支存在追踪关系，git pull 就可以省略远程分支名。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> pull origin<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">git pull origin<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>上面命令表示，本地的当前分支自动与对应的 origin 主机&quot;追踪分支&quot;（remote-tracking branch）进行合并。<br>
 如果当前分支只有一个追踪分支，连远程主机名都可以省略。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> pull<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">git pull<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>上面命令表示，当前分支自动与唯一一个追踪分支进行合并。<br>
 如果合并需要采用 rebase 模式，可以使用--rebase 选项。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> pull --rebase <span class="token operator">&lt;</span>远程主机名<span class="token operator">></span> <span class="token operator">&lt;</span>远程分支名<span class="token operator">></span>:<span class="token operator">&lt;</span>本地分支名<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">git pull --rebase &lt;远程主机名&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>如果远程主机删除了某个分支，默认情况下，git pull 不会在拉取远程分支的时候，删除对应的本地分支。这是为了防止，由于其他人操作了远程主机，导致 git pull 不知不觉删除了本地分支。<br>
 但是，你可以改变这个行为，加上参数 -p 就会在本地删除远程已经删除的分支。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">git</span> pull -p
-<span class="token comment"># 等同于下面的命令</span>
-$ <span class="token function">git</span> fetch --prune origin
-$ <span class="token function">git</span> fetch -p<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ git pull -p
+# 等同于下面的命令
+$ git fetch --prune origin
+$ git fetch -p<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="5、将本地分支的更新，推送到远程主机">5、将本地分支的更新，推送到远程主机</h3>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> push <span class="token operator">&lt;</span>远程主机名<span class="token operator">></span> <span class="token operator">&lt;</span>本地分支名<span class="token operator">></span>:<span class="token operator">&lt;</span>远程分支名<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">git push &lt;远程主机名&gt; &lt;本地分支名&gt;:&lt;远程分支名&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>注意，分支推送顺序的写法是&lt;来源地&gt;:&lt;目的地&gt;，所以 git pull 是&lt;远程分支&gt;:&lt;本地分支&gt;，而 git push 是&lt;本地分支&gt;:&lt;远程分支&gt;。<br>
 如果省略远程分支名，则表示将本地分支推送与之存在&quot;追踪关系&quot;的远程分支（通常两者同名），如果该远程分支不存在，则会被新建。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> push origin master<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">git push origin master<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>上面命令表示，将本地的 master 分支推送到 origin 主机的 master 分支。如果后者不存在，则会被新建。<br>
 如果省略本地分支名，则表示删除指定的远程分支，因为这等同于推送一个空的本地分支到远程分支。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">git</span> push origin :master
-<span class="token comment"># 等同于</span>
-$ <span class="token function">git</span> push origin --delete master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ git push origin :master
+# 等同于
+$ git push origin --delete master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>上面命令表示删除 origin 主机的 master 分支。<br>
 如果当前分支与远程分支之间存在追踪关系，则本地分支和远程分支都可以省略。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> push origin<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">git push origin<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>上面命令表示，将当前分支推送到 origin 主机的对应分支。</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">如果当前分支只有一个追踪分支，那么主机名都可以省略。
-$ <span class="token function">git</span> push
+$ git push
 如果当前分支与多个主机存在追踪关系，则可以使用-u选项指定一个默认主机，这样后面就可以不加任何参数使用git push。
-$ <span class="token function">git</span> push -u origin master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+$ git push -u origin master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>上面命令将本地的 master 分支推送到 origin 主机，同时指定 origin 为默认主机，后面就可以不加任何参数使用 git push 了。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">不带任何参数的git push，默认只推送当前分支，这叫做simple方式。此外，还有一种matching方式，会推送所有有对应的远程分支的本地分支。Git <span class="token number">2.0</span>版本之前，默认采用matching方法，现在改为默认采用simple方式。如果要修改这个设置，可以采用git config命令。
-$ <span class="token function">git</span> config --global push.default matching
-<span class="token comment"># 或者</span>
-$ <span class="token function">git</span> config --global push.default simple
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">不带任何参数的git push，默认只推送当前分支，这叫做simple方式。此外，还有一种matching方式，会推送所有有对应的远程分支的本地分支。Git 2.0版本之前，默认采用matching方法，现在改为默认采用simple方式。如果要修改这个设置，可以采用git config命令。
+$ git config --global push.default matching
+# 或者
+$ git config --global push.default simple
 还有一种情况，就是不管是否存在对应的远程分支，将本地的所有分支都推送到远程主机，这时需要使用--all选项。
-$ <span class="token function">git</span> push --all origin<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+$ git push --all origin<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>上面命令表示，将所有本地分支都推送到 origin 主机。<br>
 如果远程主机的版本比本地版本更新，推送时 Git 会报错，要求先在本地做 git pull 合并差异，然后再推送到远程主机。这时，如果你一定要推送，可以使用--force 选项。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> push --force origin <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">git push --force origin <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>上面命令使用--force 选项，结果导致远程主机上更新的版本被覆盖。除非你很确定要这样做，否则应该尽量避免使用--force 选项。<br>
 最后，git push 不会推送标签（tag），除非使用--tags 选项。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> push origin --tags<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">git push origin --tags<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h2 id="替换字体">替换字体</h2>
 <p><a target="_blank" rel="noopener" href="https://github.com/ysc3839/FontMod/">https://github.com/ysc3839/FontMod/</a> 可以用于替换部分 Qt 或使用 GDI 渲染的程序的默认字体。<br>
 Mactype 可以用于改善 win10 字体渲染。与 virtual box 和上面的 fontmod 会产生冲突。<br>
@@ -982,12 +991,26 @@ It will not impact the appearance and can give developers a lot of support :)
 
 <!-- Sidebar Divider -->
 
-    <div class="sidebar-divider"></div>
+  <div class="sidebar-divider"></div>
+
+
+<!-- Theme Color Switch -->
+
+
+    <div class="sidebar-text mdl-button mdl-js-button sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+        深色模式
+        <div class="sidebar-badge theme-color-switch material-icons">
+          <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect">
+            <input type="checkbox" id="theme-color-switch-input" class="mdl-switch__input">
+            <span class="mdl-switch__label"></span>
+          </label>
+        </div>
+    </div>
 
 
 <!-- Theme Material -->
 
-    <a href="https://github.com/bollnh/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+    <a href="https://github.com/gadfly3173/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
         <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
             主题 - Material
             <span class="sidebar-badge badge-circle">i</span>
@@ -1069,7 +1092,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
     <!-- Bilibili -->
     
-        <a href="https://space.bilibili.com/17819592/#!/" target="_blank">
+        <a href="https://space.bilibili.com/17819592" target="_blank">
             <button class="mdl-mini-footer--social-btn social-btn footer-sns-bilibili">
                 <span class="visuallyhidden">Bilibili</span>
             </button><!--
@@ -1124,7 +1147,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 
-    <script>lsloader.load("js_js","/js/js.min.js?Bn9UzEm8RrBSxqyZB0zPjA==", true)</script>
+    <script>lsloader.load("js_js","/js/js.js?zMMjDEGI0fKmd6sx1dB4OQ==", true)</script>
 
 
 
@@ -1195,9 +1218,6 @@ It will not impact the appearance and can give developers a lot of support :)
 <!-- MathJax Load-->
 
 
-<!-- Bing Background -->
-
-
 <script type="text/ls-javascript" id="lazy-load">
     // Offer LazyLoad
     queue.offer(function(){
@@ -1213,6 +1233,9 @@ It will not impact the appearance and can give developers a lot of support :)
         },200);
     });
 </script>
+
+<!-- Bing Background -->
+
 
 <!-- Custom Footer -->
 
@@ -1237,7 +1260,7 @@ It will not impact the appearance and can give developers a lot of support :)
             lsloader.runInlineScript(item.id,item.id);
         }
     })()
-console.log('\n %c © Material Theme | Version: 1.5.6 | https://github.com/bollnh/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+    console.log('\n %c © Material Theme | Version: 1.5.7 | https://github.com/gadfly3173/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
 </script>
 
                 </main>

@@ -5,9 +5,9 @@
     <!--
         © Material Theme
         https://github.com/bollnh/hexo-theme-material
-        Version: 1.5.6 -->
+        Version: 1.5.7 -->
     <script>
-        window.materialVersion = "1.5.6"
+        window.materialVersion = "1.5.7"
         // Delete localstorage with these tags
         window.oldVersion = [
             'codestartv1',
@@ -16,7 +16,8 @@
             '1.4.0b1',
             '1.5.0',
             '1.5.2',
-            '1.5.5'
+            '1.5.5',
+            '1.5.6'
         ]
     </script>
 
@@ -84,8 +85,11 @@
 
     <!-- Import CSS -->
     
-        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?jz54e1VeEqY7rmv2y4hCiA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.css?J3ekFjv+5KKiAFYA59/qdQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.css?R3Z5fr3H3ruXMBBBz5yTqQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        
+<link rel="stylesheet" href="/css/style-dark.css">
+
 
         
 
@@ -101,7 +105,7 @@
     font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
     overflow-x: hidden !important;
   }
-  
+
   code {
     font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   }
@@ -117,6 +121,16 @@
   #scheme-Paradox .sidebar_archives-count,
   #scheme-Paradox .sidebar-colored .sidebar-header,
   #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge-switch{
     background-color: #0097A7 !important;
   }
 
@@ -170,11 +184,6 @@
     <style>
       body{
         background-color: #F5F5F5;
-      }
-
-      /* blog_info bottom background */
-      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
-        background-color: #fff;
       }
     </style>
 
@@ -233,7 +242,7 @@
 <!-- Import Material Icons -->
 
 
-    <style id="material_icons"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_icons","/css/material-icons.css?pqhB/Rd/ab0H2+kZp0RDmw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+    <style id="material_icons"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_icons","/css/material-icons.css?MF3y43zLOUJI1z72xtsg5w==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
 
 
@@ -278,7 +287,7 @@
 
     
         <meta property="article:published_time" content="Wed Apr 28 2021 18:10:36 GMT+0800">
-        <meta property="article:modified_time" content="Wed Feb 01 2023 12:54:03 GMT+0800">
+        <meta property="article:modified_time" content="Sun Feb 19 2023 01:17:57 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -301,7 +310,7 @@
     "mainEntityOfPage": "https://blog.gadfly.vip/2021/04/make-a-questionnaire-module-step-by-step/index.html",
     "headline": "Re:从零开始的问卷模块",
     "datePublished": "Wed Apr 28 2021 18:10:36 GMT+0800",
-    "dateModified": "Wed Feb 01 2023 12:54:03 GMT+0800",
+    "dateModified": "Sun Feb 19 2023 01:17:57 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "猪蹄宝宝",
@@ -350,7 +359,7 @@
     
         <body id="scheme-Paradox" class="lazy">
             <canvas id="tinyball-canvas" style="position:fixed;z-index:-99;display:block;">你这是什么垃圾浏览器，这都不能显示(╯‵□′)╯︵┻━┻</canvas>
-            <script>lsloader.load("tiniballs_js","/js/tiniballs.js?zsNtF/7ZIdwUSBTaoRM2jg==", true)</script>
+            <script>lsloader.load("tiniballs_js","/js/tiniballs.js?RbhMd4vex2k4fPUeDg+pWA==", true)</script>
             <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
                 
 
@@ -938,255 +947,255 @@
 </table>
 <p>student_questionnaire_question_answer 表是学生提交的每个问题的具体回答的记录表，记录了对应 student_questionnaire 的 id、对应的问题 id、简答题的回答内容、选择题的选项等信息。</p>
 <p>sql 建表语句如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- ----------------------------</span>
-<span class="token comment">-- 问卷表</span>
-<span class="token comment">-- ----------------------------</span>
-<span class="token keyword">DROP</span> <span class="token keyword">TABLE</span> <span class="token keyword">IF</span> <span class="token keyword">EXISTS</span> <span class="token punctuation">`</span>questionnaire<span class="token punctuation">`</span><span class="token punctuation">;</span>
-<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token punctuation">`</span>questionnaire<span class="token punctuation">`</span>
-<span class="token punctuation">(</span>
-    <span class="token punctuation">`</span>id<span class="token punctuation">`</span>          <span class="token keyword">int</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token keyword">UNSIGNED</span>                                              <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token punctuation">,</span>
-    <span class="token punctuation">`</span>title<span class="token punctuation">`</span>       <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">60</span><span class="token punctuation">)</span> <span class="token keyword">CHARACTER</span> <span class="token keyword">SET</span> utf8mb4 <span class="token keyword">COLLATE</span> utf8mb4_general_ci  <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">COMMENT</span> <span class="token string">'问卷标题'</span><span class="token punctuation">,</span>
-    <span class="token punctuation">`</span>info<span class="token punctuation">`</span>        <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">)</span> <span class="token keyword">CHARACTER</span> <span class="token keyword">SET</span> utf8mb4 <span class="token keyword">COLLATE</span> utf8mb4_general_ci <span class="token boolean">NULL</span>     <span class="token keyword">DEFAULT</span> <span class="token boolean">NULL</span> <span class="token keyword">COMMENT</span> <span class="token string">'问卷简介'</span><span class="token punctuation">,</span>
-    <span class="token punctuation">`</span>class_id<span class="token punctuation">`</span>    <span class="token keyword">int</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token keyword">UNSIGNED</span>                                              <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">COMMENT</span> <span class="token string">'对应班级'</span><span class="token punctuation">,</span>
-    <span class="token punctuation">`</span>end_time<span class="token punctuation">`</span>    <span class="token keyword">datetime</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>                                                   <span class="token boolean">NULL</span>     <span class="token keyword">DEFAULT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
-    <span class="token punctuation">`</span>create_time<span class="token punctuation">`</span> <span class="token keyword">datetime</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>                                                   <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">DEFAULT</span> <span class="token keyword">CURRENT_TIMESTAMP</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    <span class="token punctuation">`</span>update_time<span class="token punctuation">`</span> <span class="token keyword">datetime</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>                                                   <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">DEFAULT</span> <span class="token keyword">CURRENT_TIMESTAMP</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token keyword">ON</span> <span class="token keyword">UPDATE</span> <span class="token keyword">CURRENT_TIMESTAMP</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    <span class="token punctuation">`</span>delete_time<span class="token punctuation">`</span> <span class="token keyword">datetime</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>                                                   <span class="token boolean">NULL</span>     <span class="token keyword">DEFAULT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
-    <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span><span class="token punctuation">)</span> <span class="token keyword">USING</span> <span class="token keyword">BTREE</span><span class="token punctuation">,</span>
-    <span class="token keyword">INDEX</span> <span class="token punctuation">`</span>title_del<span class="token punctuation">`</span> <span class="token punctuation">(</span><span class="token punctuation">`</span>title<span class="token punctuation">`</span><span class="token punctuation">,</span> <span class="token punctuation">`</span>delete_time<span class="token punctuation">`</span><span class="token punctuation">)</span> <span class="token keyword">USING</span> <span class="token keyword">BTREE</span>
-<span class="token punctuation">)</span> <span class="token keyword">ENGINE</span> <span class="token operator">=</span> <span class="token keyword">InnoDB</span>
-  <span class="token keyword">CHARACTER</span> <span class="token keyword">SET</span> <span class="token operator">=</span> utf8mb4
-  <span class="token keyword">COLLATE</span> <span class="token operator">=</span> utf8mb4_general_ci
-  ROW_FORMAT <span class="token operator">=</span> Dynamic<span class="token punctuation">;</span>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- ----------------------------
+-- 问卷表
+-- ----------------------------
+DROP TABLE IF EXISTS &#96;questionnaire&#96;;
+CREATE TABLE &#96;questionnaire&#96;
+(
+    &#96;id&#96;          int(10) UNSIGNED                                              NOT NULL AUTO_INCREMENT,
+    &#96;title&#96;       varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NOT NULL COMMENT &#39;问卷标题&#39;,
+    &#96;info&#96;        varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL     DEFAULT NULL COMMENT &#39;问卷简介&#39;,
+    &#96;class_id&#96;    int(10) UNSIGNED                                              NOT NULL COMMENT &#39;对应班级&#39;,
+    &#96;end_time&#96;    datetime(3)                                                   NULL     DEFAULT NULL,
+    &#96;create_time&#96; datetime(3)                                                   NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    &#96;update_time&#96; datetime(3)                                                   NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
+    &#96;delete_time&#96; datetime(3)                                                   NULL     DEFAULT NULL,
+    PRIMARY KEY (&#96;id&#96;) USING BTREE,
+    INDEX &#96;title_del&#96; (&#96;title&#96;, &#96;delete_time&#96;) USING BTREE
+) ENGINE &#x3D; InnoDB
+  CHARACTER SET &#x3D; utf8mb4
+  COLLATE &#x3D; utf8mb4_general_ci
+  ROW_FORMAT &#x3D; Dynamic;
 
-<span class="token comment">-- ----------------------------</span>
-<span class="token comment">-- 问题表</span>
-<span class="token comment">-- ----------------------------</span>
-<span class="token keyword">DROP</span> <span class="token keyword">TABLE</span> <span class="token keyword">IF</span> <span class="token keyword">EXISTS</span> <span class="token punctuation">`</span>questionnaire_question<span class="token punctuation">`</span><span class="token punctuation">;</span>
-<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token punctuation">`</span>questionnaire_question<span class="token punctuation">`</span>
-<span class="token punctuation">(</span>
-    <span class="token punctuation">`</span>id<span class="token punctuation">`</span>               <span class="token keyword">int</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token keyword">UNSIGNED</span>                                             <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token punctuation">,</span>
-    <span class="token punctuation">`</span>title<span class="token punctuation">`</span>            <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">60</span><span class="token punctuation">)</span> <span class="token keyword">CHARACTER</span> <span class="token keyword">SET</span> utf8mb4 <span class="token keyword">COLLATE</span> utf8mb4_general_ci <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">COMMENT</span> <span class="token string">'问题标题'</span><span class="token punctuation">,</span>
-    <span class="token punctuation">`</span>questionnaire_id<span class="token punctuation">`</span> <span class="token keyword">int</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token keyword">UNSIGNED</span>                                             <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">COMMENT</span> <span class="token string">'对应问卷'</span><span class="token punctuation">,</span>
-    <span class="token punctuation">`</span><span class="token keyword">order</span><span class="token punctuation">`</span>            <span class="token keyword">tinyint</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token keyword">UNSIGNED</span>                                          <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">COMMENT</span> <span class="token string">'顺序编号'</span><span class="token punctuation">,</span>
-    <span class="token punctuation">`</span><span class="token keyword">type</span><span class="token punctuation">`</span>             <span class="token keyword">tinyint</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token keyword">UNSIGNED</span>                                          <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">COMMENT</span> <span class="token string">'问题类型：1-简答 2-选择'</span><span class="token punctuation">,</span>
-    <span class="token punctuation">`</span>limit_max<span class="token punctuation">`</span>        <span class="token keyword">tinyint</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token keyword">UNSIGNED</span>                                          <span class="token boolean">NULL</span>     <span class="token keyword">DEFAULT</span> <span class="token boolean">NULL</span> <span class="token keyword">COMMENT</span> <span class="token string">'多选限制数量'</span><span class="token punctuation">,</span>
-    <span class="token punctuation">`</span>create_time<span class="token punctuation">`</span>      <span class="token keyword">datetime</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>                                                  <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">DEFAULT</span> <span class="token keyword">CURRENT_TIMESTAMP</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    <span class="token punctuation">`</span>update_time<span class="token punctuation">`</span>      <span class="token keyword">datetime</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>                                                  <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">DEFAULT</span> <span class="token keyword">CURRENT_TIMESTAMP</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token keyword">ON</span> <span class="token keyword">UPDATE</span> <span class="token keyword">CURRENT_TIMESTAMP</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    <span class="token punctuation">`</span>delete_time<span class="token punctuation">`</span>      <span class="token keyword">datetime</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>                                                  <span class="token boolean">NULL</span>     <span class="token keyword">DEFAULT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
-    <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span><span class="token punctuation">)</span> <span class="token keyword">USING</span> <span class="token keyword">BTREE</span>
-<span class="token punctuation">)</span> <span class="token keyword">ENGINE</span> <span class="token operator">=</span> <span class="token keyword">InnoDB</span>
-  <span class="token keyword">CHARACTER</span> <span class="token keyword">SET</span> <span class="token operator">=</span> utf8mb4
-  <span class="token keyword">COLLATE</span> <span class="token operator">=</span> utf8mb4_general_ci
-  ROW_FORMAT <span class="token operator">=</span> Dynamic<span class="token punctuation">;</span>
+-- ----------------------------
+-- 问题表
+-- ----------------------------
+DROP TABLE IF EXISTS &#96;questionnaire_question&#96;;
+CREATE TABLE &#96;questionnaire_question&#96;
+(
+    &#96;id&#96;               int(10) UNSIGNED                                             NOT NULL AUTO_INCREMENT,
+    &#96;title&#96;            varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT &#39;问题标题&#39;,
+    &#96;questionnaire_id&#96; int(10) UNSIGNED                                             NOT NULL COMMENT &#39;对应问卷&#39;,
+    &#96;order&#96;            tinyint(2) UNSIGNED                                          NOT NULL COMMENT &#39;顺序编号&#39;,
+    &#96;type&#96;             tinyint(2) UNSIGNED                                          NOT NULL COMMENT &#39;问题类型：1-简答 2-选择&#39;,
+    &#96;limit_max&#96;        tinyint(2) UNSIGNED                                          NULL     DEFAULT NULL COMMENT &#39;多选限制数量&#39;,
+    &#96;create_time&#96;      datetime(3)                                                  NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    &#96;update_time&#96;      datetime(3)                                                  NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
+    &#96;delete_time&#96;      datetime(3)                                                  NULL     DEFAULT NULL,
+    PRIMARY KEY (&#96;id&#96;) USING BTREE
+) ENGINE &#x3D; InnoDB
+  CHARACTER SET &#x3D; utf8mb4
+  COLLATE &#x3D; utf8mb4_general_ci
+  ROW_FORMAT &#x3D; Dynamic;
 
-<span class="token comment">-- ----------------------------</span>
-<span class="token comment">-- 选项表</span>
-<span class="token comment">-- ----------------------------</span>
-<span class="token keyword">DROP</span> <span class="token keyword">TABLE</span> <span class="token keyword">IF</span> <span class="token keyword">EXISTS</span> <span class="token punctuation">`</span>questionnaire_question_option<span class="token punctuation">`</span><span class="token punctuation">;</span>
-<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token punctuation">`</span>questionnaire_question_option<span class="token punctuation">`</span>
-<span class="token punctuation">(</span>
-    <span class="token punctuation">`</span>id<span class="token punctuation">`</span>          <span class="token keyword">int</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token keyword">UNSIGNED</span>                                             <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token punctuation">,</span>
-    <span class="token punctuation">`</span>title<span class="token punctuation">`</span>       <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">60</span><span class="token punctuation">)</span> <span class="token keyword">CHARACTER</span> <span class="token keyword">SET</span> utf8mb4 <span class="token keyword">COLLATE</span> utf8mb4_general_ci <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">COMMENT</span> <span class="token string">'选项内容'</span><span class="token punctuation">,</span>
-    <span class="token punctuation">`</span>question_id<span class="token punctuation">`</span> <span class="token keyword">int</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token keyword">UNSIGNED</span>                                             <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">COMMENT</span> <span class="token string">'对应问卷'</span><span class="token punctuation">,</span>
-    <span class="token punctuation">`</span><span class="token keyword">order</span><span class="token punctuation">`</span>       <span class="token keyword">tinyint</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token keyword">UNSIGNED</span>                                          <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">COMMENT</span> <span class="token string">'顺序编号'</span><span class="token punctuation">,</span>
-    <span class="token punctuation">`</span>update_time<span class="token punctuation">`</span> <span class="token keyword">datetime</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>                                                  <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">DEFAULT</span> <span class="token keyword">CURRENT_TIMESTAMP</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token keyword">ON</span> <span class="token keyword">UPDATE</span> <span class="token keyword">CURRENT_TIMESTAMP</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    <span class="token punctuation">`</span>delete_time<span class="token punctuation">`</span> <span class="token keyword">datetime</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>                                                  <span class="token boolean">NULL</span>     <span class="token keyword">DEFAULT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
-    <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span><span class="token punctuation">)</span> <span class="token keyword">USING</span> <span class="token keyword">BTREE</span>
-<span class="token punctuation">)</span> <span class="token keyword">ENGINE</span> <span class="token operator">=</span> <span class="token keyword">InnoDB</span>
-  <span class="token keyword">CHARACTER</span> <span class="token keyword">SET</span> <span class="token operator">=</span> utf8mb4
-  <span class="token keyword">COLLATE</span> <span class="token operator">=</span> utf8mb4_general_ci
-  ROW_FORMAT <span class="token operator">=</span> Dynamic<span class="token punctuation">;</span>
+-- ----------------------------
+-- 选项表
+-- ----------------------------
+DROP TABLE IF EXISTS &#96;questionnaire_question_option&#96;;
+CREATE TABLE &#96;questionnaire_question_option&#96;
+(
+    &#96;id&#96;          int(10) UNSIGNED                                             NOT NULL AUTO_INCREMENT,
+    &#96;title&#96;       varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT &#39;选项内容&#39;,
+    &#96;question_id&#96; int(10) UNSIGNED                                             NOT NULL COMMENT &#39;对应问卷&#39;,
+    &#96;order&#96;       tinyint(2) UNSIGNED                                          NOT NULL COMMENT &#39;顺序编号&#39;,
+    &#96;update_time&#96; datetime(3)                                                  NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
+    &#96;delete_time&#96; datetime(3)                                                  NULL     DEFAULT NULL,
+    PRIMARY KEY (&#96;id&#96;) USING BTREE
+) ENGINE &#x3D; InnoDB
+  CHARACTER SET &#x3D; utf8mb4
+  COLLATE &#x3D; utf8mb4_general_ci
+  ROW_FORMAT &#x3D; Dynamic;
 
-<span class="token comment">-- ----------------------------</span>
-<span class="token comment">-- 学生-问卷 关系表</span>
-<span class="token comment">-- ----------------------------</span>
-<span class="token keyword">DROP</span> <span class="token keyword">TABLE</span> <span class="token keyword">IF</span> <span class="token keyword">EXISTS</span> <span class="token punctuation">`</span>student_questionnaire<span class="token punctuation">`</span><span class="token punctuation">;</span>
-<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token punctuation">`</span>student_questionnaire<span class="token punctuation">`</span>
-<span class="token punctuation">(</span>
-    <span class="token punctuation">`</span>id<span class="token punctuation">`</span>               <span class="token keyword">int</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token keyword">UNSIGNED</span>                                             <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token punctuation">,</span>
-    <span class="token punctuation">`</span>user_id<span class="token punctuation">`</span>          <span class="token keyword">int</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token keyword">UNSIGNED</span>                                             <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">COMMENT</span> <span class="token string">'学生id'</span><span class="token punctuation">,</span>
-    <span class="token punctuation">`</span>questionnaire_id<span class="token punctuation">`</span> <span class="token keyword">int</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token keyword">UNSIGNED</span>                                             <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">COMMENT</span> <span class="token string">'问卷id'</span><span class="token punctuation">,</span>
-    <span class="token punctuation">`</span>ip<span class="token punctuation">`</span>               <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">39</span><span class="token punctuation">)</span> <span class="token keyword">CHARACTER</span> <span class="token keyword">SET</span> utf8mb4 <span class="token keyword">COLLATE</span> utf8mb4_general_ci <span class="token boolean">NULL</span>     <span class="token keyword">DEFAULT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
-    <span class="token punctuation">`</span>create_time<span class="token punctuation">`</span>      <span class="token keyword">datetime</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>                                                  <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">DEFAULT</span> <span class="token keyword">CURRENT_TIMESTAMP</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    <span class="token punctuation">`</span>update_time<span class="token punctuation">`</span>      <span class="token keyword">datetime</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>                                                  <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">DEFAULT</span> <span class="token keyword">CURRENT_TIMESTAMP</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token keyword">ON</span> <span class="token keyword">UPDATE</span> <span class="token keyword">CURRENT_TIMESTAMP</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    <span class="token punctuation">`</span>delete_time<span class="token punctuation">`</span>      <span class="token keyword">datetime</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>                                                  <span class="token boolean">NULL</span>     <span class="token keyword">DEFAULT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
-    <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span><span class="token punctuation">)</span> <span class="token keyword">USING</span> <span class="token keyword">BTREE</span>
-<span class="token punctuation">)</span> <span class="token keyword">ENGINE</span> <span class="token operator">=</span> <span class="token keyword">InnoDB</span>
-  <span class="token keyword">CHARACTER</span> <span class="token keyword">SET</span> <span class="token operator">=</span> utf8mb4
-  <span class="token keyword">COLLATE</span> <span class="token operator">=</span> utf8mb4_general_ci
-  ROW_FORMAT <span class="token operator">=</span> Dynamic<span class="token punctuation">;</span>
+-- ----------------------------
+-- 学生-问卷 关系表
+-- ----------------------------
+DROP TABLE IF EXISTS &#96;student_questionnaire&#96;;
+CREATE TABLE &#96;student_questionnaire&#96;
+(
+    &#96;id&#96;               int(10) UNSIGNED                                             NOT NULL AUTO_INCREMENT,
+    &#96;user_id&#96;          int(10) UNSIGNED                                             NOT NULL COMMENT &#39;学生id&#39;,
+    &#96;questionnaire_id&#96; int(10) UNSIGNED                                             NOT NULL COMMENT &#39;问卷id&#39;,
+    &#96;ip&#96;               varchar(39) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL     DEFAULT NULL,
+    &#96;create_time&#96;      datetime(3)                                                  NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    &#96;update_time&#96;      datetime(3)                                                  NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
+    &#96;delete_time&#96;      datetime(3)                                                  NULL     DEFAULT NULL,
+    PRIMARY KEY (&#96;id&#96;) USING BTREE
+) ENGINE &#x3D; InnoDB
+  CHARACTER SET &#x3D; utf8mb4
+  COLLATE &#x3D; utf8mb4_general_ci
+  ROW_FORMAT &#x3D; Dynamic;
 
-<span class="token comment">-- ----------------------------</span>
-<span class="token comment">-- 问题-回答 关系表</span>
-<span class="token comment">-- ----------------------------</span>
-<span class="token keyword">DROP</span> <span class="token keyword">TABLE</span> <span class="token keyword">IF</span> <span class="token keyword">EXISTS</span> <span class="token punctuation">`</span>student_questionnaire_question_answer<span class="token punctuation">`</span><span class="token punctuation">;</span>
-<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token punctuation">`</span>student_questionnaire_question_answer<span class="token punctuation">`</span>
-<span class="token punctuation">(</span>
-    <span class="token punctuation">`</span>id<span class="token punctuation">`</span>                       <span class="token keyword">int</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token keyword">UNSIGNED</span>                                              <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token punctuation">,</span>
-    <span class="token punctuation">`</span>student_questionnaire_id<span class="token punctuation">`</span> <span class="token keyword">int</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token keyword">UNSIGNED</span>                                              <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">COMMENT</span> <span class="token string">'对应的学生提交信息id'</span><span class="token punctuation">,</span>
-    <span class="token punctuation">`</span>question_id<span class="token punctuation">`</span>              <span class="token keyword">int</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token keyword">UNSIGNED</span>                                              <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">COMMENT</span> <span class="token string">'问题id'</span><span class="token punctuation">,</span>
-    <span class="token punctuation">`</span>answer<span class="token punctuation">`</span>                   <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">)</span> <span class="token keyword">CHARACTER</span> <span class="token keyword">SET</span> utf8mb4 <span class="token keyword">COLLATE</span> utf8mb4_general_ci <span class="token boolean">NULL</span>     <span class="token keyword">DEFAULT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
-    <span class="token punctuation">`</span>option_id<span class="token punctuation">`</span>                <span class="token keyword">int</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token keyword">UNSIGNED</span>                                              <span class="token boolean">NULL</span>     <span class="token keyword">DEFAULT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
-    <span class="token punctuation">`</span>create_time<span class="token punctuation">`</span>              <span class="token keyword">datetime</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>                                                   <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">DEFAULT</span> <span class="token keyword">CURRENT_TIMESTAMP</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    <span class="token punctuation">`</span>update_time<span class="token punctuation">`</span>              <span class="token keyword">datetime</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>                                                   <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">DEFAULT</span> <span class="token keyword">CURRENT_TIMESTAMP</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token keyword">ON</span> <span class="token keyword">UPDATE</span> <span class="token keyword">CURRENT_TIMESTAMP</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    <span class="token punctuation">`</span>delete_time<span class="token punctuation">`</span>              <span class="token keyword">datetime</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>                                                   <span class="token boolean">NULL</span>     <span class="token keyword">DEFAULT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
-    <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span><span class="token punctuation">)</span> <span class="token keyword">USING</span> <span class="token keyword">BTREE</span>
-<span class="token punctuation">)</span> <span class="token keyword">ENGINE</span> <span class="token operator">=</span> <span class="token keyword">InnoDB</span>
-  <span class="token keyword">CHARACTER</span> <span class="token keyword">SET</span> <span class="token operator">=</span> utf8mb4
-  <span class="token keyword">COLLATE</span> <span class="token operator">=</span> utf8mb4_general_ci
-  ROW_FORMAT <span class="token operator">=</span> Dynamic<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+-- ----------------------------
+-- 问题-回答 关系表
+-- ----------------------------
+DROP TABLE IF EXISTS &#96;student_questionnaire_question_answer&#96;;
+CREATE TABLE &#96;student_questionnaire_question_answer&#96;
+(
+    &#96;id&#96;                       int(10) UNSIGNED                                              NOT NULL AUTO_INCREMENT,
+    &#96;student_questionnaire_id&#96; int(10) UNSIGNED                                              NOT NULL COMMENT &#39;对应的学生提交信息id&#39;,
+    &#96;question_id&#96;              int(10) UNSIGNED                                              NOT NULL COMMENT &#39;问题id&#39;,
+    &#96;answer&#96;                   varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL     DEFAULT NULL,
+    &#96;option_id&#96;                int(10) UNSIGNED                                              NULL     DEFAULT NULL,
+    &#96;create_time&#96;              datetime(3)                                                   NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    &#96;update_time&#96;              datetime(3)                                                   NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
+    &#96;delete_time&#96;              datetime(3)                                                   NULL     DEFAULT NULL,
+    PRIMARY KEY (&#96;id&#96;) USING BTREE
+) ENGINE &#x3D; InnoDB
+  CHARACTER SET &#x3D; utf8mb4
+  COLLATE &#x3D; utf8mb4_general_ci
+  ROW_FORMAT &#x3D; Dynamic;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>数据模型中我并没有写上序号一项，因为前端提交时是一个数组的形式，本身就带有数据索引，后端接收到数据后，只要将这个索引作为序号填入数据库即可。对于排序的工作，由前端实现即可。因此，我们可以给出发布问卷使用的 json 示例：</p>
-<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
-  <span class="token property">"class_id"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
-  <span class="token property">"end_time"</span><span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">,</span>
-  <span class="token property">"info"</span><span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">,</span>
-  <span class="token property">"questions"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
-    <span class="token punctuation">&#123;</span>
-      <span class="token property">"limit_max"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
-      <span class="token property">"options"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
-        <span class="token punctuation">&#123;</span>
-          <span class="token property">"title"</span><span class="token operator">:</span> <span class="token string">""</span>
-        <span class="token punctuation">&#125;</span>
-      <span class="token punctuation">]</span><span class="token punctuation">,</span>
-      <span class="token property">"title"</span><span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">,</span>
-      <span class="token property">"type"</span><span class="token operator">:</span> <span class="token number">0</span>
-    <span class="token punctuation">&#125;</span>
-  <span class="token punctuation">]</span><span class="token punctuation">,</span>
-  <span class="token property">"title"</span><span class="token operator">:</span> <span class="token string">""</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json">&#123;
+  &quot;class_id&quot;: 0,
+  &quot;end_time&quot;: &quot;&quot;,
+  &quot;info&quot;: &quot;&quot;,
+  &quot;questions&quot;: [
+    &#123;
+      &quot;limit_max&quot;: 0,
+      &quot;options&quot;: [
+        &#123;
+          &quot;title&quot;: &quot;&quot;
+        &#125;
+      ],
+      &quot;title&quot;: &quot;&quot;,
+      &quot;type&quot;: 0
+    &#125;
+  ],
+  &quot;title&quot;: &quot;&quot;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>对应的实体类便是：</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">/**
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;**
  * NewQuestionnaireDTO
- */</span>
-<span class="token annotation punctuation">@Setter</span>
-<span class="token annotation punctuation">@Getter</span>
-<span class="token annotation punctuation">@NoArgsConstructor</span>
-<span class="token annotation punctuation">@ApiModel</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"新建问卷DTO"</span><span class="token punctuation">,</span> description <span class="token operator">=</span> <span class="token string">"问卷"</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">NewQuestionnaireDTO</span> <span class="token punctuation">&#123;</span>
+ *&#x2F;
+@Setter
+@Getter
+@NoArgsConstructor
+@ApiModel(value &#x3D; &quot;新建问卷DTO&quot;, description &#x3D; &quot;问卷&quot;)
+public class NewQuestionnaireDTO &#123;
 
-    <span class="token annotation punctuation">@ApiModelProperty</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"标题"</span><span class="token punctuation">,</span> required <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
-    <span class="token annotation punctuation">@Length</span><span class="token punctuation">(</span>min <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> max <span class="token operator">=</span> <span class="token number">60</span><span class="token punctuation">,</span> message <span class="token operator">=</span> <span class="token string">"&#123;lesson.questionnaire.title.not-null&#125;"</span><span class="token punctuation">)</span>
-    <span class="token keyword">private</span> <span class="token class-name">String</span> title<span class="token punctuation">;</span>
+    @ApiModelProperty(value &#x3D; &quot;标题&quot;, required &#x3D; true)
+    @Length(min &#x3D; 1, max &#x3D; 60, message &#x3D; &quot;&#123;lesson.questionnaire.title.not-null&#125;&quot;)
+    private String title;
 
-    <span class="token annotation punctuation">@ApiModelProperty</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"简介"</span><span class="token punctuation">)</span>
-    <span class="token annotation punctuation">@Length</span><span class="token punctuation">(</span>max <span class="token operator">=</span> <span class="token number">255</span><span class="token punctuation">,</span> message <span class="token operator">=</span> <span class="token string">"&#123;lesson.questionnaire.info.length&#125;"</span><span class="token punctuation">)</span>
-    <span class="token keyword">private</span> <span class="token class-name">String</span> info<span class="token punctuation">;</span>
+    @ApiModelProperty(value &#x3D; &quot;简介&quot;)
+    @Length(max &#x3D; 255, message &#x3D; &quot;&#123;lesson.questionnaire.info.length&#125;&quot;)
+    private String info;
 
-    <span class="token annotation punctuation">@ApiModelProperty</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"班级id"</span><span class="token punctuation">,</span> name <span class="token operator">=</span> <span class="token string">"class_id"</span><span class="token punctuation">,</span> required <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
-    <span class="token annotation punctuation">@NotNull</span><span class="token punctuation">(</span>message <span class="token operator">=</span> <span class="token string">"&#123;class.id.not-null&#125;"</span><span class="token punctuation">)</span>
-    <span class="token annotation punctuation">@Min</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> message <span class="token operator">=</span> <span class="token string">"&#123;class.id.not-null&#125;"</span><span class="token punctuation">)</span>
-    <span class="token keyword">private</span> <span class="token class-name">Integer</span> classId<span class="token punctuation">;</span>
+    @ApiModelProperty(value &#x3D; &quot;班级id&quot;, name &#x3D; &quot;class_id&quot;, required &#x3D; true)
+    @NotNull(message &#x3D; &quot;&#123;class.id.not-null&#125;&quot;)
+    @Min(value &#x3D; 1, message &#x3D; &quot;&#123;class.id.not-null&#125;&quot;)
+    private Integer classId;
 
-    <span class="token annotation punctuation">@ApiModelProperty</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"问题列表"</span><span class="token punctuation">,</span> required <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
-    <span class="token annotation punctuation">@Valid</span>
-    <span class="token annotation punctuation">@NotNull</span><span class="token punctuation">(</span>message <span class="token operator">=</span> <span class="token string">"&#123;lesson.questionnaire.length&#125;"</span><span class="token punctuation">)</span>
-    <span class="token annotation punctuation">@Size</span><span class="token punctuation">(</span>min <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> max <span class="token operator">=</span> <span class="token number">99</span><span class="token punctuation">,</span> message <span class="token operator">=</span> <span class="token string">"&#123;lesson.questionnaire.length&#125;"</span><span class="token punctuation">)</span>
-    <span class="token keyword">private</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">NewQuestionDTO</span><span class="token punctuation">></span></span> questions<span class="token punctuation">;</span>
+    @ApiModelProperty(value &#x3D; &quot;问题列表&quot;, required &#x3D; true)
+    @Valid
+    @NotNull(message &#x3D; &quot;&#123;lesson.questionnaire.length&#125;&quot;)
+    @Size(min &#x3D; 1, max &#x3D; 99, message &#x3D; &quot;&#123;lesson.questionnaire.length&#125;&quot;)
+    private List&lt;NewQuestionDTO&gt; questions;
 
-    <span class="token annotation punctuation">@ApiModelProperty</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"结束时间"</span><span class="token punctuation">,</span> name <span class="token operator">=</span> <span class="token string">"end_time"</span><span class="token punctuation">)</span>
-    <span class="token keyword">private</span> <span class="token class-name">Date</span> endTime<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
+    @ApiModelProperty(value &#x3D; &quot;结束时间&quot;, name &#x3D; &quot;end_time&quot;)
+    private Date endTime;
+&#125;
 
-<span class="token comment">/**
+&#x2F;**
  * NewQuestionDTO
- */</span>
-<span class="token annotation punctuation">@Setter</span>
-<span class="token annotation punctuation">@Getter</span>
-<span class="token annotation punctuation">@NoArgsConstructor</span>
-<span class="token annotation punctuation">@ApiModel</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"新建问题DTO"</span><span class="token punctuation">,</span> description <span class="token operator">=</span> <span class="token string">"问题"</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">NewQuestionDTO</span> <span class="token punctuation">&#123;</span>
+ *&#x2F;
+@Setter
+@Getter
+@NoArgsConstructor
+@ApiModel(value &#x3D; &quot;新建问题DTO&quot;, description &#x3D; &quot;问题&quot;)
+public class NewQuestionDTO &#123;
 
-    <span class="token annotation punctuation">@ApiModelProperty</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"标题"</span><span class="token punctuation">,</span> required <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
-    <span class="token annotation punctuation">@Length</span><span class="token punctuation">(</span>min <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> max <span class="token operator">=</span> <span class="token number">60</span><span class="token punctuation">,</span> message <span class="token operator">=</span> <span class="token string">"&#123;lesson.questionnaire.question.title.not-null&#125;"</span><span class="token punctuation">)</span>
-    <span class="token keyword">private</span> <span class="token class-name">String</span> title<span class="token punctuation">;</span>
+    @ApiModelProperty(value &#x3D; &quot;标题&quot;, required &#x3D; true)
+    @Length(min &#x3D; 1, max &#x3D; 60, message &#x3D; &quot;&#123;lesson.questionnaire.question.title.not-null&#125;&quot;)
+    private String title;
 
-    <span class="token annotation punctuation">@ApiModelProperty</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"类型"</span><span class="token punctuation">,</span> allowableValues <span class="token operator">=</span> <span class="token string">"1,2"</span><span class="token punctuation">,</span> required <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
-    <span class="token annotation punctuation">@NotNull</span><span class="token punctuation">(</span>message <span class="token operator">=</span> <span class="token string">"&#123;lesson.questionnaire.question.type.not-null&#125;"</span><span class="token punctuation">)</span>
-    <span class="token annotation punctuation">@Min</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token class-name">QuestionTypeConstant</span><span class="token punctuation">.</span>TEXT<span class="token punctuation">,</span> message <span class="token operator">=</span> <span class="token string">"&#123;lesson.questionnaire.question.type.not-null&#125;"</span><span class="token punctuation">)</span>
-    <span class="token annotation punctuation">@Max</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token class-name">QuestionTypeConstant</span><span class="token punctuation">.</span>SELECT<span class="token punctuation">,</span> message <span class="token operator">=</span> <span class="token string">"&#123;lesson.questionnaire.question.type.not-null&#125;"</span><span class="token punctuation">)</span>
-    <span class="token keyword">private</span> <span class="token class-name">Integer</span> type<span class="token punctuation">;</span>
+    @ApiModelProperty(value &#x3D; &quot;类型&quot;, allowableValues &#x3D; &quot;1,2&quot;, required &#x3D; true)
+    @NotNull(message &#x3D; &quot;&#123;lesson.questionnaire.question.type.not-null&#125;&quot;)
+    @Min(value &#x3D; QuestionTypeConstant.TEXT, message &#x3D; &quot;&#123;lesson.questionnaire.question.type.not-null&#125;&quot;)
+    @Max(value &#x3D; QuestionTypeConstant.SELECT, message &#x3D; &quot;&#123;lesson.questionnaire.question.type.not-null&#125;&quot;)
+    private Integer type;
 
-    <span class="token annotation punctuation">@ApiModelProperty</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"上限，目前用于选择题"</span><span class="token punctuation">,</span> name <span class="token operator">=</span> <span class="token string">"limit_max"</span><span class="token punctuation">,</span> allowableValues <span class="token operator">=</span> <span class="token string">"range[1,10]"</span><span class="token punctuation">)</span>
-    <span class="token annotation punctuation">@Min</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> message <span class="token operator">=</span> <span class="token string">"&#123;lesson.questionnaire.question.limit.not-null&#125;"</span><span class="token punctuation">)</span>
-    <span class="token annotation punctuation">@Max</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">,</span> message <span class="token operator">=</span> <span class="token string">"&#123;lesson.questionnaire.question.limit.not-null&#125;"</span><span class="token punctuation">)</span>
-    <span class="token keyword">private</span> <span class="token class-name">Integer</span> limitMax<span class="token punctuation">;</span>
+    @ApiModelProperty(value &#x3D; &quot;上限，目前用于选择题&quot;, name &#x3D; &quot;limit_max&quot;, allowableValues &#x3D; &quot;range[1,10]&quot;)
+    @Min(value &#x3D; 1, message &#x3D; &quot;&#123;lesson.questionnaire.question.limit.not-null&#125;&quot;)
+    @Max(value &#x3D; 10, message &#x3D; &quot;&#123;lesson.questionnaire.question.limit.not-null&#125;&quot;)
+    private Integer limitMax;
 
-    <span class="token annotation punctuation">@ApiModelProperty</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"选项列表"</span><span class="token punctuation">)</span>
-    <span class="token annotation punctuation">@Valid</span>
-    <span class="token annotation punctuation">@Size</span><span class="token punctuation">(</span>max <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">,</span> message <span class="token operator">=</span> <span class="token string">"&#123;lesson.questionnaire.question.option.limit&#125;"</span><span class="token punctuation">)</span>
-    <span class="token keyword">private</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">NewOptionDTO</span><span class="token punctuation">></span></span> options<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
+    @ApiModelProperty(value &#x3D; &quot;选项列表&quot;)
+    @Valid
+    @Size(max &#x3D; 10, message &#x3D; &quot;&#123;lesson.questionnaire.question.option.limit&#125;&quot;)
+    private List&lt;NewOptionDTO&gt; options;
+&#125;
 
-<span class="token comment">/**
+&#x2F;**
  * NewOptionDTO
- */</span>
-<span class="token annotation punctuation">@Setter</span>
-<span class="token annotation punctuation">@Getter</span>
-<span class="token annotation punctuation">@NoArgsConstructor</span>
-<span class="token annotation punctuation">@ApiModel</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"新建选项DTO"</span><span class="token punctuation">,</span> description <span class="token operator">=</span> <span class="token string">"选项"</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">NewOptionDTO</span> <span class="token punctuation">&#123;</span>
+ *&#x2F;
+@Setter
+@Getter
+@NoArgsConstructor
+@ApiModel(value &#x3D; &quot;新建选项DTO&quot;, description &#x3D; &quot;选项&quot;)
+public class NewOptionDTO &#123;
 
-    <span class="token annotation punctuation">@ApiModelProperty</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"标题"</span><span class="token punctuation">)</span>
-    <span class="token annotation punctuation">@Length</span><span class="token punctuation">(</span>min <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> max <span class="token operator">=</span> <span class="token number">60</span><span class="token punctuation">,</span> message <span class="token operator">=</span> <span class="token string">"&#123;lesson.questionnaire.question.option.title.not-null&#125;"</span><span class="token punctuation">)</span>
-    <span class="token keyword">private</span> <span class="token class-name">String</span> title<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    @ApiModelProperty(value &#x3D; &quot;标题&quot;)
+    @Length(min &#x3D; 1, max &#x3D; 60, message &#x3D; &quot;&#123;lesson.questionnaire.question.option.title.not-null&#125;&quot;)
+    private String title;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>接下来给出 service 类的实现，controller 就省略了。由于数据库表结构上文也已经给出，对应的 model 类 DO 也不再给出。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">/**
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;**
  * 问题类型常量
- */</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">QuestionTypeConstant</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">/**
+ *&#x2F;
+public class QuestionTypeConstant &#123;
+    &#x2F;**
      * 简答
-     */</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">int</span> TEXT <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token comment">/**
+     *&#x2F;
+    public static final int TEXT &#x3D; 1;
+    &#x2F;**
      * 选择
-     */</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">int</span> SELECT <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
+     *&#x2F;
+    public static final int SELECT &#x3D; 2;
+&#125;
 
-<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>
+---------------------------------------------------------------
 
-    <span class="token annotation punctuation">@Transactional</span><span class="token punctuation">(</span>rollbackFor <span class="token operator">=</span> <span class="token class-name">Exception</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">createQuestionnaire</span><span class="token punctuation">(</span><span class="token class-name">NewQuestionnaireDTO</span> dto<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token comment">// 插入问卷获取id</span>
-        <span class="token class-name">QuestionnaireDO</span> questionnaireDO <span class="token operator">=</span> <span class="token class-name">QuestionnaireDO</span><span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">title</span><span class="token punctuation">(</span>dto<span class="token punctuation">.</span><span class="token function">getTitle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span>dto<span class="token punctuation">.</span><span class="token function">getInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">classId</span><span class="token punctuation">(</span>dto<span class="token punctuation">.</span><span class="token function">getClassId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">endTime</span><span class="token punctuation">(</span>dto<span class="token punctuation">.</span><span class="token function">getEndTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        questionnaireMapper<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>questionnaireDO<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment">// 插入题目</span>
-        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> dto<span class="token punctuation">.</span><span class="token function">getQuestions</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-            <span class="token class-name">NewQuestionDTO</span> questionDTO <span class="token operator">=</span> dto<span class="token punctuation">.</span><span class="token function">getQuestions</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token class-name">QuestionnaireQuestionDO</span> questionnaireQuestionDO <span class="token operator">=</span> <span class="token class-name">QuestionnaireQuestionDO</span><span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-                    <span class="token punctuation">.</span><span class="token function">questionnaireId</span><span class="token punctuation">(</span>questionnaireDO<span class="token punctuation">.</span><span class="token function">getId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-                    <span class="token punctuation">.</span><span class="token function">title</span><span class="token punctuation">(</span>questionDTO<span class="token punctuation">.</span><span class="token function">getTitle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-                    <span class="token punctuation">.</span><span class="token function">order</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span>
-                    <span class="token punctuation">.</span><span class="token function">type</span><span class="token punctuation">(</span>questionDTO<span class="token punctuation">.</span><span class="token function">getType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-                    <span class="token punctuation">.</span><span class="token function">limitMax</span><span class="token punctuation">(</span>questionDTO<span class="token punctuation">.</span><span class="token function">getLimitMax</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-                    <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            questionnaireQuestionMapper<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>questionnaireQuestionDO<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token comment">// 如果是选择题，且选项列表不为空则插入选项</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>questionDTO<span class="token punctuation">.</span><span class="token function">getType</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token class-name">QuestionTypeConstant</span><span class="token punctuation">.</span>SELECT
-                    <span class="token operator">&amp;&amp;</span> questionDTO<span class="token punctuation">.</span><span class="token function">getOptions</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token keyword">null</span>
-                    <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>questionDTO<span class="token punctuation">.</span><span class="token function">getOptions</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-                <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> k <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> k <span class="token operator">&lt;</span> questionDTO<span class="token punctuation">.</span><span class="token function">getOptions</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> k<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-                    <span class="token class-name">NewOptionDTO</span> optionDTO <span class="token operator">=</span> questionDTO<span class="token punctuation">.</span><span class="token function">getOptions</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>k<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                    <span class="token class-name">QuestionnaireQuestionOptionDO</span> questionnaireQuestionOptionDO <span class="token operator">=</span>
-                         <span class="token class-name">QuestionnaireQuestionOptionDO</span><span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-                            <span class="token punctuation">.</span><span class="token function">questionId</span><span class="token punctuation">(</span>questionnaireQuestionDO<span class="token punctuation">.</span><span class="token function">getId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-                            <span class="token punctuation">.</span><span class="token function">title</span><span class="token punctuation">(</span>optionDTO<span class="token punctuation">.</span><span class="token function">getTitle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-                            <span class="token punctuation">.</span><span class="token function">order</span><span class="token punctuation">(</span>k<span class="token punctuation">)</span>
-                            <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                    questionnaireQuestionOptionMapper<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>questionnaireQuestionOptionDO<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token punctuation">&#125;</span>
-            <span class="token punctuation">&#125;</span>
-        <span class="token punctuation">&#125;</span>
-    <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    @Transactional(rollbackFor &#x3D; Exception.class)
+    @Override
+    public void createQuestionnaire(NewQuestionnaireDTO dto) &#123;
+        &#x2F;&#x2F; 插入问卷获取id
+        QuestionnaireDO questionnaireDO &#x3D; QuestionnaireDO.builder()
+                .title(dto.getTitle())
+                .info(dto.getInfo())
+                .classId(dto.getClassId())
+                .endTime(dto.getEndTime())
+                .build();
+        questionnaireMapper.insert(questionnaireDO);
+        &#x2F;&#x2F; 插入题目
+        for (int i &#x3D; 0; i &lt; dto.getQuestions().size(); i++) &#123;
+            NewQuestionDTO questionDTO &#x3D; dto.getQuestions().get(i);
+            QuestionnaireQuestionDO questionnaireQuestionDO &#x3D; QuestionnaireQuestionDO.builder()
+                    .questionnaireId(questionnaireDO.getId())
+                    .title(questionDTO.getTitle())
+                    .order(i)
+                    .type(questionDTO.getType())
+                    .limitMax(questionDTO.getLimitMax())
+                    .build();
+            questionnaireQuestionMapper.insert(questionnaireQuestionDO);
+            &#x2F;&#x2F; 如果是选择题，且选项列表不为空则插入选项
+            if (questionDTO.getType() &#x3D;&#x3D; QuestionTypeConstant.SELECT
+                    &amp;&amp; questionDTO.getOptions() !&#x3D; null
+                    &amp;&amp; !questionDTO.getOptions().isEmpty()) &#123;
+                for (int k &#x3D; 0; k &lt; questionDTO.getOptions().size(); k++) &#123;
+                    NewOptionDTO optionDTO &#x3D; questionDTO.getOptions().get(k);
+                    QuestionnaireQuestionOptionDO questionnaireQuestionOptionDO &#x3D;
+                         QuestionnaireQuestionOptionDO.builder()
+                            .questionId(questionnaireQuestionDO.getId())
+                            .title(optionDTO.getTitle())
+                            .order(k)
+                            .build();
+                    questionnaireQuestionOptionMapper.insert(questionnaireQuestionOptionDO);
+                &#125;
+            &#125;
+        &#125;
+    &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>可以看到代码逻辑很简单，直接循环 DTO 中接收到的所有参数，一一对应插入数据库即可。因为 DTO 中没有给到排序编号，因此使用的是普通 fori 循环来得到数组每项的下标作为编号。</p>
 <p>然后来看看前端部分，新建问卷页面关键代码如下：</p>
 <pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
@@ -1667,74 +1676,74 @@
 <p>教师查询学生的提交记录时则是下载一个包含所有提交记录的 Excel 文件。Excel 的写入可以使用 Apache POI 来完成。Apache POI 对 Excel 类型的文件有三种创建方式，HSSF、XSSF、SXSSF。<br>
 HSSF 是用于生成 Office 97-2003 的旧版本 xls 文件，XSSF 用于生成新版本的 xlsx 文件，而 SXSSF 则是在 XSSF 的基础上进行扩展，可以避免过大的数据导致内存溢出。<br>
 由于问卷是针对班级为单位发布的，数据量不会超过 100 行，因此使用 XSSF 形式进行生成即可。POI 对 Excel 的操作是以行为单位的，每行每列都是从 0 开始。因此需要通过 createRow 方法先创建标题行，然后遍历学生提交的答案来填充数据，最后写入临时文件并返回。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Override</span>
-<span class="token keyword">public</span> <span class="token class-name">FileExportBO</span> <span class="token function">getQuestionnaireReportFile</span><span class="token punctuation">(</span><span class="token class-name">Integer</span> id<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">IOException</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">// 查询问卷本体</span>
-    <span class="token class-name">QuestionnaireVO</span> questionnaireVO <span class="token operator">=</span> questionnaireMapper<span class="token punctuation">.</span><span class="token function">getQuestionnaireVO</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment">// 查询学生提交记录</span>
-    <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">StudentQuestionnaireAnswerVO</span><span class="token punctuation">></span></span> answerVOList <span class="token operator">=</span> studentQuestionnaireMapper<span class="token punctuation">.</span><span class="token function">selectStudentQuestionnaireAnswerVO</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment">// Apache POI 创建 Excel</span>
-    <span class="token class-name">XSSFWorkbook</span> wb <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">XSSFWorkbook</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token class-name">XSSFSheet</span> sheet <span class="token operator">=</span> wb<span class="token punctuation">.</span><span class="token function">createSheet</span><span class="token punctuation">(</span><span class="token string">"Sheet 1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment">// 设置时间格式</span>
-    <span class="token class-name">XSSFCreationHelper</span> creationHelper <span class="token operator">=</span> wb<span class="token punctuation">.</span><span class="token function">getCreationHelper</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token class-name">CellStyle</span> cellStyle <span class="token operator">=</span> wb<span class="token punctuation">.</span><span class="token function">createCellStyle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    cellStyle<span class="token punctuation">.</span><span class="token function">setDataFormat</span><span class="token punctuation">(</span>creationHelper<span class="token punctuation">.</span><span class="token function">createDataFormat</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getFormat</span><span class="token punctuation">(</span><span class="token string">"yyyy-MM-dd HH:mm:ss.SSS"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment">// 标题行</span>
-    <span class="token class-name">XSSFRow</span> titleRow <span class="token operator">=</span> sheet<span class="token punctuation">.</span><span class="token function">createRow</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    titleRow<span class="token punctuation">.</span><span class="token function">createCell</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setCellValue</span><span class="token punctuation">(</span><span class="token string">"学号"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    titleRow<span class="token punctuation">.</span><span class="token function">createCell</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setCellValue</span><span class="token punctuation">(</span><span class="token string">"姓名"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment">// 问题题目作为标题</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> questionnaireVO<span class="token punctuation">.</span><span class="token function">getQuestions</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        titleRow<span class="token punctuation">.</span><span class="token function">createCell</span><span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setCellValue</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token string">"第%d题：%s"</span><span class="token punctuation">,</span>
-                i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span>
-                questionnaireVO<span class="token punctuation">.</span><span class="token function">getQuestions</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getTitle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    titleRow<span class="token punctuation">.</span><span class="token function">createCell</span><span class="token punctuation">(</span>questionnaireVO<span class="token punctuation">.</span><span class="token function">getQuestions</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setCellValue</span><span class="token punctuation">(</span><span class="token string">"提交时间"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment">// 学生回答内容写入</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> answerVOList<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token class-name">XSSFRow</span> row <span class="token operator">=</span> sheet<span class="token punctuation">.</span><span class="token function">createRow</span><span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        row<span class="token punctuation">.</span><span class="token function">createCell</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setCellValue</span><span class="token punctuation">(</span>answerVOList<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getUsername</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        row<span class="token punctuation">.</span><span class="token function">createCell</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setCellValue</span><span class="token punctuation">(</span>answerVOList<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getNickname</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment">// 遍历问题</span>
-        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> questionnaireVO<span class="token punctuation">.</span><span class="token function">getQuestions</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-            <span class="token comment">// 简答题写入answer</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>questionnaireVO<span class="token punctuation">.</span><span class="token function">getQuestions</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>j<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span><span class="token class-name">QuestionTypeConstant</span><span class="token punctuation">.</span>TEXT<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-                row<span class="token punctuation">.</span><span class="token function">createCell</span><span class="token punctuation">(</span>j <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setCellValue</span><span class="token punctuation">(</span>answerVOList<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getAnswers</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>j<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getAnswer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token keyword">continue</span><span class="token punctuation">;</span>
-            <span class="token punctuation">&#125;</span>
-            <span class="token comment">// 选择题查询选项原文写入</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>questionnaireVO<span class="token punctuation">.</span><span class="token function">getQuestions</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>j<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span><span class="token class-name">QuestionTypeConstant</span><span class="token punctuation">.</span>SELECT<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-                <span class="token comment">// 初始化StringJoiner用来存放原文</span>
-                <span class="token class-name">StringJoiner</span> optionTitles <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StringJoiner</span><span class="token punctuation">(</span><span class="token string">","</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">Integer</span> optionId <span class="token operator">:</span> answerVOList<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getAnswers</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>j<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getOptionId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-                    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">OptionVO</span> optionVO <span class="token operator">:</span> questionnaireVO<span class="token punctuation">.</span><span class="token function">getQuestions</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>j<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getOptions</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-                        <span class="token comment">// 如果id相同就加一条</span>
-                        <span class="token keyword">if</span> <span class="token punctuation">(</span>optionVO<span class="token punctuation">.</span><span class="token function">getId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>optionId<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-                            optionTitles<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>optionVO<span class="token punctuation">.</span><span class="token function">getTitle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                        <span class="token punctuation">&#125;</span>
-                    <span class="token punctuation">&#125;</span>
-                <span class="token punctuation">&#125;</span>
-                row<span class="token punctuation">.</span><span class="token function">createCell</span><span class="token punctuation">(</span>j <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setCellValue</span><span class="token punctuation">(</span>optionTitles<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">&#125;</span>
-        <span class="token punctuation">&#125;</span>
-        <span class="token comment">// 写入创建时间</span>
-        <span class="token class-name">XSSFCell</span> datetimeCell <span class="token operator">=</span> row<span class="token punctuation">.</span><span class="token function">createCell</span><span class="token punctuation">(</span>questionnaireVO<span class="token punctuation">.</span><span class="token function">getQuestions</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        datetimeCell<span class="token punctuation">.</span><span class="token function">setCellValue</span><span class="token punctuation">(</span>answerVOList<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getCreateTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        datetimeCell<span class="token punctuation">.</span><span class="token function">setCellStyle</span><span class="token punctuation">(</span>cellStyle<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token comment">// 写入临时文件</span>
-    <span class="token class-name">File</span> excelFile <span class="token operator">=</span> <span class="token class-name">File</span><span class="token punctuation">.</span><span class="token function">createTempFile</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span><span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">".xlsx"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token class-name">FileOutputStream</span> outputStream <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileOutputStream</span><span class="token punctuation">(</span>excelFile<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    wb<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>outputStream<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    outputStream<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment">// 格式化文件名</span>
-    <span class="token class-name">String</span> filename <span class="token operator">=</span> <span class="token class-name">String</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token string">"问卷调查结果_%s.xlsx"</span><span class="token punctuation">,</span> questionnaireVO<span class="token punctuation">.</span><span class="token function">getTitle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token class-name">FileExportBO</span><span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-            <span class="token punctuation">.</span><span class="token function">file</span><span class="token punctuation">(</span>excelFile<span class="token punctuation">)</span>
-            <span class="token punctuation">.</span><span class="token function">filename</span><span class="token punctuation">(</span>filename<span class="token punctuation">)</span>
-            <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">@Override
+public FileExportBO getQuestionnaireReportFile(Integer id) throws IOException &#123;
+    &#x2F;&#x2F; 查询问卷本体
+    QuestionnaireVO questionnaireVO &#x3D; questionnaireMapper.getQuestionnaireVO(id);
+    &#x2F;&#x2F; 查询学生提交记录
+    List&lt;StudentQuestionnaireAnswerVO&gt; answerVOList &#x3D; studentQuestionnaireMapper.selectStudentQuestionnaireAnswerVO(id);
+    &#x2F;&#x2F; Apache POI 创建 Excel
+    XSSFWorkbook wb &#x3D; new XSSFWorkbook();
+    XSSFSheet sheet &#x3D; wb.createSheet(&quot;Sheet 1&quot;);
+    &#x2F;&#x2F; 设置时间格式
+    XSSFCreationHelper creationHelper &#x3D; wb.getCreationHelper();
+    CellStyle cellStyle &#x3D; wb.createCellStyle();
+    cellStyle.setDataFormat(creationHelper.createDataFormat().getFormat(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;));
+    &#x2F;&#x2F; 标题行
+    XSSFRow titleRow &#x3D; sheet.createRow(0);
+    titleRow.createCell(0).setCellValue(&quot;学号&quot;);
+    titleRow.createCell(1).setCellValue(&quot;姓名&quot;);
+    &#x2F;&#x2F; 问题题目作为标题
+    for (int i &#x3D; 0; i &lt; questionnaireVO.getQuestions().size(); i++) &#123;
+        titleRow.createCell(i + 2).setCellValue(String.format(&quot;第%d题：%s&quot;,
+                i + 1,
+                questionnaireVO.getQuestions().get(i).getTitle()));
+    &#125;
+    titleRow.createCell(questionnaireVO.getQuestions().size() + 2).setCellValue(&quot;提交时间&quot;);
+    &#x2F;&#x2F; 学生回答内容写入
+    for (int i &#x3D; 0; i &lt; answerVOList.size(); i++) &#123;
+        XSSFRow row &#x3D; sheet.createRow(i + 1);
+        row.createCell(0).setCellValue(answerVOList.get(i).getUsername());
+        row.createCell(1).setCellValue(answerVOList.get(i).getNickname());
+        &#x2F;&#x2F; 遍历问题
+        for (int j &#x3D; 0; j &lt; questionnaireVO.getQuestions().size(); j++) &#123;
+            &#x2F;&#x2F; 简答题写入answer
+            if (questionnaireVO.getQuestions().get(j).getType().equals(QuestionTypeConstant.TEXT)) &#123;
+                row.createCell(j + 2).setCellValue(answerVOList.get(i).getAnswers().get(j).getAnswer());
+                continue;
+            &#125;
+            &#x2F;&#x2F; 选择题查询选项原文写入
+            if (questionnaireVO.getQuestions().get(j).getType().equals(QuestionTypeConstant.SELECT)) &#123;
+                &#x2F;&#x2F; 初始化StringJoiner用来存放原文
+                StringJoiner optionTitles &#x3D; new StringJoiner(&quot;,&quot;);
+                for (Integer optionId : answerVOList.get(i).getAnswers().get(j).getOptionId()) &#123;
+                    for (OptionVO optionVO : questionnaireVO.getQuestions().get(j).getOptions()) &#123;
+                        &#x2F;&#x2F; 如果id相同就加一条
+                        if (optionVO.getId().equals(optionId)) &#123;
+                            optionTitles.add(optionVO.getTitle());
+                        &#125;
+                    &#125;
+                &#125;
+                row.createCell(j + 2).setCellValue(optionTitles.toString());
+            &#125;
+        &#125;
+        &#x2F;&#x2F; 写入创建时间
+        XSSFCell datetimeCell &#x3D; row.createCell(questionnaireVO.getQuestions().size() + 2);
+        datetimeCell.setCellValue(answerVOList.get(i).getCreateTime());
+        datetimeCell.setCellStyle(cellStyle);
+    &#125;
+    &#x2F;&#x2F; 写入临时文件
+    File excelFile &#x3D; File.createTempFile(String.valueOf(System.currentTimeMillis()), &quot;.xlsx&quot;);
+    FileOutputStream outputStream &#x3D; new FileOutputStream(excelFile);
+    wb.write(outputStream);
+    outputStream.close();
+    &#x2F;&#x2F; 格式化文件名
+    String filename &#x3D; String.format(&quot;问卷调查结果_%s.xlsx&quot;, questionnaireVO.getTitle());
+    return FileExportBO.builder()
+            .file(excelFile)
+            .filename(filename)
+            .build();
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
         
     
@@ -2058,12 +2067,26 @@ It will not impact the appearance and can give developers a lot of support :)
 
 <!-- Sidebar Divider -->
 
-    <div class="sidebar-divider"></div>
+  <div class="sidebar-divider"></div>
+
+
+<!-- Theme Color Switch -->
+
+
+    <div class="sidebar-text mdl-button mdl-js-button sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+        深色模式
+        <div class="sidebar-badge theme-color-switch material-icons">
+          <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect">
+            <input type="checkbox" id="theme-color-switch-input" class="mdl-switch__input">
+            <span class="mdl-switch__label"></span>
+          </label>
+        </div>
+    </div>
 
 
 <!-- Theme Material -->
 
-    <a href="https://github.com/bollnh/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+    <a href="https://github.com/gadfly3173/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
         <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
             主题 - Material
             <span class="sidebar-badge badge-circle">i</span>
@@ -2145,7 +2168,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
     <!-- Bilibili -->
     
-        <a href="https://space.bilibili.com/17819592/#!/" target="_blank">
+        <a href="https://space.bilibili.com/17819592" target="_blank">
             <button class="mdl-mini-footer--social-btn social-btn footer-sns-bilibili">
                 <span class="visuallyhidden">Bilibili</span>
             </button><!--
@@ -2200,7 +2223,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 
-    <script>lsloader.load("js_js","/js/js.min.js?Bn9UzEm8RrBSxqyZB0zPjA==", true)</script>
+    <script>lsloader.load("js_js","/js/js.js?zMMjDEGI0fKmd6sx1dB4OQ==", true)</script>
 
 
 
@@ -2271,9 +2294,6 @@ It will not impact the appearance and can give developers a lot of support :)
 <!-- MathJax Load-->
 
 
-<!-- Bing Background -->
-
-
 <script type="text/ls-javascript" id="lazy-load">
     // Offer LazyLoad
     queue.offer(function(){
@@ -2289,6 +2309,9 @@ It will not impact the appearance and can give developers a lot of support :)
         },200);
     });
 </script>
+
+<!-- Bing Background -->
+
 
 <!-- Custom Footer -->
 
@@ -2313,7 +2336,7 @@ It will not impact the appearance and can give developers a lot of support :)
             lsloader.runInlineScript(item.id,item.id);
         }
     })()
-console.log('\n %c © Material Theme | Version: 1.5.6 | https://github.com/bollnh/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+    console.log('\n %c © Material Theme | Version: 1.5.7 | https://github.com/gadfly3173/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
 </script>
 
                 </main>

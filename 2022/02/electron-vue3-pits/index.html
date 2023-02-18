@@ -5,9 +5,9 @@
     <!--
         © Material Theme
         https://github.com/bollnh/hexo-theme-material
-        Version: 1.5.6 -->
+        Version: 1.5.7 -->
     <script>
-        window.materialVersion = "1.5.6"
+        window.materialVersion = "1.5.7"
         // Delete localstorage with these tags
         window.oldVersion = [
             'codestartv1',
@@ -16,7 +16,8 @@
             '1.4.0b1',
             '1.5.0',
             '1.5.2',
-            '1.5.5'
+            '1.5.5',
+            '1.5.6'
         ]
     </script>
 
@@ -84,8 +85,11 @@
 
     <!-- Import CSS -->
     
-        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?jz54e1VeEqY7rmv2y4hCiA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.css?J3ekFjv+5KKiAFYA59/qdQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.css?R3Z5fr3H3ruXMBBBz5yTqQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        
+<link rel="stylesheet" href="/css/style-dark.css">
+
 
         
 
@@ -101,7 +105,7 @@
     font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
     overflow-x: hidden !important;
   }
-  
+
   code {
     font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   }
@@ -117,6 +121,16 @@
   #scheme-Paradox .sidebar_archives-count,
   #scheme-Paradox .sidebar-colored .sidebar-header,
   #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge-switch{
     background-color: #0097A7 !important;
   }
 
@@ -170,11 +184,6 @@
     <style>
       body{
         background-color: #F5F5F5;
-      }
-
-      /* blog_info bottom background */
-      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
-        background-color: #fff;
       }
     </style>
 
@@ -233,7 +242,7 @@
 <!-- Import Material Icons -->
 
 
-    <style id="material_icons"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_icons","/css/material-icons.css?pqhB/Rd/ab0H2+kZp0RDmw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+    <style id="material_icons"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_icons","/css/material-icons.css?MF3y43zLOUJI1z72xtsg5w==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
 
 
@@ -278,7 +287,7 @@
 
     
         <meta property="article:published_time" content="Wed Feb 23 2022 17:01:49 GMT+0800">
-        <meta property="article:modified_time" content="Wed Feb 01 2023 12:54:03 GMT+0800">
+        <meta property="article:modified_time" content="Sun Feb 19 2023 01:17:57 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -301,7 +310,7 @@
     "mainEntityOfPage": "https://blog.gadfly.vip/2022/02/electron-vue3-pits/index.html",
     "headline": "Electron Vue3 踩坑笔记",
     "datePublished": "Wed Feb 23 2022 17:01:49 GMT+0800",
-    "dateModified": "Wed Feb 01 2023 12:54:03 GMT+0800",
+    "dateModified": "Sun Feb 19 2023 01:17:57 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "猪蹄宝宝",
@@ -350,7 +359,7 @@
     
         <body id="scheme-Paradox" class="lazy">
             <canvas id="tinyball-canvas" style="position:fixed;z-index:-99;display:block;">你这是什么垃圾浏览器，这都不能显示(╯‵□′)╯︵┻━┻</canvas>
-            <script>lsloader.load("tiniballs_js","/js/tiniballs.js?zsNtF/7ZIdwUSBTaoRM2jg==", true)</script>
+            <script>lsloader.load("tiniballs_js","/js/tiniballs.js?RbhMd4vex2k4fPUeDg+pWA==", true)</script>
             <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
                 
 
@@ -561,59 +570,59 @@
         <p>记录一下 Electron 踩坑</p>
 <span id="more"></span>
 <h2 id="空项目-SSL-握手异常">空项目 SSL 握手异常</h2>
-<pre class="line-numbers language-log" data-language="log"><code class="language-log"><span class="token punctuation">[</span><span class="token number">6104</span><span class="token operator">:</span><span class="token number">0223</span><span class="token operator">/</span><span class="token number">170435.000</span><span class="token operator">:</span><span class="token level error important">ERROR</span><span class="token operator">:</span>ssl_client_socket_impl<span class="token punctuation">.</span>cc<span class="token operator">(</span><span class="token number">983</span><span class="token operator">)</span><span class="token punctuation">]</span> handshake failed<span class="token operator">;</span> returned <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> SSL error code <span class="token number">1</span><span class="token punctuation">,</span> net_error <span class="token operator">-</span><span class="token number">101</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-log" data-language="log"><code class="language-log">[6104:0223&#x2F;170435.000:ERROR:ssl_client_socket_impl.cc(983)] handshake failed; returned -1, SSL error code 1, net_error -101<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>原因是 Electron 默认开启 DoH，使用的是<code>https://chrome.cloudflare-dns.com/</code>。然而这东西在国内当然是会随时抽风的。Electron 文档内提到可以配置<code>app.configureHostResolver</code>，<s>但是一旦配置就会起不来，只能等 Electron 更新了。</s><code>app.configureHostResolver</code>必须在 ready 事件出发后设置，否则会报错。</p>
 <h2 id="单实例">单实例</h2>
 <p>正常情况下 Electron 是可以多实例启动的，现在需要保证单实例启动。在主进程里进行如下配置</p>
-<pre class="line-numbers language-typescript" data-language="typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">&#123;</span> app<span class="token punctuation">,</span> protocol<span class="token punctuation">,</span> BrowserWindow <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'electron'</span>
-<span class="token keyword">import</span> <span class="token punctuation">&#123;</span> createProtocol <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'vue-cli-plugin-electron-builder/lib'</span>
+<pre class="line-numbers language-typescript" data-language="typescript"><code class="language-typescript">import &#123; app, protocol, BrowserWindow &#125; from &#39;electron&#39;
+import &#123; createProtocol &#125; from &#39;vue-cli-plugin-electron-builder&#x2F;lib&#39;
 
-<span class="token keyword">const</span> isDevelopment <span class="token operator">=</span> process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">NODE_ENV</span> <span class="token operator">!==</span> <span class="token string">'production'</span>
+const isDevelopment &#x3D; process.env.NODE_ENV !&#x3D;&#x3D; &#39;production&#39;
 
-<span class="token comment">// Scheme must be registered before the app is ready</span>
-protocol<span class="token punctuation">.</span><span class="token function">registerSchemesAsPrivileged</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">&#123;</span> scheme<span class="token operator">:</span> <span class="token string">'app'</span><span class="token punctuation">,</span> privileges<span class="token operator">:</span> <span class="token punctuation">&#123;</span> secure<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> standard<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">&#125;</span> <span class="token punctuation">&#125;</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+&#x2F;&#x2F; Scheme must be registered before the app is ready
+protocol.registerSchemesAsPrivileged([&#123; scheme: &#39;app&#39;, privileges: &#123; secure: true, standard: true &#125; &#125;])
 
-<span class="token comment">// 此方法的返回值表示你的应用程序实例是否成功取得了锁。 如果它取得锁失败，你可以假设另一个应用实例已经取得了锁并且仍旧在运行，并立即退出。</span>
-<span class="token keyword">const</span> gotTheLock <span class="token operator">=</span> app<span class="token punctuation">.</span><span class="token function">requestSingleInstanceLock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token keyword">let</span> mainWindow<span class="token operator">:</span> BrowserWindow
-<span class="token comment">// 如果我的应用已经存在，那么就退出当前的进程</span>
-<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>gotTheLock<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-  app<span class="token punctuation">.</span><span class="token function">quit</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
-  app<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'second-instance'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">// 当运行第二个实例时,将会聚焦到 mainWindow 这个窗口</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>mainWindow<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-      <span class="token comment">// 先从托盘呼出</span>
-      mainWindow<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-      <span class="token comment">// 然后放大</span>
-      <span class="token keyword">if</span> <span class="token punctuation">(</span>mainWindow<span class="token punctuation">.</span><span class="token function">isMinimized</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> mainWindow<span class="token punctuation">.</span><span class="token function">restore</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-      <span class="token comment">// 最后聚焦</span>
-      mainWindow<span class="token punctuation">.</span><span class="token function">focus</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">&#125;</span>
-  <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+&#x2F;&#x2F; 此方法的返回值表示你的应用程序实例是否成功取得了锁。 如果它取得锁失败，你可以假设另一个应用实例已经取得了锁并且仍旧在运行，并立即退出。
+const gotTheLock &#x3D; app.requestSingleInstanceLock()
+let mainWindow: BrowserWindow
+&#x2F;&#x2F; 如果我的应用已经存在，那么就退出当前的进程
+if (!gotTheLock) &#123;
+  app.quit()
+&#125; else &#123;
+  app.on(&#39;second-instance&#39;, () &#x3D;&gt; &#123;
+    &#x2F;&#x2F; 当运行第二个实例时,将会聚焦到 mainWindow 这个窗口
+    if (mainWindow) &#123;
+      &#x2F;&#x2F; 先从托盘呼出
+      mainWindow.show()
+      &#x2F;&#x2F; 然后放大
+      if (mainWindow.isMinimized()) mainWindow.restore()
+      &#x2F;&#x2F; 最后聚焦
+      mainWindow.focus()
+    &#125;
+  &#125;)
 
-  <span class="token comment">// Quit when all windows are closed.</span>
-  app<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'window-all-closed'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">// On macOS it is common for applications and their menu bar</span>
-    <span class="token comment">// to stay active until the user quits explicitly with Cmd + Q</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>process<span class="token punctuation">.</span>platform <span class="token operator">!==</span> <span class="token string">'darwin'</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-      app<span class="token punctuation">.</span><span class="token function">quit</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">&#125;</span>
-  <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+  &#x2F;&#x2F; Quit when all windows are closed.
+  app.on(&#39;window-all-closed&#39;, () &#x3D;&gt; &#123;
+    &#x2F;&#x2F; On macOS it is common for applications and their menu bar
+    &#x2F;&#x2F; to stay active until the user quits explicitly with Cmd + Q
+    if (process.platform !&#x3D;&#x3D; &#39;darwin&#39;) &#123;
+      app.quit()
+    &#125;
+  &#125;)
 
-  app<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'activate'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">// On macOS it's common to re-create a window in the app when the</span>
-    <span class="token comment">// dock icon is clicked and there are no other windows open.</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>BrowserWindow<span class="token punctuation">.</span><span class="token function">getAllWindows</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>length <span class="token operator">===</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token function">createMainWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-  <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+  app.on(&#39;activate&#39;, () &#x3D;&gt; &#123;
+    &#x2F;&#x2F; On macOS it&#39;s common to re-create a window in the app when the
+    &#x2F;&#x2F; dock icon is clicked and there are no other windows open.
+    if (BrowserWindow.getAllWindows().length &#x3D;&#x3D;&#x3D; 0) createMainWindow()
+  &#125;)
 
-  <span class="token comment">// This method will be called when Electron has finished</span>
-  <span class="token comment">// initialization and is ready to create browser windows.</span>
-  <span class="token comment">// Some APIs can only be used after this event occurs.</span>
-  app<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'ready'</span><span class="token punctuation">,</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">// 正常启动</span>
-  <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  &#x2F;&#x2F; This method will be called when Electron has finished
+  &#x2F;&#x2F; initialization and is ready to create browser windows.
+  &#x2F;&#x2F; Some APIs can only be used after this event occurs.
+  app.on(&#39;ready&#39;, async () &#x3D;&gt; &#123;
+    &#x2F;&#x2F; 正常启动
+  &#125;)
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="NSIS-安装、卸载程序执行时关闭正在运行的应用">NSIS 安装、卸载程序执行时关闭正在运行的应用</h2>
 <p>NSIS 默认情况下不会在执行时关闭正在运行的应用，并且不会报错。。。好在 electron-builder 提供了自行修改 nsh 的功能，可以自行编写以下脚本，通过 electron-builder 的 include 配置注入。</p>
 <pre class="line-numbers language-nsh" data-language="nsh"><code class="language-nsh">; http:&#x2F;&#x2F;bcoder.com&#x2F;others&#x2F;kill-process-when-install-or-uninstall-programs-by-the-package-made-by-nsis
@@ -634,59 +643,59 @@ protocol<span class="token punctuation">.</span><span class="token function">reg
 !macroend<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="启动时最大化窗口">启动时最大化窗口</h2>
 <p>需要创建窗口时设置<code>show: false</code>，然后捕获<code>ready-to-show</code>事件，进行最大化和显示的处理。直接最大化会出现窗口不在最上面的问题，因此需要在最大化之前设置窗口在顶部，最后再取消该设置。</p>
-<pre class="line-numbers language-typescript" data-language="typescript"><code class="language-typescript">mainWindow <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">BrowserWindow</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-  show<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
-  <span class="token comment">// ...</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-<span class="token comment">// 初始最大化</span>
-mainWindow<span class="token punctuation">.</span><span class="token function">once</span><span class="token punctuation">(</span><span class="token string">'ready-to-show'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
-  <span class="token keyword">const</span> win <span class="token operator">=</span> mainWindow <span class="token keyword">as</span> BrowserWindow
-  win<span class="token punctuation">.</span><span class="token function">setAlwaysOnTop</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
-  win<span class="token punctuation">.</span><span class="token function">maximize</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-  win<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-  win<span class="token punctuation">.</span><span class="token function">setAlwaysOnTop</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-typescript" data-language="typescript"><code class="language-typescript">mainWindow &#x3D; new BrowserWindow(&#123;
+  show: false,
+  &#x2F;&#x2F; ...
+&#125;)
+&#x2F;&#x2F; 初始最大化
+mainWindow.once(&#39;ready-to-show&#39;, () &#x3D;&gt; &#123;
+  const win &#x3D; mainWindow as BrowserWindow
+  win.setAlwaysOnTop(true)
+  win.maximize()
+  win.show()
+  win.setAlwaysOnTop(false)
+&#125;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="关闭窗口时二次确认">关闭窗口时二次确认</h2>
 <p>为避免用户误操作关闭窗口丢失数据，需要在关闭窗口时二次确认。这是调用 electron 默认 dialog 的方式，如果需要结合渲染层，需要另外进行 IPC 调用。</p>
-<pre class="line-numbers language-typescript" data-language="typescript"><code class="language-typescript">mainWindow<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'close'</span><span class="token punctuation">,</span> <span class="token keyword">async</span> e <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
-  <span class="token comment">// 阻止默认行为，一定要有</span>
-  e<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-  <span class="token keyword">const</span> <span class="token punctuation">&#123;</span> response <span class="token punctuation">&#125;</span> <span class="token operator">=</span> <span class="token keyword">await</span> dialog<span class="token punctuation">.</span><span class="token function">showMessageBox</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-    type<span class="token operator">:</span> <span class="token string">'info'</span><span class="token punctuation">,</span>
-    title<span class="token operator">:</span> <span class="token string">'关闭确认'</span><span class="token punctuation">,</span>
-    defaultId<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
-    message<span class="token operator">:</span> <span class="token string">'确定要关闭应用吗？'</span><span class="token punctuation">,</span>
-    buttons<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'确定'</span><span class="token punctuation">,</span> <span class="token string">'取消'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-  <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-  <span class="token keyword">if</span> <span class="token punctuation">(</span>response <span class="token operator">===</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    mainWindow <span class="token operator">=</span> <span class="token keyword">null</span>
-    <span class="token comment">// 不要用quit() 会弹两次</span>
-    <span class="token comment">// exit()直接关闭客户端，不会执行quit();</span>
-    app<span class="token punctuation">.</span><span class="token function">exit</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-  <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-typescript" data-language="typescript"><code class="language-typescript">mainWindow.on(&#39;close&#39;, async e &#x3D;&gt; &#123;
+  &#x2F;&#x2F; 阻止默认行为，一定要有
+  e.preventDefault()
+  const &#123; response &#125; &#x3D; await dialog.showMessageBox(&#123;
+    type: &#39;info&#39;,
+    title: &#39;关闭确认&#39;,
+    defaultId: 0,
+    message: &#39;确定要关闭应用吗？&#39;,
+    buttons: [&#39;确定&#39;, &#39;取消&#39;],
+  &#125;)
+  if (response &#x3D;&#x3D;&#x3D; 0) &#123;
+    mainWindow &#x3D; null
+    &#x2F;&#x2F; 不要用quit() 会弹两次
+    &#x2F;&#x2F; exit()直接关闭客户端，不会执行quit();
+    app.exit()
+  &#125;
+&#125;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="自定义主进程与渲染进程文件位置">自定义主进程与渲染进程文件位置</h2>
 <p>默认情况下，vue-cli-plugin-electron-builder 在初始化时会将主进程和渲染进程的文件都放在 <code>src</code> 目录下，分别为 <code>background.ts</code> 和 <code>main.ts</code> 但是如果需要自定义主进程和渲染进程的文件位置，可以通过在 <code>vue.config.js</code> 中配置。</p>
-<pre class="line-numbers language-typescript" data-language="typescript"><code class="language-typescript"><span class="token comment">// @ts-check</span>
-<span class="token comment">/** @type &#123;import('@vue/cli-service/types/ProjectOptions').ProjectOptions&#125; */</span>
-module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
-  pages<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-    index<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-      entry<span class="token operator">:</span> <span class="token string">'src/renderer/main.ts'</span><span class="token punctuation">,</span>
-      template<span class="token operator">:</span> <span class="token string">'public/index.html'</span><span class="token punctuation">,</span>
-    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-  pluginOptions<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">/** @type &#123;import('vue-cli-plugin-electron-builder').PluginOptions&#125; */</span>
-    electronBuilder<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-      mainProcessFile<span class="token operator">:</span> <span class="token string">'src/main/background.ts'</span><span class="token punctuation">,</span>
-      mainProcessWatch<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'src/main'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-      preload<span class="token operator">:</span> <span class="token string">'src/main/preload/index.ts'</span><span class="token punctuation">,</span>
-      <span class="token comment">// 不要用这个配置项，会导致渲染进程没有被挂载到html上</span>
-      <span class="token comment">// rendererProcessFile: 'src/renderer/main.ts',</span>
-    <span class="token punctuation">&#125;</span>
-  <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-typescript" data-language="typescript"><code class="language-typescript">&#x2F;&#x2F; @ts-check
+&#x2F;** @type &#123;import(&#39;@vue&#x2F;cli-service&#x2F;types&#x2F;ProjectOptions&#39;).ProjectOptions&#125; *&#x2F;
+module.exports &#x3D; &#123;
+  pages: &#123;
+    index: &#123;
+      entry: &#39;src&#x2F;renderer&#x2F;main.ts&#39;,
+      template: &#39;public&#x2F;index.html&#39;,
+    &#125;,
+  &#125;,
+  pluginOptions: &#123;
+    &#x2F;** @type &#123;import(&#39;vue-cli-plugin-electron-builder&#39;).PluginOptions&#125; *&#x2F;
+    electronBuilder: &#123;
+      mainProcessFile: &#39;src&#x2F;main&#x2F;background.ts&#39;,
+      mainProcessWatch: [&#39;src&#x2F;main&#39;],
+      preload: &#39;src&#x2F;main&#x2F;preload&#x2F;index.ts&#39;,
+      &#x2F;&#x2F; 不要用这个配置项，会导致渲染进程没有被挂载到html上
+      &#x2F;&#x2F; rendererProcessFile: &#39;src&#x2F;renderer&#x2F;main.ts&#39;,
+    &#125;
+  &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
         
     
@@ -1010,12 +1019,26 @@ It will not impact the appearance and can give developers a lot of support :)
 
 <!-- Sidebar Divider -->
 
-    <div class="sidebar-divider"></div>
+  <div class="sidebar-divider"></div>
+
+
+<!-- Theme Color Switch -->
+
+
+    <div class="sidebar-text mdl-button mdl-js-button sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+        深色模式
+        <div class="sidebar-badge theme-color-switch material-icons">
+          <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect">
+            <input type="checkbox" id="theme-color-switch-input" class="mdl-switch__input">
+            <span class="mdl-switch__label"></span>
+          </label>
+        </div>
+    </div>
 
 
 <!-- Theme Material -->
 
-    <a href="https://github.com/bollnh/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+    <a href="https://github.com/gadfly3173/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
         <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
             主题 - Material
             <span class="sidebar-badge badge-circle">i</span>
@@ -1097,7 +1120,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
     <!-- Bilibili -->
     
-        <a href="https://space.bilibili.com/17819592/#!/" target="_blank">
+        <a href="https://space.bilibili.com/17819592" target="_blank">
             <button class="mdl-mini-footer--social-btn social-btn footer-sns-bilibili">
                 <span class="visuallyhidden">Bilibili</span>
             </button><!--
@@ -1152,7 +1175,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 
-    <script>lsloader.load("js_js","/js/js.min.js?Bn9UzEm8RrBSxqyZB0zPjA==", true)</script>
+    <script>lsloader.load("js_js","/js/js.js?zMMjDEGI0fKmd6sx1dB4OQ==", true)</script>
 
 
 
@@ -1223,9 +1246,6 @@ It will not impact the appearance and can give developers a lot of support :)
 <!-- MathJax Load-->
 
 
-<!-- Bing Background -->
-
-
 <script type="text/ls-javascript" id="lazy-load">
     // Offer LazyLoad
     queue.offer(function(){
@@ -1241,6 +1261,9 @@ It will not impact the appearance and can give developers a lot of support :)
         },200);
     });
 </script>
+
+<!-- Bing Background -->
+
 
 <!-- Custom Footer -->
 
@@ -1265,7 +1288,7 @@ It will not impact the appearance and can give developers a lot of support :)
             lsloader.runInlineScript(item.id,item.id);
         }
     })()
-console.log('\n %c © Material Theme | Version: 1.5.6 | https://github.com/bollnh/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+    console.log('\n %c © Material Theme | Version: 1.5.7 | https://github.com/gadfly3173/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
 </script>
 
                 </main>
