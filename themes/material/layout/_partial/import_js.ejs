@@ -15,9 +15,9 @@
 
 <% if( theme.js_effect.smoothscroll === true ) { %>
     <% if(theme.vendors.materialcdn) { %>
-        <%- jsLsload({path:(theme.vendors.materialcdn + '/js/smoothscroll.js'),key:'sm_js'}) %>
+        <%- jsLsload({path:(theme.vendors.materialcdn + '/js/smoothscroll.min.js'),key:'sm_js'}) %>
     <% } else { %>
-        <%- jsLsload({path:('js/smoothscroll.js'),key:'sm_js'}) %>
+        <%- jsLsload({path:('js/smoothscroll.min.js'),key:'sm_js'}) %>
     <% } %>
 <% } %>
 
@@ -72,9 +72,9 @@
 <% } %>
 <% if (theme.hanabi.enable) { %>
     <% if(theme.vendors.materialcdn) { %>
-        <%- jsLsload({path:(theme.vendors.materialcdn + '/js/hanabi-browser-bundle.js'),key:'hanabi'}) %>
+        <%- jsLsload({path:(theme.vendors.materialcdn + '/js/hanabi-browser-bundle.min.js'),key:'hanabi'}) %>
     <% } else { %>
-        <%- jsLsload({path:('js/hanabi-browser-bundle.js'),key:'hanabi'}) %>
+        <%- jsLsload({path:('js/hanabi-browser-bundle.min.js'),key:'hanabi'}) %>
     <% } %>
 <% } %>
 

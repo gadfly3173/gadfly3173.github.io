@@ -81,9 +81,9 @@
 
     <!-- Scripts -->
     <% if(theme.vendors.materialcdn) { %>
-        <script src="<%= theme.vendors.materialcdn + '/js/gallery/gallery.js' %>"></script>
+        <script src="<%= theme.vendors.materialcdn + '/js/gallery/gallery.min.js' %>"></script>
     <% } else { %>
-        <script src="<%= url_for('js/gallery/gallery.js') %>"></script>
+        <script src="<%= url_for('js/gallery/gallery.min.js') %>"></script>
     <% } %>
 
     <% if(theme.vendors.materialcdn) { %>
