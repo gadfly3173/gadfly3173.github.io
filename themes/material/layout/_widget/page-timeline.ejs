@@ -397,7 +397,7 @@
    		<% site.posts.sort('date', -1).limit(site.posts.length).each(function(post){ %>
 			<div class="md-timeline-block">
                 		<div class="md-timeline-date blue">
-                   			<div class="md-date"><%= date(post.date, 'MMM DD YYYY') %></div>
+                   			<div class="md-date"><%= date(post.date, 'YYYY-MM-DD') %></div>
                 		</div>
 
                 		<div class="md-timeline-content">

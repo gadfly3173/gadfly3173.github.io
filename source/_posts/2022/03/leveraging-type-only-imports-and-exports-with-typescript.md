@@ -9,7 +9,9 @@ permalink:
 hide_post_info: false
 ---
 解决类型被作为值导入导出引发的警告
+
 <!-- More -->
+
 如果在 ts 文件中导出一个类型（type），那么在另一个 ts 文件中导入时，webpack 会报如下警告：
 
 ```bash

@@ -47,6 +47,7 @@ prismjs:
   enable: true
   preprocess: true
   line_number: true
+  line_threshold: 0
   tab_replace: ''
 
 # Category & Tag
