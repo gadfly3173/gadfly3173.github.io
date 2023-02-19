@@ -2386,6 +2386,7 @@ a {
 .theme-color-switch .mdl-switch__thumb {
   left: 2px;
   top: 2px;
+  font-size: 12px;
 }
 
 .theme-color-switch .mdl-switch.is-checked .mdl-switch__thumb {
