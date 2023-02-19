@@ -47,6 +47,141 @@
   </url>
   
   <url>
+    <loc>https://blog.gadfly.vip/gallery/index.html</loc>
+    
+    <lastmod>2023-02-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/2017/07/WSL-GUI/</loc>
+    
+    <lastmod>2023-02-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/2017/07/hello-world/</loc>
+    
+    <lastmod>2023-02-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/2017/07/%E6%90%AD%E5%BB%BA%E7%BA%AA%E5%AE%9E/</loc>
+    
+    <lastmod>2023-02-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/2017/08/choose-your-notebook-2/</loc>
+    
+    <lastmod>2023-02-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/2017/08/choose-your-notebook_1/</loc>
+    
+    <lastmod>2023-02-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/2018/01/shmetro-metropolis-app/</loc>
+    
+    <lastmod>2023-02-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/2018/05/hide-article-at-index/</loc>
+    
+    <lastmod>2023-02-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/2018/05/perfect-html-template/</loc>
+    
+    <lastmod>2023-02-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/2018/05/template-changes/</loc>
+    
+    <lastmod>2023-02-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/2018/07/dual-gpu-switch/</loc>
+    
+    <lastmod>2023-02-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/2019/05/campus-card-research/</loc>
+    
+    <lastmod>2023-02-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/2019/07/Algorithm-product-evaluation-method/</loc>
+    
+    <lastmod>2023-02-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/2019/07/Product-Experience-Optimization-Checklist/</loc>
+    
+    <lastmod>2023-02-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/2019/07/cloudflare-free-config/</loc>
+    
+    <lastmod>2023-02-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.gadfly.vip/2019/07/some-notes/</loc>
     
     <lastmod>2023-02-19</lastmod>
@@ -200,151 +335,16 @@
   </url>
   
   <url>
-    <loc>https://blog.gadfly.vip/about.html</loc>
-    
-    <lastmod>2023-02-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/gallery/index.html</loc>
-    
-    <lastmod>2023-02-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/2017/07/WSL-GUI/</loc>
-    
-    <lastmod>2023-02-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/2017/07/hello-world/</loc>
-    
-    <lastmod>2023-02-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/2017/07/%E6%90%AD%E5%BB%BA%E7%BA%AA%E5%AE%9E/</loc>
-    
-    <lastmod>2023-02-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/2017/08/choose-your-notebook-2/</loc>
-    
-    <lastmod>2023-02-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/2017/08/choose-your-notebook_1/</loc>
-    
-    <lastmod>2023-02-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/2018/01/shmetro-metropolis-app/</loc>
-    
-    <lastmod>2023-02-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/2018/05/hide-article-at-index/</loc>
-    
-    <lastmod>2023-02-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/2018/05/perfect-html-template/</loc>
-    
-    <lastmod>2023-02-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/2018/05/template-changes/</loc>
-    
-    <lastmod>2023-02-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/2018/07/dual-gpu-switch/</loc>
-    
-    <lastmod>2023-02-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/2019/05/campus-card-research/</loc>
-    
-    <lastmod>2023-02-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/2019/07/Algorithm-product-evaluation-method/</loc>
-    
-    <lastmod>2023-02-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/2019/07/Product-Experience-Optimization-Checklist/</loc>
-    
-    <lastmod>2023-02-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/2019/07/cloudflare-free-config/</loc>
-    
-    <lastmod>2023-02-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.gadfly.vip/404.html</loc>
+    
+    <lastmod>2023-02-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/about.html</loc>
     
     <lastmod>2023-02-19</lastmod>
     
