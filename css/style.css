@@ -2401,17 +2401,17 @@ a {
   color: rgba(60, 60, 60, .7);
   text-shadow: none;
   width: 0;
-  line-height: 110%;
-  height: 110%;
+  line-height: 100%;
+  height: 100%;
   display: inline-block;
   vertical-align: middle;
-  margin-left: -60%;
+  margin-left: -50%;
 }
 
 .theme-color-switch .mdl-switch.is-checked .mdl-switch__thumb::after {
   content: '\ea46';
   color: #fff;
-  margin-left: -40%;
+  margin-left: -50%;
 }
 
 .sidebar .sidebar-divider,
