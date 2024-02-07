@@ -2,15 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://blog.gadfly.vip/timeline/index.html</loc>
-    
-    <lastmod>2024-02-07</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.gadfly.vip/index.html</loc>
     
     <lastmod>2024-02-07</lastmod>
@@ -39,6 +30,15 @@
   
   <url>
     <loc>https://blog.gadfly.vip/tags/index.html</loc>
+    
+    <lastmod>2024-02-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/timeline/index.html</loc>
     
     <lastmod>2024-02-07</lastmod>
     
@@ -335,6 +335,15 @@
   </url>
   
   <url>
+    <loc>https://blog.gadfly.vip/404.html</loc>
+    
+    <lastmod>2024-02-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.gadfly.vip/about.html</loc>
     
     <lastmod>2024-02-07</lastmod>
@@ -345,15 +354,6 @@
   
   <url>
     <loc>https://blog.gadfly.vip/gallery/index.html</loc>
-    
-    <lastmod>2024-02-07</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/404.html</loc>
     
     <lastmod>2024-02-07</lastmod>
     
