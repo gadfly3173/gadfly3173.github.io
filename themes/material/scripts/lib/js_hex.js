@@ -16,7 +16,7 @@ function jsHelper() {
       result += jsHelper.apply(this, path);
     } else {
       if (path.indexOf('?') < 0 && path.substring(path.length - 3, path.length) !== '.js') path += '.js';
-      result += '<script src="' + require("../../../../node_modules/hexo/lib/plugins/helper/url_for").call(this,path) + '?' + get_file_hex(path_for.call(this,path)) + '"></script>';
+      result += '<script src="' + require("../../../../node_modules/hexo/dist/plugins/helper/url_for").call(this,path) + '?' + get_file_hex(path_for.call(this,path)) + '"></script>';
     }
   }
 

@@ -27,7 +27,7 @@ function jsHelper() {
       if (path.indexOf('?') < 0 && path.substring(path.length - 3, path.length) !== '.js') path += '.js';
       var localpath = path_for.call(this,path);
       result += '<script>lsloader.load("' + key + '","' +
-        require("../../../../node_modules/hexo/lib/plugins/helper/url_for").call(this,path) +
+        require("../../../../node_modules/hexo/dist/plugins/helper/url_for").call(this,path) +
         (fs.existsSync(localpath)?'?' + get_file_hex(localpath):'') + '", true)</script>'
     }
   }

@@ -38,13 +38,12 @@ render_drafts: false
 post_asset_folder: false
 relative_link: false
 future: true
+syntax_highlighter: 'prismjs'
 highlight:
-  enable: false
   line_number: false
   auto_detect: false
   tab_replace:
 prismjs:
-  enable: true
   preprocess: true
   line_number: true
   line_threshold: 0

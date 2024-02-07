@@ -73,7 +73,7 @@ background:
 img:
     logo: "/img/logo.png"
     avatar: "https://q.qlogo.cn/headimg_dl?dst_uin=2427303995&spec=140"
-    daily_pic: "https://bing.ioliu.cn/v1/rand"
+    daily_pic: "https://api.vvhan.com/api/bing?rand=sj&size="
     sidebar_header: "/img/sidebar_header.png"
     random_thumbnail: "/img/random/material-"
     footer_image:
