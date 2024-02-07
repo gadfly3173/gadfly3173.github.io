@@ -320,7 +320,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 6.3.0"></head>
+<meta name="generator" content="Hexo 7.1.1"></head>
 
 
     
@@ -390,7 +390,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>猪蹄宝宝</strong>
-        <span>2023-07-15</span>
+        <span>2024-02-07</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -412,7 +412,7 @@
 <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
     <li class="mdl-menu__item">在其它设备中阅读本文章</li>
     
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAAB6klEQVR42u3aQVLDMAwF0Nz/0rBlBmK+bLdpopcVQzNpHgthSf/4esR1YGBgYGBgYGB8DOOIr5/3/37C2dP++PqTZ+bvgIGB0ZPxT2k7YZy9yvilx8/P78HAwOjJyIts/irjAr3yDhgYGBhJkR3/Jj8yYmBgYLyu4O5lY2BgYOxqYufa2rzgvqkXx8DAuCFjbjGw9+fL9hsYGBgfzyhHHIIlZbXgXpAZwcDAuBVjvIYcl931I2O1rcXAwOjJyIdi+Sgtj4VVR3sYGBidGXON5XhtmZfsatQMAwOjJ6PacBa+bCEuNvl/AwMD46GMuQVk3uJWx23ROA8DA6MNY2V8vytyUY2dYWBgdGNUF5bVKEbS1lYLOgYGRjdGvoZMPs0LcX4QjMZtGBgYj2asxyzyKEb1EImBgYHxwhhE3Nzmwz4MDIzOjGRxuDJWywd2+VESAwOjG2N99F89SmJgYGDMMarR1ZWF5dy3YGBgYOxaauaBifz+DZtYDAyMmzNWyuvcuK0a0SiM2zAwMB7NqLay1ShYIUIxPEpiYGBgVIts8rr5eK48qsPAwMCYWlVWi28esNhccDEwMBow5hravcELDAyMnoxqw5m0nfmfoBq5wMDA6MbYFa3Ye/jDwMDAuPuFgYGBgYGBgXHp9Q1c8FS5JamO5gAAAABJRU5ErkJggg==">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAAB6klEQVR42u3aQVLDMAwF0Nz/0rBlBmK+bLdpopcVQzNpHgthSf/4esR1YGBgYGBgYGB8DOOIr5/3/37C2dP++PqTZ+bvgIGB0ZPxT2k7YZy9yvilx8/P78HAwOjJyIts/irjAr3yDhgYGBhJkR3/Jj8yYmBgYLyu4O5lY2BgYOxqYufa2rzgvqkXx8DAuCFjbjGw9+fL9hsYGBgfzyhHHIIlZbXgXpAZwcDAuBVjvIYcl931I2O1rcXAwOjJyIdi+Sgtj4VVR3sYGBidGXONZRL/Skp2NWqGgYHRk1FtOAtfthAXm/y/gYGB8VDG3AIyb3Gr47ZonIeBgdGGsTK+3xW5qMbOMDAwujGqC8tqFCNpa6sFHQMDoxsjX0Mmn+aFOD8IRuM2DAyMRzPWYxZ5FKN6iMTAwMB4YQwibm7zYR8GBkZnRrI4XBmr5QO7/CiJgYHRjbE++q8eJTEwMDDmGNXo6srCcu5bMDAwMHYtNfPARH7/hk0sBgbGzRkr5XVu3FaNaBTGbRgYGI9mVFvZahSsEKEYHiUxMDAwqkU2ed18PFce1WFgYGBMrSqrxbcQrN9bcDEwMBow5hravcELDAyMnoxqw5m0nfmfoBq5wMDA6MbYFa3Ye/jDwMDAuPuFgYGBgYGBgXHp9Q1c8FS5nxgFwAAAAABJRU5ErkJggg==">
     
 </ul>
 
@@ -745,7 +745,13 @@ It will not impact the appearance and can give developers a lot of support :)
       const themeColorSwitchInput = document.getElementById('theme-color-switch-input');
       const rememberThemeColor = localStorage.getItem(rememberThemeColorStorageKey);
       // 判断是否匹配深色模式
-      if ('dark' === rememberThemeColor || (darkMode && darkMode.matches)) {
+      if (rememberThemeColor === 'dark') {
+        tinyBallSwitchTheme(true);
+        document.body.setAttribute('data-theme', 'dark');
+        document.getElementById('theme-color-switch-input').setAttribute('checked', 'checked');
+      } else if (rememberThemeColor === 'light') {
+        document.body.setAttribute('data-theme', '');
+      } else if (darkMode && darkMode.matches) {
         tinyBallSwitchTheme(true);
         document.body.setAttribute('data-theme', 'dark');
         document.getElementById('theme-color-switch-input').setAttribute('checked', 'checked');

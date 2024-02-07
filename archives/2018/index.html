@@ -320,7 +320,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 6.3.0"></head>
+<meta name="generator" content="Hexo 7.1.1"></head>
 
 
     
@@ -896,7 +896,13 @@ It will not impact the appearance and can give developers a lot of support :)
       const themeColorSwitchInput = document.getElementById('theme-color-switch-input');
       const rememberThemeColor = localStorage.getItem(rememberThemeColorStorageKey);
       // 判断是否匹配深色模式
-      if ('dark' === rememberThemeColor || (darkMode && darkMode.matches)) {
+      if (rememberThemeColor === 'dark') {
+        tinyBallSwitchTheme(true);
+        document.body.setAttribute('data-theme', 'dark');
+        document.getElementById('theme-color-switch-input').setAttribute('checked', 'checked');
+      } else if (rememberThemeColor === 'light') {
+        document.body.setAttribute('data-theme', '');
+      } else if (darkMode && darkMode.matches) {
         tinyBallSwitchTheme(true);
         document.body.setAttribute('data-theme', 'dark');
         document.getElementById('theme-color-switch-input').setAttribute('checked', 'checked');
