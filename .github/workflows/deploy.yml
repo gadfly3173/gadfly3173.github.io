@@ -34,7 +34,9 @@ jobs:
           known_hosts: 'github.com'
 
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Checkout deploy repo
         uses: actions/checkout@v4
@@ -42,7 +44,6 @@ jobs:
           repository: ${{ env.DEPLOY_REPO }}
           ref: ${{ env.DEPLOY_BRANCH }}
           path: .deploy_git
-          fetch-depth: 0
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
