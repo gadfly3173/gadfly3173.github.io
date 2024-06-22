@@ -47,15 +47,6 @@
   </url>
   
   <url>
-    <loc>https://blog.gadfly.vip/404.html</loc>
-    
-    <lastmod>2024-06-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.gadfly.vip/about.html</loc>
     
     <lastmod>2024-06-22</lastmod>
@@ -74,7 +65,7 @@
   </url>
   
   <url>
-    <loc>https://blog.gadfly.vip/2017/07/hello-world/</loc>
+    <loc>https://blog.gadfly.vip/404.html</loc>
     
     <lastmod>2024-06-22</lastmod>
     
@@ -84,6 +75,15 @@
   
   <url>
     <loc>https://blog.gadfly.vip/2017/07/WSL-GUI/</loc>
+    
+    <lastmod>2024-06-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/2017/07/hello-world/</loc>
     
     <lastmod>2024-06-22</lastmod>
     
