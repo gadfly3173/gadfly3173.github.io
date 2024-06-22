@@ -13,7 +13,8 @@
     "release": "hexo clean && hexo d -g",
     "publish": "hexo clean && hexo d -g",
     "new-post": "node bin/hexo-new-date.js",
-    "lintmd:fix": "lint-md source/**/*.md --fix"
+    "lintmd:fix": "lint-md source/**/*.md --fix",
+    "post-update-time": "node bin/update-post-last-modified.js"
   },
   "dependencies": {
     "gitment": "0.0.3",
@@ -40,6 +41,7 @@
   },
   "devDependencies": {
     "@lint-md/cli": "^2.0.0",
+    "js-yaml": "^4.1.0",
     "shelljs": "^0.8.5"
   }
 }

@@ -143,3 +143,12 @@ deploy:
     github: git@github.com:gadfly3173/gadfly3173.github.io.git
   branch: master
   ignore_hidden: false
+
+feed:
+  # Generate both atom and rss2 feeds
+  type:
+    - atom
+    - rss2
+  path:
+    - atom.xml
+    - rss2.xml

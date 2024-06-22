@@ -53,6 +53,10 @@ jobs:
         run: |
           yarn
 
+      - name: Update post update time
+        run: |
+          yarn upost-update-time
+
       - name: Deploy hexo
         run: |
           yarn release
