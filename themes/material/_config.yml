@@ -334,14 +334,14 @@ vendors:
 #   For example
 #       jquery: https://cdn.bootcss.com/jquery/2.2.1/jquery.js
     # jQuery 2.2.0
-    jquery: https://cdn.staticfile.org/jquery/2.2.1/jquery.min.js
+    jquery: https://cdn.jsdelivr.net/npm/jquery@2.2.1/dist/jquery.min.js
     # nprogress 0.2.0
-    nprogress: https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js
+    nprogress: https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js
     # FontAwesome 4.5.0
-    fontawesome: https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css
+    fontawesome: https://cdn.jsdelivr.net/npm/font-awesome@4.5.0/css/font-awesome.min.css
     # MathJax 2.7.0-2.7.1
-    mathjax: https://cdn.staticfile.org/mathjax/2.7.1/MathJax.js
+    mathjax: https://cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.min.js
     # Prettify r298 (only prettify.js)
-    prettify: https://cdn.staticfile.org/prettify/r298/prettify.min.js
+    prettify: https://cdn.jsdelivr.net/npm/prettify@0.1.7/prettify.min.js
     # Material Icons 3.0.1
     material_icons:
