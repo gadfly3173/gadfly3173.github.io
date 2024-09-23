@@ -2,24 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://blog.gadfly.vip/tags/index.html</loc>
-    
-    <lastmod>2024-09-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/timeline/index.html</loc>
-    
-    <lastmod>2024-09-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.gadfly.vip/index.html</loc>
     
     <lastmod>2024-09-23</lastmod>
@@ -39,6 +21,24 @@
   
   <url>
     <loc>https://blog.gadfly.vip/links/index.html</loc>
+    
+    <lastmod>2024-09-23</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/tags/index.html</loc>
+    
+    <lastmod>2024-09-23</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/timeline/index.html</loc>
     
     <lastmod>2024-09-23</lastmod>
     
@@ -335,7 +335,7 @@
   </url>
   
   <url>
-    <loc>https://blog.gadfly.vip/2022/02/rabbitmq-docker-compose-deploy/</loc>
+    <loc>https://blog.gadfly.vip/2021/04/make-a-questionnaire-module-step-by-step/</loc>
     
     <lastmod>2022-03-03</lastmod>
     
@@ -344,7 +344,7 @@
   </url>
   
   <url>
-    <loc>https://blog.gadfly.vip/2021/04/make-a-questionnaire-module-step-by-step/</loc>
+    <loc>https://blog.gadfly.vip/2022/02/rabbitmq-docker-compose-deploy/</loc>
     
     <lastmod>2022-03-03</lastmod>
     
@@ -877,13 +877,6 @@
   </url>
   
   <url>
-    <loc>https://blog.gadfly.vip/tags/GIS/</loc>
-    <lastmod>2024-09-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.gadfly.vip/tags/%E6%97%B6%E5%8C%BA/</loc>
     <lastmod>2024-09-23</lastmod>
     <changefreq>weekly</changefreq>
@@ -927,6 +920,13 @@
   
   <url>
     <loc>https://blog.gadfly.vip/tags/%E5%A4%8F%E4%BB%A4%E6%97%B6/</loc>
+    <lastmod>2024-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/tags/GIS/</loc>
     <lastmod>2024-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
