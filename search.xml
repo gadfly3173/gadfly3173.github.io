@@ -4,6 +4,43 @@
   
     
     <entry>
+      <title>校验 git 提交签名</title>
+      <link href="/2025/05/verify-git-commit-sign/"/>
+      <url>/2025/05/verify-git-commit-sign/</url>
+      
+        <content type="html"><![CDATA[<p>Git 支持使用 GPG 密钥或 SSH 密钥对提交进行签名验证。本文将详细介绍如何配置和使用这两种签名方式。</p><h2 id="前置要求">前置要求</h2><ul><li>Git 2.34.0+</li><li>OpenSSH 8.8+ (注意: OpenSSH 8.7 版本签名功能异常)</li><li>如果使用 GPG 签名,需要安装 gpg 工具</li><li>如果使用 SSH 签名,需要 ED25519 或 RSA 类型的 SSH 密钥</li></ul><h2 id="签名验证">签名验证</h2><h3 id="查看提交签名">查看提交签名</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 查看最近的提交签名</span><span class="token function">git</span> log --show-signature<span class="token comment"># 查看指定提交的签名</span><span class="token function">git</span> verify-commit <span class="token operator">&lt;</span>commit-hash<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><h3 id="本地验证-SSH-签名">本地验证 SSH 签名</h3><ol><li>创建 allowed_signers 文件:</li></ol><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">touch</span> ~/.ssh/allowed_signers<span class="token comment"># 添加签名者信息</span><span class="token builtin class-name">echo</span> <span class="token string">"your_email@example.com namespaces=<span class="token entity" title="\&quot;">\"</span>git<span class="token entity" title="\&quot;">\"</span> <span class="token variable"><span class="token variable">$(</span><span class="token function">cat</span> ~/.ssh/id_ed25519.pub<span class="token variable">)</span></span>"</span> <span class="token operator">>></span> ~/.ssh/allowed_signers<span class="token comment"># 配置 Git 使用此文件</span><span class="token function">git</span> config <span class="token parameter variable">--global</span> gpg.ssh.allowedSignersFile ~/.ssh/allowed_signers<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="获取并导入他人的密钥">获取并导入他人的密钥</h2><h3 id="GitHub">GitHub</h3><h4 id="SSH-密钥">SSH 密钥</h4><ol><li>访问用户个人主页: <code>https://github.com/&#123;username&#125;.keys</code></li><li>将获取的公钥添加到 allowed_signers 文件:</li></ol><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> https://github.com/<span class="token punctuation">&#123;</span>username<span class="token punctuation">&#125;</span>.keys <span class="token operator">|</span> <span class="token keyword">while</span> <span class="token builtin class-name">read</span> key<span class="token punctuation">;</span> <span class="token keyword">do</span>    <span class="token builtin class-name">echo</span> <span class="token string">"&#123;their-email&#125; namespaces=<span class="token entity" title="\&quot;">\"</span>git<span class="token entity" title="\&quot;">\"</span> <span class="token variable">$key</span>"</span> <span class="token operator">>></span> ~/.ssh/allowed_signers<span class="token keyword">done</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><h4 id="GPG-密钥">GPG 密钥</h4><ol><li>访问用户个人主页: <code>https://github.com/&#123;username&#125;.gpg</code></li><li>导入公钥:</li></ol><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> https://github.com/<span class="token punctuation">&#123;</span>username<span class="token punctuation">&#125;</span>.gpg <span class="token operator">|</span> gpg <span class="token parameter variable">--import</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h3 id="GitLab">GitLab</h3><h4 id="SSH-密钥-2">SSH 密钥</h4><ol><li>访问用户个人主页: <code>https://&#123;gitlab-instance&#125;/-/users/&#123;username&#125;/keys</code></li><li>同 GitHub 方式添加到 allowed_signers</li></ol><h4 id="GPG-密钥-2">GPG 密钥</h4><ol><li>在用户个人主页找到 GPG Keys 部分</li><li>点击 Download 下载公钥</li><li>导入公钥:</li></ol><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gpg <span class="token parameter variable">--import</span> username_public.gpg<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h3 id="平台身份验证">平台身份验证</h3><p>GitHub 和 GitLab 的签名验证状态会显示为&quot;已验证&quot;的绿色标记，表明这是平台本身验证过的提交。这些提交通常来自:</p><ul><li>Web 界面的编辑</li><li>PR/MR 的自动合并</li><li>GitHub Actions/GitLab CI 的自动提交</li></ul><p>要验证这些签名:</p><ol><li>导入平台的公钥:</li></ol><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># GitHub</span><span class="token function">curl</span> https://github.com/web-flow.gpg <span class="token operator">|</span> gpg <span class="token parameter variable">--import</span><span class="token comment"># GitLab (替换为你的实例地址)</span><span class="token function">curl</span> https://<span class="token punctuation">&#123;</span>gitlab-instance<span class="token punctuation">&#125;</span>/-/openid_connect/key <span class="token operator">|</span> gpg <span class="token parameter variable">--import</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="常见问题">常见问题</h2><h3 id="GPG-签名相关">GPG 签名相关</h3><ol><li>提示 &quot;secret key not available&quot;:</li></ol><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> config <span class="token parameter variable">--global</span> gpg.program gpg2<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><ol start="2"><li>GPG 密码输入框不弹出:</li></ol><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable">GPG_TTY</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">tty</span><span class="token variable">)</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h3 id="SSH-签名相关">SSH 签名相关</h3><ol><li>确保 SSH 密钥类型正确(ED25519 或 RSA)</li><li>验证 OpenSSH 版本是否满足要求(8.8+)</li><li>检查 allowed_signers 文件格式是否正确</li></ol><h2 id="最佳实践">最佳实践</h2><ol><li>使用强密码保护你的密钥</li><li>定期更新密钥</li><li>妥善保管私钥文件</li><li>配置自动签名避免遗漏</li><li>在多设备间同步签名配置</li></ol><p>签名验证可以:</p><ul><li>验证代码提交者身份</li><li>防止他人冒用身份</li><li>提高代码可信度</li></ul><p>记得将公钥上传到 Git 平台(如 GitHub、GitLab)以便在 Web 界面验证签名。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> git </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> git </tag>
+            
+            <tag> 签名 </tag>
+            
+            <tag> commit </tag>
+            
+            <tag> verify </tag>
+            
+            <tag> signature </tag>
+            
+            <tag> gpg </tag>
+            
+            <tag> ssh </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>时区、时间戳与时间格式化：解决 SourceGit 中的时区问题</title>
       <link href="/2024/07/date-time-format-to-local-with-timezone/"/>
       <url>/2024/07/date-time-format-to-local-with-timezone/</url>

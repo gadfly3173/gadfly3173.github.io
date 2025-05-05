@@ -6,7 +6,7 @@
   <link href="https://blog.gadfly.vip/atom.xml" rel="self"/>
   
   <link href="https://blog.gadfly.vip/"/>
-  <updated>2024-07-02T16:57:50.000Z</updated>
+  <updated>2025-05-05T14:02:52.000Z</updated>
   <id>https://blog.gadfly.vip/</id>
   
   <author>
@@ -15,6 +15,46 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>校验 git 提交签名</title>
+    <link href="https://blog.gadfly.vip/2025/05/verify-git-commit-sign/"/>
+    <id>https://blog.gadfly.vip/2025/05/verify-git-commit-sign/</id>
+    <published>2025-05-02T13:24:08.000Z</published>
+    <updated>2025-05-05T14:02:52.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Git 支持使用 GPG 密钥或 SSH 密钥对提交进行签名验证。本文将详细介绍如何配置和使用这两种签名方式。</p><h2 id="前置要求">前置要求</h2><ul><li>Git 2.34.0+</li><li>OpenSSH 8.8+ (注意: OpenSSH 8.7 版本签名功能异常)</li><li>如果使用 GPG 签名,需要安装 gpg 工具</li><li>如果使用 SSH 签名,需要 ED25519 或 RSA 类型的 SSH 密钥</li></ul><h2 id="签名验证">签名验证</h2><h3 id="查看提交签名">查看提交签名</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 查看最近的提交签名</span><span class="token function">git</span> log --show-signature<span class="token comment"># 查看指定提交的签名</span><span class="token function">git</span> verify-commit <span class="token operator">&lt;</span>commit-hash<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><h3 id="本地验证-SSH-签名">本地验证 SSH 签名</h3><ol><li>创建 allowed_signers 文件:</li></ol><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">touch</span> ~/.ssh/allowed_signers<span class="token comment"># 添加签名者信息</span><span class="token builtin class-name">echo</span> <span class="token string">"your_email@example.com namespaces=<span class="token entity" title="\&quot;">\"</span>git<span class="token entity" title="\&quot;">\"</span> <span class="token variable"><span class="token variable">$(</span><span class="token function">cat</span> ~/.ssh/id_ed25519.pub<span class="token variable">)</span></span>"</span> <span class="token operator">>></span> ~/.ssh/allowed_signers<span class="token comment"># 配置 Git 使用此文件</span><span class="token function">git</span> config <span class="token parameter variable">--global</span> gpg.ssh.allowedSignersFile ~/.ssh/allowed_signers<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="获取并导入他人的密钥">获取并导入他人的密钥</h2><h3 id="GitHub">GitHub</h3><h4 id="SSH-密钥">SSH 密钥</h4><ol><li>访问用户个人主页: <code>https://github.com/&#123;username&#125;.keys</code></li><li>将获取的公钥添加到 allowed_signers 文件:</li></ol><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> https://github.com/<span class="token punctuation">&#123;</span>username<span class="token punctuation">&#125;</span>.keys <span class="token operator">|</span> <span class="token keyword">while</span> <span class="token builtin class-name">read</span> key<span class="token punctuation">;</span> <span class="token keyword">do</span>    <span class="token builtin class-name">echo</span> <span class="token string">"&#123;their-email&#125; namespaces=<span class="token entity" title="\&quot;">\"</span>git<span class="token entity" title="\&quot;">\"</span> <span class="token variable">$key</span>"</span> <span class="token operator">>></span> ~/.ssh/allowed_signers<span class="token keyword">done</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><h4 id="GPG-密钥">GPG 密钥</h4><ol><li>访问用户个人主页: <code>https://github.com/&#123;username&#125;.gpg</code></li><li>导入公钥:</li></ol><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> https://github.com/<span class="token punctuation">&#123;</span>username<span class="token punctuation">&#125;</span>.gpg <span class="token operator">|</span> gpg <span class="token parameter variable">--import</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h3 id="GitLab">GitLab</h3><h4 id="SSH-密钥-2">SSH 密钥</h4><ol><li>访问用户个人主页: <code>https://&#123;gitlab-instance&#125;/-/users/&#123;username&#125;/keys</code></li><li>同 GitHub 方式添加到 allowed_signers</li></ol><h4 id="GPG-密钥-2">GPG 密钥</h4><ol><li>在用户个人主页找到 GPG Keys 部分</li><li>点击 Download 下载公钥</li><li>导入公钥:</li></ol><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gpg <span class="token parameter variable">--import</span> username_public.gpg<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h3 id="平台身份验证">平台身份验证</h3><p>GitHub 和 GitLab 的签名验证状态会显示为&quot;已验证&quot;的绿色标记，表明这是平台本身验证过的提交。这些提交通常来自:</p><ul><li>Web 界面的编辑</li><li>PR/MR 的自动合并</li><li>GitHub Actions/GitLab CI 的自动提交</li></ul><p>要验证这些签名:</p><ol><li>导入平台的公钥:</li></ol><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># GitHub</span><span class="token function">curl</span> https://github.com/web-flow.gpg <span class="token operator">|</span> gpg <span class="token parameter variable">--import</span><span class="token comment"># GitLab (替换为你的实例地址)</span><span class="token function">curl</span> https://<span class="token punctuation">&#123;</span>gitlab-instance<span class="token punctuation">&#125;</span>/-/openid_connect/key <span class="token operator">|</span> gpg <span class="token parameter variable">--import</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="常见问题">常见问题</h2><h3 id="GPG-签名相关">GPG 签名相关</h3><ol><li>提示 &quot;secret key not available&quot;:</li></ol><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> config <span class="token parameter variable">--global</span> gpg.program gpg2<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><ol start="2"><li>GPG 密码输入框不弹出:</li></ol><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable">GPG_TTY</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">tty</span><span class="token variable">)</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h3 id="SSH-签名相关">SSH 签名相关</h3><ol><li>确保 SSH 密钥类型正确(ED25519 或 RSA)</li><li>验证 OpenSSH 版本是否满足要求(8.8+)</li><li>检查 allowed_signers 文件格式是否正确</li></ol><h2 id="最佳实践">最佳实践</h2><ol><li>使用强密码保护你的密钥</li><li>定期更新密钥</li><li>妥善保管私钥文件</li><li>配置自动签名避免遗漏</li><li>在多设备间同步签名配置</li></ol><p>签名验证可以:</p><ul><li>验证代码提交者身份</li><li>防止他人冒用身份</li><li>提高代码可信度</li></ul><p>记得将公钥上传到 Git 平台(如 GitHub、GitLab)以便在 Web 界面验证签名。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;Git 支持使用 GPG 密钥或 SSH 密钥对提交进行签名验证。本文将详细介绍如何配置和使用这两种签名方式。&lt;/p&gt;
+&lt;h2 id=&quot;前置要求&quot;&gt;前置要求&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Git 2.34.0+&lt;/li&gt;
+&lt;li&gt;OpenSSH 8.8+ (注意: OpenS</summary>
+      
+    
+    
+    
+    <category term="git" scheme="https://blog.gadfly.vip/categories/git/"/>
+    
+    
+    <category term="git" scheme="https://blog.gadfly.vip/tags/git/"/>
+    
+    <category term="签名" scheme="https://blog.gadfly.vip/tags/%E7%AD%BE%E5%90%8D/"/>
+    
+    <category term="commit" scheme="https://blog.gadfly.vip/tags/commit/"/>
+    
+    <category term="verify" scheme="https://blog.gadfly.vip/tags/verify/"/>
+    
+    <category term="signature" scheme="https://blog.gadfly.vip/tags/signature/"/>
+    
+    <category term="gpg" scheme="https://blog.gadfly.vip/tags/gpg/"/>
+    
+    <category term="ssh" scheme="https://blog.gadfly.vip/tags/ssh/"/>
+    
+  </entry>
   
   <entry>
     <title>时区、时间戳与时间格式化：解决 SourceGit 中的时区问题</title>
@@ -518,39 +558,6 @@
     <category term="CDN" scheme="https://blog.gadfly.vip/tags/CDN/"/>
     
     <category term="配置" scheme="https://blog.gadfly.vip/tags/%E9%85%8D%E7%BD%AE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>算法评估方法</title>
-    <link href="https://blog.gadfly.vip/2019/07/Algorithm-product-evaluation-method/"/>
-    <id>https://blog.gadfly.vip/2019/07/Algorithm-product-evaluation-method/</id>
-    <published>2019-07-03T07:34:07.000Z</published>
-    <updated>2022-03-03T02:24:06.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>精确率(precision)、准确率(accuracy)和召回率（recall）</p><table><thead><tr><th style="text-align:left">实际值 \ 预测值</th><th style="text-align:left">正样本</th><th style="text-align:left">负样本</th></tr></thead><tbody><tr><td style="text-align:left">正</td><td style="text-align:left">TP</td><td style="text-align:left">FN</td></tr><tr><td style="text-align:left">负</td><td style="text-align:left">FP</td><td style="text-align:left">TN</td></tr></tbody></table><ul><li>TP，将正的样本预测为正，True Positive，预测对了</li><li>FN，将正样本预测为负值，False Negtive，预测错了</li><li>TN，将负样本与预测为负值，True  Negtive 预测对了</li><li>FP，将负样本预测为正，False Positive， 预测错了</li></ul><h2 id="一、召回率（recall）">一、召回率（recall）</h2><pre class="line-numbers language-text" data-language="text"><code class="language-text">R  = 预测为正的对的样本/ 实际为正样本   = TP /(TP+FN)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p>针对我们原来的正样本而言的，它表示的是正例样本中有多少被预测正确了。大白话就是“正例样本里你的预测对了多少”</p><p>例如，使用算法扩写文章 100 篇，10 篇没有扩写成功，90 篇成功进行了扩写，人工对于扩写质量给于正反评分，为正的文章 23 篇，那么扩写算法召回率：23/100 = 0.23；</p><p>在针对搜索：召回率为查全率：</p><pre class="line-numbers language-text" data-language="text"><code class="language-text">查全率＝检索出的相关信息量 / 系统中的相关信息总量<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>例如，使用关键词“马云”搜索出一张马云和 100 张马和云的图片，数据库系统中实际上有 10 篇马云，那么查全率：1/10 = 0.10；</p><h2 id="二、精确率（Precision）">二、精确率（Precision）</h2><pre class="line-numbers language-text" data-language="text"><code class="language-text">P = 预测对的正样本 / 预测为正预测结果  = TP/ (TP+FP)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p>预测为正的样本中有多少是真正的正样本。那么预测为正就有两种可能了，一种就是把正类预测为正类(TP)，另一种就是把负类预测为正类(FP)，也就是“ 你预测为正例的里面有多少是对的”</p><p>例如，纠错算法，测试 100 个词的文本，识别出错误词有 20 个（TP+FP=20），其中被误判为错词 14 个（FP=14），6 个错词判断正确（TP=6），4 个错词没有识别出来（FN=4），人工对于成功纠出错结果正反打分，6/20 = 0.3 。</p><p>在针对搜索：精确率为查准率</p><pre class="line-numbers language-text" data-language="text"><code class="language-text">查准率 = 检索出的相关信息量 / 检索出的信息总量<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>例如，使用关键词“马云”搜索出一张马云和 99 张马和云的图片，那么查准率：1/100 = 0.01；</p><h2 id="三、准确率（Accuracy）">三、准确率（Accuracy）</h2><pre class="line-numbers language-text" data-language="text"><code class="language-text">A = 预测对的/所有样本  = (TP+TN)/(TP+TN+FP+FN)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p>针对我们原来所有样本而言的，它表示的是所有样本有多少被准确预测了。</p><h2 id="四、F1">四、F1</h2><pre class="line-numbers language-text" data-language="text"><code class="language-text">2/F1 = 1/P + 1/R<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h2 id="F1-值为精确率和召回率的调和平均数，值越大越好">F1 值为精确率和召回率的调和平均数，值越大越好</h2><p>五、误报率和漏报率<br>误报率（虚报率）和漏报率，误报率=1-查准率，漏报率=1-查全率。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;精确率(precision)、准确率(accuracy)和召回率（recall）&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;实际值 &#92; 预测值&lt;/th&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;</summary>
-      
-    
-    
-    
-    <category term="优化" scheme="https://blog.gadfly.vip/categories/%E4%BC%98%E5%8C%96/"/>
-    
-    
-    <category term="优化" scheme="https://blog.gadfly.vip/tags/%E4%BC%98%E5%8C%96/"/>
-    
-    <category term="测试" scheme="https://blog.gadfly.vip/tags/%E6%B5%8B%E8%AF%95/"/>
-    
-    <category term="笔记" scheme="https://blog.gadfly.vip/tags/%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
