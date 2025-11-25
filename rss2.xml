@@ -9,8 +9,51 @@
     <atom:link href="https://blog.gadfly.vip/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>有人问我，我就会讲，但是无人来</description>
-    <pubDate>Mon, 05 May 2025 14:02:52 GMT</pubDate>
+    <pubDate>Tue, 25 Nov 2025 07:23:50 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>dotnet sdk/runtime 10 在 类 Debian/Ubuntu 环境下安装的临时修复</title>
+      <link>https://blog.gadfly.vip/2025/11/dotnet-10-installation-fix-debian-ubuntu/</link>
+      <guid>https://blog.gadfly.vip/2025/11/dotnet-10-installation-fix-debian-ubuntu/</guid>
+      <pubDate>Tue, 25 Nov 2025 07:18:54 GMT</pubDate>
+      
+        
+        
+      <description>&lt;p&gt;抽象的微软前两年对 dotnet 的 apt 源进行了调整，&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;从 Ubuntu 22.04 开始，Microsoft 不再将适用于 Ubuntu 的 .NET 分发到 Microsoft 软件包存储库。&lt;/p&gt;
+&lt;/blockquot</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<p>抽象的微软前两年对 dotnet 的 apt 源进行了调整，</p><blockquote><p>从 Ubuntu 22.04 开始，Microsoft 不再将适用于 Ubuntu 的 .NET 分发到 Microsoft 软件包存储库。</p></blockquote><p>而它自己对官方 Debian 源的维护进入了只要 Debian 能跑，其他系统不管死活的状态，之前为了 dotnet 8 在 ubuntu 24 还能不能继续用官方 Debian 源的问题纠结了几个月： <a href="https://github.com/dotnet/sdk/issues/40506">https://github.com/dotnet/sdk/issues/40506</a> 。现在 dotnet 10 发布了，又出现了类似的问题（有人直接在这个 issue 里提了），因为 sb 微软把 <code>dotnet-runtime-deps-10.0</code> 里的 libicu 依赖变成了只有 78、77、76、72，中间的 74 被跳掉了。显然 <code>libicu</code> 这些小版本对于 dotnet 来说都是支持的，而我使用的 Deepin V25 正好只有 <code>libicu74</code>。这个问题我也提了个issue: <a href="https://github.com/dotnet/runtime/issues/121829">https://github.com/dotnet/runtime/issues/121829</a></p><p>显然不能指望微软极低的工作效率，我的解决方案是创建一个 <code>libicu78</code> 的虚拟包，这样 apt 就不会阻止我通过微软的 debian 源安装和升级了。</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 1. 安装 equivs（若未安装）</span><span class="token function">sudo</span> <span class="token function">apt</span> update <span class="token operator">&amp;&amp;</span> <span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> <span class="token parameter variable">-y</span> equivs<span class="token comment"># 2. 创建虚拟包声明 libicu78（选一个缺失但最高的版本，如 78）</span>equivs-control libicu78.control<span class="token comment"># 编辑控制文件</span><span class="token function">cat</span> <span class="token operator">></span> libicu78.control <span class="token operator">&lt;&lt;</span><span class="token string">EOFSection: miscPriority: optionalStandards-Version: 3.9.2Package: libicu78Version: 74.2-1+dummyMaintainer: homolo &lt;homolo@example.com>Provides: libicu78Description: Dummy package to satisfy dotnet-runtime-deps-10.0 dependency This is a dummy package that claims to provide libicu78, while the actual implementation is libicu74 (which is ABI-compatible).EOF</span><span class="token comment"># 3. 构建并安装虚拟包</span>equivs-build libicu78.control<span class="token function">sudo</span> dpkg <span class="token parameter variable">-i</span> libicu78_74.2-1+dummy_all.deb<span class="token comment"># 4. 现在再尝试安装 dotnet-sdk-10.0</span><span class="token function">sudo</span> <span class="token function">apt</span> update<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> dotnet-sdk-10.0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content:encoded>
+      
+      
+      <category domain="https://blog.gadfly.vip/categories/%E7%B3%BB%E7%BB%9F/">系统</category>
+      
+      <category domain="https://blog.gadfly.vip/categories/%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91/">开发</category>
+      
+      <category domain="https://blog.gadfly.vip/categories/%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91/Linux/">Linux</category>
+      
+      
+      <category domain="https://blog.gadfly.vip/tags/Linux/">Linux</category>
+      
+      <category domain="https://blog.gadfly.vip/tags/dotnet/">dotnet</category>
+      
+      <category domain="https://blog.gadfly.vip/tags/Debian/">Debian</category>
+      
+      <category domain="https://blog.gadfly.vip/tags/Ubuntu/">Ubuntu</category>
+      
+      <category domain="https://blog.gadfly.vip/tags/apt/">apt</category>
+      
+      <category domain="https://blog.gadfly.vip/tags/%E4%BE%9D%E8%B5%96%E4%BF%AE%E5%A4%8D/">依赖修复</category>
+      
+      
+      <comments>https://blog.gadfly.vip/2025/11/dotnet-10-installation-fix-debian-ubuntu/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>校验 git 提交签名</title>
@@ -561,39 +604,6 @@
       
       
       <comments>https://blog.gadfly.vip/2019/09/vmware-hackintosh/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Cloudflare 免费版设置笔记</title>
-      <link>https://blog.gadfly.vip/2019/07/cloudflare-free-config/</link>
-      <guid>https://blog.gadfly.vip/2019/07/cloudflare-free-config/</guid>
-      <pubDate>Fri, 05 Jul 2019 07:50:53 GMT</pubDate>
-      
-        
-        
-      <description>&lt;p&gt;&lt;img src=&quot;/images/227387.gif&quot; data-original=&quot;/images/posts/2019/07/1.png&quot; alt=&quot;图片&quot;&gt;&lt;br&gt;
-首先当然是到这里（&lt;a href=&quot;https://www.cloudflare.com&quot;&gt;htt</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<p><img src="/images/227387.gif" data-original="/images/posts/2019/07/1.png" alt="图片"><br>首先当然是到这里（<a href="https://www.cloudflare.com">https://www.cloudflare.com</a>）来登录/注册。注册很简单，一个邮箱就行了。然后他会给你发一封确认邮件，确认完成即可进行配置。<br>然后会提示你输入你的域名，这时输入不带子域名的域名即可，如我的是<code>gadfly.vip</code>，然后点击<code>add site</code>即可，它会自动扫描你已经存在的 DNS 解析记录，不过有可能解析不全。接下来它会让你把你的 DNS 服务器改成他给你提供的。每个人的 DNS 服务器不一定一样，按照网页上给你提供的去修改即可。</p><h3 id="点击上面的-DNS-标签后即可打开这个页面">点击上面的 DNS 标签后即可打开这个页面</h3><p><img src="/images/227387.gif" data-original="/images/posts/2019/07/2.png" alt="图片"><br>其中橙黄色的云朵表示使用 CDN，灰色的表示不使用。Cloudflare 不支持在根域名下同时绑定 MX 记录和 A 记录，配置时需要注意。</p><h3 id="Crypto-标签中的设置用于配置-SSL-相关内容">Crypto 标签中的设置用于配置 SSL 相关内容</h3><p><img src="/images/227387.gif" data-original="/images/posts/2019/07/3.png" alt="图片"><br>Cloudflare 提供了三种 SSL 模式</p><ul><li>Flexible - 用户至 Cloudflare 为 HTTPS 加密传输，Cloudflare 至服务器为 HTTP 传输</li><li>Full - 两端均为 HTTPS 加密传输，服务器端可以使用自己签名的证书</li><li>Full（Strict）- 两端均为 HTTPS 加密传输，且服务器端必须使用可信任的证书</li></ul><p><img src="/images/227387.gif" data-original="/images/posts/2019/07/4.png" alt="图片"><br>origin certificates 可以通过 cloudflare 生成一份可信任的 SSL 证书并下载，可以安装到服务器上。<br>Always Use HTTPS 用于强制 HTTPS 访问。<br>HSTS 是告诉浏览器网站只通过 HTTPS 访问，防止有攻击者拦截用户通过 HTTP 访问的请求。个人觉得开启会更好。<br><img src="/images/227387.gif" data-original="/images/posts/2019/07/5.png" alt="图片"><br>这些全开着就完事了，最小 TLS 版本建议低一点，要不然垃圾浏览器就打不开了。<br><img src="/images/227387.gif" data-original="/images/posts/2019/07/6.png" alt="图片"><br>TLS1.3 开着，自动 HTTPS 重写是把你网页上的 http 链接全都转成 https，如果你网站上有些资源没法走 https 的话，那还是别开了</p><h3 id="Speed-里这些都开着吧">Speed 里这些都开着吧</h3><p><img src="/images/227387.gif" data-original="/images/posts/2019/07/7.png" alt="图片"><br><img src="/images/227387.gif" data-original="/images/posts/2019/07/8.png" alt="图片"><br><img src="/images/227387.gif" data-original="/images/posts/2019/07/9.png" alt="图片"></p>]]></content:encoded>
-      
-      
-      <category domain="https://blog.gadfly.vip/categories/%E6%8A%80%E6%9C%AF/">技术</category>
-      
-      
-      <category domain="https://blog.gadfly.vip/tags/%E7%AC%94%E8%AE%B0/">笔记</category>
-      
-      <category domain="https://blog.gadfly.vip/tags/Cloudflare/">Cloudflare</category>
-      
-      <category domain="https://blog.gadfly.vip/tags/CDN/">CDN</category>
-      
-      <category domain="https://blog.gadfly.vip/tags/%E9%85%8D%E7%BD%AE/">配置</category>
-      
-      
-      <comments>https://blog.gadfly.vip/2019/07/cloudflare-free-config/#disqus_thread</comments>
       
     </item>
     

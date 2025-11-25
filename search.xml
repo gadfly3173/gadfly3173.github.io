@@ -4,6 +4,45 @@
   
     
     <entry>
+      <title>dotnet sdk/runtime 10 在 类 Debian/Ubuntu 环境下安装的临时修复</title>
+      <link href="/2025/11/dotnet-10-installation-fix-debian-ubuntu/"/>
+      <url>/2025/11/dotnet-10-installation-fix-debian-ubuntu/</url>
+      
+        <content type="html"><![CDATA[<p>抽象的微软前两年对 dotnet 的 apt 源进行了调整，</p><blockquote><p>从 Ubuntu 22.04 开始，Microsoft 不再将适用于 Ubuntu 的 .NET 分发到 Microsoft 软件包存储库。</p></blockquote><p>而它自己对官方 Debian 源的维护进入了只要 Debian 能跑，其他系统不管死活的状态，之前为了 dotnet 8 在 ubuntu 24 还能不能继续用官方 Debian 源的问题纠结了几个月： <a href="https://github.com/dotnet/sdk/issues/40506">https://github.com/dotnet/sdk/issues/40506</a> 。现在 dotnet 10 发布了，又出现了类似的问题（有人直接在这个 issue 里提了），因为 sb 微软把 <code>dotnet-runtime-deps-10.0</code> 里的 libicu 依赖变成了只有 78、77、76、72，中间的 74 被跳掉了。显然 <code>libicu</code> 这些小版本对于 dotnet 来说都是支持的，而我使用的 Deepin V25 正好只有 <code>libicu74</code>。这个问题我也提了个issue: <a href="https://github.com/dotnet/runtime/issues/121829">https://github.com/dotnet/runtime/issues/121829</a></p><p>显然不能指望微软极低的工作效率，我的解决方案是创建一个 <code>libicu78</code> 的虚拟包，这样 apt 就不会阻止我通过微软的 debian 源安装和升级了。</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 1. 安装 equivs（若未安装）</span><span class="token function">sudo</span> <span class="token function">apt</span> update <span class="token operator">&amp;&amp;</span> <span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> <span class="token parameter variable">-y</span> equivs<span class="token comment"># 2. 创建虚拟包声明 libicu78（选一个缺失但最高的版本，如 78）</span>equivs-control libicu78.control<span class="token comment"># 编辑控制文件</span><span class="token function">cat</span> <span class="token operator">></span> libicu78.control <span class="token operator">&lt;&lt;</span><span class="token string">EOFSection: miscPriority: optionalStandards-Version: 3.9.2Package: libicu78Version: 74.2-1+dummyMaintainer: homolo &lt;homolo@example.com>Provides: libicu78Description: Dummy package to satisfy dotnet-runtime-deps-10.0 dependency This is a dummy package that claims to provide libicu78, while the actual implementation is libicu74 (which is ABI-compatible).EOF</span><span class="token comment"># 3. 构建并安装虚拟包</span>equivs-build libicu78.control<span class="token function">sudo</span> dpkg <span class="token parameter variable">-i</span> libicu78_74.2-1+dummy_all.deb<span class="token comment"># 4. 现在再尝试安装 dotnet-sdk-10.0</span><span class="token function">sudo</span> <span class="token function">apt</span> update<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> dotnet-sdk-10.0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 系统 </category>
+          
+          <category> 开发 </category>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> dotnet </tag>
+            
+            <tag> Debian </tag>
+            
+            <tag> Ubuntu </tag>
+            
+            <tag> apt </tag>
+            
+            <tag> 依赖修复 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>校验 git 提交签名</title>
       <link href="/2025/05/verify-git-commit-sign/"/>
       <url>/2025/05/verify-git-commit-sign/</url>
