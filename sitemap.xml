@@ -2,25 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://blog.gadfly.vip/index.html</loc>
-    
-    <lastmod>2025-11-25</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.gadfly.vip/messages.html</loc>
-    
-    <lastmod>2025-11-25</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/links/index.html</loc>
     
     <lastmod>2025-11-25</lastmod>
     
@@ -47,7 +29,16 @@
   </url>
   
   <url>
-    <loc>https://blog.gadfly.vip/about.html</loc>
+    <loc>https://blog.gadfly.vip/index.html</loc>
+    
+    <lastmod>2025-11-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/links/index.html</loc>
     
     <lastmod>2025-11-25</lastmod>
     
@@ -57,6 +48,15 @@
   
   <url>
     <loc>https://blog.gadfly.vip/gallery/index.html</loc>
+    
+    <lastmod>2025-11-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/about.html</loc>
     
     <lastmod>2025-11-25</lastmod>
     
@@ -101,7 +101,7 @@
   </url>
   
   <url>
-    <loc>https://blog.gadfly.vip/2017/08/choose-your-notebook-2/</loc>
+    <loc>https://blog.gadfly.vip/2017/07/%E6%90%AD%E5%BB%BA%E7%BA%AA%E5%AE%9E/</loc>
     
     <lastmod>2024-07-02</lastmod>
     
@@ -110,7 +110,7 @@
   </url>
   
   <url>
-    <loc>https://blog.gadfly.vip/2017/07/%E6%90%AD%E5%BB%BA%E7%BA%AA%E5%AE%9E/</loc>
+    <loc>https://blog.gadfly.vip/2017/08/choose-your-notebook-2/</loc>
     
     <lastmod>2024-07-02</lastmod>
     
@@ -447,6 +447,20 @@
   </url>
   
   <url>
+    <loc>https://blog.gadfly.vip/tags/%E5%BB%BA%E7%AB%99/</loc>
+    <lastmod>2025-11-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/tags/Hexo/</loc>
+    <lastmod>2025-11-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.gadfly.vip/tags/%E7%AC%94%E8%AE%B0%E6%9C%AC/</loc>
     <lastmod>2025-11-25</lastmod>
     <changefreq>weekly</changefreq>
@@ -469,20 +483,6 @@
   
   <url>
     <loc>https://blog.gadfly.vip/tags/%E6%8C%87%E5%8D%97/</loc>
-    <lastmod>2025-11-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/tags/%E5%BB%BA%E7%AB%99/</loc>
-    <lastmod>2025-11-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/tags/Hexo/</loc>
     <lastmod>2025-11-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1044,14 +1044,14 @@
   </url>
   
   <url>
-    <loc>https://blog.gadfly.vip/categories/%E7%94%B5%E8%84%91/</loc>
+    <loc>https://blog.gadfly.vip/categories/%E5%BB%BA%E7%AB%99/</loc>
     <lastmod>2025-11-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.gadfly.vip/categories/%E5%BB%BA%E7%AB%99/</loc>
+    <loc>https://blog.gadfly.vip/categories/%E7%94%B5%E8%84%91/</loc>
     <lastmod>2025-11-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1135,14 +1135,14 @@
   </url>
   
   <url>
-    <loc>https://blog.gadfly.vip/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/%E6%97%B6%E5%8C%BA/</loc>
+    <loc>https://blog.gadfly.vip/categories/git/</loc>
     <lastmod>2025-11-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.gadfly.vip/categories/git/</loc>
+    <loc>https://blog.gadfly.vip/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/%E6%97%B6%E5%8C%BA/</loc>
     <lastmod>2025-11-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

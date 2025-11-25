@@ -1001,17 +1001,6 @@ blockquote {
   letter-spacing: 0.08em;
 }
 
-blockquote:before {
-  position: absolute;
-  left: -0.5em;
-  content: '“';
-}
-
-blockquote:after {
-  content: '”';
-  margin-left: -0.05em;
-}
-
 mark {
   background-color: #f4ff81;
 }
