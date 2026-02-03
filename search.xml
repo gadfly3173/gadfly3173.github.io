@@ -4,6 +4,41 @@
   
     
     <entry>
+      <title>当机场屏蔽了 22 端口：SSH over HTTPS</title>
+      <link href="/2026/02/ssh-over-https/"/>
+      <url>/2026/02/ssh-over-https/</url>
+      
+        <content type="html"><![CDATA[<p>最近次元链接等一些机场开始屏蔽 22 端口，导致无法通过 SSH 协议访问 GitHub/GitLab 等代码托管平台。遇到这种情况，可以使用 SSH over HTTPS 功能，通过 443 端口来连接 SSH 服务，从而绕过端口屏蔽的问题。</p><span id="more"></span><p>SSH 默认用的是 22 端口，但 GitHub 和 GitLab 其实都提供了 HTTPS 端口（443）的 SSH 服务，专门用来应付这种情况。改一下 SSH 配置就能解决。</p><h2 id="GitHub">GitHub</h2><p>GitHub 的 SSH over HTTPS 地址是 <code>ssh.github.com</code>，配置如下：</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Host github.com    Hostname ssh.github.com    Port <span class="token number">443</span>    User <span class="token function">git</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><h2 id="GitLab">GitLab</h2><p>GitLab 的叫法有点不一样，叫 Alt SSH，地址是 <code>altssh.gitlab.com</code>：</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Host gitlab.com    Hostname altssh.gitlab.com    Port <span class="token number">443</span>    User <span class="token function">git</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><h2 id="完整配置">完整配置</h2><p>顺便加个全局的连接超时，避免卡住太久：</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">~/.ssh/configHost *    ConnectTimeout <span class="token number">5</span>Host github.com    Hostname ssh.github.com    Port <span class="token number">443</span>    User <span class="token function">git</span>Host gitlab.com    Hostname altssh.gitlab.com    Port <span class="token number">443</span>    User <span class="token function">git</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>改完直接 <code>git push</code> 就能用了，SSH 协议还是那个 SSH，只是换了条路走而已。</p><h2 id="验证">验证</h2><p>想确认一下配置有没有生效，可以这么测：</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># GitHub</span><span class="token function">ssh</span> <span class="token parameter variable">-T</span> git@github.com<span class="token comment"># GitLab</span><span class="token function">ssh</span> <span class="token parameter variable">-T</span> git@gitlab.com<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>能看到对应的欢迎信息就没问题了。</p><hr><p>顺带一提，如果你用的是自建 GitLab 或 Gitea 等平台，也可以自己在 Nginx/反向代理层把 SSH 流量代理一下，原理是一样的。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 开发 </category>
+          
+          <category> SSH </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> SSH </tag>
+            
+            <tag> GitHub </tag>
+            
+            <tag> GitLab </tag>
+            
+            <tag> 代理 </tag>
+            
+            <tag> 机场 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>dotnet sdk/runtime 10 在 类 Debian/Ubuntu 环境下安装的临时修复</title>
       <link href="/2025/11/dotnet-10-installation-fix-debian-ubuntu/"/>
       <url>/2025/11/dotnet-10-installation-fix-debian-ubuntu/</url>
