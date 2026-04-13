@@ -4,9 +4,9 @@
 
 # Head info
 head:
-    favicon: "https://q.qlogo.cn/headimg_dl?dst_uin=2427303995&spec=140"
-    high_res_favicon: "https://q.qlogo.cn/headimg_dl?dst_uin=2427303995&spec=140"
-    apple_touch_icon: "https://q.qlogo.cn/headimg_dl?dst_uin=2427303995&spec=140"
+    favicon: "https://www.gravatar.com/avatar/53e53e02713f136f579cfc2c3e28f0cf?s=140&d=identicon"
+    high_res_favicon: "https://www.gravatar.com/avatar/53e53e02713f136f579cfc2c3e28f0cf?s=140&d=identicon"
+    apple_touch_icon: "https://www.gravatar.com/avatar/53e53e02713f136f579cfc2c3e28f0cf?s=140&d=identicon"
     keywords: 猪蹄 技术 博客
     site_verification:
         google: MOBmMnlG4FLxPhQfX-_7yxv5LpI6xyDNZAHcTmO6U3A
@@ -72,7 +72,7 @@ background:
 # Images Settings
 img:
     logo: "/img/logo.png"
-    avatar: "https://q.qlogo.cn/headimg_dl?dst_uin=2427303995&spec=140"
+    avatar: "https://www.gravatar.com/avatar/53e53e02713f136f579cfc2c3e28f0cf?s=140&d=identicon"
     daily_pic: "https://api.vvhan.com/api/bing?rand=sj&size="
     sidebar_header: "/img/sidebar_header.png"
     random_thumbnail: "/img/random/material-"

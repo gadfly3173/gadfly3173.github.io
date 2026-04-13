@@ -19,7 +19,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        node-version: [22.x]
+        node-version: [24.x]
 
     steps:
       - name: Setup Git
@@ -34,31 +34,31 @@ jobs:
           known_hosts: 'github.com'
 
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
       - name: Checkout deploy repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: ${{ env.DEPLOY_REPO }}
           ref: ${{ env.DEPLOY_BRANCH }}
           path: .deploy_git
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node-version }}
-          cache: yarn
+          cache: npm
 
       - name: Install dependencies
         run: |
-          yarn
+          npm ci
 
       - name: Update post update time
         run: |
-          yarn post-update-time
+          npm run post-update-time
 
       - name: Deploy hexo
         run: |
-          yarn release
+          npm run release
