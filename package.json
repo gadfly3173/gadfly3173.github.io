@@ -9,10 +9,10 @@
     "version": "8.1.1"
   },
   "scripts": {
-    "serve": "hexo s",
-    "start": "hexo s",
-    "dev": "hexo s",
-    "build": "hexo g",
+    "serve": "hexo clean && hexo s",
+    "start": "hexo clean && hexo s",
+    "dev": "hexo clean && hexo s",
+    "build": "hexo clean && hexo g",
     "release": "hexo clean && hexo d -g",
     "publish": "hexo clean && hexo d -g",
     "new-post": "node bin/hexo-new-date.js",

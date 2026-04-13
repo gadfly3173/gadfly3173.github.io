@@ -3,6 +3,10 @@
   --default-text: #bebebe
   --default-line: #44484b
   --scrollbar-background: #2a2c2d
+  --table-border: #444
+  --table-header-bg: #333
+  --table-row-bg: #2a2c2d
+  --table-row-alt-bg: #353739
   &::-webkit-scrollbar {
     background-color: var(--scrollbar-background)
     color: #a7a096
@@ -13,9 +17,42 @@
   &::-webkit-scrollbar-thumb {
     background-color: #4b4f52
   }
-  &::selection {
-    background-color: #0d52a6 !important
-    color: #dedcd9 !important
+  // Text selection in post content - deep blue background with white text for better readability
+  // Note: use descendant selector (with space) to match all child elements
+  // Use higher specificity to override global ::selection in material.css
+  #post-content ::selection,
+  #post-content ::-moz-selection,
+  #post-content p::selection,
+  #post-content p::-moz-selection,
+  #post-content span::selection,
+  #post-content span::-moz-selection,
+  #post-content *::selection,
+  #post-content *::-moz-selection {
+    background-color: #1a4b8c !important
+    color: #fff !important
+    text-shadow: none !important
+  }
+  // Table styles for dark mode
+  #post-content table {
+    border-color: var(--table-border)
+  }
+  #post-content table th,
+  #post-content table td {
+    border-color: var(--table-border)
+  }
+  #post-content table th {
+    background-color: var(--table-header-bg)
+    color: #dedcd9
+  }
+  #post-content table tr {
+    background-color: var(--table-row-bg)
+  }
+  #post-content table tr:nth-child(2n) {
+    background-color: var(--table-row-alt-bg)
+  }
+  // Table header row in tbody (first tr)
+  #post-content table tbody tr:first-child th {
+    background-color: var(--table-header-bg)
   }
   body&,
   input,
