@@ -17,20 +17,42 @@
   &::-webkit-scrollbar-thumb {
     background-color: #4b4f52
   }
-  // Text selection in post content - deep blue background with white text for better readability
-  // Note: use descendant selector (with space) to match all child elements
-  // Use higher specificity to override global ::selection in material.css
-  #post-content ::selection,
-  #post-content ::-moz-selection,
-  #post-content p::selection,
-  #post-content p::-moz-selection,
-  #post-content span::selection,
-  #post-content span::-moz-selection,
-  #post-content *::selection,
-  #post-content *::-moz-selection {
-    background-color: #1a4b8c !important
-    color: #fff !important
-    text-shadow: none !important
+  // Text selection in dark mode - override material.css defaults globally.
+  // IMPORTANT: ::selection and ::-moz-selection MUST be in separate rule blocks.
+  // Mixing them in one group causes Chrome/Safari to drop the entire rule (CSS error recovery).
+  // Background-only on the broad rule; color: #fff only for non-code elements,
+  // because Chrome does not propagate `color: inherit` correctly for ::selection.
+  &::selection,
+  *::selection {
+    background-color: #1a4b8c
+    text-shadow: none
+  }
+  &::-moz-selection,
+  *::-moz-selection {
+    background-color: #1a4b8c
+    text-shadow: none
+  }
+  // Non-code elements: force white text so selection is readable on dark background
+  :not(pre):not(pre *)::selection {
+    color: #fff
+  }
+  :not(pre):not(pre *)::-moz-selection {
+    color: #fff
+  }
+  // Preserve Prism token colors in code block selection.
+  // Chrome defaults to white when background-color is set in ::selection without color.
+  // color: currentColor resolves to the element's own computed color, restoring token colors.
+  pre[class*="language-"]::selection,
+  pre[class*="language-"] *::selection,
+  code[class*="language-"]::selection,
+  code[class*="language-"] *::selection {
+    color: currentColor
+  }
+  pre[class*="language-"]::-moz-selection,
+  pre[class*="language-"] *::-moz-selection,
+  code[class*="language-"]::-moz-selection,
+  code[class*="language-"] *::-moz-selection {
+    color: currentColor
   }
   // Table styles for dark mode
   #post-content table {
