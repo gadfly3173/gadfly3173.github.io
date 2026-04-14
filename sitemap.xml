@@ -2,7 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.gadfly.vip/index.html</loc>
+    
+    <lastmod>2026-04-14</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.gadfly.vip/messages.html</loc>
+    
+    <lastmod>2026-04-14</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/links/index.html</loc>
     
     <lastmod>2026-04-14</lastmod>
     
@@ -21,24 +39,6 @@
   
   <url>
     <loc>https://blog.gadfly.vip/timeline/index.html</loc>
-    
-    <lastmod>2026-04-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/index.html</loc>
-    
-    <lastmod>2026-04-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/links/index.html</loc>
     
     <lastmod>2026-04-14</lastmod>
     
@@ -119,15 +119,6 @@
   </url>
   
   <url>
-    <loc>https://blog.gadfly.vip/2017/07/%E6%90%AD%E5%BB%BA%E7%BA%AA%E5%AE%9E/</loc>
-    
-    <lastmod>2024-07-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.gadfly.vip/2017/08/choose-your-notebook_1/</loc>
     
     <lastmod>2024-07-02</lastmod>
@@ -137,7 +128,7 @@
   </url>
   
   <url>
-    <loc>https://blog.gadfly.vip/2018/01/shmetro-metropolis-app/</loc>
+    <loc>https://blog.gadfly.vip/2017/07/%E6%90%AD%E5%BB%BA%E7%BA%AA%E5%AE%9E/</loc>
     
     <lastmod>2024-07-02</lastmod>
     
@@ -164,7 +155,7 @@
   </url>
   
   <url>
-    <loc>https://blog.gadfly.vip/2019/09/about-ic-cards/</loc>
+    <loc>https://blog.gadfly.vip/2018/01/shmetro-metropolis-app/</loc>
     
     <lastmod>2024-07-02</lastmod>
     
@@ -174,6 +165,15 @@
   
   <url>
     <loc>https://blog.gadfly.vip/2019/05/campus-card-research/</loc>
+    
+    <lastmod>2024-07-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/2019/09/about-ic-cards/</loc>
     
     <lastmod>2024-07-02</lastmod>
     
@@ -263,34 +263,7 @@
   </url>
   
   <url>
-    <loc>https://blog.gadfly.vip/2019/09/vmware-hackintosh/</loc>
-    
-    <lastmod>2022-03-03</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/2019/09/proxmark3-fm-make/</loc>
-    
-    <lastmod>2022-03-03</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.gadfly.vip/2019/07/Algorithm-product-evaluation-method/</loc>
-    
-    <lastmod>2022-03-03</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/2019/07/Product-Experience-Optimization-Checklist/</loc>
     
     <lastmod>2022-03-03</lastmod>
     
@@ -317,6 +290,33 @@
   </url>
   
   <url>
+    <loc>https://blog.gadfly.vip/2019/07/Product-Experience-Optimization-Checklist/</loc>
+    
+    <lastmod>2022-03-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/2019/09/proxmark3-fm-make/</loc>
+    
+    <lastmod>2022-03-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/2019/09/vmware-hackintosh/</loc>
+    
+    <lastmod>2022-03-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.gadfly.vip/2020/04/spring-boot-jwt-login/</loc>
     
     <lastmod>2022-03-03</lastmod>
@@ -335,7 +335,7 @@
   </url>
   
   <url>
-    <loc>https://blog.gadfly.vip/2021/02/axios-download-file/</loc>
+    <loc>https://blog.gadfly.vip/2021/02/axios-xhr-with-cookie/</loc>
     
     <lastmod>2022-03-03</lastmod>
     
@@ -344,7 +344,7 @@
   </url>
   
   <url>
-    <loc>https://blog.gadfly.vip/2021/02/github-actions-hexo-ci/</loc>
+    <loc>https://blog.gadfly.vip/2021/02/axios-download-file/</loc>
     
     <lastmod>2022-03-03</lastmod>
     
@@ -362,7 +362,7 @@
   </url>
   
   <url>
-    <loc>https://blog.gadfly.vip/2021/02/axios-xhr-with-cookie/</loc>
+    <loc>https://blog.gadfly.vip/2021/04/make-a-questionnaire-module-step-by-step/</loc>
     
     <lastmod>2022-03-03</lastmod>
     
@@ -371,7 +371,7 @@
   </url>
   
   <url>
-    <loc>https://blog.gadfly.vip/2021/04/make-a-questionnaire-module-step-by-step/</loc>
+    <loc>https://blog.gadfly.vip/2021/02/github-actions-hexo-ci/</loc>
     
     <lastmod>2022-03-03</lastmod>
     
@@ -465,20 +465,6 @@
   </url>
   
   <url>
-    <loc>https://blog.gadfly.vip/tags/%E5%BB%BA%E7%AB%99/</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/tags/Hexo/</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.gadfly.vip/tags/%E7%AC%94%E8%AE%B0%E6%9C%AC/</loc>
     <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
@@ -501,6 +487,55 @@
   
   <url>
     <loc>https://blog.gadfly.vip/tags/%E6%8C%87%E5%8D%97/</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/tags/%E5%BB%BA%E7%AB%99/</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/tags/Hexo/</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/tags/HTML/</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/tags/CSS/</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/tags/%E5%B8%83%E5%B1%80/</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/tags/footer/</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/tags/%E7%BD%91%E9%A1%B5/</loc>
     <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -577,13 +612,6 @@
   </url>
   
   <url>
-    <loc>https://blog.gadfly.vip/tags/HTML/</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.gadfly.vip/tags/EJS/</loc>
     <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
@@ -592,13 +620,6 @@
   
   <url>
     <loc>https://blog.gadfly.vip/tags/%E5%A4%87%E4%BB%BD/</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/tags/CSS/</loc>
     <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -634,139 +655,6 @@
   
   <url>
     <loc>https://blog.gadfly.vip/tags/%E5%88%87%E6%8D%A2/</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/tags/%E5%B8%83%E5%B1%80/</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/tags/footer/</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/tags/%E7%BD%91%E9%A1%B5/</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/tags/IC-%E5%8D%A1/</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/tags/%E5%8D%95%E7%89%87%E6%9C%BA/</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/tags/%E8%BF%91%E5%9C%BA%E9%80%9A%E4%BF%A1/</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/tags/%E7%B3%BB%E7%BB%9F/</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/tags/%E9%BB%91%E8%8B%B9%E6%9E%9C/</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/tags/%E5%9B%BA%E4%BB%B6/</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/tags/%E7%BC%96%E8%AF%91/</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/tags/%E4%BC%98%E5%8C%96/</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/tags/%E6%B5%8B%E8%AF%95/</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/tags/%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/tags/%E4%BD%93%E9%AA%8C/</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/tags/Cloudflare/</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/tags/CDN/</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/tags/%E9%85%8D%E7%BD%AE/</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/tags/%E9%9A%8F%E7%AC%94/</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/tags/%E8%AE%B0%E4%BA%8B/</loc>
     <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -815,6 +703,104 @@
   </url>
   
   <url>
+    <loc>https://blog.gadfly.vip/tags/%E5%8D%95%E7%89%87%E6%9C%BA/</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/tags/%E4%BC%98%E5%8C%96/</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/tags/%E6%B5%8B%E8%AF%95/</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/tags/%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/tags/Cloudflare/</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/tags/CDN/</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/tags/%E9%85%8D%E7%BD%AE/</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/tags/%E9%9A%8F%E7%AC%94/</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/tags/%E8%AE%B0%E4%BA%8B/</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/tags/%E4%BD%93%E9%AA%8C/</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/tags/%E5%9B%BA%E4%BB%B6/</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/tags/%E7%BC%96%E8%AF%91/</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/tags/%E7%B3%BB%E7%BB%9F/</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/tags/%E9%BB%91%E8%8B%B9%E6%9E%9C/</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.gadfly.vip/tags/java/</loc>
     <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
@@ -830,6 +816,20 @@
   
   <url>
     <loc>https://blog.gadfly.vip/tags/%E5%90%8E%E7%AB%AF/</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/tags/IC-%E5%8D%A1/</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/tags/%E8%BF%91%E5%9C%BA%E9%80%9A%E4%BF%A1/</loc>
     <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -920,55 +920,6 @@
   </url>
   
   <url>
-    <loc>https://blog.gadfly.vip/tags/git/</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/tags/%E7%AD%BE%E5%90%8D/</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/tags/commit/</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/tags/verify/</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/tags/signature/</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/tags/gpg/</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/tags/ssh/</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.gadfly.vip/tags/%E6%97%B6%E5%8C%BA/</loc>
     <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
@@ -1018,35 +969,49 @@
   </url>
   
   <url>
-    <loc>https://blog.gadfly.vip/tags/dotnet/</loc>
+    <loc>https://blog.gadfly.vip/tags/git/</loc>
     <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.gadfly.vip/tags/Debian/</loc>
+    <loc>https://blog.gadfly.vip/tags/%E7%AD%BE%E5%90%8D/</loc>
     <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.gadfly.vip/tags/Ubuntu/</loc>
+    <loc>https://blog.gadfly.vip/tags/commit/</loc>
     <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.gadfly.vip/tags/apt/</loc>
+    <loc>https://blog.gadfly.vip/tags/verify/</loc>
     <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.gadfly.vip/tags/%E4%BE%9D%E8%B5%96%E4%BF%AE%E5%A4%8D/</loc>
+    <loc>https://blog.gadfly.vip/tags/signature/</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/tags/gpg/</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/tags/ssh/</loc>
     <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1082,6 +1047,41 @@
   
   <url>
     <loc>https://blog.gadfly.vip/tags/%E6%9C%BA%E5%9C%BA/</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/tags/dotnet/</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/tags/Debian/</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/tags/Ubuntu/</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/tags/apt/</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/tags/%E4%BE%9D%E8%B5%96%E4%BF%AE%E5%A4%8D/</loc>
     <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1132,14 +1132,14 @@
   </url>
   
   <url>
-    <loc>https://blog.gadfly.vip/categories/%E5%BB%BA%E7%AB%99/</loc>
+    <loc>https://blog.gadfly.vip/categories/%E7%94%B5%E8%84%91/</loc>
     <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.gadfly.vip/categories/%E7%94%B5%E8%84%91/</loc>
+    <loc>https://blog.gadfly.vip/categories/%E5%BB%BA%E7%AB%99/</loc>
     <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1153,21 +1153,7 @@
   </url>
   
   <url>
-    <loc>https://blog.gadfly.vip/categories/NFC/</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/categories/%E7%BA%AA%E5%AE%9E/</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gadfly.vip/categories/%E5%BC%80%E5%8F%91/</loc>
+    <loc>https://blog.gadfly.vip/categories/RFID/</loc>
     <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1195,7 +1181,21 @@
   </url>
   
   <url>
-    <loc>https://blog.gadfly.vip/categories/RFID/</loc>
+    <loc>https://blog.gadfly.vip/categories/%E5%BC%80%E5%8F%91/</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/categories/%E7%BA%AA%E5%AE%9E/</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gadfly.vip/categories/NFC/</loc>
     <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1216,14 +1216,14 @@
   </url>
   
   <url>
-    <loc>https://blog.gadfly.vip/categories/git/</loc>
+    <loc>https://blog.gadfly.vip/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/</loc>
     <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.gadfly.vip/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/</loc>
+    <loc>https://blog.gadfly.vip/categories/git/</loc>
     <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1237,14 +1237,14 @@
   </url>
   
   <url>
-    <loc>https://blog.gadfly.vip/categories/%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91/</loc>
+    <loc>https://blog.gadfly.vip/categories/%E5%BC%80%E5%8F%91/SSH/</loc>
     <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.gadfly.vip/categories/%E5%BC%80%E5%8F%91/SSH/</loc>
+    <loc>https://blog.gadfly.vip/categories/%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91/</loc>
     <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
