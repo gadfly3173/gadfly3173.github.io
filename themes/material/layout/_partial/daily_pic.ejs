@@ -6,36 +6,11 @@
         <script>
           $(window).load(function() {
             const container = document.getElementById('daily-pic-container');
-                        const dailyPicLink = document.getElementById('daily-pic-link');
-                        const fallbackImage = <%- JSON.stringify(url_for('/img/daily_pic.jpg')) %>;
-                        const dailyPicApi = <%- JSON.stringify(theme.img.daily_pic) %>;
-
-                        container.style.backgroundImage = 'url(' + fallbackImage + ')';
-
-                        fetch(dailyPicApi)
-                            .then(function(response) {
-                                if (!response.ok) {
-                                    throw new Error('Failed to fetch daily picture');
-                                }
-
-                                return response.json();
-                            })
-                            .then(function(data) {
-                                if (data && data.url) {
-                                    container.style.backgroundImage = 'url(' + data.url + ')';
-                                }
-
-                                if (dailyPicLink && data && data.copyright_link) {
-                                    dailyPicLink.href = data.copyright_link;
-                                }
-                            })
-                            .catch(function(error) {
-                                console.warn('Failed to load daily picture from API:', error);
-                            });
+            container.style.backgroundImage = 'url(<%- theme.img.daily_pic %>)';
           });
         </script>
         <p class="index-top-block-slogan">
-          <a id="daily-pic-link" href="<%= theme.url.daily_pic %>">
+          <a href="<%= theme.url.daily_pic %>">
           <% if(theme.uiux.slogan) { %>
               <% if(Array.isArray(theme.uiux.slogan)) { %>
                   <%- theme.uiux.slogan.join('<br>') %>

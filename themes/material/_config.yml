@@ -73,7 +73,7 @@ background:
 img:
     logo: "/img/logo.png"
     avatar: "https://www.gravatar.com/avatar/53e53e02713f136f579cfc2c3e28f0cf?s=140&d=identicon"
-    daily_pic: "https://bing.biturl.top/"
+    daily_pic: "https://bing.biturl.top/?resolution=640x480&format=image&index=0&mkt=zh-CN"
     sidebar_header: "/img/sidebar_header.png"
     random_thumbnail: "/img/random/material-"
     footer_image:
