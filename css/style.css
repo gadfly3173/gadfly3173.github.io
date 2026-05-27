@@ -435,6 +435,11 @@ a {
   border-radius: 3px;
 }
 
+/* Hide mermaid code blocks after they've been rendered */
+#post-content code.mermaid {
+  background-color: transparent;
+}
+
 #post-content .gutter,
 #post-content .code {
   /*  background: #f7f7f7;*/

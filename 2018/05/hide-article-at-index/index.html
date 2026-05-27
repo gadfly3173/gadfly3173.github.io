@@ -86,7 +86,7 @@
     <!-- Import CSS -->
     
         <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.css?Ar2X+dP9qOJ+sqCUDccP8Q==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.css?9b6xlc41YFp/MNXyQlf/4w==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.css?/uRavnvDWDbW6gTs/FNGSA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
         <style id="style_dark_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_dark_css","/css/style-dark.css",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
         
@@ -1201,6 +1201,44 @@ It will not impact the appearance and can give developers a lot of support :)
     
     
 </script>
+
+<!-- Mermaid Load -->
+
+    
+        <script>lsloader.load("mermaid_js","/js/mermaid.min.js?T/0Ed+C/gvAqJV0vNC6ocg==", true)</script>
+    
+    <script type="text/ls-javascript" id="mermaid-init">
+        $(function() {
+            // Since mermaid is excluded from prismjs preprocess (see _config.yml exclude_languages),
+            // code blocks are pure text inside <pre><code>, no span cleanup needed.
+            window.renderMermaidDiagrams = function() {
+                var isDark = document.body.getAttribute('data-theme') === 'dark';
+                mermaid.initialize({
+                    theme: isDark ? 'dark' : 'default',
+                    securityLevel: 'loose',
+                    sequence: {
+                        showActivation: false,
+                    },
+                });
+                mermaid.init(undefined, $('pre.language-mermaid > code'));
+            };
+            window.renderMermaidDiagrams();
+
+            // Re-render when theme changes
+            var origTinyBallSwitchTheme = window.tinyBallSwitchTheme;
+            window.tinyBallSwitchTheme = function(dark) {
+                if (origTinyBallSwitchTheme) origTinyBallSwitchTheme(dark);
+                // Remove existing mermaid SVGs before re-init
+                $('pre.language-mermaid > code').each(function() {
+                    if (this.nextElementSibling && this.nextElementSibling.classList.contains('mermaid')) {
+                        $(this.nextElementSibling).remove();
+                    }
+                });
+                window.renderMermaidDiagrams();
+            };
+        });
+    </script>
+
 
 <!-- MathJax Load-->
 

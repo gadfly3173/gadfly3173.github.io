@@ -62,7 +62,7 @@
 
     <meta name="format-detection" content="telephone=no"/>
     <meta name="description" itemprop="description" content="有人问我，我就会讲，但是无人来">
-    <meta name="keywords" content="猪蹄 技术 博客,纪实,建站,HTML,CSS,备份,JS">
+    <meta name="keywords" content="猪蹄 技术 博客,纪实,建站,HTML,备份,CSS,JS">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -86,7 +86,7 @@
     <!-- Import CSS -->
     
         <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.css?Ar2X+dP9qOJ+sqCUDccP8Q==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.css?9b6xlc41YFp/MNXyQlf/4w==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.css?/uRavnvDWDbW6gTs/FNGSA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
         <style id="style_dark_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_dark_css","/css/style-dark.css",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
         
@@ -280,7 +280,7 @@
     <meta property="og:title" content="记录一下对模板和 hexo 做过的改动 | 猪蹄宝宝的博客n(*≧▽≦*)n">
     <meta property="og:image" content="https://www.gravatar.com/avatar/53e53e02713f136f579cfc2c3e28f0cf?s=140&amp;d=identicon">
     <meta property="og:description" content="有人问我，我就会讲，但是无人来">
-    <meta property="og:article:tag" content="纪实"> <meta property="og:article:tag" content="建站"> <meta property="og:article:tag" content="HTML"> <meta property="og:article:tag" content="CSS"> <meta property="og:article:tag" content="备份"> <meta property="og:article:tag" content="JS"> 
+    <meta property="og:article:tag" content="纪实"> <meta property="og:article:tag" content="建站"> <meta property="og:article:tag" content="HTML"> <meta property="og:article:tag" content="备份"> <meta property="og:article:tag" content="CSS"> <meta property="og:article:tag" content="JS"> 
 
     
         <meta property="article:published_time" content="Fri May 18 2018 00:04:46 GMT+0800">
@@ -325,7 +325,7 @@
             "url": "https://www.gravatar.com/avatar/53e53e02713f136f579cfc2c3e28f0cf?s=140&amp;d=identicon"
         }
     },
-    "keywords": ",纪实,建站,HTML,CSS,备份,JS猪蹄 技术 博客",
+    "keywords": ",纪实,建站,HTML,备份,CSS,JS猪蹄 技术 博客",
     "description": "有人问我，我就会讲，但是无人来",
 }
 </script>
@@ -1314,6 +1314,44 @@ It will not impact the appearance and can give developers a lot of support :)
     
     
 </script>
+
+<!-- Mermaid Load -->
+
+    
+        <script>lsloader.load("mermaid_js","/js/mermaid.min.js?T/0Ed+C/gvAqJV0vNC6ocg==", true)</script>
+    
+    <script type="text/ls-javascript" id="mermaid-init">
+        $(function() {
+            // Since mermaid is excluded from prismjs preprocess (see _config.yml exclude_languages),
+            // code blocks are pure text inside <pre><code>, no span cleanup needed.
+            window.renderMermaidDiagrams = function() {
+                var isDark = document.body.getAttribute('data-theme') === 'dark';
+                mermaid.initialize({
+                    theme: isDark ? 'dark' : 'default',
+                    securityLevel: 'loose',
+                    sequence: {
+                        showActivation: false,
+                    },
+                });
+                mermaid.init(undefined, $('pre.language-mermaid > code'));
+            };
+            window.renderMermaidDiagrams();
+
+            // Re-render when theme changes
+            var origTinyBallSwitchTheme = window.tinyBallSwitchTheme;
+            window.tinyBallSwitchTheme = function(dark) {
+                if (origTinyBallSwitchTheme) origTinyBallSwitchTheme(dark);
+                // Remove existing mermaid SVGs before re-init
+                $('pre.language-mermaid > code').each(function() {
+                    if (this.nextElementSibling && this.nextElementSibling.classList.contains('mermaid')) {
+                        $(this.nextElementSibling).remove();
+                    }
+                });
+                window.renderMermaidDiagrams();
+            };
+        });
+    </script>
+
 
 <!-- MathJax Load-->
 
