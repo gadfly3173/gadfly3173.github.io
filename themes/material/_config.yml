@@ -123,6 +123,12 @@ prettify:
     enable: false
     theme: "github-v2"
 
+# PrismJS exclude languages
+# Languages listed here will not be syntax highlighted by prismjs
+prismjs:
+    exclude_languages:
+      - mermaid
+
 #    Hanabi (https://github.com/egoist/hanabi)
 #        line_number: [true/false] # Show line number for code block
 #        includeDefaultColors: [true/false] # Use default hanabi colors

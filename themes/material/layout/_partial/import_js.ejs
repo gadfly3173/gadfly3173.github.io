@@ -89,8 +89,15 @@
     <% if (theme.prettify.enable) { %>
         <% if ( (is_post()) ) { %>
             $(function() {
-                $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+                // 标记非 mermaid 的 pre，避免 prettify 处理 mermaid 代码块
+                $('pre:not([data-language="mermaid"])').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
                 prettyPrint();
+                // prettify 执行后清理 mermaid 代码块上残留的 token span
+                $('pre[data-language="mermaid"] code.language-mermaid span.token').each(function() {
+                    $(this).replaceWith(document.createTextNode($(this).text()));
+                });
+                $('pre[data-language="mermaid"] .line-numbers-rows').remove();
+                $('pre[data-language="mermaid"] code.language-mermaid').removeAttr('aria-hidden');
                 })
         <% } %>
     <% } %>
@@ -110,6 +117,46 @@
         HanabiBrowser.start('pre code',<%= theme.hanabi.line_number %>);
     <% } %>
 </script>
+
+<!-- Mermaid Load -->
+<% if (is_post()) { %>
+    <% if(theme.vendors.materialcdn) { %>
+        <%- jsLsload({path:(theme.vendors.materialcdn + '/js/mermaid.min.js'),key:'mermaid_js'}) %>
+    <% } else { %>
+        <%- jsLsload({path:('js/mermaid.min.js'),key:'mermaid_js'}) %>
+    <% } %>
+    <script type="text/ls-javascript" id="mermaid-init">
+        $(function() {
+            // Since mermaid is excluded from prismjs preprocess (see _config.yml exclude_languages),
+            // code blocks are pure text inside <pre><code>, no span cleanup needed.
+            window.renderMermaidDiagrams = function() {
+                var isDark = document.body.getAttribute('data-theme') === 'dark';
+                mermaid.initialize({
+                    theme: isDark ? 'dark' : 'default',
+                    securityLevel: 'loose',
+                    sequence: {
+                        showActivation: false,
+                    },
+                });
+                mermaid.init(undefined, $('pre.language-mermaid > code'));
+            };
+            window.renderMermaidDiagrams();
+
+            // Re-render when theme changes
+            var origTinyBallSwitchTheme = window.tinyBallSwitchTheme;
+            window.tinyBallSwitchTheme = function(dark) {
+                if (origTinyBallSwitchTheme) origTinyBallSwitchTheme(dark);
+                // Remove existing mermaid SVGs before re-init
+                $('pre.language-mermaid > code').each(function() {
+                    if (this.nextElementSibling && this.nextElementSibling.classList.contains('mermaid')) {
+                        $(this.nextElementSibling).remove();
+                    }
+                });
+                window.renderMermaidDiagrams();
+            };
+        });
+    </script>
+<% } %>
 
 <!-- MathJax Load-->
 <% if (page.mathjax) { %>
