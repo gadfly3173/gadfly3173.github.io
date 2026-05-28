@@ -43,7 +43,7 @@
       <link href="/2026/04/zhipu-coding-plan-sdk-workaround/"/>
       <url>/2026/04/zhipu-coding-plan-sdk-workaround/</url>
       
-        <content type="html"><![CDATA[<p>通过 Claude Agent SDK 调用 Claude Code 时，系统提示词会变成：</p><p><code>You are Claude Code, Anthropic's official CLI for Claude, running within the Claude Agent SDK.</code></p><p>或者：</p><p><code>You are a Claude agent, built on Anthropic's Claude Agent SDK.</code></p><p>而智谱要求系统提示词<strong>必须</strong>开头为：</p><p><code>You are Claude Code, Anthropic's official CLI for Claude.</code></p><p>否则可能会遇到以下错误：</p><span id="more"></span><pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span><span class="token property">"error"</span><span class="token operator">:</span><span class="token punctuation">&#123;</span><span class="token property">"code"</span><span class="token operator">:</span><span class="token string">"1302"</span><span class="token punctuation">,</span><span class="token property">"message"</span><span class="token operator">:</span><span class="token string">"您的账户已达到速率限制，请您控制请求频率"</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span class="token property">"request_id"</span><span class="token operator">:</span><span class="token string">"2026041314372115099c8b3a024339"</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>这个 1302 看着像限流，其实不是。在这之前我已经把 SDK 的 UA 伪装过了（因为 a➕官方说后面可能不让 SDK 用户用订阅了），结果还是遇到了这个问题。拿 Reqable 抓包之后丢给 GLM-5.1 问了问，说是可能 system prompt 有问题，替换掉之后果然就能用了 :rofl:</p><p>解决方法很简单，找到 <code>node_modules/@anthropic-ai/claude-agent-sdk/cli.js</code>，把里面那两个命中不了规则的提示词字符串换了就行：</p><pre class="line-numbers language-diff" data-language="diff"><code class="language-diff"><span class="token deleted-sign deleted"><span class="token prefix deleted">-</span><span class="token line"> "You are Claude Code, Anthropic's official CLI for Claude, running within the Claude Agent SDK."</span><span class="token prefix deleted">-</span><span class="token line"> "You are a Claude agent, built on Anthropic's Claude Agent SDK."</span></span><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span><span class="token line"> "You are Claude Code, Anthropic's official CLI for Claude."</span><span class="token prefix inserted">+</span><span class="token line"> "You are Claude Code, Anthropic's official CLI for Claude."</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><p>简单粗暴，但管用。</p><blockquote><p><strong>注意</strong>：从 Claude Agent SDK v2.1.113 开始，不再提供 cli.js 文件，此方法仅适用于 v2.1.112 及以下版本。如果 SDK 更新后找不到 cli.js，可以考虑让 AI 帮你改 cli.js 里的逻辑，或者修改你的 SDK 调用方式，<a href="http://linux.do">linux.do</a> 上有人整理好了 <a href="https://linux.do/t/topic/1956694/19">调用模板</a>。</p></blockquote><hr><p>顺带一提，智谱这个判定是个自动策略——流量多的时候禁止所有非终端调用，流量少的时候恢复。所以这个 1302 可能时有时无。另外这个规则连官方 VSCode 插件也一起误伤了，毕竟 VSCode 插件也是走的 SDK 调用。草台班子实锤了。</p>]]></content>
+        <content type="html"><![CDATA[<p>通过 Claude Agent SDK 调用 Claude Code 时，系统提示词会变成：</p><p><code>You are Claude Code, Anthropic's official CLI for Claude, running within the Claude Agent SDK.</code></p><p>或者：</p><p><code>You are a Claude agent, built on Anthropic's Claude Agent SDK.</code></p><p>而智谱要求系统提示词<strong>必须</strong>开头为：</p><p><code>You are Claude Code, Anthropic's official CLI for Claude.</code></p><p>否则可能会遇到以下错误：</p><span id="more"></span><pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span><span class="token property">"error"</span><span class="token operator">:</span><span class="token punctuation">&#123;</span><span class="token property">"code"</span><span class="token operator">:</span><span class="token string">"1302"</span><span class="token punctuation">,</span><span class="token property">"message"</span><span class="token operator">:</span><span class="token string">"您的账户已达到速率限制，请您控制请求频率"</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span class="token property">"request_id"</span><span class="token operator">:</span><span class="token string">"2026041314372115099c8b3a024339"</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>这个 1302 看着像限流，其实不是。在这之前我已经把 SDK 的 UA 伪装过了（因为 A➗官方说后面可能不让 SDK 用户用订阅了），结果还是遇到了这个问题。拿 Reqable 抓包之后丢给 GLM-5.1 问了问，说是可能 system prompt 有问题，替换掉之后果然就能用了 🤣</p><p>解决方法很简单，找到 <code>node_modules/@anthropic-ai/claude-agent-sdk/cli.js</code>，把里面那两个命中不了规则的提示词字符串换了就行：</p><pre class="line-numbers language-diff" data-language="diff"><code class="language-diff"><span class="token deleted-sign deleted"><span class="token prefix deleted">-</span><span class="token line"> "You are Claude Code, Anthropic's official CLI for Claude, running within the Claude Agent SDK."</span><span class="token prefix deleted">-</span><span class="token line"> "You are a Claude agent, built on Anthropic's Claude Agent SDK."</span></span><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span><span class="token line"> "You are Claude Code, Anthropic's official CLI for Claude."</span><span class="token prefix inserted">+</span><span class="token line"> "You are Claude Code, Anthropic's official CLI for Claude."</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><p>简单粗暴，但管用。</p><blockquote><p><strong>注意</strong>：从 Claude Agent SDK v2.1.113 开始，不再提供 cli.js 文件，此方法仅适用于 v2.1.112 及以下版本。如果 SDK 更新后找不到 cli.js，可以考虑让 AI 帮你改 cli.js 里的逻辑，或者修改你的 SDK 调用方式，<a href="http://linux.do">linux.do</a> 上有人整理好了 <a href="https://linux.do/t/topic/1956694/19">调用模板</a>。</p></blockquote><hr><p>顺带一提，智谱这个判定是个自动策略——流量多的时候禁止所有非终端调用，流量少的时候恢复。所以这个 1302 可能时有时无。另外这个规则连官方 VSCode 插件也一起误伤了，毕竟 VSCode 插件也是走的 SDK 调用。草台班子实锤了。</p>]]></content>
       
       
       <categories>
@@ -381,6 +381,12 @@
       
         <tags>
             
+            <tag> java </tag>
+            
+            <tag> spring </tag>
+            
+            <tag> 后端 </tag>
+            
             <tag> javascript </tag>
             
             <tag> axios </tag>
@@ -388,12 +394,6 @@
             <tag> 前端 </tag>
             
             <tag> HTTP </tag>
-            
-            <tag> java </tag>
-            
-            <tag> spring </tag>
-            
-            <tag> 后端 </tag>
             
         </tags>
       
@@ -449,11 +449,11 @@
       
         <tags>
             
+            <tag> Hexo </tag>
+            
             <tag> 纪实 </tag>
             
             <tag> 建站 </tag>
-            
-            <tag> Hexo </tag>
             
         </tags>
       
@@ -478,13 +478,13 @@
       
         <tags>
             
-            <tag> HTTP </tag>
-            
             <tag> java </tag>
             
             <tag> spring </tag>
             
             <tag> 后端 </tag>
+            
+            <tag> HTTP </tag>
             
         </tags>
       
@@ -596,9 +596,9 @@
       
         <tags>
             
-            <tag> 单片机 </tag>
-            
             <tag> IC 卡 </tag>
+            
+            <tag> 单片机 </tag>
             
             <tag> 近场通信 </tag>
             
@@ -801,6 +801,8 @@
       
         <tags>
             
+            <tag> 单片机 </tag>
+            
             <tag> RFID </tag>
             
             <tag> PROXMARK3 </tag>
@@ -812,8 +814,6 @@
             <tag> 一卡通 </tag>
             
             <tag> 数据分析 </tag>
-            
-            <tag> 单片机 </tag>
             
         </tags>
       
@@ -869,11 +869,11 @@
       
         <tags>
             
-            <tag> Hexo </tag>
-            
             <tag> HTML </tag>
             
             <tag> EJS </tag>
+            
+            <tag> Hexo </tag>
             
         </tags>
       
@@ -898,15 +898,15 @@
       
         <tags>
             
-            <tag> 纪实 </tag>
-            
-            <tag> 建站 </tag>
-            
             <tag> HTML </tag>
             
             <tag> CSS </tag>
             
+            <tag> 纪实 </tag>
+            
             <tag> 备份 </tag>
+            
+            <tag> 建站 </tag>
             
             <tag> JS </tag>
             
@@ -1108,11 +1108,11 @@
       
         <tags>
             
+            <tag> Hexo </tag>
+            
             <tag> 纪实 </tag>
             
             <tag> 建站 </tag>
-            
-            <tag> Hexo </tag>
             
         </tags>
       

@@ -296,7 +296,7 @@ You are Claude Code, Anthropic&#39;s official CLI for Claude.
 
     
         <meta property="article:published_time" content="Mon Apr 13 2026 12:00:00 GMT+0800">
-        <meta property="article:modified_time" content="Thu May 28 2026 19:27:39 GMT+0800">
+        <meta property="article:modified_time" content="Thu May 28 2026 19:41:05 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -319,7 +319,7 @@ You are Claude Code, Anthropic&#39;s official CLI for Claude.
     "mainEntityOfPage": "https://blog.gadfly.vip/2026/04/zhipu-coding-plan-sdk-workaround/index.html",
     "headline": "智谱 1302 限流之谜：一个逗号引发的血案",
     "datePublished": "Mon Apr 13 2026 12:00:00 GMT+0800",
-    "dateModified": "Thu May 28 2026 19:27:39 GMT+0800",
+    "dateModified": "Thu May 28 2026 19:41:05 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "猪蹄宝宝",
@@ -368,7 +368,7 @@ You are Claude Code, Anthropic&#39;s official CLI for Claude.
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="猪蹄宝宝的博客n(*≧▽≦*)n" type="application/atom+xml">
+<meta name="generator" content="Hexo 8.1.2"><link rel="alternate" href="/atom.xml" title="猪蹄宝宝的博客n(*≧▽≦*)n" type="application/atom+xml">
 <link rel="alternate" href="/rss2.xml" title="猪蹄宝宝的博客n(*≧▽≦*)n" type="application/rss+xml">
 </head>
 
@@ -584,7 +584,7 @@ You are Claude Code, Anthropic&#39;s official CLI for Claude.
 <p>否则可能会遇到以下错误：</p>
 <span id="more"></span>
 <pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span><span class="token property">"error"</span><span class="token operator">:</span><span class="token punctuation">&#123;</span><span class="token property">"code"</span><span class="token operator">:</span><span class="token string">"1302"</span><span class="token punctuation">,</span><span class="token property">"message"</span><span class="token operator">:</span><span class="token string">"您的账户已达到速率限制，请您控制请求频率"</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span class="token property">"request_id"</span><span class="token operator">:</span><span class="token string">"2026041314372115099c8b3a024339"</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>这个 1302 看着像限流，其实不是。在这之前我已经把 SDK 的 UA 伪装过了（因为 a➕官方说后面可能不让 SDK 用户用订阅了），结果还是遇到了这个问题。拿 Reqable 抓包之后丢给 GLM-5.1 问了问，说是可能 system prompt 有问题，替换掉之后果然就能用了 :rofl:</p>
+<p>这个 1302 看着像限流，其实不是。在这之前我已经把 SDK 的 UA 伪装过了（因为 A➗官方说后面可能不让 SDK 用户用订阅了），结果还是遇到了这个问题。拿 Reqable 抓包之后丢给 GLM-5.1 问了问，说是可能 system prompt 有问题，替换掉之后果然就能用了 🤣</p>
 <p>解决方法很简单，找到 <code>node_modules/@anthropic-ai/claude-agent-sdk/cli.js</code>，把里面那两个命中不了规则的提示词字符串换了就行：</p>
 <pre class="line-numbers language-diff" data-language="diff"><code class="language-diff"><span class="token deleted-sign deleted"><span class="token prefix deleted">-</span><span class="token line"> "You are Claude Code, Anthropic's official CLI for Claude, running within the Claude Agent SDK."
 </span><span class="token prefix deleted">-</span><span class="token line"> "You are a Claude agent, built on Anthropic's Claude Agent SDK."
