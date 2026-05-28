@@ -35,7 +35,7 @@ permalink:
 {"error":{"code":"1302","message":"您的账户已达到速率限制，请您控制请求频率"},"request_id":"2026041314372115099c8b3a024339"}
 ```
 
-这个 1302 看着像限流，其实不是。在这之前我已经把 SDK 的 UA 伪装过了（因为 a➕官方说后面可能不让 SDK 用户用订阅了），结果还是遇到了这个问题。拿 Reqable 抓包之后丢给 GLM-5.1 问了问，说是可能 system prompt 有问题，替换掉之后果然就能用了 :rofl:
+这个 1302 看着像限流，其实不是。在这之前我已经把 SDK 的 UA 伪装过了（因为 A➗官方说后面可能不让 SDK 用户用订阅了），结果还是遇到了这个问题。拿 Reqable 抓包之后丢给 GLM-5.1 问了问，说是可能 system prompt 有问题，替换掉之后果然就能用了 :rofl:
 
 解决方法很简单，找到 `node_modules/@anthropic-ai/claude-agent-sdk/cli.js`，把里面那两个命中不了规则的提示词字符串换了就行：
 

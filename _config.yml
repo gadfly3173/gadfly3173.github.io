@@ -110,6 +110,7 @@ markdown:
   enable_rules:
   disable_rules:
   plugins:
+    - markdown-it-emoji
   anchors:
     # Minimum level for ID creation. (Ex. h2 to h6)
     level: 1
