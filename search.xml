@@ -4,6 +4,41 @@
   
     
     <entry>
+      <title>SourceGit 内存泄漏排查记：哪来的 350 MB 的 TextMate Grammar</title>
+      <link href="/2026/05/sourcegit-textmate-memory-leak/"/>
+      <url>/2026/05/sourcegit-textmate-memory-leak/</url>
+      
+        <content type="html"><![CDATA[<p>SourceGit 用久了内存会悄悄涨到 1 GB 以上。排查发现，TextMate 语法高亮的 grammar 数据占了其中约 350 MB，而且是同一个 grammar 被反复加载、各自缓存。</p><span id="more"></span><h2 id="问题表现">问题表现</h2><p>跑 SourceGit（AOT 版本）大约 6 天，开了 4～5 个仓库，进程 RSS 涨到了 <strong>~1.15 GB</strong>。通过 <code>/proc/&lt;pid&gt;/smaps</code> 分析匿名内存段，发现 TextMate grammar 的 scope 定义（<code>keyword.preprocessor.error.cs</code>、<code>meta.function-call.parameters.r</code> 等）在匿名 <code>rw-p</code> 段里大量重复——约 105 个 5～7 MB 的段各自包含了一套完整的 grammar 定义，每个段里大约 460～480 个 scope 关键词。</p><table><thead><tr><th>类别</th><th>RSS</th><th>占比</th></tr></thead><tbody><tr><td>TextMate grammar 数据</td><td>345 MB</td><td>30%</td></tr><tr><td>.NET LOH</td><td>172 MB</td><td>15%</td></tr><tr><td>.NET SOH</td><td>138 MB</td><td>12%</td></tr><tr><td>其他 GC 段</td><td>204 MB</td><td>18%</td></tr><tr><td>GPU / Skia 缓存</td><td>61 MB</td><td>5%</td></tr><tr><td>原生堆</td><td>55 MB</td><td>5%</td></tr><tr><td>其他</td><td>175 MB</td><td>15%</td></tr></tbody></table><h2 id="原因">原因</h2><p>问题出在 <code>TextMateHelper.CreateForEditor()</code> 这个工厂方法上：</p><pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token return-type class-name">TextMate<span class="token punctuation">.</span>Installation</span> <span class="token function">CreateForEditor</span><span class="token punctuation">(</span><span class="token class-name">TextEditor</span> editor<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>    <span class="token keyword">return</span> editor<span class="token punctuation">.</span><span class="token function">InstallTextMate</span><span class="token punctuation">(</span>        Application<span class="token punctuation">.</span>Current<span class="token punctuation">?.</span>ActualThemeVariant <span class="token operator">==</span> ThemeVariant<span class="token punctuation">.</span>Dark            <span class="token punctuation">?</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">RegistryOptionsWrapper</span><span class="token punctuation">(</span>ThemeName<span class="token punctuation">.</span>DarkPlus<span class="token punctuation">)</span>            <span class="token punctuation">:</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">RegistryOptionsWrapper</span><span class="token punctuation">(</span>ThemeName<span class="token punctuation">.</span>LightPlus<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>每次调用都 <code>new</code> 了一个新的 <code>RegistryOptionsWrapper</code>。这个 wrapper 内部持有一个 <code>RegistryOptions _backend</code>，是 TextMateSharp 库提供的语法注册表，负责加载和管理 grammar 定义（<code>IRawGrammar</code>）和主题（<code>IRawTheme</code>）。</p><p>关键在于，<code>RegistryOptions</code> 内部有缓存机制——加载过的 grammar 会被存起来，后续通过 scope name 查找时直接返回。但这个缓存是<strong>实例级别</strong>的。每次 <code>new RegistryOptionsWrapper</code>，就带了一份新的独立缓存。</p><p>而 <code>CreateForEditor</code> 在至少 7 个 view 里被调用：</p><ul><li><code>TextDiffView</code> — 代码差异查看器</li><li><code>Blame</code> — 逐行追溯</li><li><code>CommandLogContentPresenter</code> — 命令日志</li><li><code>MergeConflictEditor</code> — 冲突解决</li><li><code>AIAssistant</code> — AI 助手</li><li><code>SelfUpdate</code> — 自更新日志</li><li><code>RevisionFileContentViewer</code> — 历史文件查看</li></ul><p>当你浏览不同文件的 diff 时，这些 view 会创建各自的 <code>TextMate.Installation</code>，每个 installation 绑定一个 <code>RegistryOptionsWrapper</code>，每个 wrapper 绑定一个独立的 <code>RegistryOptions</code>。虽然 view 销毁时会调用 <code>_textMate.Dispose()</code>，但在多个 view 生命周期重叠的阶段，同一套 grammar 数据在内存里同时存在多份副本——每次 <code>GrammarReader.ReadGrammarSync</code> 解析出来的 <code>IRawGrammar</code> 对象（包含 patterns、beginCaptures、endCaptures 等完整语法树）都被独立持有。</p><p>随着使用时间的增长，不同文件类型触发不同的 grammar 加载，每份 wrapper 里都缓存着相同 scope 的不同副本，累积到了 200～350 MB。</p><h2 id="我的修复方案">我的修复方案</h2><p>思路比较直接——把 <code>RegistryOptionsWrapper</code> 做成按主题缓存的全局单例：</p><pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token class-name">RegistryOptionsWrapper</span> s_darkRegistry<span class="token punctuation">;</span><span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token class-name">RegistryOptionsWrapper</span> s_lightRegistry<span class="token punctuation">;</span><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token return-type class-name">TextMate<span class="token punctuation">.</span>Installation</span> <span class="token function">CreateForEditor</span><span class="token punctuation">(</span><span class="token class-name">TextEditor</span> editor<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>    <span class="token class-name"><span class="token keyword">var</span></span> isDark <span class="token operator">=</span> Application<span class="token punctuation">.</span>Current<span class="token punctuation">?.</span>ActualThemeVariant <span class="token operator">==</span> ThemeVariant<span class="token punctuation">.</span>Dark<span class="token punctuation">;</span>    <span class="token class-name"><span class="token keyword">var</span></span> registry <span class="token operator">=</span> isDark <span class="token operator">==</span> <span class="token boolean">true</span>        <span class="token punctuation">?</span> <span class="token punctuation">(</span>s_darkRegistry <span class="token operator">??=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">RegistryOptionsWrapper</span><span class="token punctuation">(</span>ThemeName<span class="token punctuation">.</span>DarkPlus<span class="token punctuation">)</span><span class="token punctuation">)</span>        <span class="token punctuation">:</span> <span class="token punctuation">(</span>s_lightRegistry <span class="token operator">??=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">RegistryOptionsWrapper</span><span class="token punctuation">(</span>ThemeName<span class="token punctuation">.</span>LightPlus<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token keyword">return</span> editor<span class="token punctuation">.</span><span class="token function">InstallTextMate</span><span class="token punctuation">(</span>registry<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>所有编辑器共享同一个 wrapper 实例，grammar 缓存自然也就只有一份了。但这个方案有个隐患：<code>RegistryOptionsWrapper</code> 上有一个 <code>LastScope</code> 属性，用于跟踪当前编辑器设置的语法 scope。如果多个编辑器共享同一个 wrapper 实例，<code>LastScope</code> 就会被互相覆盖，导致 <code>SetGrammarByFileName</code> 中的 scope 变更检测出错。需要把 <code>LastScope</code> 从 wrapper 移到 <code>TextMate.Installation</code> 或者每个 view 自己的状态里。</p><h2 id="维护者的修复方案">维护者的修复方案</h2><p>维护者 <a href="https://github.com/longshuang">leo</a> 在 <a href="https://github.com/sourcegit-scm/sourcegit/commit/0938fd49d4c47dff161f0a86e47987c672e58826">commit 0938fd4</a> 中选择了另一条路——<strong>不在 wrapper 层面做单例，而是在 grammar 加载的最底层做全局缓存</strong>。</p><p>具体来说，在 <code>GrammarUtility</code> 静态类里加了两个静态字典：</p><pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">readonly</span> <span class="token class-name">Dictionary<span class="token punctuation">&lt;</span><span class="token keyword">string</span><span class="token punctuation">,</span> IRawGrammar<span class="token punctuation">></span></span> s_cachedRawGrammars <span class="token operator">=</span> <span class="token keyword">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">readonly</span> <span class="token class-name">Dictionary<span class="token punctuation">&lt;</span>ThemeName<span class="token punctuation">,</span> IRawTheme<span class="token punctuation">></span></span> s_cachedTheme <span class="token operator">=</span> <span class="token keyword">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p><code>GetGrammar</code> 的查找流程变成了：</p><ol><li>先查 <code>s_cachedRawGrammars</code>，命中直接返回（所有 wrapper 共享这个字典）</li><li>未命中则走原来的逻辑（extra grammar → <code>_backend.GetGrammar</code>）</li><li>加载完后存入 <code>s_cachedRawGrammars</code>，后续任何 wrapper 都能命中</li></ol><p>theme 同理，<code>LoadTheme</code> 方法被改写成先查 <code>s_cachedTheme</code>，未命中才调用 <code>_backend.LoadTheme</code> 并缓存。</p><p>这样做的好处是每个 view 仍然有自己独立的 <code>RegistryOptionsWrapper</code> 和 <code>_backend</code> 实例，<code>LastScope</code> 等 per-view 状态不会被跨实例污染，不需要额外处理。同时 grammar/theme 对象层面的全局缓存保证了同一份 grammar 在内存中只存在一个副本。</p><h2 id="两种方案的对比">两种方案的对比</h2><table><thead><tr><th>维度</th><th>我的方案（全局单例 wrapper）</th><th>维护者方案（缓存底层对象）</th></tr></thead><tbody><tr><td>缓存层级</td><td>在 <code>RegistryOptionsWrapper</code> 实例层面共享</td><td>在 <code>IRawGrammar</code> / <code>IRawTheme</code> 对象层面共享</td></tr><tr><td>wrapper 实例数</td><td>全局最多 2 个（dark/light）</td><td>每个 view 独立创建，和之前一样</td></tr><tr><td>per-view 状态</td><td><code>LastScope</code> 需要从 wrapper 移出去，否则会被覆盖</td><td>天然安全，每个 wrapper 有独立的 <code>LastScope</code></td></tr><tr><td>改动量</td><td>小（改一个方法 + 移 <code>LastScope</code>）</td><td>稍大（4 个文件，加缓存逻辑 + 主题切换响应）</td></tr><tr><td>架构影响</td><td>改变了 wrapper 的生命周期管理方式</td><td>只改了数据加载层，不改变调用方行为</td></tr></tbody></table><p>维护者的方案本质上是在 <strong>数据层</strong> 做去重，而不是在 <strong>控制层</strong> 做单例。这样更符合关注点分离的原则——wrapper 负责管理编辑器的状态（theme、lastScope 等），grammar 数据的共享由底层工具类负责。</p><h2 id="额外修复">额外修复</h2><p>维护者在同一个 commit 里还顺手修了一个小问题。<code>SetGrammarByFileName</code> 方法原来是这样写的：</p><pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token comment">// 修复前</span><span class="token class-name"><span class="token keyword">var</span></span> scope <span class="token operator">=</span> reg<span class="token punctuation">.</span><span class="token function">GetScope</span><span class="token punctuation">(</span>filePath<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">if</span> <span class="token punctuation">(</span>reg<span class="token punctuation">.</span>LastScope <span class="token operator">!=</span> scope<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>    reg<span class="token punctuation">.</span>LastScope <span class="token operator">=</span> scope<span class="token punctuation">;</span>    installation<span class="token punctuation">.</span><span class="token function">SetGrammar</span><span class="token punctuation">(</span>reg<span class="token punctuation">.</span><span class="token function">GetScope</span><span class="token punctuation">(</span>filePath<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 又调用了一次 GetScope！</span>    GC<span class="token punctuation">.</span><span class="token function">Collect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p><code>GetScope</code> 被调了两次——第一次拿到 <code>scope</code>，第二次又在 <code>SetGrammar</code> 参数里调了一遍。修复后直接用第一次拿到的 <code>scope</code>：</p><pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token comment">// 修复后</span><span class="token class-name"><span class="token keyword">var</span></span> scope <span class="token operator">=</span> reg<span class="token punctuation">.</span><span class="token function">GetScope</span><span class="token punctuation">(</span>filePath<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">if</span> <span class="token punctuation">(</span>reg<span class="token punctuation">.</span>LastScope <span class="token operator">!=</span> scope<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>    reg<span class="token punctuation">.</span>LastScope <span class="token operator">=</span> scope<span class="token punctuation">;</span>    installation<span class="token punctuation">.</span><span class="token function">SetGrammar</span><span class="token punctuation">(</span>scope<span class="token punctuation">)</span><span class="token punctuation">;</span>    GC<span class="token punctuation">.</span><span class="token function">Collect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>另外，三个 view 文件（<code>AIAssistant</code>、<code>CommandLogContentPresenter</code>、<code>RevisionFileContentViewer</code>）都加上了对 <code>ActualThemeVariant</code> 变化的响应：</p><pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>change<span class="token punctuation">.</span>Property<span class="token punctuation">.</span>Name <span class="token operator">==</span> <span class="token keyword">nameof</span><span class="token punctuation">(</span>ActualThemeVariant<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> change<span class="token punctuation">.</span>NewValue <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span>    Models<span class="token punctuation">.</span>TextMateHelper<span class="token punctuation">.</span><span class="token function">SetThemeByApp</span><span class="token punctuation">(</span>_textMate<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p>这是配合 <code>LoadTheme</code> 缓存改动，确保主题切换时能正确复用已缓存的 theme 对象。</p><h2 id="小结">小结</h2><p>这类内存问题的典型模式是：<strong>看起来有 cache，但实际上是 multiple independent caches</strong>。每次 <code>new</code> 一个带内部缓存的对象，表面上缓存正常工作了，但实际上同一份数据被反复加载、分别持有。排查时直接看内存分布——350 MB 的 grammar scope 定义在匿名段里重复出现 100 多次，一眼就能看出问题所在。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 开发 </category>
+          
+          <category> .NET </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> SourceGit </tag>
+            
+            <tag> .NET </tag>
+            
+            <tag> Avalonia </tag>
+            
+            <tag> 内存泄漏 </tag>
+            
+            <tag> 踩坑 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Claude Agent SDK 身份伪装：让 API 把 SDK 当成 CLI</title>
       <link href="/2026/04/claude-sdk-cli-identity-simulation/"/>
       <url>/2026/04/claude-sdk-cli-identity-simulation/</url>
@@ -57,13 +92,13 @@
       
         <tags>
             
+            <tag> 踩坑 </tag>
+            
             <tag> Claude </tag>
             
             <tag> 智谱 </tag>
             
             <tag> Agent SDK </tag>
-            
-            <tag> 踩坑 </tag>
             
         </tags>
       
@@ -111,7 +146,7 @@
       <link href="/2025/11/dotnet-10-installation-fix-debian-ubuntu/"/>
       <url>/2025/11/dotnet-10-installation-fix-debian-ubuntu/</url>
       
-        <content type="html"><![CDATA[<p>抽象的微软前两年对 dotnet 的 apt 源进行了调整，</p><blockquote><p>从 Ubuntu 22.04 开始，Microsoft 不再将适用于 Ubuntu 的 .NET 分发到 Microsoft 软件包存储库。</p></blockquote><p>而它自己对官方 Debian 源的维护进入了只要 Debian 能跑，其他系统不管死活的状态，之前为了 dotnet 8 在 ubuntu 24 还能不能继续用官方 Debian 源的问题纠结了几个月： <a href="https://github.com/dotnet/sdk/issues/40506">https://github.com/dotnet/sdk/issues/40506</a> 。现在 dotnet 10 发布了，又出现了类似的问题（有人直接在这个 issue 里提了），因为 sb 微软把 <code>dotnet-runtime-deps-10.0</code> 里的 libicu 依赖变成了只有 78、77、76、72，中间的 74 被跳掉了。显然 <code>libicu</code> 这些小版本对于 dotnet 来说都是支持的，而我使用的 Deepin V25 正好只有 <code>libicu74</code>。这个问题我也提了个issue: <a href="https://github.com/dotnet/runtime/issues/121829">https://github.com/dotnet/runtime/issues/121829</a></p><p>显然不能指望微软极低的工作效率，我的解决方案是创建一个 <code>libicu78</code> 的虚拟包，这样 apt 就不会阻止我通过微软的 debian 源安装和升级了。</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 1. 安装 equivs（若未安装）</span><span class="token function">sudo</span> <span class="token function">apt</span> update <span class="token operator">&amp;&amp;</span> <span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> <span class="token parameter variable">-y</span> equivs<span class="token comment"># 2. 创建虚拟包声明 libicu78（选一个缺失但最高的版本，如 78）</span>equivs-control libicu78.control<span class="token comment"># 编辑控制文件</span><span class="token function">cat</span> <span class="token operator">></span> libicu78.control <span class="token operator">&lt;&lt;</span><span class="token string">EOFSection: miscPriority: optionalStandards-Version: 3.9.2Package: libicu78Version: 74.2-1+dummyMaintainer: homolo &lt;homolo@example.com>Provides: libicu78Description: Dummy package to satisfy dotnet-runtime-deps-10.0 dependency This is a dummy package that claims to provide libicu78, while the actual implementation is libicu74 (which is ABI-compatible).EOF</span><span class="token comment"># 3. 构建并安装虚拟包</span>equivs-build libicu78.control<span class="token function">sudo</span> dpkg <span class="token parameter variable">-i</span> libicu78_74.2-1+dummy_all.deb<span class="token comment"># 4. 现在再尝试安装 dotnet-sdk-10.0</span><span class="token function">sudo</span> <span class="token function">apt</span> update<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> dotnet-sdk-10.0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+        <content type="html"><![CDATA[<p>抽象的微软前两年对 dotnet 的 apt 源进行了调整，</p><blockquote><p>从 Ubuntu 22.04 开始，Microsoft 不再将适用于 Ubuntu 的 .NET 分发到 Microsoft 软件包存储库。</p></blockquote><p>而它自己对官方 Debian 源的维护进入了只要 Debian 能跑，其他系统不管死活的状态，之前为了 dotnet 8 在 ubuntu 24 还能不能继续用官方 Debian 源的问题纠结了几个月： <a href="https://github.com/dotnet/sdk/issues/40506">https://github.com/dotnet/sdk/issues/40506</a> 。现在 dotnet 10 发布了，又出现了类似的问题（有人直接在这个 issue 里提了），因为 sb 微软把 <code>dotnet-runtime-deps-10.0</code> 里的 libicu 依赖变成了只有 78、77、76、72，中间的 74 被跳掉了。显然 <code>libicu</code> 这些小版本对于 dotnet 来说都是支持的，而我使用的 Deepin V25 正好只有 <code>libicu74</code>。这个问题我也提了个 issue: <a href="https://github.com/dotnet/runtime/issues/121829">https://github.com/dotnet/runtime/issues/121829</a></p><p>显然不能指望微软极低的工作效率，我的解决方案是创建一个 <code>libicu78</code> 的虚拟包，这样 apt 就不会阻止我通过微软的 debian 源安装和升级了。</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 1. 安装 equivs（若未安装）</span><span class="token function">sudo</span> <span class="token function">apt</span> update <span class="token operator">&amp;&amp;</span> <span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> <span class="token parameter variable">-y</span> equivs<span class="token comment"># 2. 创建虚拟包声明 libicu78（选一个缺失但最高的版本，如 78）</span>equivs-control libicu78.control<span class="token comment"># 编辑控制文件</span><span class="token function">cat</span> <span class="token operator">></span> libicu78.control <span class="token operator">&lt;&lt;</span><span class="token string">EOFSection: miscPriority: optionalStandards-Version: 3.9.2Package: libicu78Version: 74.2-1+dummyMaintainer: homolo &lt;homolo@example.com>Provides: libicu78Description: Dummy package to satisfy dotnet-runtime-deps-10.0 dependency This is a dummy package that claims to provide libicu78, while the actual implementation is libicu74 (which is ABI-compatible).EOF</span><span class="token comment"># 3. 构建并安装虚拟包</span>equivs-build libicu78.control<span class="token function">sudo</span> dpkg <span class="token parameter variable">-i</span> libicu78_74.2-1+dummy_all.deb<span class="token comment"># 4. 现在再尝试安装 dotnet-sdk-10.0</span><span class="token function">sudo</span> <span class="token function">apt</span> update<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> dotnet-sdk-10.0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
       
       
       <categories>
@@ -451,9 +486,9 @@
             
             <tag> Hexo </tag>
             
-            <tag> 纪实 </tag>
-            
             <tag> 建站 </tag>
+            
+            <tag> 纪实 </tag>
             
         </tags>
       
@@ -596,9 +631,9 @@
       
         <tags>
             
-            <tag> IC 卡 </tag>
-            
             <tag> 单片机 </tag>
+            
+            <tag> IC 卡 </tag>
             
             <tag> 近场通信 </tag>
             
@@ -801,8 +836,6 @@
       
         <tags>
             
-            <tag> 单片机 </tag>
-            
             <tag> RFID </tag>
             
             <tag> PROXMARK3 </tag>
@@ -814,6 +847,8 @@
             <tag> 一卡通 </tag>
             
             <tag> 数据分析 </tag>
+            
+            <tag> 单片机 </tag>
             
         </tags>
       
@@ -902,13 +937,13 @@
             
             <tag> CSS </tag>
             
-            <tag> 纪实 </tag>
-            
             <tag> 备份 </tag>
             
             <tag> 建站 </tag>
             
             <tag> JS </tag>
+            
+            <tag> 纪实 </tag>
             
         </tags>
       
@@ -1071,6 +1106,8 @@
       
         <tags>
             
+            <tag> 纪实 </tag>
+            
             <tag> WSL </tag>
             
             <tag> X Server </tag>
@@ -1082,8 +1119,6 @@
             <tag> 子系统 </tag>
             
             <tag> 虚拟机 </tag>
-            
-            <tag> 纪实 </tag>
             
         </tags>
       
@@ -1110,9 +1145,9 @@
             
             <tag> Hexo </tag>
             
-            <tag> 纪实 </tag>
-            
             <tag> 建站 </tag>
+            
+            <tag> 纪实 </tag>
             
         </tags>
       
