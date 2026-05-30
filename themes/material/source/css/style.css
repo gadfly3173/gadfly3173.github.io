@@ -564,7 +564,7 @@ a {
   margin: 0 auto;
   padding: 0;
   width: 100%;
-  max-width: 900px;
+  max-width: 1200px;
   flex-shrink: 0;
 }
 
@@ -1393,14 +1393,43 @@ a {
   top: 0;
 }
 
+#scheme-Paradox .something-else {
+  --search-button-width: 56px;
+  --search-button-right-gap: 28px;
+  --search-form-offset-left: 32px;
+  --search-button-float-offset: 28px;
+}
+
+#scheme-Paradox .something-else > .mdl-textfield--expandable {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+
 #scheme-Paradox #search-label {
-  right: 28px;
-  bottom: 39px;
+  top: 0;
+  right: var(--search-button-right-gap);
+  bottom: auto;
+  transform: translateY(calc(-1 * var(--search-button-float-offset)));
   z-index: 7;
 }
 
 #scheme-Paradox #search-form {
   bottom: 46px;
+  width: calc(
+    100% - var(--search-button-width) - var(--search-button-right-gap) -
+      var(--search-form-offset-left)
+  );
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+#scheme-Paradox .mdl-textfield.is-focused #search-form,
+#scheme-Paradox .mdl-textfield.is-dirty #search-form {
+  max-width: calc(
+    100% - var(--search-button-width) - var(--search-button-right-gap) -
+      var(--search-form-offset-left)
+  );
 }
 
 #scheme-Paradox #search-form-label {
