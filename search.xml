@@ -92,9 +92,9 @@
       
         <tags>
             
-            <tag> 踩坑 </tag>
-            
             <tag> Claude </tag>
+            
+            <tag> 踩坑 </tag>
             
             <tag> 智谱 </tag>
             
@@ -631,9 +631,9 @@
       
         <tags>
             
-            <tag> 单片机 </tag>
-            
             <tag> IC 卡 </tag>
+            
+            <tag> 单片机 </tag>
             
             <tag> 近场通信 </tag>
             
@@ -836,6 +836,8 @@
       
         <tags>
             
+            <tag> 单片机 </tag>
+            
             <tag> RFID </tag>
             
             <tag> PROXMARK3 </tag>
@@ -847,8 +849,6 @@
             <tag> 一卡通 </tag>
             
             <tag> 数据分析 </tag>
-            
-            <tag> 单片机 </tag>
             
         </tags>
       
