@@ -22,11 +22,11 @@ permalink:
 
 ### 问题表现
 
-Homolo Boot 框架的 `AutoSyncTableInitializer` 负责在应用启动时根据meta data自动创建数据库表。单节点运行时一切正常，部署到 K8s 多副本后，部分 Pod 启动失败，报错提示表已存在。
+Homolo Boot 框架的 `AutoSyncTableInitializer` 负责在应用启动时根据 meta data 自动创建数据库表。单节点运行时一切正常，部署到 K8s 多副本后，部分 Pod 启动失败，报错提示表已存在。
 
 ### 问题代码
 
-`JdbcMetaHelper` 的 `cacheAllTableMeta()` 负责扫描数据库中已有表的meta data并写入 Spring Cache（多 Pod 共用同一份 Redis 缓存）。**这个方法在 `@PostConstruct` 中执行**：
+`JdbcMetaHelper` 的 `cacheAllTableMeta()` 负责扫描数据库中已有表的 meta data 并写入 Spring Cache（多 Pod 共用同一份 Redis 缓存）。**这个方法在 `@PostConstruct` 中执行**：
 
 ```java
 // JdbcMetaHelper — 修复前
@@ -64,7 +64,7 @@ public void lockInitialize() {
 }
 ```
 
-`syncType()` 从缓存获取表meta data，判断是否需要建表——缓存命中则跳过建表，走列同步；缓存未命中则执行建表：
+`syncType()` 从缓存获取表 meta data，判断是否需要建表——缓存命中则跳过建表，走列同步；缓存未命中则执行建表：
 
 ```java
 // BaseTableExecutor.syncType() — 判断是否建表的核心逻辑
@@ -117,7 +117,7 @@ private TableMeta initEntityTable(JdbcMeta jdbcMeta, String tableName, Field[] r
 
 ### 原因分析
 
-多副本部署时，各 Pod 的 `@PostConstruct` 各自独立执行，互不知晓。`cacheAllTableMeta()` 的第一步就是 `this.cache.clear()`，会清空共享 Redis 缓存中所有表的meta data。
+多副本部署时，各 Pod 的 `@PostConstruct` 各自独立执行，互不知晓。`cacheAllTableMeta()` 的第一步就是 `this.cache.clear()`，会清空共享 Redis 缓存中所有表的 meta data。
 
 ```mermaid
 sequenceDiagram
@@ -179,10 +179,10 @@ public void start() {
 flowchart TD
     A[Bean 实例化] --> B[依赖注入 @Autowired]
     B --> C["@PostConstruct<br/>各 Pod 独立执行 populateJdbcMetaMap"]
-    B --> D[ApplicationContext 就绪]
-    D --> E[SmartLifecycle.start<br/>按 phase 排序]
+    C --> D[ApplicationContext 就绪]
+    D --> E["SmartLifecycle.start<br/>按 phase 排序"]
     E --> F{获取 Redis 锁?}
-    F -->|成功| G[lockInitialize<br/>cacheAllTableMeta + syncType]
+    F -->|成功| G["lockInitialize<br/>cacheAllTableMeta + syncType"]
     F -->|失败| H[跳过，其他 Pod 已执行]
     G --> I[应用就绪]
     H --> I
@@ -228,7 +228,7 @@ Homolo Datamodel 的 `Type` 表示数据模型中的类型定义，支持类型�
 
 ### 问题代码
 
-`Type` 类使用延迟加载缓存字段、业务、视图、动作等meta data。以 `getFieldMap()` 为例，修复前使用了有缺陷的双重检查锁定（DCL）模式：
+`Type` 类使用延迟加载缓存字段、业务、视图、动作等 meta data。以 `getFieldMap()` 为例，修复前使用了有缺陷的双重检查锁定（DCL）模式：
 
 ```java
 // Type.java — 修复前
@@ -308,7 +308,7 @@ flowchart TD
     D -->|否| F[allFields = 完整数组]
     E --> G[后续永远返回空数组]
     F --> H[后续返回正确结果]
-    B -->|否| G
+    B -->|否| I[直接返回已缓存的 allFields]
 ```
 
 `DefaultMetaLoader.load()` 还有一个附带问题：`finally` 块中无条件设置 `State.Loaded` 并触发 `metaloaded` 事件，即使 `load()` 因状态不是 `NotLoaded` 而提前返回、实际未执行任何加载操作。
@@ -564,9 +564,10 @@ sequenceDiagram
     Note over DB: 关联实体当前状态: name="旧律所"
     Approve->>DB: update(InfoChangeApplication) → APPROVED
     Note over Listener: AFTER_UPDATE 事件触发，侦听器被异步调度
-    par 并行执行
+    par 审批线程 修改 name 字段
         Approve->>DB: get(relationId) → name="旧律所"
         Approve->>Approve: setProperty("name", "新律所")
+    and 侦听器线程 修改 attributes 列
         Listener->>DB: get(relationId) → name="旧律所"
         Listener->>Listener: setAttribute("lockInfoChange", true)
     end
