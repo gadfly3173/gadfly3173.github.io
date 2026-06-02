@@ -284,7 +284,7 @@
 
     
         <meta property="article:published_time" content="Wed May 27 2026 14:00:00 GMT+0800">
-        <meta property="article:modified_time" content="Mon Jun 01 2026 14:51:51 GMT+0800">
+        <meta property="article:modified_time" content="Tue Jun 02 2026 23:22:52 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -307,7 +307,7 @@
     "mainEntityOfPage": "https://blog.gadfly.vip/2026/05/timing-issues-in-business-development/index.html",
     "headline": "业务开发中的时序问题：多副本环境下的并发陷阱",
     "datePublished": "Wed May 27 2026 14:00:00 GMT+0800",
-    "dateModified": "Mon Jun 01 2026 14:51:51 GMT+0800",
+    "dateModified": "Tue Jun 02 2026 23:22:52 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "猪蹄宝宝",
@@ -569,9 +569,9 @@
         <p>业务代码中的时序问题在本地单节点开发测试时几乎不会暴露。一旦部署到多副本、多节点环境，或者在前端频繁点击重试的场景下，就会以各种诡异的方式爆发。本文通过若干真实的排查案例，梳理常见的时序陷阱及其解法。</p>
 <h2 id="案例一：应用启动时重复建表">案例一：应用启动时重复建表</h2>
 <h3 id="问题表现">问题表现</h3>
-<p>Homolo Boot 框架的 <code>AutoSyncTableInitializer</code> 负责在应用启动时根据meta data自动创建数据库表。单节点运行时一切正常，部署到 K8s 多副本后，部分 Pod 启动失败，报错提示表已存在。</p>
+<p>Homolo Boot 框架的 <code>AutoSyncTableInitializer</code> 负责在应用启动时根据 meta data 自动创建数据库表。单节点运行时一切正常，部署到 K8s 多副本后，部分 Pod 启动失败，报错提示表已存在。</p>
 <h3 id="问题代码">问题代码</h3>
-<p><code>JdbcMetaHelper</code> 的 <code>cacheAllTableMeta()</code> 负责扫描数据库中已有表的meta data并写入 Spring Cache（多 Pod 共用同一份 Redis 缓存）。<strong>这个方法在 <code>@PostConstruct</code> 中执行</strong>：</p>
+<p><code>JdbcMetaHelper</code> 的 <code>cacheAllTableMeta()</code> 负责扫描数据库中已有表的 meta data 并写入 Spring Cache（多 Pod 共用同一份 Redis 缓存）。<strong>这个方法在 <code>@PostConstruct</code> 中执行</strong>：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// JdbcMetaHelper — 修复前</span>
 <span class="token annotation punctuation">@PostConstruct</span>
 <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
@@ -601,7 +601,7 @@
         <span class="token keyword">this</span><span class="token punctuation">.</span>entityTableHelper<span class="token punctuation">.</span><span class="token function">syncType</span><span class="token punctuation">(</span>type<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 遍历所有 Type 建表</span>
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><code>syncType()</code> 从缓存获取表meta data，判断是否需要建表——缓存命中则跳过建表，走列同步；缓存未命中则执行建表：</p>
+<p><code>syncType()</code> 从缓存获取表 meta data，判断是否需要建表——缓存命中则跳过建表，走列同步；缓存未命中则执行建表：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// BaseTableExecutor.syncType() — 判断是否建表的核心逻辑</span>
 <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">syncType</span><span class="token punctuation">(</span><span class="token class-name">JdbcMeta</span> jdbcMeta<span class="token punctuation">,</span> <span class="token class-name">Type</span> type<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
     <span class="token class-name">String</span> tableName <span class="token operator">=</span> <span class="token class-name">EntityTableHelper</span><span class="token punctuation">.</span><span class="token function">getTableName</span><span class="token punctuation">(</span>type<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -645,7 +645,7 @@
     <span class="token keyword">return</span> tableMeta<span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="原因分析">原因分析</h3>
-<p>多副本部署时，各 Pod 的 <code>@PostConstruct</code> 各自独立执行，互不知晓。<code>cacheAllTableMeta()</code> 的第一步就是 <code>this.cache.clear()</code>，会清空共享 Redis 缓存中所有表的meta data。</p>
+<p>多副本部署时，各 Pod 的 <code>@PostConstruct</code> 各自独立执行，互不知晓。<code>cacheAllTableMeta()</code> 的第一步就是 <code>this.cache.clear()</code>，会清空共享 Redis 缓存中所有表的 meta data。</p>
 <pre><code class="mermaid">sequenceDiagram
     participant PodA as Pod A
     participant PodB as Pod B
@@ -694,10 +694,10 @@
 <pre><code class="mermaid">flowchart TD
     A[Bean 实例化] --&gt; B[依赖注入 @Autowired]
     B --&gt; C[&quot;@PostConstruct&lt;br&#x2F;&gt;各 Pod 独立执行 populateJdbcMetaMap&quot;]
-    B --&gt; D[ApplicationContext 就绪]
-    D --&gt; E[SmartLifecycle.start&lt;br&#x2F;&gt;按 phase 排序]
+    C --&gt; D[ApplicationContext 就绪]
+    D --&gt; E[&quot;SmartLifecycle.start&lt;br&#x2F;&gt;按 phase 排序&quot;]
     E --&gt; F&#123;获取 Redis 锁?&#125;
-    F --&gt;|成功| G[lockInitialize&lt;br&#x2F;&gt;cacheAllTableMeta + syncType]
+    F --&gt;|成功| G[&quot;lockInitialize&lt;br&#x2F;&gt;cacheAllTableMeta + syncType&quot;]
     F --&gt;|失败| H[跳过，其他 Pod 已执行]
     G --&gt; I[应用就绪]
     H --&gt; I</code></pre>
@@ -729,7 +729,7 @@
 <li>单线程调试时完全正常，应用启动后的并发访问阶段才暴露</li>
 </ul>
 <h3 id="问题代码-2">问题代码</h3>
-<p><code>Type</code> 类使用延迟加载缓存字段、业务、视图、动作等meta data。以 <code>getFieldMap()</code> 为例，修复前使用了有缺陷的双重检查锁定（DCL）模式：</p>
+<p><code>Type</code> 类使用延迟加载缓存字段、业务、视图、动作等 meta data。以 <code>getFieldMap()</code> 为例，修复前使用了有缺陷的双重检查锁定（DCL）模式：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// Type.java — 修复前</span>
 <span class="token keyword">private</span> <span class="token class-name">Field</span><span class="token punctuation">[</span><span class="token punctuation">]</span> ownFields<span class="token punctuation">;</span>
 <span class="token keyword">private</span> <span class="token class-name">Field</span><span class="token punctuation">[</span><span class="token punctuation">]</span> allFields<span class="token punctuation">;</span>
@@ -792,7 +792,7 @@
     D --&gt;|否| F[allFields &#x3D; 完整数组]
     E --&gt; G[后续永远返回空数组]
     F --&gt; H[后续返回正确结果]
-    B --&gt;|否| G</code></pre>
+    B --&gt;|否| I[直接返回已缓存的 allFields]</code></pre>
 <p><code>DefaultMetaLoader.load()</code> 还有一个附带问题：<code>finally</code> 块中无条件设置 <code>State.Loaded</code> 并触发 <code>metaloaded</code> 事件，即使 <code>load()</code> 因状态不是 <code>NotLoaded</code> 而提前返回、实际未执行任何加载操作。</p>
 <h3 id="修复-2">修复</h3>
 <p>修复分三个层面，覆盖所有存在同类缺陷的方法：</p>
@@ -1014,9 +1014,10 @@
     Note over DB: 关联实体当前状态: name&#x3D;&quot;旧律所&quot;
     Approve-&gt;&gt;DB: update(InfoChangeApplication) → APPROVED
     Note over Listener: AFTER_UPDATE 事件触发，侦听器被异步调度
-    par 并行执行
+    par 审批线程 修改 name 字段
         Approve-&gt;&gt;DB: get(relationId) → name&#x3D;&quot;旧律所&quot;
         Approve-&gt;&gt;Approve: setProperty(&quot;name&quot;, &quot;新律所&quot;)
+    and 侦听器线程 修改 attributes 列
         Listener-&gt;&gt;DB: get(relationId) → name&#x3D;&quot;旧律所&quot;
         Listener-&gt;&gt;Listener: setAttribute(&quot;lockInfoChange&quot;, true)
     end
