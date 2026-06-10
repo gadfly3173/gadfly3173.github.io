@@ -898,6 +898,107 @@ CREATE UNIQUE INDEX uq_cas_report_active_parent_person
 - MySQL 8.0.13+ 引入了函数索引，使得可以通过 `CASE WHEN` 实现部分唯一索引，这是 PostgreSQL 的 `CREATE UNIQUE INDEX ... WHERE` 的等效替代方案
 - 对于 MySQL 5.7 环境，只能使用普通唯一索引（如 `UNIQUE KEY (parent_id, p_person_id)`），但这会导致驳回或软删除后无法重新报名。此时建议依赖应用层的 Redis 锁 + Lua 脚本作为主要防护，唯一索引作为最基础的重复记录兜底
 
+#### 阶段五：分布式锁释放与事务提交的时序问题
+
+阶段二引入分布式锁后，重复报名问题大幅减少，但线上仍有偶发案例。排查后发现一个隐蔽的时序问题：**锁在 `finally` 块中立即释放，但此时 Spring `@Transactional` 还未提交。**
+
+```mermaid
+sequenceDiagram
+    participant A as 请求 A
+    participant B as 请求 B
+    participant Redis as Redis
+    participant DB as 数据库
+    participant TX as Spring 事务
+
+    A->>Redis: 获取锁(eventId:personId) → 成功
+    A->>DB: 检查重复 → 无记录
+    A->>DB: create(report)
+    A->>Redis: finally 释放锁
+    Note over A,TX: 锁已释放，但事务尚未提交!
+
+    B->>Redis: 获取锁(eventId:personId) → 成功
+    Note over B: A 的事务尚未提交，DB 中查不到 A 的记录
+    B->>DB: 检查重复 → 无记录
+    B->>DB: create(report) ← 重复报名!
+
+    A->>TX: 事务 A 提交
+    B->>TX: 事务 B 提交
+    Note over DB: 两条记录同时可见 → 重复!
+```
+
+问题根因：Spring 的 `@Transactional` 注解通过 AOP 代理管理事务，事务的提交发生在方法返回**之后**。而 `try-finally` 中的锁释放也在方法返回时执行，两者存在执行顺序的不确定性。更准确地说，`finally` 块在方法体内执行，先于 AOP 代理的事务提交——因此锁总是比事务先释放。
+
+修复方案：将所有 Redis 资源释放操作（锁释放、名额归还）通过 `TransactionSynchronization` 延迟到事务完成后执行：
+
+```java
+// 获取防重复提交锁
+String lockToken = this.signupLimitSupport.tryAcquireSignupLock(eventId, personId);
+if (lockToken == null) {
+    return Message.fail("正在处理中，请勿重复提交");
+}
+
+// 事务完成后释放锁（无论提交还是回滚）
+this.executeAfterTransactionCompletion(() ->
+    this.signupLimitSupport.releaseSignupLock(eventId, personId, lockToken));
+
+// 锁内检查 + 创建报名记录
+// ...
+
+return Message.success();
+// 此时方法返回 → @Transactional AOP 提交事务 → afterCompletion 回调释放锁
+```
+
+`executeAfterTransactionCompletion` 的实现：
+
+```java
+private void executeAfterTransactionCompletion(Runnable action) {
+    TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronization() {
+        @Override
+        public void afterCompletion(int status) {
+            try {
+                action.run();
+            } catch (Exception e) {
+                log.error("事务完成后回调执行失败", e);
+            }
+        }
+    });
+}
+```
+
+对于名额归还，需要区分事务提交和回滚：仅在事务回滚（或状态未知）时归还名额，提交成功时名额已被占用，无需归还：
+
+```java
+// 注册事务回滚时的名额归还回调（必须在实体创建之前注册，以确保异常时仍能归还）
+if (slotAcquired) {
+    this.executeAfterTransactionRollback(() ->
+        this.signupLimitSupport.returnSlot(eventId));
+}
+```
+
+`executeAfterTransactionRollback` 只在事务未成功提交时触发：
+
+```java
+private void executeAfterTransactionRollback(Runnable action) {
+    TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronization() {
+        @Override
+        public void afterCompletion(int status) {
+            if (status != TransactionSynchronization.STATUS_COMMITTED) {
+                try {
+                    action.run();
+                } catch (Exception e) {
+                    log.error("事务回滚回调执行失败", e);
+                }
+            }
+        }
+    });
+}
+```
+
+关键改进：
+1. **锁释放延迟到事务提交后**：其他请求获取锁时，前一个事务的数据已经持久化，重复检查一定能看到已提交的记录
+2. **名额归还仅在回滚时执行**：事务成功提交意味着名额已被占用，无需归还；回滚时才需要归还，避免名额泄漏
+3. **消除了 `try-catch-finally` 嵌套**：所有资源清理通过回调机制统一管理，代码结构从多层嵌套变为线性流，更易维护
+
 #### 补充：INSERT 时传入条件的局限性
 
 有人可能会想：与其先 `SELECT COUNT` 再判断，不如在 `INSERT` 时带上条件，比如：
@@ -934,6 +1035,7 @@ WHERE (SELECT COUNT(*) FROM signup_report
 | 多路径全量更新覆盖 | 并发脏写、字段回退 | partial update 只写入变更列 |
 | 检查-再执行竞态 | 名额超售、重复记录 | Redis Lua 脚本原子操作 |
 | 锁内检查遗漏 | 防重复失效 | 检查必须在锁保护范围内 |
+| 锁释放早于事务提交 | 偶发重复报名 | `TransactionSynchronization` 延迟释放 |
 | 异常路径资源泄漏 | 计数不准、名额偏高 | try-catch-finally 补齐补偿 |
 | 应用层防护遗漏 | 脏数据写入 | 数据库唯一索引兜底 |
 
