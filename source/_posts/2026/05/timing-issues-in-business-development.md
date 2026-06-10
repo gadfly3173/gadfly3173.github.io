@@ -18,6 +18,8 @@ permalink:
 
 业务代码中的时序问题在本地单节点开发测试时几乎不会暴露。一旦部署到多副本、多节点环境，或者在前端频繁点击重试的场景下，就会以各种诡异的方式爆发。本文通过若干真实的排查案例，梳理常见的时序陷阱及其解法。
 
+# 后端（Java）
+
 ## 案例一：应用启动时重复建表
 
 ### 问题表现
@@ -1021,9 +1023,196 @@ WHERE (SELECT COUNT(*) FROM signup_report
 
 **结论**：`INSERT` 带条件可以作为辅助手段，但不能替代原子操作或锁。最可靠的方案仍然是 **Redis Lua 脚本（应用层快速失败） + 唯一索引（数据库层兜底） + 分布式锁（复杂业务逻辑保护）** 的三层防护。
 
+# 前端（Angular）
+
+## 案例五：iframe 单点登录 Token 过期
+
+### 问题表现
+
+某协会系统将 其他子系统通过 `iframe` 嵌入 Angular 应用中，使用 token 参数实现单点登录。用户反馈：在 OA 页面停留一段时间后，点击左侧导航跳转到其他 OA 页面时，**偶现"token 已过期"的错误页面**，刷新整个页面后又恢复正常。
+
+### 问题代码
+
+原始实现中，token 在 `ngOnInit` 生命周期中获取一次，之后所有 iframe 导航都复用这个 token：
+
+```typescript
+// oa.component.ts — 原始实现
+export class OaComponent implements OnInit {
+
+  ngOnInit() {
+    this.nzSpinning = true;
+    // 只在初始化时获取一次 token
+    this.restClient.get('/oa/current-user/token').then(res => {
+      const {code, result, description} = res;
+      if (code !== 1) {
+        this.nzSpinning = false;
+        this.message.error(description);
+        return;
+      }
+      this.token = result;  // ← 缓存 token，后续不再刷新
+
+      this.route.params.subscribe((data) => {
+        const {type, pagePath} = data;
+        const tokenEncodedValue = encodeURIComponent(this.token);
+        // 直接用缓存的 token 拼接 URL
+        let extUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
+          `${this.env['oaHost']}${this.env['oaContextPath']}/zj/ibusiness.jsp?token=${tokenEncodedValue}`
+        );
+        this.url = extUrl;  // ← iframe 加载新页面，但 token 可能已经过期
+      });
+    });
+  }
+}
+```
+
+时序问题示意：
+
+```mermaid
+sequenceDiagram
+    participant User as 用户
+    participant App as Angular 应用
+    participant Backend as 后端
+    participant OA as OA 系统 (iframe)
+
+    User->>App: 进入 OA 页面
+    App->>Backend: GET /oa/current-user/token
+    Backend-->>App: token_abc123
+    Note over App: 缓存 token_abc123
+    App->>OA: iframe 加载 ibusiness.jsp?token=abc123 ✅
+
+    Note over User,OA: 用户在 OA 页面操作... 10 分钟过去了
+
+    User->>App: 点击导航跳转到另一个 OA 页面
+    Note over App: 直接用缓存的 token_abc123 拼接 URL
+    App->>OA: iframe 加载 mvc.jsp?token=abc123 ❌
+    OA-->>User: "token 已过期"
+    Note over App,OA: token 在后端有有效期（如 10 分钟），<br/>但前端不知道，仍然使用旧 token
+```
+
+### 原因分析
+
+**后端签发的 token 有有效期**（例如 10 分钟），到期后 OA 系统会拒绝该 token。前端在 `ngOnInit` 中获取 token 后缓存到成员变量 `this.token`，之后所有路由导航都复用这个值。当用户在 OA 页面停留超过有效期再切换页面时，iframe 携带的就是过期的 token。
+
+这不是传统意义上的并发问题，而是一个**时序失效**问题：缓存的 token 有生命周期，但消费者（iframe URL）没有感知到这个生命周期的边界。
+
+代码还有两个附加问题：
+1. **`route.params.subscribe` 嵌套在 HTTP 回调内部**：订阅的时序依赖于网络请求完成，如果路由参数在请求完成前就变化了，可能丢失第一次参数
+2. **URL 构建逻辑重复**：`ibusiness.jsp` 和 `mvc.jsp` 的 URL 构建代码几乎相同，但各自内联了一份
+
+### 修复
+
+核心思路：**每次 iframe 加载新页面前都重新获取 token**，而不是复用缓存的旧值。
+
+```typescript
+export class OaComponent implements OnInit {
+
+  ngOnInit() {
+    this.nzSpinning = true;
+    window.addEventListener('message', this.receiveIframeMessage.bind(this));
+
+    // 首次获取 token 后订阅路由变化
+    this.fetchToken().then(token => {
+      if (!token) {
+        return;
+      }
+      this.route.params.subscribe((data) => {
+        this.nzSpinning = true;
+        const {type, pagePath} = data;
+        if (!type || !pagePath) {
+          this.nzSpinning = false;
+          this.message.error('路径异常');
+          return;
+        }
+        if (type === 'e') {
+          this.currentPagePath = pagePath;
+          const extUrl = this.buildIframeUrl('ibusiness.jsp', null);
+          if (this.safeUrlEquals(this.url, extUrl)) {
+            this.iframeChangePage();
+            return;
+          }
+          this.metaLoadingCompleted = false;
+          // 每次跳转前刷新 token
+          this.refreshTokenAndNavigate('ibusiness.jsp', null);
+        } else if (type === 'm') {
+          this.currentPagePath = pagePath.replaceAll(':', '/');
+          const extUrl = this.buildIframeUrl('mvc.jsp', this.currentPagePath);
+          if (this.safeUrlEquals(this.url, extUrl)) {
+            this.iframeChangePage(true);
+            return;
+          }
+          // 每次跳转前刷新 token
+          this.refreshTokenAndNavigate('mvc.jsp', this.currentPagePath);
+        }
+      });
+    });
+  }
+
+  /** 从后端获取最新的 OA 单点登录 token. 成功时返回 token 字符串，失败时返回 null. */
+  private fetchToken(): Promise<string> {
+    return this.restClient.get('/oa/current-user/token').then(res => {
+      const {code, result, description} = res;
+      if (code !== 1) {
+        this.message.error(description);
+        return null;
+      }
+      this.token = result;
+      return result;
+    });
+  }
+
+  /** 构建指向指定 OA JSP 页面的 iframe 安全 URL. */
+  private buildIframeUrl(jspPage: string, hashPath: string | null): SafeResourceUrl {
+    const tokenEncodedValue = encodeURIComponent(this.token);
+    let url = `${this.env['oaHost']}${this.env['oaContextPath']}/zj/${jspPage}?token=${tokenEncodedValue}`;
+    if (hashPath) {
+      url += `#/${hashPath}`;
+    }
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+
+  /** 在 iframe 跳转到新页面前刷新 token，确保嵌入的 OA 页面始终使用有效的（未过期的）token. */
+  private refreshTokenAndNavigate(jspPage: string, hashPath: string | null) {
+    this.fetchToken().then(token => {
+      if (!token) {
+        this.nzSpinning = false;
+        return;
+      }
+      this.url = this.buildIframeUrl(jspPage, hashPath);
+    });
+  }
+}
+```
+
+修复后的时序：
+
+```mermaid
+sequenceDiagram
+    participant User as 用户
+    participant App as Angular 应用
+    participant Backend as 后端
+    participant OA as OA 系统 (iframe)
+
+    User->>App: 进入 OA 页面
+    App->>Backend: GET /oa/current-user/token
+    Backend-->>App: token_abc123
+    App->>OA: iframe 加载 ibusiness.jsp?token=abc123 ✅
+
+    Note over User,OA: 用户在 OA 页面操作... 10 分钟过去了
+
+    User->>App: 点击导航跳转到另一个 OA 页面
+    App->>Backend: GET /oa/current-user/token（重新获取!）
+    Backend-->>App: token_xyz789（新 token）
+    App->>OA: iframe 加载 mvc.jsp?token=xyz789 ✅
+```
+
+关键改进：
+1. **每次导航前刷新 token**：`refreshTokenAndNavigate` 确保 iframe URL 中的 token 始终有效，消除过期风险
+2. **提取 `fetchToken` 方法**：将 token 获取逻辑从 `ngOnInit` 中分离，返回 `Promise<string>` 使调用方可以灵活选择是否等待结果
+3. **提取 `buildIframeUrl` 方法**：消除 `ibusiness.jsp` 和 `mvc.jsp` 两条路径的 URL 构建重复代码，新增页面类型时只需传参
+
 ## 总结
 
-四个案例的共同点：代码在单线程或单节点串行执行时完全正确，但并发环境下时序假设被打破。
+五个案例的共同点：代码在单线程或单节点串行执行时完全正确，但并发环境下时序假设被打破。
 
 | 问题类型 | 典型表现 | 核心解法 |
 |---------|---------|---------|
@@ -1038,5 +1227,6 @@ WHERE (SELECT COUNT(*) FROM signup_report
 | 锁释放早于事务提交 | 偶发重复报名 | `TransactionSynchronization` 延迟释放 |
 | 异常路径资源泄漏 | 计数不准、名额偏高 | try-catch-finally 补齐补偿 |
 | 应用层防护遗漏 | 脏数据写入 | 数据库唯一索引兜底 |
+| 缓存凭证超时 | iframe 单点登录 token 过期 | 每次使用前刷新凭证 |
 
-核心原则：**永远不要假设"两个操作之间不会有其他线程插入"。如果这个假设很重要，就用 `volatile`、锁、原子操作或 partial update 来保证它。**
+核心原则：**永远不要假设"两个操作之间不会有其他线程插入"，也不要假设"缓存的值永远有效"。如果这个假设很重要，就用 `volatile`、锁、原子操作、partial update 或刷新机制来保证它。**
