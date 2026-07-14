@@ -1210,9 +1210,170 @@ sequenceDiagram
 2. **提取 `fetchToken` 方法**：将 token 获取逻辑从 `ngOnInit` 中分离，返回 `Promise<string>` 使调用方可以灵活选择是否等待结果
 3. **提取 `buildIframeUrl` 方法**：消除 `ibusiness.jsp` 和 `mvc.jsp` 两条路径的 URL 构建重复代码，新增页面类型时只需传参
 
+## 案例六：角色菜单的二次请求覆盖竞态
+
+### 问题表现
+
+某协会系统的档案管理子系统（archives）按角色区分左侧菜单：管理员/客服看到客服菜单（菜单名 `ng-customer`），其他用户看到档案数据菜单（菜单名 `ng-archives-data`）。用户反馈菜单偶发加载错误——普通用户登录后短暂显示正确的档案菜单，随后又闪回成默认菜单 `ng-menu`，刷新整个页面后可能恢复正常。
+
+诡异之处：
+- 不是每次都错，而是偶发
+- 错误的菜单总是 `ng-menu`（环境里的默认值），不是空菜单
+- 刷新后可能正常
+
+### 问题代码
+
+项目基于 homolo-framework，其 `MenuComponent`（selector `hf-menu`，由 `DefaultLayout` 动态创建）负责加载左侧菜单。该组件在 `ngOnInit` 中主动拉取一次菜单，并订阅 `menuReloadObserver`：
+
+```typescript
+// MenuComponent.ngOnInit — 框架代码（简化自编译产物）
+ngOnInit() {
+  this.loadMenu().then(() => {            // ← 第 1 次请求（读 environment.menuName）
+    // ... 拉取角标
+  });
+  this.observer.menuReloadObserver.subscribe((menuName) => {
+    if (menuName) {
+      this.loadMenu('', menuName).then(() => {   // ← 第 2 次请求
+        // ... 拉取角标
+      });
+    }
+  });
+}
+
+loadMenu(newUrl?, menuName = this.environment.menuName) {
+  return new Promise((resolve) => {
+    if (this.menuData) {                  // ← 用 menuData 判缓存
+      this.menu = this.menuData;
+      resolve();
+    } else {
+      this.menuService.getMenu(this.menuName || menuName)
+        .then(response => {
+          this.menu = response;           // ← 只赋值 menu，不回填 menuData
+          resolve();
+        });
+    }
+  });
+}
+```
+
+注意 `loadMenu` 用 `this.menuData` 做缓存闸门，但请求成功后**只赋值 `this.menu`，从不回填 `this.menuData`**——这意味着缓存闸门形同虚设，每次调用都会真正发起请求。
+
+项目的 `AppComponent` 为了按角色切换菜单，在 `ngOnInit` 末尾推送了一个菜单名：
+
+```typescript
+// AppComponent.ngOnInit — 项目代码（修复前）
+ngOnInit() {
+  // ... 配置顶部组件
+  let menu = '';
+  this.utils.setRoles();
+  if (this.utils.roleInfo['Admin'] || this.utils.roleInfo['CustomerService']) {
+    menu = 'ng-customer';
+  } else {
+    menu = 'ng-archives-data';
+  }
+  this.observer.menuReloadObserver.next(menu);   // ← 触发框架第 2 次请求
+}
+```
+
+### 原因分析
+
+这里有两层机制叠加，共同制造了"二次请求 + 覆盖竞态"。
+
+**第一层：BehaviorSubject 的粘性保证二次请求必然发出**
+
+框架的 `ObserverService` 中，`menuReloadObserver` 是一个初值为空串的 `BehaviorSubject`：
+
+```typescript
+// ObserverService — 框架代码
+menuReloadObserver = new BehaviorSubject('');
+```
+
+`BehaviorSubject` 会向**任何新订阅者重放当前最新值**。Angular 的初始化顺序是根组件 `AppComponent` 先于 `router-outlet` 内的 `DefaultLayout` → `MenuComponent`，于是 `AppComponent.ngOnInit` 里的 `next('ng-archives-data')` 先执行，`MenuComponent` 后 `subscribe`。若换成普通 `Subject`，这次 `next` 会丢失，第二次请求根本不会发出；正因为是 `BehaviorSubject`，`MenuComponent` 一订阅就立即收到 `'ng-archives-data'`，第二次请求必然触发。
+
+**第二层：两次请求并发，后返回者覆盖先返回者**
+
+两条请求各自走一条独立的 Promise 链，最终都执行 `this.menu = response`，互不知晓。返回顺序取决于网络与后端处理速度：
+
+```mermaid
+sequenceDiagram
+    participant App as AppComponent
+    participant Framework as MenuComponent
+    participant Backend as 后端
+
+    App->>App: ngOnInit → menuReloadObserver.next('ng-archives-data')
+    Framework->>Framework: ngOnInit → subscribe 立即收到重放值 'ng-archives-data'
+    Framework->>Backend: loadMenu() → tk.Menu/ng-menu/access（第 1 次，环境默认名）
+    Framework->>Backend: loadMenu('','ng-archives-data') → tk.Menu/ng-archives-data/access（第 2 次）
+    Note over Framework: 两个 Promise 都执行 this.menu = response
+    Backend-->>Framework: ng-archives-data 响应 → this.menu = 档案菜单 ✓
+    Backend-->>Framework: ng-menu 响应 → this.menu = 默认菜单 ✗ 后到覆盖!
+```
+
+当默认菜单 `ng-menu` 的请求恰好后返回，角色菜单就被覆盖，左侧栏闪回默认菜单。刷新后 `AppComponent` 重新走一遍同样的流程，两次请求的返回顺序只是碰巧让角色菜单后到，于是这次显示正确——这正是“偶发”、“刷新即好”的根源。
+
+竞态之所以能成立，与前文案例二的 DCL 缺陷如出一辙：一个本应阻止重复执行的缓存闸门失效了。`loadMenu` 判断 `this.menuData`、回填 `this.menu`，两个字段不一致，导致第二次调用穿过了本该挡住它的缓存。
+
+### 修复
+
+与案例五“每次使用前刷新 token”的思路不同，这里的麻烦不是缓存值会过期，而是一次本不该发起的额外请求。最干净的做法是**在框架首次拉取菜单前就把菜单名敲定**，让 `loadMenu` 一次命中正确菜单，从源头消除第二次请求。
+
+参照同体系下另一个子系统（publicwelfare）的做法——直接改写注入的 `environment.menuName`：
+
+```typescript
+// AppComponent.ngOnInit — 项目代码（修复后）
+constructor(
+  private layoutService: DefaultLayoutService,
+  private dataSrv: DataService,
+  private utils: UtilsService,
+  @Inject('env') private environment   // ← 注入 environment
+) { }
+
+ngOnInit() {
+  // ... 配置顶部组件
+  // 在框架 MenuComponent 首次 loadMenu 之前敲定菜单名，
+  // 让其一次命中正确菜单，免去 menuReloadObserver 触发的二次请求与覆盖竞态
+  this.utils.setRoles();
+  if (this.utils.roleInfo['Admin'] || this.utils.roleInfo['CustomerService']) {
+    this.environment.menuName = 'ng-customer';
+  } else {
+    this.environment.menuName = 'ng-archives-data';
+  }
+}
+```
+
+为何时序安全？`AppComponent` 的 `ngOnInit` 早于 `router-outlet` 子树内 `MenuComponent` 的 `ngOnInit`。等 `MenuComponent.loadMenu()` 读 `environment.menuName` 时，它已经是角色对应值，框架只发一次请求，也不再需要 `menuReloadObserver`：
+
+```mermaid
+sequenceDiagram
+    participant App as AppComponent
+    participant Framework as MenuComponent
+    participant Backend as 后端
+
+    App->>App: ngOnInit → environment.menuName = 'ng-archives-data'
+    Framework->>Framework: ngOnInit → loadMenu() 读取 environment.menuName
+    Framework->>Backend: tk.Menu/ng-archives-data/access（仅一次）
+    Backend-->>Framework: 档案菜单
+    Framework->>Framework: this.menu = 档案菜单 ✓
+```
+
+修改同时移除了对 `ObserverService` 的注入依赖，避免遗留 `menuReloadObserver` 被误触发。
+
+### 要点
+
+“先加载默认值 → 再 reload 正确值”是这类需要在运行时决定配置的场景里常见的误区。这种两段式天然产生两个并发请求，当默认值与目标值不同时，覆盖竞态会让最终结果不确定。更可靠的模式是把决策前移到首次加载之前：
+
+| 做法 | 请求次数 | 覆盖竞态 |
+|------|---------|---------|
+| 默认菜单 + `menuReloadObserver.next()` | 2 次 | 有（后到覆盖先到） |
+| 加载前改写 `environment.menuName` | 1 次 | 无 |
+
+此外，框架侧 `loadMenu` 的缓存缺陷也值得修：若以 `menuName` 为 key 做 in-flight 去重、并在成功后回填 `menuData`，即便业务方误用两段式也能兜住。当前“判断字段与回填字段不一致”（判 `menuData`、填 `menu`）正是典型的缓存闸门失效。
+
+**要点：** 能前移的决策就前移到首次加载之前，让首次请求即命中正确结果，从根上避免“默认值 + reload”两段式产生的覆盖竞态。缓存闸门若要存在就必须真正生效——判断与回填必须落在同一个字段上；而粘性的 `BehaviorSubject` 会让两段式的第二次请求必然发出，业务侧一旦依赖它，就得为随之而来的竞态买单。
+
 ## 总结
 
-五个案例的共同点：代码在单线程或单节点串行执行时完全正确，但并发环境下时序假设被打破。
+六个案例的共同点：代码在单线程或单节点串行执行时完全正确，但并发环境下时序假设被打破。
 
 | 问题类型 | 典型表现 | 核心解法 |
 |---------|---------|---------|
@@ -1228,5 +1389,7 @@ sequenceDiagram
 | 异常路径资源泄漏 | 计数不准、名额偏高 | try-catch-finally 补齐补偿 |
 | 应用层防护遗漏 | 脏数据写入 | 数据库唯一索引兜底 |
 | 缓存凭证超时 | iframe 单点登录 token 过期 | 每次使用前刷新凭证 |
+| 默认值+reload 两段式加载 | 角色菜单偶发闪回默认菜单 | 决策前移，首次加载即正确 |
+| 缓存判断与回填字段不一致 | loadMenu 缓存闸门形同虚设 | 判断与回填针对同一字段 |
 
 核心原则：**永远不要假设"两个操作之间不会有其他线程插入"，也不要假设"缓存的值永远有效"。如果这个假设很重要，就用 `volatile`、锁、原子操作、partial update 或刷新机制来保证它。**
