@@ -1,0 +1,1504 @@
+<!DOCTYPE html>
+<html style="display: none;" lang="zh">
+    <head>
+    <meta charset="utf-8">
+    <!--
+        © Material Theme
+        https://github.com/bollnh/hexo-theme-material
+        Version: 1.5.7 -->
+    <script>
+        window.materialVersion = "1.5.7"
+        // Delete localstorage with these tags
+        window.oldVersion = [
+            'codestartv1',
+            '1.3.4',
+            '1.4.0',
+            '1.4.0b1',
+            '1.5.0',
+            '1.5.2',
+            '1.5.5',
+            '1.5.6'
+        ]
+    </script>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+
+
+
+
+    <link rel="dns-prefetch" href="https://gadfly3173.disqus.com"/>
+
+
+
+    <link rel="dns-prefetch" href="https://hm.baidu.com"/>
+
+
+
+    <link rel="dns-prefetch" href="https://lib.baomitu.com"/>
+
+
+
+
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!-- Title -->
+    
+    <title>
+        
+            Spring Security 5 中重复 antMatchers 覆盖授权规则的排查 | 
+        
+        猪蹄宝宝的博客n(*≧▽≦*)n
+    </title>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="https://www.gravatar.com/avatar/53e53e02713f136f579cfc2c3e28f0cf?s=140&amp;d=identicon">
+    <link rel="icon" href="https://www.gravatar.com/avatar/53e53e02713f136f579cfc2c3e28f0cf?s=140&amp;d=identicon">
+
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="description" itemprop="description" content="有人问我，我就会讲，但是无人来">
+    <meta name="keywords" content="猪蹄 技术 博客,Spring Security,Spring Boot,Java,权限控制,antMatchers">
+    <meta name="theme-color" content="#0097A7">
+
+    <!-- Disable Fucking Bloody Baidu Tranformation -->
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import lsloader -->
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(a){try{localStorage.removeItem(a)}catch(b){}};lsloader.setLS=function(a,c){try{localStorage.setItem(a,c)}catch(b){}};lsloader.getLS=function(a){var c="";try{c=localStorage.getItem(a)}catch(b){c=""}return c};versionString="/*"+(window.materialVersion||"unknownVersion")+"*/";lsloader.clean=function(){try{var b=[];for(var a=0;a<localStorage.length;a++){b.push(localStorage.key(a))}b.forEach(function(e){var f=lsloader.getLS(e);if(window.oldVersion){var d=window.oldVersion.reduce(function(g,h){return g||f.indexOf("/*"+h+"*/")!==-1},false);if(d){lsloader.removeLS(e)}}})}catch(c){}};lsloader.clean();lsloader.load=function(f,a,b,d){if(typeof b==="boolean"){d=b;b=undefined}d=d||false;b=b||function(){};var e;e=this.getLS(f);if(e&&e.indexOf(versionString)===-1){this.removeLS(f);this.requestResource(f,a,b,d);return}if(e){var c=e.split(versionString)[0];if(c!=a){console.log("reload:"+a);this.removeLS(f);this.requestResource(f,a,b,d);return}e=e.split(versionString)[1];if(d){this.jsRunSequence.push({name:f,code:e});this.runjs(a,f,e)}else{document.getElementById(f).appendChild(document.createTextNode(e));b()}}else{this.requestResource(f,a,b,d)}};lsloader.requestResource=function(b,e,a,c){var d=this;if(c){this.iojs(e,b,function(h,f,g){d.setLS(f,h+versionString+g);d.runjs(h,f,g)})}else{this.iocss(e,b,function(f){document.getElementById(b).appendChild(document.createTextNode(f));d.setLS(b,e+versionString+f)},a)}};lsloader.iojs=function(d,b,g){var a=this;a.jsRunSequence.push({name:b,code:""});try{var f=new XMLHttpRequest();f.open("get",d,true);f.onreadystatechange=function(){if(f.readyState==4){if((f.status>=200&&f.status<300)||f.status==304){if(f.response!=""){g(d,b,f.response);return}}a.jsfallback(d,b)}};f.send(null)}catch(c){a.jsfallback(d,b)}};lsloader.iocss=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.iofonts=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.runjs=function(f,c,e){if(!!c&&!!e){for(var b in this.jsRunSequence){if(this.jsRunSequence[b].name==c){this.jsRunSequence[b].code=e}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var a=document.createElement("script");a.appendChild(document.createTextNode(this.jsRunSequence[0].code));a.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(a);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else{if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var d=this;var a=document.createElement("script");a.src=this.jsRunSequence[0].path;a.type="text/javascript";this.jsRunSequence[0].status="loading";a.onload=function(){d.jsRunSequence.shift();if(d.jsRunSequence.length>0){d.runjs()}};document.body.appendChild(a)}}};lsloader.tagLoad=function(b,a){this.jsRunSequence.push({name:a,code:"",path:b,status:"failed"});this.runjs()};lsloader.jsfallback=function(c,b){if(!!this.jsnamemap[b]){return}else{this.jsnamemap[b]=b}for(var a in this.jsRunSequence){if(this.jsRunSequence[a].name==b){this.jsRunSequence[a].code="";this.jsRunSequence[a].status="failed";this.jsRunSequence[a].path=c}}this.runjs()};lsloader.cssfallback=function(e,c,b){if(!!this.cssnamemap[c]){return}else{this.cssnamemap[c]=1}var d=document.createElement("link");d.type="text/css";d.href=e;d.rel="stylesheet";d.onload=d.onerror=b;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(d,a)};lsloader.runInlineScript=function(c,b){var a=document.getElementById(b).innerText;this.jsRunSequence.push({name:c,code:a});this.runjs()}})();</script>
+
+    <!-- Import queue -->
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
+
+    <!-- Import CSS -->
+    
+        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.css?Ar2X+dP9qOJ+sqCUDccP8Q==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.css?xGzV/PBvCV+If6VMNZvhYg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_dark_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_dark_css","/css/style-dark.css",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+        
+
+    
+
+    
+
+    <!-- Config CSS -->
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    overflow-x: hidden !important;
+  }
+
+  code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge-switch{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+<!-- Import Font -->
+<!-- Import Roboto -->
+
+    <style>
+        @font-face {
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: 300;
+            src: url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-300.eot);
+            src: local('Roboto'),local('Roboto-Normal'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-300.eot?#iefix) format('embedded-opentype'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-300.woff2) format('woff2'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-300.woff) format('woff'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-300.ttf) format('truetype'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-300.svg#Roboto) format('svg')
+        }
+
+        @font-face {
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: regular;
+            src: url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-regular.eot);
+            src: local('Roboto'),local('Roboto-Normal'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-regular.eot?#iefix) format('embedded-opentype'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-regular.woff2) format('woff2'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-regular.woff) format('woff'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-regular.ttf) format('truetype'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-regular.svg#Roboto) format('svg')
+        }
+
+        @font-face {
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: 500;
+            src: url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-500.eot);
+            src: local('Roboto'),local('Roboto-Normal'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-500.eot?#iefix) format('embedded-opentype'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-500.woff2) format('woff2'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-500.woff) format('woff'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-500.ttf) format('truetype'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-500.svg#Roboto) format('svg')
+        }
+    </style>
+
+
+<!-- Import Material Icons -->
+
+
+    <style id="material_icons"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_icons","/css/material-icons.css?MF3y43zLOUJI1z72xtsg5w==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+
+
+
+    <!-- PrismJS -->
+    <style id="css/prism.tomorrow-night.full.min.css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("css/prism.tomorrow-night.full.min.css","/css/prism.tomorrow-night.full.min.css?5Dxq4uOe6Xn7tHqepw+/FQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+    <style id="css/prism.vsc-dark-plus.css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("css/prism.vsc-dark-plus.css","/css/prism.vsc-dark-plus.css?pydYFBJU/ctR0AspOGI02g==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+    <!-- Import jQuery -->
+    
+        <script>lsloader.load("jq_js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==", true)</script>
+    
+
+    <!-- WebAPP Icons -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="猪蹄宝宝的博客n(*≧▽≦*)n">
+    <meta name="msapplication-starturl" content="https://blog.gadfly.vip/2026/08/spring-security-5-repeated-ant-matchers-overwrite/">
+    <meta name="msapplication-navbutton-color" content="#0097A7">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="猪蹄宝宝的博客n(*≧▽≦*)n">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="https://www.gravatar.com/avatar/53e53e02713f136f579cfc2c3e28f0cf?s=140&amp;d=identicon">
+
+    <!-- Site Verification -->
+    <meta name="google-site-verification" content="MOBmMnlG4FLxPhQfX-_7yxv5LpI6xyDNZAHcTmO6U3A" />
+    
+
+    <!-- RSS -->
+    
+        
+        
+    
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="https://blog.gadfly.vip/2026/08/spring-security-5-repeated-ant-matchers-overwrite/">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Spring Security 5 中重复 antMatchers 覆盖授权规则的排查 | 猪蹄宝宝的博客n(*≧▽≦*)n">
+    <meta property="og:image" content="https://www.gravatar.com/avatar/53e53e02713f136f579cfc2c3e28f0cf?s=140&amp;d=identicon">
+    <meta property="og:description" content="有人问我，我就会讲，但是无人来">
+    <meta property="og:article:tag" content="Spring Security"> <meta property="og:article:tag" content="Spring Boot"> <meta property="og:article:tag" content="Java"> <meta property="og:article:tag" content="权限控制"> <meta property="og:article:tag" content="antMatchers"> 
+
+    
+        <meta property="article:published_time" content="Wed Aug 19 2026 17:00:00 GMT+0800">
+        <meta property="article:modified_time" content="Wed Aug 19 2026 17:22:33 GMT+0800">
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="https://blog.gadfly.vip/2026/08/spring-security-5-repeated-ant-matchers-overwrite/index.html" />
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "https://blog.gadfly.vip/2026/08/spring-security-5-repeated-ant-matchers-overwrite/index.html",
+    "headline": "Spring Security 5 中重复 antMatchers 覆盖授权规则的排查",
+    "datePublished": "Wed Aug 19 2026 17:00:00 GMT+0800",
+    "dateModified": "Wed Aug 19 2026 17:22:33 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "猪蹄宝宝",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://www.gravatar.com/avatar/53e53e02713f136f579cfc2c3e28f0cf?s=140&amp;d=identicon"
+        },
+        "description": "有人问我，我就会讲，但是无人来",
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "猪蹄宝宝的博客n(*≧▽≦*)n",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "https://www.gravatar.com/avatar/53e53e02713f136f579cfc2c3e28f0cf?s=140&amp;d=identicon"
+        }
+    },
+    "keywords": ",Spring Security,Spring Boot,Java,权限控制,antMatchers猪蹄 技术 博客",
+    "description": "有人问我，我就会讲，但是无人来",
+}
+</script>
+
+
+    
+
+    <!-- Analytics -->
+    
+    
+        <script>
+    var _hmt = _hmt || [];
+    (function() {var hm = document.createElement('script');
+    hm.src = 'https://hm.baidu.com/hm.js?d95615699de515b10c8ca2ec86c7982e';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
+    
+
+    <!-- Custom Head -->
+    
+
+<meta name="generator" content="Hexo 8.1.2"><link rel="alternate" href="/atom.xml" title="猪蹄宝宝的博客n(*≧▽≦*)n" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="猪蹄宝宝的博客n(*≧▽≦*)n" type="application/rss+xml">
+</head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy" data-theme="dark">
+            <canvas id="tinyball-canvas" style="position:fixed;z-index:-99;display:block;">你这是什么垃圾浏览器，这都不能显示(╯‵□′)╯︵┻━┻</canvas>
+            <script>lsloader.load("tiniballs_js","/js/tiniballs.js?RbhMd4vex2k4fPUeDg+pWA==", true)</script>
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span id="MD-burger-id" class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E9%97%AE%E9%A2%98%E8%A1%A8%E7%8E%B0"><span class="post-toc-number">1.</span> <span class="post-toc-text">问题表现</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%8E%92%E9%99%A4%E4%BA%86%E4%B8%89%E7%A7%8D%E5%B8%B8%E8%A7%81%E8%AF%AF%E5%88%A4"><span class="post-toc-number">2.</span> <span class="post-toc-text">排除了三种常见误判</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E4%B8%8D%E6%98%AF%E7%BA%BF%E4%B8%8A-jar-%E9%94%99%E8%AF%AF"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">不是线上 jar 错误</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E4%B8%8D%E6%98%AF-justice-cloud-proxy-token"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">不是 justice-cloud-proxy-token</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E4%B8%8D%E6%98%AF-authenticated-%E6%8A%8A%E5%8C%BF%E5%90%8D%E7%94%A8%E6%88%B7%E8%AF%AF%E5%88%A4%E4%B8%BA%E5%B7%B2%E8%AE%A4%E8%AF%81"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">不是 authenticated() 把匿名用户误判为已认证</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%A0%B9%E5%9B%A0%EF%BC%9A%E7%9B%B8%E5%90%8C-matcher-%E8%A2%AB%E5%90%8E%E6%B3%A8%E5%86%8C%E7%9A%84%E8%A7%84%E5%88%99%E8%A6%86%E7%9B%96"><span class="post-toc-number">3.</span> <span class="post-toc-text">根因：相同 matcher 被后注册的规则覆盖</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E4%B8%9A%E5%8A%A1%E4%B8%8E%E9%BB%98%E8%AE%A4%E8%A7%84%E5%88%99%E9%87%8C%E5%87%BA%E7%8E%B0%E4%BA%86%E7%9B%B8%E5%90%8C%E7%9A%84-matcher"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">业务与默认规则里出现了相同的 matcher</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E6%9C%80%E7%BB%88%E8%A7%84%E5%88%99%E8%A1%A8%E6%98%AF%E6%9C%89%E5%BA%8F%E7%9A%84-LinkedHashMap"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">最终规则表是有序的 LinkedHashMap</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E5%8C%B9%E9%85%8D%E6%97%B6%E6%8C%89%E8%A1%A8%E9%A1%BA%E5%BA%8F%E5%8F%96%E7%AC%AC%E4%B8%80%E6%9D%A1%E5%91%BD%E4%B8%AD"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">匹配时按表顺序取第一条命中</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-collection-list-%E4%BB%8D%E4%BC%9A%E8%A2%AB%E6%8B%A6%E6%88%AA"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">为什么 collection&#x2F;list 仍会被拦截</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-tk-File-%E7%9A%84%E6%8E%A5%E5%8F%A3%E4%BC%9A%E5%85%B1%E4%BA%AB%E5%90%8C%E4%B8%80%E7%BB%84-matcher"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">为什么 tk.File 的接口会共享同一组 matcher</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%AD%A3%E7%A1%AE%E4%BF%AE%E5%A4%8D%E6%96%B9%E5%BC%8F"><span class="post-toc-number">4.</span> <span class="post-toc-text">正确修复方式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%8E%92%E6%9F%A5%E7%B1%BB%E4%BC%BC%E9%97%AE%E9%A2%98%E7%9A%84%E9%AA%8C%E8%AF%81%E6%B8%85%E5%8D%95"><span class="post-toc-number">5.</span> <span class="post-toc-text">排查类似问题的验证清单</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="post-toc-number">6.</span> <span class="post-toc-text">结论</span></a></li></ol>
+    </ul>
+    
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
+
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                Spring Security 5 中重复 antMatchers 覆盖授权规则的排查
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="https://www.gravatar.com/avatar/53e53e02713f136f579cfc2c3e28f0cf?s=140&d=identicon" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>猪蹄宝宝</strong>
+        <span>2026-08-19</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">devices other</i>
+    <span class="visuallyhidden">devices other</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+    <li class="mdl-menu__item">在其它设备中阅读本文章</li>
+    
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAAEOCAAAAABd2qZ5AAADhUlEQVR42u3ay24jMQwEQP//T+9eA2Rtd5NS4gVqToYfY6nmQJDqxx/Xl+uBAAcOHDhw4MCBAweOD+Z4xNfX7//jpqNfPfv0+x2eff/763wvOHDgwIHjHsebUvTy719v49lyX287v0+O/nTNOHDgwIHjGkfyN683kEOfYt2T4cCBAweO3+XYF8i2kcsfAw4cOHDg+B85onFb8Gl9OBQ/JBw4cODA8Tkcs2Oh/IgoL6L7e/7QrBQHDhw4cBwNNHzm61/Ld+DAgQMHjsV1tvQmRTc/sqr3ggMHDhw4jnLkG5uN/HKglng/KMSBAwcOHPc42ljz6+3NDpDyeETy7/nacODAgQPHbY78iCiP0LWDvLzB23DjwIEDB44bHPvilxfsTQvXjhGLHeHAgQMHjgscm+LaNnWz9m8WuYsOvXDgwIEDx1GOfACXBwvycttG8doWMTqgwoEDBw4cRznag6LZUVBbXJPARA6NAwcOHDg+gSPfXnuAlLdYs7KarBYHDhw4cNzm2DdayaJfv5PH4FqON/fBgQMHDhxHOfKma1Z084LX0ucBuzfrx4EDBw4cP84xK7ptqG6/knZQiAMHDhw4bnDkS2yj1ZvyWYcSNr/FgQMHDhwXODbRgeQOmyDCLK537BQOBw4cOHAc4phteNPgbZqxNrqHAwcOHDhuc+wj1KcQZ6PG9qgMBw4cOHD8JMc+uNCW1c0QMHn/zTs4cODAgeMoRxs7aEvjqXLeNnjDQosDBw4cOA5xtO1W0kS1jV/LvQ9G4MCBAweO2xz7MFweaNhHFvbDRBw4cODAcY9jM7ZrAwT52G4TdCi4ceDAgQPHNY7ZH+wPfvIG7FSEAgcOHDhw/C5H0j7NlpJTbkaEb9aJAwcOHDguc8yaqzY2l9Psj6aGw0EcOHDgwHGUIwnP5ZvZlNV2RFg/ABw4cODAcZljdijVxh1mY8Q8LF5Ew3HgwIEDx1GO9spjc3lBzZuu2aHUm/vjwIEDB46jHI/4mh1HtY1ffoDUhvxw4MCBA8dPcswasM14Lr9DAj0LSeDAgQMHjtsc7SZnA7t28zloW5hx4MCBA8fncxQjuTjQMHsY+SEZDhw4cOD4XY5Z0LmOr40K82xtOHDgwIHjHkcbYmiDBbP7b0p19Ghx4MCBA8cFjs04r8WaBRcSrORXV/IdOHDgwIHDhQMHDhw4cODAgQMHjs+9/gLPexDxVr3RiAAAAABJRU5ErkJggg==">
+    
+</ul>
+
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-none-link" href="/tags/Java/" rel="tag">Java</a></li><li class="mdl-menu__item"><a class="post_tag-none-link" href="/tags/Spring-Boot/" rel="tag">Spring Boot</a></li><li class="mdl-menu__item"><a class="post_tag-none-link" href="/tags/Spring-Security/" rel="tag">Spring Security</a></li><li class="mdl-menu__item"><a class="post_tag-none-link" href="/tags/antMatchers/" rel="tag">antMatchers</a></li><li class="mdl-menu__item"><a class="post_tag-none-link" href="/tags/%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6/" rel="tag">权限控制</a>
+    </ul>
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Spring Security 5 中重复 antMatchers 覆盖授权规则的排查&url=https://blog.gadfly.vip/2026/08/spring-security-5-repeated-ant-matchers-overwrite/index.html&pic=https://blog.gadfly.viphttps://www.gravatar.com/avatar/53e53e02713f136f579cfc2c3e28f0cf?s=140&d=identicon&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Spring Security 5 中重复 antMatchers 覆盖授权规则的排查&url=https://blog.gadfly.vip/2026/08/spring-security-5-repeated-ant-matchers-overwrite/index.html&via=猪蹄宝宝" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.gadfly.vip/2026/08/spring-security-5-repeated-ant-matchers-overwrite/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://blog.gadfly.vip/2026/08/spring-security-5-repeated-ant-matchers-overwrite/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=猪蹄宝宝的博客n(*≧▽≦*)n&title=Spring Security 5 中重复 antMatchers 覆盖授权规则的排查&summary=有人问我，我就会讲，但是无人来&pics=https://blog.gadfly.viphttps://www.gravatar.com/avatar/53e53e02713f136f579cfc2c3e28f0cf?s=140&d=identicon&url=https://blog.gadfly.vip/2026/08/spring-security-5-repeated-ant-matchers-overwrite/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 QQ
+            </li>
+        </a>
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+    
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p>最近排查一个 Homolo Boot 5.2.2 项目的文件接口权限问题，现象非常反直觉：在业务项目的 <code>authorizeRequestBeforeDefault</code> 中加了两条看起来更严格的规则后，<code>tk.File</code> 的大部分接口反而不登录就能访问；把这两条规则注释掉，框架默认权限反而恢复正常。</p>
+<p>这篇文章记录完整的排查过程，并借此说明 Spring Security 5 中一个容易被忽略的规则覆盖细节。</p>
+<h2 id="问题表现">问题表现</h2>
+<p>业务项目的安全配置大致如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Override</span>
+<span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">authorizeRequestBeforeDefault</span><span class="token punctuation">(</span>
+        <span class="token class-name">ExpressionUrlAuthorizationConfigurer</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">HttpSecurity</span><span class="token punctuation">></span></span><span class="token punctuation">.</span>ExpressionInterceptUrlRegistry registry<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    registry
+            <span class="token punctuation">.</span><span class="token function">antMatchers</span><span class="token punctuation">(</span><span class="token string">"/service/rest/tk.File/collection/list"</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">hasRole</span><span class="token punctuation">(</span><span class="token class-name">Role</span><span class="token punctuation">.</span><span class="token constant">ADMIN_ROLE_ID</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">antMatchers</span><span class="token punctuation">(</span><span class="token string">"/service/rest/tk.File/**"</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">authenticated</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Homolo Boot 基类随后注册默认规则：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">authorizeRequestDefault</span><span class="token punctuation">(</span>
+        <span class="token class-name">ExpressionUrlAuthorizationConfigurer</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">HttpSecurity</span><span class="token punctuation">></span></span><span class="token punctuation">.</span>ExpressionInterceptUrlRegistry registry<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    registry
+            <span class="token punctuation">.</span><span class="token function">antMatchers</span><span class="token punctuation">(</span><span class="token string">"/service/rest/tk.File/**/cropImage"</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">hasRole</span><span class="token punctuation">(</span><span class="token class-name">Role</span><span class="token punctuation">.</span><span class="token constant">ADMIN_ROLE_ID</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">antMatchers</span><span class="token punctuation">(</span><span class="token string">"/service/rest/tk.File/**/jcropIframe"</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">hasRole</span><span class="token punctuation">(</span><span class="token class-name">Role</span><span class="token punctuation">.</span><span class="token constant">ADMIN_ROLE_ID</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">antMatchers</span><span class="token punctuation">(</span><span class="token string">"/service/rest/tk.File/**/info"</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">authenticated</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">antMatchers</span><span class="token punctuation">(</span><span class="token string">"/service/rest/tk.File/**/listByIds"</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">hasRole</span><span class="token punctuation">(</span><span class="token class-name">Role</span><span class="token punctuation">.</span><span class="token constant">ADMIN_ROLE_ID</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">antMatchers</span><span class="token punctuation">(</span><span class="token string">"/service/rest/tk.File/**/meta"</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">hasRole</span><span class="token punctuation">(</span><span class="token class-name">Role</span><span class="token punctuation">.</span><span class="token constant">ADMIN_ROLE_ID</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">antMatchers</span><span class="token punctuation">(</span><span class="token string">"/service/rest/tk.File/**/upload"</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">authenticated</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">antMatchers</span><span class="token punctuation">(</span><span class="token string">"/service/rest/tk.File/**/uploadImage"</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">hasRole</span><span class="token punctuation">(</span><span class="token class-name">Role</span><span class="token punctuation">.</span><span class="token constant">ADMIN_ROLE_ID</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">antMatchers</span><span class="token punctuation">(</span><span class="token string">"/service/rest/tk.File/**"</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">permitAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>配置方法的调用顺序是：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token function">authorizeRequestBeforeDefault</span><span class="token punctuation">(</span>registry<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">authorizeRequestDefault</span><span class="token punctuation">(</span>registry<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">authorizeRequestAfterDefault</span><span class="token punctuation">(</span>registry<span class="token punctuation">)</span><span class="token punctuation">;</span>
+registry<span class="token punctuation">.</span><span class="token function">anyRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">denyAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>按直觉，业务配置在前，应该优先于框架默认配置；业务规则是 <code>authenticated()</code>，看起来也应该比默认的 <code>permitAll()</code> 更严格。但实际行为却是：</p>
+<table>
+<thead>
+<tr>
+<th>请求</th>
+<th>增加两条业务规则后</th>
+<th>注释两条业务规则后</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tk.File/x/cropImage</code></td>
+<td>匿名可访问</td>
+<td>按默认规则限制</td>
+</tr>
+<tr>
+<td><code>tk.File/x/meta</code></td>
+<td>匿名可访问</td>
+<td>按默认规则限制</td>
+</tr>
+<tr>
+<td><code>tk.File/x/uploadImage</code></td>
+<td>匿名可访问</td>
+<td>按默认规则限制</td>
+</tr>
+<tr>
+<td><code>tk.File/x/listByIds</code></td>
+<td>匿名可访问</td>
+<td>按默认规则限制</td>
+</tr>
+<tr>
+<td><code>tk.File/x/info</code></td>
+<td>匿名可访问</td>
+<td>按默认规则限制</td>
+</tr>
+<tr>
+<td><code>tk.File/collection/list</code></td>
+<td>要求登录/相应权限</td>
+<td>按默认规则处理</td>
+</tr>
+<tr>
+<td><code>tk.File/x/list</code></td>
+<td>需结合实际部署单独核对</td>
+<td>需结合实际部署单独核对</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>注：「匿名可访问」使用不带 <code>Cookie</code>、<code>Authorization</code> 和 <code>justice-cloud-proxy-token</code> 的 <code>curl</code> 验证，并不是代理 token 自动登录造成的结果。</p>
+</blockquote>
+<h2 id="排除了三种常见误判">排除了三种常见误判</h2>
+<h3 id="不是线上-jar-错误">不是线上 jar 错误</h3>
+<p>线上版本的行为与带这两条配置的代码版本一致，问题不是线上部署了旧 jar，也不存在代码与线上行为不一致。</p>
+<h3 id="不是-justice-cloud-proxy-token">不是 <code>justice-cloud-proxy-token</code></h3>
+<p>archives 项目确实注册了 <code>JusticeCloudProxyTokenFilter</code>，它可以通过 <code>justice-cloud-proxy-token</code> 请求头自动登录用户。但去掉所有请求头后，匿名 <code>curl</code> 仍然可以复现 <code>cropImage</code>、<code>meta</code>、<code>uploadImage</code>、<code>listByIds</code> 等接口的放行，因此代理自动登录不是本问题的原因。</p>
+<h3 id="不是-authenticated-把匿名用户误判为已认证">不是 <code>authenticated()</code> 把匿名用户误判为已认证</h3>
+<p>如果 <code>authenticated()</code> 的语义整体失效，那么所有命中该表达式的接口应该一致放行或一致拒绝。实际结果与动作路径有关：<code>collection/list</code> 仍然被拦，而具体动作接口被放行。因此需要继续分析规则本身，而不是只分析当前 <code>Authentication</code> 对象。</p>
+<h2 id="根因：相同-matcher-被后注册的规则覆盖">根因：相同 matcher 被后注册的规则覆盖</h2>
+<h3 id="业务与默认规则里出现了相同的-matcher">业务与默认规则里出现了相同的 matcher</h3>
+<p><code>antMatchers</code> 创建的是 <code>AntPathRequestMatcher</code>：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// ExpressionUrlAuthorizationConfigurer</span>
+<span class="token keyword">public</span> <span class="token class-name">C</span> <span class="token function">antMatchers</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> antPatterns<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token function">chainRequestMatchers</span><span class="token punctuation">(</span><span class="token class-name">RequestMatchers</span><span class="token punctuation">.</span><span class="token function">antMatchers</span><span class="token punctuation">(</span>antPatterns<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>AntPathRequestMatcher</code> 的相等判断基于 pattern、HTTP method 和大小写配置：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Override</span>
+<span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">equals</span><span class="token punctuation">(</span><span class="token class-name">Object</span> obj<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token punctuation">(</span>obj <span class="token keyword">instanceof</span> <span class="token class-name">AntPathRequestMatcher</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token class-name">AntPathRequestMatcher</span> other <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">AntPathRequestMatcher</span><span class="token punctuation">)</span> obj<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>pattern<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>other<span class="token punctuation">.</span>pattern<span class="token punctuation">)</span>
+            <span class="token operator">&amp;&amp;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>httpMethod <span class="token operator">==</span> other<span class="token punctuation">.</span>httpMethod
+            <span class="token operator">&amp;&amp;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>caseSensitive <span class="token operator">==</span> other<span class="token punctuation">.</span>caseSensitive<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>业务规则和基类默认规则中都出现了完全相同的 matcher：</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">/service/rest/tk.File/**<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>因此它们不是两个互相独立的 key，而是 <code>equals()</code> 为 <code>true</code> 的同一个逻辑 key。</p>
+<h3 id="最终规则表是有序的-LinkedHashMap">最终规则表是有序的 LinkedHashMap</h3>
+<p>构建安全元数据时，Spring Security 使用有序的 <code>LinkedHashMap</code>：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// AbstractInterceptUrlConfigurer#createRequestMap</span>
+<span class="token keyword">final</span> <span class="token class-name">LinkedHashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">RequestMatcher</span><span class="token punctuation">,</span> <span class="token class-name">Collection</span><span class="token punctuation">&lt;</span><span class="token class-name">ConfigAttribute</span><span class="token punctuation">></span><span class="token punctuation">></span></span> <span class="token function">createRequestMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">LinkedHashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">RequestMatcher</span><span class="token punctuation">,</span> <span class="token class-name">Collection</span><span class="token punctuation">&lt;</span><span class="token class-name">ConfigAttribute</span><span class="token punctuation">></span><span class="token punctuation">></span></span> requestMap <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LinkedHashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">UrlMapping</span> mapping <span class="token operator">:</span> <span class="token function">getUrlMappings</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token class-name">RequestMatcher</span> matcher <span class="token operator">=</span> mapping<span class="token punctuation">.</span><span class="token function">getRequestMatcher</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Collection</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">ConfigAttribute</span><span class="token punctuation">></span></span> configAttrs <span class="token operator">=</span> mapping<span class="token punctuation">.</span><span class="token function">getConfigAttrs</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        requestMap<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>matcher<span class="token punctuation">,</span> configAttrs<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> requestMap<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Java <code>LinkedHashMap.put()</code> 遇到一个已经存在、并且 <code>equals()</code> 相等的 key 时有两个重要行为：</p>
+<ol>
+<li>不会新增第二个 entry；</li>
+<li>会替换原 entry 的 value，但<strong>保留原 entry 的插入位置</strong>。</li>
+</ol>
+<p>于是整个注册过程实际得到的是这样一张表（<code>/**</code> 的 value 被后注册的 <code>permitAll()</code> 替换，但位置仍停留在业务注册时的位置）：</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">/service/rest/tk.File/collection/list      → hasRole(ADMIN)     ← 业务注册，保留
+/service/rest/tk.File/**                  → permitAll()        ← 业务注册，value 被基类覆盖
+/service/rest/tk.File/**/cropImage        → hasRole(ADMIN)
+/service/rest/tk.File/**/jcropIframe      → hasRole(ADMIN)
+/service/rest/tk.File/**/info             → authenticated()
+/service/rest/tk.File/**/listByIds        → hasRole(ADMIN)
+/service/rest/tk.File/**/meta             → hasRole(ADMIN)
+/service/rest/tk.File/**/upload           → authenticated()
+/service/rest/tk.File/**/uploadImage      → hasRole(ADMIN)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>也就是说，业务配置中的 <code>authenticated()</code> 并没有覆盖框架默认的 <code>permitAll()</code>；相反，<strong>重复的 matcher 让框架后来注册的 <code>permitAll()</code> 替换了业务规则的授权 value，同时保留了宽泛 matcher 原来的优先位置</strong>。</p>
+<h3 id="匹配时按表顺序取第一条命中">匹配时按表顺序取第一条命中</h3>
+<p><code>DefaultFilterInvocationSecurityMetadataSource</code> 会按照表顺序取第一条匹配规则：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// DefaultFilterInvocationSecurityMetadataSource#getAttributes</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">Map<span class="token punctuation">.</span>Entry</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">RequestMatcher</span><span class="token punctuation">,</span> <span class="token class-name">Collection</span><span class="token punctuation">&lt;</span><span class="token class-name">ConfigAttribute</span><span class="token punctuation">></span><span class="token punctuation">></span></span> entry
+        <span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>requestMap<span class="token punctuation">.</span><span class="token function">entrySet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>entry<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">matches</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> entry<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>因此对 <code>tk.File/x/cropImage</code> 来说，它第一个就命中了 <code>/service/rest/tk.File/**</code> 的 <code>permitAll()</code>，根本走不到后面的 <code>cropImage</code> 管理员规则，于是被匿名放行。<code>meta</code>、<code>listByIds</code>、<code>uploadImage</code>、<code>info</code> 等接口同理。</p>
+<h3 id="为什么-collection-list-仍会被拦截">为什么 <code>collection/list</code> 仍会被拦截</h3>
+<p>业务配置中还有一条不同的 matcher：<code>/service/rest/tk.File/collection/list</code>。它与基类的 <code>/service/rest/tk.File/**</code> 并不相等，不会被后面的 <code>permitAll()</code> 替换，因此在规则表中保留了：</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">/service/rest/tk.File/collection/list → hasRole(ADMIN)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>它位于 <code>/**</code> 之前，所以访问 <code>collection/list</code> 时，会命中这条管理员权限规则，而不是命中重复的 <code>/**</code> entry。</p>
+<blockquote>
+<p>注意：<code>tk.File/x/list</code> 与 <code>collection/list</code> 的业务动作不同。<code>x/list</code> 会被 <code>RestServer</code> 按 <code>tk.File.list</code> 分发；如果 <code>FileController</code> 没有这个 action，它可能返回 action not found，而不是进入 <code>collection/list</code> 的管理员规则。线上若观察到 <code>x/list</code> 被拦截，应把它作为独立现象，继续核对实际请求路径、容器转发和部署版本，不能直接归因于 <code>collection/list</code> 的精确 matcher。</p>
+</blockquote>
+<h3 id="为什么-tk-File-的接口会共享同一组-matcher">为什么 <code>tk.File</code> 的接口会共享同一组 matcher</h3>
+<p>Homolo Boot 的 <code>tk.File</code> 并不是每个方法都单独使用 Spring MVC 的 <code>@RequestMapping</code>，<code>FileController</code> 使用框架自己的注解：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@RestService</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"tk.File"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">FileController</span> <span class="token punctuation">&#123;</span>
+    <span class="token annotation punctuation">@ActionMethod</span>
+    <span class="token keyword">public</span> <span class="token class-name">Object</span> <span class="token function">meta</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token punctuation">&#125;</span>
+
+    <span class="token annotation punctuation">@ActionMethod</span>
+    <span class="token keyword">public</span> <span class="token class-name">Object</span> <span class="token function">info</span><span class="token punctuation">(</span><span class="token class-name">RequestParameters</span> params<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token punctuation">&#125;</span>
+
+    <span class="token annotation punctuation">@ActionMethod</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">download</span><span class="token punctuation">(</span><span class="token annotation punctuation">@ResourceVariable</span> <span class="token class-name">String</span> id<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>真正暴露 <code>/service/rest/**</code> 的是统一的 <code>RestServer</code>：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@RestController</span>
+<span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/service/rest"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RestServer</span> <span class="token punctuation">&#123;</span>
+    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/&#123;module&#125;/&#123;resource&#125;/&#123;action&#125;"</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">Object</span> <span class="token function">getHandleResourceAction</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>RestServer</code> 再通过 <code>RestServiceRegistry</code> 找到 <code>tk.File</code> 服务和 action。这个架构解释了为什么所有文件操作都共享 <code>/service/rest/tk.File/...</code> 这一组 URL matcher——它只是背景，并非本次问题的根因；根因仍然是重复的 <code>AntPathRequestMatcher</code> key 在 <code>LinkedHashMap</code> 中发生 value 覆盖。</p>
+<h2 id="正确修复方式">正确修复方式</h2>
+<p>最简单、最安全的修复是删除业务中与框架默认规则重复的宽泛 matcher；如果业务确实需要额外限制 <code>collection/list</code>，可以保留那条更具体的规则：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 业务特有的精确规则，可以按实际需求保留</span>
+<span class="token punctuation">.</span><span class="token function">antMatchers</span><span class="token punctuation">(</span><span class="token string">"/service/rest/tk.File/collection/list"</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">hasRole</span><span class="token punctuation">(</span><span class="token class-name">Role</span><span class="token punctuation">.</span><span class="token constant">ADMIN_ROLE_ID</span><span class="token punctuation">)</span>
+
+<span class="token comment">// 删除：与 Homolo Boot 默认规则重复，不能再次声明</span>
+<span class="token comment">// .antMatchers("/service/rest/tk.File/**").authenticated();</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>如果业务确实需要覆盖默认权限，不能只把具体 action 规则移动到 <code>authorizeRequestAfterDefault</code>——因为前面已经存在的 <code>/service/rest/tk.File/**</code> entry 仍会先匹配，后置的具体规则到不了。这个场景有两种可靠做法：</p>
+<ol>
+<li>删除业务重复声明的 <code>/service/rest/tk.File/**</code>，直接使用 Homolo Boot 的默认规则；</li>
+<li>修改框架的规则扩展方式，使业务能够在默认规则生成后重建完整的 <code>tk.File</code> 规则表，并保证具体 action 规则排在宽泛兜底规则之前。</li>
+</ol>
+<p>如果只是恢复 Homolo Boot 已有的默认权限，第一种方式最稳妥。<strong>不要在同一个 registry 中复制一份默认规则，也不要依赖 <code>before</code>/<code>after</code> hook 的方法名来推断最终顺序，必须检查最终生成的 matcher 列表。</strong></p>
+<h2 id="排查类似问题的验证清单">排查类似问题的验证清单</h2>
+<p>排查类似问题时，不能只看 Java 配置的书写顺序，应该同时检查：</p>
+<ol>
+<li><code>antMatchers</code> 实际创建的 matcher 类型；</li>
+<li>matcher 的 <code>equals()</code> 和 <code>hashCode()</code>；</li>
+<li>规则最终写入的集合类型；</li>
+<li>重复 key 写入时是追加、覆盖，还是抛异常；</li>
+<li>最终 <code>FilterInvocationSecurityMetadataSource</code> 中的 matcher 顺序和授权属性。</li>
+</ol>
+<p>可以先从源码确认：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">grep</span> <span class="token parameter variable">-n</span> <span class="token string">"antMatchers\|createRequestMap"</span> <span class="token punctuation">\</span>
+  spring-security-config-*/org/springframework/security/config/annotation/web/
+
+javap <span class="token parameter variable">-c</span> <span class="token parameter variable">-p</span> WebSecurityConfig.class<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>实际请求也应使用完全匿名的方式验证，避免把代理 token、JWT、Cookie 或浏览器已有会话误认为权限来源：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> <span class="token parameter variable">-sS</span> <span class="token parameter variable">-D</span> - <span class="token parameter variable">-o</span> /dev/null <span class="token punctuation">\</span>
+  http://localhost:8182/backend/service/rest/tk.File/x/cropImage<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>同时记录：</p>
+<ul>
+<li>HTTP status；</li>
+<li><code>Location</code>；</li>
+<li><code>Set-Cookie</code>；</li>
+<li>响应体是否来自 <code>RestServer</code>/<code>FileController</code>；</li>
+<li>当前进程启动时间和实际加载的 class 时间。</li>
+</ul>
+<h2 id="结论">结论</h2>
+<p>本次问题的根因既不是 Homolo Boot 的 <code>tk.File</code> 默认权限没有定义，也不是匿名用户被错误地识别成了已认证用户，更不是代理 token 自动登录。</p>
+<p>根因是两条等价的规则先后进入同一个 <code>LinkedHashMap</code> key：</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">业务 before 规则：/service/rest/tk.File/** → authenticated()
+框架 default 规则：/service/rest/tk.File/** → permitAll()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>两个 <code>AntPathRequestMatcher</code> 相等，后注册的 <code>permitAll()</code> 替换了前面的授权 value，但保留了宽泛 matcher 的优先位置，导致它在具体的 <code>cropImage</code>、<code>meta</code>、<code>listByIds</code>、<code>uploadImage</code> 等默认规则之前匹配，最终把这些接口匿名放开。</p>
+<p>因此，Spring Security URL 权限配置中最危险的不只是「规则写反了」，还包括：</p>
+<blockquote>
+<p>不要在同一个授权 registry 中重复注册完全相同的 matcher，尤其不要以为后面的规则会追加成第二条规则。对于基于 map 的规则集合，重复 matcher 可能是一次 value 覆盖。</p>
+</blockquote>
+
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #757575;
+            text-shadow: 0;
+            display: none
+        }
+</style>
+	
+<div class="btn_click_load"> 
+    <button class="disqus_click_btn">阅读评论（请确保 disqus 可以正常加载）</button>
+</div>
+
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://blog.gadfly.vip/2026/08/spring-security-5-repeated-ant-matchers-overwrite/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'https://blog.gadfly.vip/2026/08/spring-security-5-repeated-ant-matchers-overwrite/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/ls-javascript" id="disqus-lazy-load-script">
+    $.ajax({
+        url: 'https://disqus.com/next/config.json',
+        timeout: 4000,
+        type: 'GET',
+        success: (function() {
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//gadfly3173.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+            $('.disqus_click_btn').css('display','none');
+        })(),
+        error: function() {
+          $('.disqus_click_btn').css('display','block');
+        }
+    });
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//gadfly3173.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.disqus_click_btn').css('display','none');
+    });
+</script>
+  	
+
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2026/05/sourcegit-textmate-memory-leak/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="https://www.gravatar.com/avatar/53e53e02713f136f579cfc2c3e28f0cf?s=140&amp;d=identicon" alt="猪蹄宝宝's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        gadfly@gadfly.vip
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="mailto:gadfly@gadfly.vip" target="_blank" title="给我发邮件">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        给我发邮件
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2026/08/">八月 2026<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2026/05/">五月 2026<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2026/04/">四月 2026<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2026/02/">二月 2026<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2025/11/">十一月 2025<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2025/05/">五月 2025<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2024/07/">七月 2024<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2023/07/">七月 2023<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2023/01/">一月 2023<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2022/03/">三月 2022<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2022/02/">二月 2022<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/04/">四月 2021<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/02/">二月 2021<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/04/">四月 2020<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/09/">九月 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">七月 2019<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/07/">七月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/05/">五月 2018<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/08/">八月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">3</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                分类
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                <a class="sidebar_archives-link" href="/categories/Electron/">Electron<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/NFC/">NFC<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/RFID/">RFID<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/git/">git<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E4%BC%98%E5%8C%96/">优化<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E5%BB%BA%E7%AB%99/">建站<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E5%BC%80%E5%8F%91/">开发<span class="sidebar_archives-count">14</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E5%BC%80%E5%8F%91/NET/">.NET<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E5%BC%80%E5%8F%91/Claude/">Claude<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E5%BC%80%E5%8F%91/Java/">Java<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E5%BC%80%E5%8F%91/Java/Spring/">Spring<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E5%BC%80%E5%8F%91/Java/Spring/%E5%AE%89%E5%85%A8/">安全<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E5%BC%80%E5%8F%91/SSH/">SSH<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E5%BC%80%E5%8F%91/%E5%B9%B6%E5%8F%91/">并发<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/">开发<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/%E6%97%B6%E5%8C%BA/">时区<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">消息队列<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E7%94%B5%E8%84%91/">电脑<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E7%B3%BB%E7%BB%9F/">系统<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91/">开发<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91/Linux/">Linux<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E7%BA%AA%E5%AE%9E/">纪实<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E9%80%9A%E4%BF%A1/">通信<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E9%9A%8F%E7%AC%94/">随笔<span class="sidebar_archives-count">1</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Pages  -->
+    
+        <li>
+            <a href="/gallery/" title="图库">
+                
+                    <i class="material-icons sidebar-material-icons">photo</i>
+                
+                图库
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/timeline/" title="时间线">
+                
+                    <i class="material-icons sidebar-material-icons">timeline</i>
+                
+                时间线
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/tags/" title="标签云">
+                
+                    <i class="material-icons sidebar-material-icons">loyalty</i>
+                
+                标签云
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/messages.html" title="留言板">
+                
+                    <i class="material-icons sidebar-material-icons">message</i>
+                
+                留言板
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/about.html" title="关于">
+                
+                    <i class="material-icons sidebar-material-icons">person</i>
+                
+                关于
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/links/" title="友情链接">
+                
+                    <i class="material-icons sidebar-material-icons">link</i>
+                
+                友情链接
+            </a>
+        </li>
+        
+    
+
+    <!-- Article Number  -->
+    
+        <li>
+            <a href="/archives">
+                文章总数
+                <span class="sidebar-badge">41</span>
+            </a>
+        </li>
+        
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+  <div class="sidebar-divider"></div>
+
+
+<!-- Theme Color Switch -->
+
+
+  <div class="sidebar-text mdl-button mdl-js-button sidebar-footer-text-div"
+    data-upgraded=",MaterialButton,MaterialRipple">
+    深色模式
+    <div class="sidebar-badge theme-color-switch material-icons">
+      <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect">
+        <input type="checkbox" id="theme-color-switch-input" class="mdl-switch__input">
+      </label>
+    </div>
+  </div>
+  <script>
+    $(document).ready(function () {
+      // darkMode Detection
+      const rememberThemeColorStorageKey = 'theme-color';
+      const darkMode =
+        window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)");
+      const themeColorSwitchInput = document.getElementById('theme-color-switch-input');
+      const rememberThemeColor = localStorage.getItem(rememberThemeColorStorageKey);
+      // 判断是否匹配深色模式
+      if (rememberThemeColor === 'dark') {
+        tinyBallSwitchTheme(true);
+        document.body.setAttribute('data-theme', 'dark');
+        document.getElementById('theme-color-switch-input').setAttribute('checked', 'checked');
+      } else if (rememberThemeColor === 'light') {
+        document.body.setAttribute('data-theme', '');
+      } else if (darkMode && darkMode.matches) {
+        tinyBallSwitchTheme(true);
+        document.body.setAttribute('data-theme', 'dark');
+        document.getElementById('theme-color-switch-input').setAttribute('checked', 'checked');
+      } else {
+        document.body.setAttribute('data-theme', '');
+      }
+      // 监听主题切换事件
+      themeColorSwitchInput.addEventListener('change', () => {
+        tinyBallSwitchTheme(themeColorSwitchInput.checked);
+        if (themeColorSwitchInput.checked) {
+          document.body.setAttribute('data-theme', 'dark');
+          localStorage.setItem(rememberThemeColorStorageKey, 'dark');
+        } else {
+          document.body.setAttribute('data-theme', '');
+          localStorage.setItem(rememberThemeColorStorageKey, 'light');
+        }
+      });
+      darkMode &&
+        darkMode.addEventListener("change", (e) => {
+          tinyBallSwitchTheme(e.matches);
+          if (e.matches) {
+            document.body.setAttribute('data-theme', 'dark');
+            themeColorSwitchInput.setAttribute('checked', 'checked');
+            localStorage.setItem(rememberThemeColorStorageKey, 'dark');
+          } else {
+            document.body.setAttribute('data-theme', '');
+            themeColorSwitchInput.removeAttribute('checked');
+            localStorage.setItem(rememberThemeColorStorageKey, 'light');
+          }
+        });
+      function tinyBallSwitchTheme(isDark) {
+        const tinyBallCanvas = document.getElementById('tinyball-canvas');
+        const tinyBallContext = tinyBallCanvas.getContext('2d');
+        if (isDark) {
+          tinyBallContext.strokeStyle = 'rgba(255,255,255,0.02)',
+            tinyBallContext.fillStyle = 'rgba(255,255,255,0.05)';
+        } else {
+          tinyBallContext.strokeStyle = 'rgba(0,0,0,0.02)',
+            tinyBallContext.fillStyle = 'rgba(0,0,0,0.05)';
+        }
+      }
+    });
+  </script>
+
+
+<!-- Theme Material -->
+
+  <a href="https://github.com/gadfly3173/hexo-theme-material" class="sidebar-footer-text-a" target="_blank">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div"
+      data-upgraded=",MaterialButton,MaterialRipple">
+      主题 - Material
+        <span class="sidebar-badge badge-circle">i</span>
+    </div>
+  </a>
+  
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+
+    <!-- Facebook -->
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/gadfly3173" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+        <a href="https://space.bilibili.com/17819592" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-bilibili">
+                <span class="visuallyhidden">Bilibili</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Telegram -->
+    
+
+    <!-- V2EX -->
+    
+
+    <!-- Segmentfault -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;<span year></span>&nbsp;猪蹄宝宝的博客n(*≧▽≦*)n
+            
+                <br>
+                
+                    <a class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content" style="text-decoration: none" target="_blank" href="https://beian.miit.gov.cn/" rel="nofollow noopener">沪ICP备17034114号-1</a>
+                
+            
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/bollnh/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import JS File -->
+
+    <script>lsloader.load("lazyload_js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==", true)</script>
+
+
+
+    <script>lsloader.load("js_js","/js/js.js?zsFu+9rwaO7ecBfpqqcgyA==", true)</script>
+
+
+
+    <script>lsloader.load("np_js","/js/nprogress.min.js?pl3Qhb9lvqR1FlyLUna1Yw==", true)</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+   <!-- 使用 DISQUS js 代码 -->
+
+
+
+
+
+
+<!-- UC Browser Compatible -->
+<!-- <script>
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('<link rel="stylesheet" href="/css/uc.css">');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script> -->
+
+<!-- Import prettify js  -->
+
+
+
+<!-- Window Load -->
+<!-- add class for prettify -->
+<script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+
+    
+    
+</script>
+
+<!-- Mermaid Load -->
+
+    
+        <script>lsloader.load("mermaid_js","/js/mermaid.min.js?T/0Ed+C/gvAqJV0vNC6ocg==", true)</script>
+    
+    <script type="text/ls-javascript" id="mermaid-init">
+        $(function() {
+            // Since mermaid is excluded from prismjs preprocess (see _config.yml exclude_languages),
+            // code blocks are pure text inside <pre><code>, no span cleanup needed.
+            window.renderMermaidDiagrams = function() {
+                var isDark = document.body.getAttribute('data-theme') === 'dark';
+                mermaid.initialize({
+                    theme: isDark ? 'dark' : 'default',
+                    securityLevel: 'loose',
+                    sequence: {
+                        showActivation: false,
+                    },
+                });
+                mermaid.init(undefined, $('pre.language-mermaid > code'));
+            };
+            window.renderMermaidDiagrams();
+
+            // Re-render when theme changes
+            var origTinyBallSwitchTheme = window.tinyBallSwitchTheme;
+            window.tinyBallSwitchTheme = function(dark) {
+                if (origTinyBallSwitchTheme) origTinyBallSwitchTheme(dark);
+                // Remove existing mermaid SVGs before re-init
+                $('pre.language-mermaid > code').each(function() {
+                    if (this.nextElementSibling && this.nextElementSibling.classList.contains('mermaid')) {
+                        $(this.nextElementSibling).remove();
+                    }
+                });
+                window.renderMermaidDiagrams();
+            };
+        });
+    </script>
+
+
+<!-- MathJax Load-->
+
+
+<script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script>
+
+<!-- Bing Background -->
+
+
+<!-- Custom Footer -->
+
+
+
+<script>
+    var copyrightNow = new Date().getFullYear();
+    var textContent = document.querySelector('span[year]')
+
+    copyrightSince = 2017;
+    if (copyrightSince === copyrightNow||copyrightSince === 0000) {
+        textContent.textContent = copyrightNow
+    } else {
+        textContent.textContent = copyrightSince + ' - ' + copyrightNow
+    }
+
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+    console.log('\n %c © Material Theme | Version: 1.5.7 | https://github.com/gadfly3173/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+</script>
+
+                </main>
+            </div>
+        
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z\d\-\.\+]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(t.test(e.href)||r.test(e.href))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,d=o();function o(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=o());for(var e,i=0;i<d.length;i++)0<=(e=(e=d[i]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,a,n,o=d[i];e=function(){d=d.filter(function(t){return o!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(o)},(t=o).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,n=t.getAttribute("data-original"),a.onload=function(){t.src=n,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=n},t.src!==n&&(a.src=n)))}()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)}(this);</script></body>
+    
+</html>
