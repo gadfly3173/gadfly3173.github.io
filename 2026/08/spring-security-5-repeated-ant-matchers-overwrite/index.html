@@ -51,7 +51,7 @@
     
     <title>
         
-            Spring Security 5 中重复 antMatchers 覆盖授权规则的排查 | 
+            Spring Security 5 中重复 antMatchers 如何覆盖授权属性 | 
         
         猪蹄宝宝的博客n(*≧▽≦*)n
     </title>
@@ -277,14 +277,14 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="https://blog.gadfly.vip/2026/08/spring-security-5-repeated-ant-matchers-overwrite/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Spring Security 5 中重复 antMatchers 覆盖授权规则的排查 | 猪蹄宝宝的博客n(*≧▽≦*)n">
+    <meta property="og:title" content="Spring Security 5 中重复 antMatchers 如何覆盖授权属性 | 猪蹄宝宝的博客n(*≧▽≦*)n">
     <meta property="og:image" content="https://www.gravatar.com/avatar/53e53e02713f136f579cfc2c3e28f0cf?s=140&amp;d=identicon">
     <meta property="og:description" content="有人问我，我就会讲，但是无人来">
     <meta property="og:article:tag" content="Spring Security"> <meta property="og:article:tag" content="Spring Boot"> <meta property="og:article:tag" content="Java"> <meta property="og:article:tag" content="权限控制"> <meta property="og:article:tag" content="antMatchers"> 
 
     
         <meta property="article:published_time" content="Wed Aug 19 2026 17:00:00 GMT+0800">
-        <meta property="article:modified_time" content="Wed Aug 19 2026 17:22:33 GMT+0800">
+        <meta property="article:modified_time" content="Sun Aug 23 2026 16:32:32 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -305,9 +305,9 @@
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "mainEntityOfPage": "https://blog.gadfly.vip/2026/08/spring-security-5-repeated-ant-matchers-overwrite/index.html",
-    "headline": "Spring Security 5 中重复 antMatchers 覆盖授权规则的排查",
+    "headline": "Spring Security 5 中重复 antMatchers 如何覆盖授权属性",
     "datePublished": "Wed Aug 19 2026 17:00:00 GMT+0800",
-    "dateModified": "Wed Aug 19 2026 17:22:33 GMT+0800",
+    "dateModified": "Sun Aug 23 2026 16:32:32 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "猪蹄宝宝",
@@ -404,7 +404,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E9%97%AE%E9%A2%98%E8%A1%A8%E7%8E%B0"><span class="post-toc-number">1.</span> <span class="post-toc-text">问题表现</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%8E%92%E9%99%A4%E4%BA%86%E4%B8%89%E7%A7%8D%E5%B8%B8%E8%A7%81%E8%AF%AF%E5%88%A4"><span class="post-toc-number">2.</span> <span class="post-toc-text">排除了三种常见误判</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E4%B8%8D%E6%98%AF%E7%BA%BF%E4%B8%8A-jar-%E9%94%99%E8%AF%AF"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">不是线上 jar 错误</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E4%B8%8D%E6%98%AF-justice-cloud-proxy-token"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">不是 justice-cloud-proxy-token</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E4%B8%8D%E6%98%AF-authenticated-%E6%8A%8A%E5%8C%BF%E5%90%8D%E7%94%A8%E6%88%B7%E8%AF%AF%E5%88%A4%E4%B8%BA%E5%B7%B2%E8%AE%A4%E8%AF%81"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">不是 authenticated() 把匿名用户误判为已认证</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%A0%B9%E5%9B%A0%EF%BC%9A%E7%9B%B8%E5%90%8C-matcher-%E8%A2%AB%E5%90%8E%E6%B3%A8%E5%86%8C%E7%9A%84%E8%A7%84%E5%88%99%E8%A6%86%E7%9B%96"><span class="post-toc-number">3.</span> <span class="post-toc-text">根因：相同 matcher 被后注册的规则覆盖</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E4%B8%9A%E5%8A%A1%E4%B8%8E%E9%BB%98%E8%AE%A4%E8%A7%84%E5%88%99%E9%87%8C%E5%87%BA%E7%8E%B0%E4%BA%86%E7%9B%B8%E5%90%8C%E7%9A%84-matcher"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">业务与默认规则里出现了相同的 matcher</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E6%9C%80%E7%BB%88%E8%A7%84%E5%88%99%E8%A1%A8%E6%98%AF%E6%9C%89%E5%BA%8F%E7%9A%84-LinkedHashMap"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">最终规则表是有序的 LinkedHashMap</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E5%8C%B9%E9%85%8D%E6%97%B6%E6%8C%89%E8%A1%A8%E9%A1%BA%E5%BA%8F%E5%8F%96%E7%AC%AC%E4%B8%80%E6%9D%A1%E5%91%BD%E4%B8%AD"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">匹配时按表顺序取第一条命中</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-collection-list-%E4%BB%8D%E4%BC%9A%E8%A2%AB%E6%8B%A6%E6%88%AA"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">为什么 collection&#x2F;list 仍会被拦截</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-tk-File-%E7%9A%84%E6%8E%A5%E5%8F%A3%E4%BC%9A%E5%85%B1%E4%BA%AB%E5%90%8C%E4%B8%80%E7%BB%84-matcher"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">为什么 tk.File 的接口会共享同一组 matcher</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%AD%A3%E7%A1%AE%E4%BF%AE%E5%A4%8D%E6%96%B9%E5%BC%8F"><span class="post-toc-number">4.</span> <span class="post-toc-text">正确修复方式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%8E%92%E6%9F%A5%E7%B1%BB%E4%BC%BC%E9%97%AE%E9%A2%98%E7%9A%84%E9%AA%8C%E8%AF%81%E6%B8%85%E5%8D%95"><span class="post-toc-number">5.</span> <span class="post-toc-text">排查类似问题的验证清单</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="post-toc-number">6.</span> <span class="post-toc-text">结论</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E9%97%AE%E9%A2%98%E8%A1%A8%E7%8E%B0"><span class="post-toc-number">1.</span> <span class="post-toc-text">问题表现</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%85%88%E6%8E%92%E9%99%A4%E5%B8%B8%E8%A7%81%E8%AF%AF%E5%88%A4"><span class="post-toc-number">2.</span> <span class="post-toc-text">先排除常见误判</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E4%B8%8D%E6%98%AF%E7%BA%BF%E4%B8%8A-jar-%E9%94%99%E8%AF%AF"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">不是线上 jar 错误</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E4%B8%8D%E6%98%AF-justice-cloud-proxy-token"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">不是 justice-cloud-proxy-token</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E4%B8%8D%E6%98%AF-authenticated-%E5%A4%B1%E6%95%88"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">不是 authenticated() 失效</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%A0%B9%E5%9B%A0%EF%BC%9A%E9%87%8D%E5%A4%8D-matcher-%E6%9B%BF%E6%8D%A2%E4%BA%86%E6%8E%88%E6%9D%83%E5%B1%9E%E6%80%A7"><span class="post-toc-number">3.</span> <span class="post-toc-text">根因：重复 matcher 替换了授权属性</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#antMatchers-%E4%BA%A7%E7%94%9F%E7%9A%84-matcher-%E5%8F%AF%E4%BB%A5%E7%9B%B8%E7%AD%89"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">antMatchers 产生的 matcher 可以相等</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#LinkedHashMap-%E6%9B%BF%E6%8D%A2-value%EF%BC%8C%E4%BD%86%E4%BF%9D%E7%95%99-key-%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">LinkedHashMap 替换 value，但保留 key 的位置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E5%8C%B9%E9%85%8D%E6%97%B6%E5%8F%AA%E5%8F%96%E7%AC%AC%E4%B8%80%E6%9D%A1%E5%91%BD%E4%B8%AD%E9%A1%B9"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">匹配时只取第一条命中项</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-collection-list-%E4%BB%8D%E7%84%B6%E8%A2%AB%E6%8B%A6%E6%88%AA"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">为什么 collection&#x2F;list 仍然被拦截</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%A4%9A%E4%B8%AA-action-%E5%85%B1%E4%BA%AB%E8%BF%99%E4%B8%80%E7%BB%84-URL-matcher"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">为什么多个 action 共享这一组 URL matcher</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E4%BF%AE%E5%A4%8D%E6%96%B9%E5%BC%8F"><span class="post-toc-number">4.</span> <span class="post-toc-text">修复方式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E5%8F%AA%E6%83%B3%E6%81%A2%E5%A4%8D-Homolo-Boot-%E7%9A%84%E9%BB%98%E8%AE%A4%E6%9D%83%E9%99%90"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">只想恢复 Homolo Boot 的默认权限</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E4%B8%9A%E5%8A%A1%E9%9C%80%E8%A6%81%E6%8E%A5%E7%AE%A1%E6%95%B4%E7%BB%84%E8%A7%84%E5%88%99"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">业务需要接管整组规则</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%8E%92%E6%9F%A5%E6%B8%85%E5%8D%95"><span class="post-toc-number">5.</span> <span class="post-toc-text">排查清单</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="post-toc-number">6.</span> <span class="post-toc-text">结论</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%8F%82%E8%80%83%E6%BA%90%E7%A0%81"><span class="post-toc-number">7.</span> <span class="post-toc-text">参考源码</span></a></li></ol>
     </ul>
     
 
@@ -436,7 +436,7 @@
         
     
             <p class="article-headline-p">
-                Spring Security 5 中重复 antMatchers 覆盖授权规则的排查
+                Spring Security 5 中重复 antMatchers 如何覆盖授权属性
             </p>
         </div>
 
@@ -508,7 +508,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Spring Security 5 中重复 antMatchers 覆盖授权规则的排查&url=https://blog.gadfly.vip/2026/08/spring-security-5-repeated-ant-matchers-overwrite/index.html&pic=https://blog.gadfly.viphttps://www.gravatar.com/avatar/53e53e02713f136f579cfc2c3e28f0cf?s=140&d=identicon&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Spring Security 5 中重复 antMatchers 如何覆盖授权属性&url=https://blog.gadfly.vip/2026/08/spring-security-5-repeated-ant-matchers-overwrite/index.html&pic=https://blog.gadfly.viphttps://www.gravatar.com/avatar/53e53e02713f136f579cfc2c3e28f0cf?s=140&d=identicon&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -517,7 +517,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Spring Security 5 中重复 antMatchers 覆盖授权规则的排查&url=https://blog.gadfly.vip/2026/08/spring-security-5-repeated-ant-matchers-overwrite/index.html&via=猪蹄宝宝" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Spring Security 5 中重复 antMatchers 如何覆盖授权属性&url=https://blog.gadfly.vip/2026/08/spring-security-5-repeated-ant-matchers-overwrite/index.html&via=猪蹄宝宝" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -547,7 +547,7 @@
 
     <!-- Share QQ -->
     
-        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=猪蹄宝宝的博客n(*≧▽≦*)n&title=Spring Security 5 中重复 antMatchers 覆盖授权规则的排查&summary=有人问我，我就会讲，但是无人来&pics=https://blog.gadfly.viphttps://www.gravatar.com/avatar/53e53e02713f136f579cfc2c3e28f0cf?s=140&d=identicon&url=https://blog.gadfly.vip/2026/08/spring-security-5-repeated-ant-matchers-overwrite/index.html" target="_blank">
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=猪蹄宝宝的博客n(*≧▽≦*)n&title=Spring Security 5 中重复 antMatchers 如何覆盖授权属性&summary=有人问我，我就会讲，但是无人来&pics=https://blog.gadfly.viphttps://www.gravatar.com/avatar/53e53e02713f136f579cfc2c3e28f0cf?s=140&d=identicon&url=https://blog.gadfly.vip/2026/08/spring-security-5-repeated-ant-matchers-overwrite/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 QQ
             </li>
@@ -566,8 +566,14 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p>最近排查一个 Homolo Boot 5.2.2 项目的文件接口权限问题，现象非常反直觉：在业务项目的 <code>authorizeRequestBeforeDefault</code> 中加了两条看起来更严格的规则后，<code>tk.File</code> 的大部分接口反而不登录就能访问；把这两条规则注释掉，框架默认权限反而恢复正常。</p>
-<p>这篇文章记录完整的排查过程，并借此说明 Spring Security 5 中一个容易被忽略的规则覆盖细节。</p>
+        <p>最近排查一个 Homolo Boot 5.2.2 项目的文件接口权限问题。业务项目在 <code>authorizeRequestBeforeDefault</code> 中增加两条看起来更严格的规则后，<code>tk.File</code> 的大部分接口反而不登录就能访问；注释掉这两条规则后，框架默认权限却恢复正常。</p>
+<p>这篇文章记录排查过程，并说明 Spring Security 5.6.2 中一个容易被忽略的细节：重复的 <code>antMatchers</code> 不会排成两条独立规则，后注册的规则可能只替换前一条规则的授权属性，同时保留原来的匹配顺序。</p>
+<blockquote>
+<p><strong>版本说明：</strong> 文中的 <code>5.2.2</code> 是 Homolo Boot 的版本号，不是 Spring Security 的版本号。用于核对依赖的 <code>homolo-boot</code> POM 继承 Spring Boot <code>2.6.6</code>，由其依赖管理提供 Spring Security <code>5.6.2</code>；<code>homolo-boot-core</code> 通过 <code>spring-boot-starter-security</code> 引入这一组依赖。</p>
+</blockquote>
+<blockquote>
+<p>本文中的“匿名可访问”特指请求没有被 Spring Security 的 URL 授权规则拦截；接口内部仍可能存在额外的业务校验。</p>
+</blockquote>
 <h2 id="问题表现">问题表现</h2>
 <p>业务项目的安全配置大致如下：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Override</span>
@@ -579,7 +585,7 @@
             <span class="token punctuation">.</span><span class="token function">antMatchers</span><span class="token punctuation">(</span><span class="token string">"/service/rest/tk.File/**"</span><span class="token punctuation">)</span>
             <span class="token punctuation">.</span><span class="token function">authenticated</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>Homolo Boot 基类随后注册默认规则：</p>
+<p>随后，Homolo Boot 基类注册默认规则：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">authorizeRequestDefault</span><span class="token punctuation">(</span>
         <span class="token class-name">ExpressionUrlAuthorizationConfigurer</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">HttpSecurity</span><span class="token punctuation">></span></span><span class="token punctuation">.</span>ExpressionInterceptUrlRegistry registry<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
     registry
@@ -600,12 +606,12 @@
             <span class="token punctuation">.</span><span class="token function">antMatchers</span><span class="token punctuation">(</span><span class="token string">"/service/rest/tk.File/**"</span><span class="token punctuation">)</span>
             <span class="token punctuation">.</span><span class="token function">permitAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>配置方法的调用顺序是：</p>
+<p>相关配置方法的调用顺序是：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token function">authorizeRequestBeforeDefault</span><span class="token punctuation">(</span>registry<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token function">authorizeRequestDefault</span><span class="token punctuation">(</span>registry<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token function">authorizeRequestAfterDefault</span><span class="token punctuation">(</span>registry<span class="token punctuation">)</span><span class="token punctuation">;</span>
 registry<span class="token punctuation">.</span><span class="token function">anyRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">denyAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>按直觉，业务配置在前，应该优先于框架默认配置；业务规则是 <code>authenticated()</code>，看起来也应该比默认的 <code>permitAll()</code> 更严格。但实际行为却是：</p>
+<p>按直觉，业务规则先注册，应该先于默认规则参与匹配；而且业务的 <code>authenticated()</code> 看起来也比默认的 <code>permitAll()</code> 更严格。但实际结果却是：</p>
 <table>
 <thead>
 <tr>
@@ -618,31 +624,31 @@ registry<span class="token punctuation">.</span><span class="token function">any
 <tr>
 <td><code>tk.File/x/cropImage</code></td>
 <td>匿名可访问</td>
-<td>按默认规则限制</td>
+<td>按默认规则处理</td>
 </tr>
 <tr>
 <td><code>tk.File/x/meta</code></td>
 <td>匿名可访问</td>
-<td>按默认规则限制</td>
+<td>按默认规则处理</td>
 </tr>
 <tr>
 <td><code>tk.File/x/uploadImage</code></td>
 <td>匿名可访问</td>
-<td>按默认规则限制</td>
+<td>按默认规则处理</td>
 </tr>
 <tr>
 <td><code>tk.File/x/listByIds</code></td>
 <td>匿名可访问</td>
-<td>按默认规则限制</td>
+<td>按默认规则处理</td>
 </tr>
 <tr>
 <td><code>tk.File/x/info</code></td>
 <td>匿名可访问</td>
-<td>按默认规则限制</td>
+<td>按默认规则处理</td>
 </tr>
 <tr>
 <td><code>tk.File/collection/list</code></td>
-<td>要求登录/相应权限</td>
+<td>要求相应角色</td>
 <td>按默认规则处理</td>
 </tr>
 <tr>
@@ -653,23 +659,28 @@ registry<span class="token punctuation">.</span><span class="token function">any
 </tbody>
 </table>
 <blockquote>
-<p>注：「匿名可访问」使用不带 <code>Cookie</code>、<code>Authorization</code> 和 <code>justice-cloud-proxy-token</code> 的 <code>curl</code> 验证，并不是代理 token 自动登录造成的结果。</p>
+<p>“匿名”验证使用不带 <code>Cookie</code>、<code>Authorization</code> 和 <code>justice-cloud-proxy-token</code> 的 <code>curl</code> 请求，因此不是代理 token 自动登录造成的结果。</p>
 </blockquote>
-<h2 id="排除了三种常见误判">排除了三种常见误判</h2>
+<h2 id="先排除常见误判">先排除常见误判</h2>
 <h3 id="不是线上-jar-错误">不是线上 jar 错误</h3>
 <p>线上版本的行为与带这两条配置的代码版本一致，问题不是线上部署了旧 jar，也不存在代码与线上行为不一致。</p>
 <h3 id="不是-justice-cloud-proxy-token">不是 <code>justice-cloud-proxy-token</code></h3>
-<p>archives 项目确实注册了 <code>JusticeCloudProxyTokenFilter</code>，它可以通过 <code>justice-cloud-proxy-token</code> 请求头自动登录用户。但去掉所有请求头后，匿名 <code>curl</code> 仍然可以复现 <code>cropImage</code>、<code>meta</code>、<code>uploadImage</code>、<code>listByIds</code> 等接口的放行，因此代理自动登录不是本问题的原因。</p>
-<h3 id="不是-authenticated-把匿名用户误判为已认证">不是 <code>authenticated()</code> 把匿名用户误判为已认证</h3>
-<p>如果 <code>authenticated()</code> 的语义整体失效，那么所有命中该表达式的接口应该一致放行或一致拒绝。实际结果与动作路径有关：<code>collection/list</code> 仍然被拦，而具体动作接口被放行。因此需要继续分析规则本身，而不是只分析当前 <code>Authentication</code> 对象。</p>
-<h2 id="根因：相同-matcher-被后注册的规则覆盖">根因：相同 matcher 被后注册的规则覆盖</h2>
-<h3 id="业务与默认规则里出现了相同的-matcher">业务与默认规则里出现了相同的 matcher</h3>
-<p><code>antMatchers</code> 创建的是 <code>AntPathRequestMatcher</code>：</p>
+<p><code>archives</code> 项目确实注册了 <code>JusticeCloudProxyTokenFilter</code>，它可以通过 <code>justice-cloud-proxy-token</code> 请求头自动登录用户。但去掉认证相关请求头后，匿名 <code>curl</code> 仍然可以复现 <code>cropImage</code>、<code>meta</code>、<code>uploadImage</code>、<code>listByIds</code> 等接口未被 URL 授权拦截，因此代理自动登录不是本问题的原因。</p>
+<h3 id="不是-authenticated-失效">不是 <code>authenticated()</code> 失效</h3>
+<p>如果 <code>authenticated()</code> 的语义整体失效，那么所有命中该表达式的接口应该表现一致。实际结果却与请求路径有关：<code>collection/list</code> 仍然被拦截，而具体 action 接口被放行。因此，应继续分析最终生成的规则，而不是只检查当前的 <code>Authentication</code> 对象。</p>
+<h2 id="根因：重复-matcher-替换了授权属性">根因：重复 matcher 替换了授权属性</h2>
+<p>这个问题需要同时理解两个规则：</p>
+<ol>
+<li><strong>匹配时按顺序取第一条命中项。</strong> 更具体的路径必须排在更宽泛的路径之前。</li>
+<li><strong>构建规则表时，重复的 matcher 会合并。</strong> 后注册项替换前一项的授权属性，但不会自动移动到队尾。</li>
+</ol>
+<h3 id="antMatchers-产生的-matcher-可以相等"><code>antMatchers</code> 产生的 matcher 可以相等</h3>
+<p>在 Spring Security 5.6.2 中，<code>antMatchers</code> 会创建 <code>AntPathRequestMatcher</code>：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// ExpressionUrlAuthorizationConfigurer</span>
 <span class="token keyword">public</span> <span class="token class-name">C</span> <span class="token function">antMatchers</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> antPatterns<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
     <span class="token keyword">return</span> <span class="token function">chainRequestMatchers</span><span class="token punctuation">(</span><span class="token class-name">RequestMatchers</span><span class="token punctuation">.</span><span class="token function">antMatchers</span><span class="token punctuation">(</span>antPatterns<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p><code>AntPathRequestMatcher</code> 的相等判断基于 pattern、HTTP method 和大小写配置：</p>
+<p><code>AntPathRequestMatcher</code> 的 <code>equals()</code> 和 <code>hashCode()</code> 会比较 URL pattern、HTTP method 和大小写配置：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Override</span>
 <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">equals</span><span class="token punctuation">(</span><span class="token class-name">Object</span> obj<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token punctuation">(</span>obj <span class="token keyword">instanceof</span> <span class="token class-name">AntPathRequestMatcher</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
@@ -679,13 +690,20 @@ registry<span class="token punctuation">.</span><span class="token function">any
     <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>pattern<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>other<span class="token punctuation">.</span>pattern<span class="token punctuation">)</span>
             <span class="token operator">&amp;&amp;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>httpMethod <span class="token operator">==</span> other<span class="token punctuation">.</span>httpMethod
             <span class="token operator">&amp;&amp;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>caseSensitive <span class="token operator">==</span> other<span class="token punctuation">.</span>caseSensitive<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>业务规则和基类默认规则中都出现了完全相同的 matcher：</p>
+<span class="token punctuation">&#125;</span>
+
+<span class="token annotation punctuation">@Override</span>
+<span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">hashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> result <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>pattern <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token operator">?</span> <span class="token keyword">this</span><span class="token punctuation">.</span>pattern<span class="token punctuation">.</span><span class="token function">hashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    result <span class="token operator">=</span> <span class="token number">31</span> <span class="token operator">*</span> result <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>httpMethod <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token operator">?</span> <span class="token keyword">this</span><span class="token punctuation">.</span>httpMethod<span class="token punctuation">.</span><span class="token function">hashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">31</span> <span class="token operator">*</span> result <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>caseSensitive <span class="token operator">?</span> <span class="token number">1231</span> <span class="token operator">:</span> <span class="token number">1237</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>业务规则和基类默认规则中都出现了完全相同的 pattern：</p>
 <pre class="line-numbers language-text" data-language="text"><code class="language-text">/service/rest/tk.File/**<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>因此它们不是两个互相独立的 key，而是 <code>equals()</code> 为 <code>true</code> 的同一个逻辑 key。</p>
-<h3 id="最终规则表是有序的-LinkedHashMap">最终规则表是有序的 LinkedHashMap</h3>
-<p>构建安全元数据时，Spring Security 使用有序的 <code>LinkedHashMap</code>：</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// AbstractInterceptUrlConfigurer#createRequestMap</span>
+<p>在 matcher 的 HTTP method 和大小写配置也相同的前提下，这两个 <code>AntPathRequestMatcher</code> 实例满足 <code>equals()</code>，因此会被 <code>LinkedHashMap</code> 当作同一个 key。这里被替换的是授权属性，不是 matcher 的匹配逻辑本身。</p>
+<h3 id="LinkedHashMap-替换-value，但保留-key-的位置"><code>LinkedHashMap</code> 替换 value，但保留 key 的位置</h3>
+<p>Spring Security 5.6.2 在构建安全元数据时使用有序的 <code>LinkedHashMap</code>：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// AbstractConfigAttributeRequestMatcherRegistry#createRequestMap</span>
 <span class="token keyword">final</span> <span class="token class-name">LinkedHashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">RequestMatcher</span><span class="token punctuation">,</span> <span class="token class-name">Collection</span><span class="token punctuation">&lt;</span><span class="token class-name">ConfigAttribute</span><span class="token punctuation">></span><span class="token punctuation">></span></span> <span class="token function">createRequestMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
     <span class="token class-name">LinkedHashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">RequestMatcher</span><span class="token punctuation">,</span> <span class="token class-name">Collection</span><span class="token punctuation">&lt;</span><span class="token class-name">ConfigAttribute</span><span class="token punctuation">></span><span class="token punctuation">></span></span> requestMap <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LinkedHashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">UrlMapping</span> mapping <span class="token operator">:</span> <span class="token function">getUrlMappings</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
@@ -695,24 +713,24 @@ registry<span class="token punctuation">.</span><span class="token function">any
     <span class="token punctuation">&#125;</span>
     <span class="token keyword">return</span> requestMap<span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>Java <code>LinkedHashMap.put()</code> 遇到一个已经存在、并且 <code>equals()</code> 相等的 key 时有两个重要行为：</p>
+<p>对 <code>LinkedHashMap</code> 来说，向已经存在且 <code>equals()</code> 相等的 key 再次调用 <code>put()</code> 有两个结果：</p>
 <ol>
-<li>不会新增第二个 entry；</li>
-<li>会替换原 entry 的 value，但<strong>保留原 entry 的插入位置</strong>。</li>
+<li>不会增加第二个 entry；</li>
+<li>会替换原 entry 的 value，但保留原 key 的插入位置。</li>
 </ol>
-<p>于是整个注册过程实际得到的是这样一张表（<code>/**</code> 的 value 被后注册的 <code>permitAll()</code> 替换，但位置仍停留在业务注册时的位置）：</p>
-<pre class="line-numbers language-text" data-language="text"><code class="language-text">/service/rest/tk.File/collection/list      → hasRole(ADMIN)     ← 业务注册，保留
-/service/rest/tk.File/**                  → permitAll()        ← 业务注册，value 被基类覆盖
-/service/rest/tk.File/**/cropImage        → hasRole(ADMIN)
-/service/rest/tk.File/**/jcropIframe      → hasRole(ADMIN)
-/service/rest/tk.File/**/info             → authenticated()
-/service/rest/tk.File/**/listByIds        → hasRole(ADMIN)
-/service/rest/tk.File/**/meta             → hasRole(ADMIN)
-/service/rest/tk.File/**/upload           → authenticated()
-/service/rest/tk.File/**/uploadImage      → hasRole(ADMIN)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>也就是说，业务配置中的 <code>authenticated()</code> 并没有覆盖框架默认的 <code>permitAll()</code>；相反，<strong>重复的 matcher 让框架后来注册的 <code>permitAll()</code> 替换了业务规则的授权 value，同时保留了宽泛 matcher 原来的优先位置</strong>。</p>
-<h3 id="匹配时按表顺序取第一条命中">匹配时按表顺序取第一条命中</h3>
-<p><code>DefaultFilterInvocationSecurityMetadataSource</code> 会按照表顺序取第一条匹配规则：</p>
+<p>因此，和本问题直接相关的最终规则顺序可以简化为下面这样（省略 <code>authorizeRequestAfterDefault</code> 以及最后的 <code>anyRequest().denyAll()</code>）：</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">/service/rest/tk.File/collection/list  → hasRole(ADMIN)        ← 业务先注册
+/service/rest/tk.File/**               → permitAll()           ← 业务位置，value 被默认规则替换
+/service/rest/tk.File/**/cropImage     → hasRole(ADMIN)
+/service/rest/tk.File/**/jcropIframe   → hasRole(ADMIN)
+/service/rest/tk.File/**/info          → authenticated()
+/service/rest/tk.File/**/listByIds     → hasRole(ADMIN)
+/service/rest/tk.File/**/meta          → hasRole(ADMIN)
+/service/rest/tk.File/**/upload        → authenticated()
+/service/rest/tk.File/**/uploadImage   → hasRole(ADMIN)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>也就是说，业务配置中的 <code>authenticated()</code> 没有形成一条独立的规则去覆盖默认的 <code>permitAll()</code>。相反，默认规则后注册的 <code>permitAll()</code> 替换了相同 matcher 原来的授权属性，同时让这个宽泛 matcher 继续排在所有默认 action 规则之前。</p>
+<h3 id="匹配时只取第一条命中项">匹配时只取第一条命中项</h3>
+<p><code>DefaultFilterInvocationSecurityMetadataSource</code> 会按照 map 的顺序返回第一条匹配规则：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// DefaultFilterInvocationSecurityMetadataSource#getAttributes</span>
 <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">Map<span class="token punctuation">.</span>Entry</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">RequestMatcher</span><span class="token punctuation">,</span> <span class="token class-name">Collection</span><span class="token punctuation">&lt;</span><span class="token class-name">ConfigAttribute</span><span class="token punctuation">></span><span class="token punctuation">></span></span> entry
         <span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>requestMap<span class="token punctuation">.</span><span class="token function">entrySet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
@@ -721,84 +739,102 @@ registry<span class="token punctuation">.</span><span class="token function">any
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span>
 <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>因此对 <code>tk.File/x/cropImage</code> 来说，它第一个就命中了 <code>/service/rest/tk.File/**</code> 的 <code>permitAll()</code>，根本走不到后面的 <code>cropImage</code> 管理员规则，于是被匿名放行。<code>meta</code>、<code>listByIds</code>、<code>uploadImage</code>、<code>info</code> 等接口同理。</p>
-<h3 id="为什么-collection-list-仍会被拦截">为什么 <code>collection/list</code> 仍会被拦截</h3>
-<p>业务配置中还有一条不同的 matcher：<code>/service/rest/tk.File/collection/list</code>。它与基类的 <code>/service/rest/tk.File/**</code> 并不相等，不会被后面的 <code>permitAll()</code> 替换，因此在规则表中保留了：</p>
-<pre class="line-numbers language-text" data-language="text"><code class="language-text">/service/rest/tk.File/collection/list → hasRole(ADMIN)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>它位于 <code>/**</code> 之前，所以访问 <code>collection/list</code> 时，会命中这条管理员权限规则，而不是命中重复的 <code>/**</code> entry。</p>
-<blockquote>
-<p>注意：<code>tk.File/x/list</code> 与 <code>collection/list</code> 的业务动作不同。<code>x/list</code> 会被 <code>RestServer</code> 按 <code>tk.File.list</code> 分发；如果 <code>FileController</code> 没有这个 action，它可能返回 action not found，而不是进入 <code>collection/list</code> 的管理员规则。线上若观察到 <code>x/list</code> 被拦截，应把它作为独立现象，继续核对实际请求路径、容器转发和部署版本，不能直接归因于 <code>collection/list</code> 的精确 matcher。</p>
-</blockquote>
-<h3 id="为什么-tk-File-的接口会共享同一组-matcher">为什么 <code>tk.File</code> 的接口会共享同一组 matcher</h3>
-<p>Homolo Boot 的 <code>tk.File</code> 并不是每个方法都单独使用 Spring MVC 的 <code>@RequestMapping</code>，<code>FileController</code> 使用框架自己的注解：</p>
+<p>以 <code>tk.File/x/cropImage</code> 为例，请求首先命中位于第二行的 <code>/service/rest/tk.File/**</code>，取得的授权属性却是 <code>permitAll()</code>；后面的 <code>/service/rest/tk.File/**/cropImage</code> 根本没有机会参与匹配。</p>
+<p><code>meta</code>、<code>listByIds</code>、<code>uploadImage</code>、<code>info</code> 等接口也是同样的原因。</p>
+<h3 id="为什么-collection-list-仍然被拦截">为什么 <code>collection/list</code> 仍然被拦截</h3>
+<p>业务配置中的 <code>/service/rest/tk.File/collection/list</code> 是另一个 matcher，不会被 <code>/service/rest/tk.File/**</code> 的重复 key 替换，而且它位于宽泛 matcher 之前：</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">/service/rest/tk.File/collection/list  → hasRole(ADMIN)
+/service/rest/tk.File/**               → permitAll()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>所以访问 <code>collection/list</code> 时，会先命中精确的角色规则，而不是宽泛的 <code>permitAll()</code>。</p>
+<p><strong>注意：</strong> <code>tk.File/x/list</code> 与 <code>collection/list</code> 是两个不同的业务动作。<code>x/list</code> 会由 <code>RestServer</code> 按 <code>tk.File.list</code> 分发；如果 <code>FileController</code> 没有这个 action，它可能返回 action not found，而不是进入 <code>collection/list</code> 的精确规则。线上若观察到 <code>x/list</code> 被拦截，应继续核对实际请求路径、容器转发和部署版本，不能直接归因于 <code>collection/list</code>。</p>
+<h3 id="为什么多个-action-共享这一组-URL-matcher">为什么多个 action 共享这一组 URL matcher</h3>
+<p>Homolo Boot 的 <code>tk.File</code> 并不是为每个方法单独声明 Spring MVC 的 <code>@RequestMapping</code>，而是使用框架自己的服务与 action 注解。下面是简化示意，并非完整源码：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@RestService</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"tk.File"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">FileController</span> <span class="token punctuation">&#123;</span>
     <span class="token annotation punctuation">@ActionMethod</span>
-    <span class="token keyword">public</span> <span class="token class-name">Object</span> <span class="token function">meta</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token punctuation">&#125;</span>
+    <span class="token keyword">public</span> <span class="token class-name">Object</span> <span class="token function">meta</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token comment">/* ... */</span> <span class="token punctuation">&#125;</span>
 
     <span class="token annotation punctuation">@ActionMethod</span>
-    <span class="token keyword">public</span> <span class="token class-name">Object</span> <span class="token function">info</span><span class="token punctuation">(</span><span class="token class-name">RequestParameters</span> params<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token punctuation">&#125;</span>
+    <span class="token keyword">public</span> <span class="token class-name">Object</span> <span class="token function">info</span><span class="token punctuation">(</span><span class="token class-name">RequestParameters</span> params<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token comment">/* ... */</span> <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
 
-    <span class="token annotation punctuation">@ActionMethod</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">download</span><span class="token punctuation">(</span><span class="token annotation punctuation">@ResourceVariable</span> <span class="token class-name">String</span> id<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>真正暴露 <code>/service/rest/**</code> 的是统一的 <code>RestServer</code>：</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@RestController</span>
+<span class="token annotation punctuation">@RestController</span>
 <span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/service/rest"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RestServer</span> <span class="token punctuation">&#123;</span>
     <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/&#123;module&#125;/&#123;resource&#125;/&#123;action&#125;"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> <span class="token class-name">Object</span> <span class="token function">getHandleResourceAction</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><code>RestServer</code> 再通过 <code>RestServiceRegistry</code> 找到 <code>tk.File</code> 服务和 action。这个架构解释了为什么所有文件操作都共享 <code>/service/rest/tk.File/...</code> 这一组 URL matcher——它只是背景，并非本次问题的根因；根因仍然是重复的 <code>AntPathRequestMatcher</code> key 在 <code>LinkedHashMap</code> 中发生 value 覆盖。</p>
-<h2 id="正确修复方式">正确修复方式</h2>
-<p>最简单、最安全的修复是删除业务中与框架默认规则重复的宽泛 matcher；如果业务确实需要额外限制 <code>collection/list</code>，可以保留那条更具体的规则：</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 业务特有的精确规则，可以按实际需求保留</span>
-<span class="token punctuation">.</span><span class="token function">antMatchers</span><span class="token punctuation">(</span><span class="token string">"/service/rest/tk.File/collection/list"</span><span class="token punctuation">)</span>
-<span class="token punctuation">.</span><span class="token function">hasRole</span><span class="token punctuation">(</span><span class="token class-name">Role</span><span class="token punctuation">.</span><span class="token constant">ADMIN_ROLE_ID</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">Object</span> <span class="token function">getHandleResourceAction</span><span class="token punctuation">(</span><span class="token comment">/* ... */</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 通过 RestServiceRegistry 查找服务和 action</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>因此，多个文件操作最终会落在 <code>/service/rest/tk.File/...</code> 这一组 URL 下。这个架构解释了为什么一个宽泛 matcher 能覆盖多个 action，但它不是本次问题的根因；根因仍然是重复 matcher 在 <code>LinkedHashMap</code> 中替换了授权属性。</p>
+<h2 id="修复方式">修复方式</h2>
+<h3 id="只想恢复-Homolo-Boot-的默认权限">只想恢复 Homolo Boot 的默认权限</h3>
+<p>删除业务中重复声明的宽泛 matcher；如果业务确实需要额外限制 <code>collection/list</code>，只保留那条精确规则：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Override</span>
+<span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">authorizeRequestBeforeDefault</span><span class="token punctuation">(</span>
+        <span class="token class-name">ExpressionUrlAuthorizationConfigurer</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">HttpSecurity</span><span class="token punctuation">></span></span><span class="token punctuation">.</span>ExpressionInterceptUrlRegistry registry<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    registry
+            <span class="token punctuation">.</span><span class="token function">antMatchers</span><span class="token punctuation">(</span><span class="token string">"/service/rest/tk.File/collection/list"</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">hasRole</span><span class="token punctuation">(</span><span class="token class-name">Role</span><span class="token punctuation">.</span><span class="token constant">ADMIN_ROLE_ID</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-<span class="token comment">// 删除：与 Homolo Boot 默认规则重复，不能再次声明</span>
-<span class="token comment">// .antMatchers("/service/rest/tk.File/**").authenticated();</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>如果业务确实需要覆盖默认权限，不能只把具体 action 规则移动到 <code>authorizeRequestAfterDefault</code>——因为前面已经存在的 <code>/service/rest/tk.File/**</code> entry 仍会先匹配，后置的具体规则到不了。这个场景有两种可靠做法：</p>
-<ol>
-<li>删除业务重复声明的 <code>/service/rest/tk.File/**</code>，直接使用 Homolo Boot 的默认规则；</li>
-<li>修改框架的规则扩展方式，使业务能够在默认规则生成后重建完整的 <code>tk.File</code> 规则表，并保证具体 action 规则排在宽泛兜底规则之前。</li>
-</ol>
-<p>如果只是恢复 Homolo Boot 已有的默认权限，第一种方式最稳妥。<strong>不要在同一个 registry 中复制一份默认规则，也不要依赖 <code>before</code>/<code>after</code> hook 的方法名来推断最终顺序，必须检查最终生成的 matcher 列表。</strong></p>
-<h2 id="排查类似问题的验证清单">排查类似问题的验证清单</h2>
-<p>排查类似问题时，不能只看 Java 配置的书写顺序，应该同时检查：</p>
+    <span class="token comment">// 不要再次声明与默认规则相同的 /service/rest/tk.File/**</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这样，默认 action 规则会排在默认的宽泛兜底规则之前，<code>cropImage</code>、<code>meta</code> 等接口会恢复各自的默认权限。</p>
+<h3 id="业务需要接管整组规则">业务需要接管整组规则</h3>
+<p>如果业务目标不是恢复默认权限，而是让整个 <code>tk.File</code> 目录都必须登录，就不要把一条宽泛规则拆到 <code>before</code>，再把具体规则留给 <code>default</code>。应先禁用或调整框架默认规则，然后由同一个 registry 一次性注册完整规则表，并把具体 matcher 放在宽泛 matcher 之前。下面只展示规则顺序，其他需要特殊权限的 action 也应一并列出：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 仅在默认 tk.File 规则不会同时注册时使用</span>
+registry
+        <span class="token punctuation">.</span><span class="token function">antMatchers</span><span class="token punctuation">(</span><span class="token string">"/service/rest/tk.File/**/cropImage"</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">hasRole</span><span class="token punctuation">(</span><span class="token class-name">Role</span><span class="token punctuation">.</span><span class="token constant">ADMIN_ROLE_ID</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">antMatchers</span><span class="token punctuation">(</span><span class="token string">"/service/rest/tk.File/**/meta"</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">hasRole</span><span class="token punctuation">(</span><span class="token class-name">Role</span><span class="token punctuation">.</span><span class="token constant">ADMIN_ROLE_ID</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">antMatchers</span><span class="token punctuation">(</span><span class="token string">"/service/rest/tk.File/**/upload"</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">authenticated</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token comment">// ... 继续列出其他需要特殊权限的 action</span>
+        <span class="token punctuation">.</span><span class="token function">antMatchers</span><span class="token punctuation">(</span><span class="token string">"/service/rest/tk.File/**"</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">authenticated</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>不能只把具体 action 规则移动到 <code>authorizeRequestAfterDefault</code>：如果 <code>/service/rest/tk.File/**</code> 已经位于最终规则表前面，后置的具体规则仍然不会被访问。也不要在同一个 registry 中复制一份默认规则，或仅凭 <code>before</code>、<code>after</code> 这类方法名推断优先级；应检查最终生成的 matcher 列表和授权属性。</p>
+<h2 id="排查清单">排查清单</h2>
+<p>遇到类似问题时，不要只看 Java 配置的书写顺序，还应检查：</p>
 <ol>
 <li><code>antMatchers</code> 实际创建的 matcher 类型；</li>
-<li>matcher 的 <code>equals()</code> 和 <code>hashCode()</code>；</li>
-<li>规则最终写入的集合类型；</li>
-<li>重复 key 写入时是追加、覆盖，还是抛异常；</li>
-<li>最终 <code>FilterInvocationSecurityMetadataSource</code> 中的 matcher 顺序和授权属性。</li>
+<li>matcher 的 <code>equals()</code> 和 <code>hashCode()</code> 是否会把两条规则视为同一个 key；</li>
+<li>规则最终写入的集合类型及其顺序语义；</li>
+<li>重复 key 写入时是追加、覆盖，还是抛出异常；</li>
+<li>最终 <code>FilterInvocationSecurityMetadataSource</code> 中的 matcher 顺序和授权属性；</li>
+<li>请求是否携带了 Cookie、代理 token、JWT 或其他会话凭据。</li>
 </ol>
-<p>可以先从源码确认：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">grep</span> <span class="token parameter variable">-n</span> <span class="token string">"antMatchers\|createRequestMap"</span> <span class="token punctuation">\</span>
-  spring-security-config-*/org/springframework/security/config/annotation/web/
-
-javap <span class="token parameter variable">-c</span> <span class="token parameter variable">-p</span> WebSecurityConfig.class<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>如果手头有对应版本的 Spring Security 源码包，可以直接查看 <code>createRequestMap()</code>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 将 sources.jar 放在当前目录，版本号按实际依赖调整</span>
+<span class="token function">unzip</span> <span class="token parameter variable">-p</span> spring-security-config-5.6.2-sources.jar <span class="token punctuation">\</span>
+  org/springframework/security/config/annotation/web/configurers/AbstractConfigAttributeRequestMatcherRegistry.java <span class="token punctuation">\</span>
+  <span class="token operator">|</span> <span class="token function">grep</span> <span class="token parameter variable">-nE</span> <span class="token string">'createRequestMap|requestMap\.put'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>实际请求也应使用完全匿名的方式验证，避免把代理 token、JWT、Cookie 或浏览器已有会话误认为权限来源：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> <span class="token parameter variable">-sS</span> <span class="token parameter variable">-D</span> - <span class="token parameter variable">-o</span> /dev/null <span class="token punctuation">\</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> <span class="token parameter variable">--noproxy</span> <span class="token string">'*'</span> <span class="token parameter variable">-sS</span> <span class="token parameter variable">-D</span> - <span class="token parameter variable">-o</span> /dev/null <span class="token punctuation">\</span>
   http://localhost:8182/backend/service/rest/tk.File/x/cropImage<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>同时记录：</p>
 <ul>
 <li>HTTP status；</li>
 <li><code>Location</code>；</li>
 <li><code>Set-Cookie</code>；</li>
-<li>响应体是否来自 <code>RestServer</code>/<code>FileController</code>；</li>
+<li>响应体是否来自 <code>RestServer</code> 或 <code>FileController</code>；</li>
 <li>当前进程启动时间和实际加载的 class 时间。</li>
 </ul>
 <h2 id="结论">结论</h2>
-<p>本次问题的根因既不是 Homolo Boot 的 <code>tk.File</code> 默认权限没有定义，也不是匿名用户被错误地识别成了已认证用户，更不是代理 token 自动登录。</p>
-<p>根因是两条等价的规则先后进入同一个 <code>LinkedHashMap</code> key：</p>
-<pre class="line-numbers language-text" data-language="text"><code class="language-text">业务 before 规则：/service/rest/tk.File/** → authenticated()
-框架 default 规则：/service/rest/tk.File/** → permitAll()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>两个 <code>AntPathRequestMatcher</code> 相等，后注册的 <code>permitAll()</code> 替换了前面的授权 value，但保留了宽泛 matcher 的优先位置，导致它在具体的 <code>cropImage</code>、<code>meta</code>、<code>listByIds</code>、<code>uploadImage</code> 等默认规则之前匹配，最终把这些接口匿名放开。</p>
-<p>因此，Spring Security URL 权限配置中最危险的不只是「规则写反了」，还包括：</p>
+<p>本次问题的根因既不是 Homolo Boot 没有定义 <code>tk.File</code> 默认权限，也不是匿名用户被错误识别为已认证用户，更不是代理 token 自动登录。</p>
+<p>实际发生的是两条等价规则先后进入同一个 map：</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">业务 before 规则：  /service/rest/tk.File/** → authenticated()
+框架 default 规则： /service/rest/tk.File/** → permitAll()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>两个 <code>AntPathRequestMatcher</code> 相等，所以后注册的 <code>permitAll()</code> 替换了前一条规则的授权属性，却保留了宽泛 matcher 原来的插入位置。它因此在具体的 <code>cropImage</code>、<code>meta</code>、<code>listByIds</code>、<code>uploadImage</code> 等规则之前命中，把这些请求从 URL 授权层放行。</p>
 <blockquote>
-<p>不要在同一个授权 registry 中重复注册完全相同的 matcher，尤其不要以为后面的规则会追加成第二条规则。对于基于 map 的规则集合，重复 matcher 可能是一次 value 覆盖。</p>
+<p><strong>记住：</strong> Spring Security URL 规则既要看“谁先注册”，也要看“最终 map 如何合并”。不要在同一个授权 registry 中重复注册完全相同的 matcher，尤其不要以为后面的规则一定会追加成第二条规则；在基于 map 的规则集合中，它可能只是一次 value 覆盖。</p>
 </blockquote>
+<h2 id="参考源码">参考源码</h2>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/spring-projects/spring-security/blob/5.6.2/config/src/main/java/org/springframework/security/config/annotation/web/configurers/ExpressionUrlAuthorizationConfigurer.java">ExpressionUrlAuthorizationConfigurer（Spring Security 5.6.2）</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/spring-projects/spring-security/blob/5.6.2/config/src/main/java/org/springframework/security/config/annotation/web/configurers/AbstractConfigAttributeRequestMatcherRegistry.java">AbstractConfigAttributeRequestMatcherRegistry（Spring Security 5.6.2）</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/spring-projects/spring-security/blob/5.6.2/web/src/main/java/org/springframework/security/web/util/matcher/AntPathRequestMatcher.java">AntPathRequestMatcher（Spring Security 5.6.2）</a></li>
+</ul>
 
         
     
