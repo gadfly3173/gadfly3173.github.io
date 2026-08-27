@@ -1,5 +1,5 @@
 ---
-title: Spring Security 5 中重复 antMatchers 如何覆盖授权属性
+title: Spring Security 5 中重复的 antMatchers 会覆盖已有的授权规则
 layout: post
 typora-root-url: ..
 hide_post_info: false
@@ -18,17 +18,17 @@ tags:
 permalink:
 ---
 
-最近排查一个 Homolo Boot 5.2.2 项目的文件接口权限问题。业务项目在 `authorizeRequestBeforeDefault` 中增加两条看起来更严格的规则后，`tk.File` 的大部分接口反而不登录就能访问；注释掉这两条规则后，框架默认权限却恢复正常。
+最近在一个 Homolo Boot 5.2.2 项目里排查文件接口的权限问题：业务项目只在 `authorizeRequestBeforeDefault` 中增加了两条规则，`tk.File` 下的大部分接口反而变得匿名可访问；注释掉这两条规则，框架的默认权限又恢复正常。
 
-这篇文章记录排查过程，并说明 Spring Security 5.6.2 中一个容易被忽略的细节：重复的 `antMatchers` 不会排成两条独立规则，后注册的规则可能只替换前一条规则的授权属性，同时保留原来的匹配顺序。
+这篇文章记录问题的成因、修复方法与排查思路。核心结论是一句话：Spring Security 5.6.2 在构建 URL 授权规则表时会合并重复的 `antMatchers`，后注册的规则替换先前那条规则的授权属性，同时保留它的位置。
 
-> **版本说明：** 文中的 `5.2.2` 是 Homolo Boot 的版本号，不是 Spring Security 的版本号。用于核对依赖的 `homolo-boot` POM 继承 Spring Boot `2.6.6`，由其依赖管理提供 Spring Security `5.6.2`；`homolo-boot-core` 通过 `spring-boot-starter-security` 引入这一组依赖。
+> **版本说明：** `5.2.2` 是 Homolo Boot 的版本号。项目的 `homolo-boot` POM 继承 Spring Boot `2.6.6`，由其依赖管理提供 Spring Security `5.6.2`；`homolo-boot-core` 通过 `spring-boot-starter-security` 引入这一组依赖。
 
-> 本文中的“匿名可访问”特指请求没有被 Spring Security 的 URL 授权规则拦截；接口内部仍可能存在额外的业务校验。
+> 本文所说的“匿名可访问”，指请求没有被 Spring Security 的 URL 授权规则拦截；接口内部可能还有额外的业务校验。
 
-## 问题表现
+## 遇到了什么问题
 
-业务项目的安全配置大致如下：
+业务项目希望通过两条规则收紧 `tk.File` 的权限：`collection/list` 要求管理员角色，其余接口必须登录。配置写在 `authorizeRequestBeforeDefault` 中：
 
 ```java
 @Override
@@ -42,7 +42,7 @@ protected void authorizeRequestBeforeDefault(
 }
 ```
 
-随后，Homolo Boot 基类注册默认规则：
+随后，Homolo Boot 基类会注册自己的默认规则：
 
 ```java
 protected void authorizeRequestDefault(
@@ -67,7 +67,7 @@ protected void authorizeRequestDefault(
 }
 ```
 
-相关配置方法的调用顺序是：
+三个配置方法的调用顺序固定为：
 
 ```java
 authorizeRequestBeforeDefault(registry);
@@ -76,44 +76,28 @@ authorizeRequestAfterDefault(registry);
 registry.anyRequest().denyAll();
 ```
 
-按直觉，业务规则先注册，应该先于默认规则参与匹配；而且业务的 `authenticated()` 看起来也比默认的 `permitAll()` 更严格。但实际结果却是：
+按这套配置的写法，业务规则先注册，理应先于默认规则参与匹配；`authenticated()` 也比默认的 `permitAll()` 更严格。带这两条业务规则的版本实测结果如下：
 
-| 请求 | 增加两条业务规则后 | 注释两条业务规则后 |
-| --- | --- | --- |
-| `tk.File/x/cropImage` | 匿名可访问 | 按默认规则处理 |
-| `tk.File/x/meta` | 匿名可访问 | 按默认规则处理 |
-| `tk.File/x/uploadImage` | 匿名可访问 | 按默认规则处理 |
-| `tk.File/x/listByIds` | 匿名可访问 | 按默认规则处理 |
-| `tk.File/x/info` | 匿名可访问 | 按默认规则处理 |
-| `tk.File/collection/list` | 要求相应角色 | 按默认规则处理 |
-| `tk.File/x/list` | 需结合实际部署单独核对 | 需结合实际部署单独核对 |
+| 请求 | 实际表现 |
+| --- | --- |
+| `tk.File/x/cropImage` | 匿名可访问 |
+| `tk.File/x/meta` | 匿名可访问 |
+| `tk.File/x/uploadImage` | 匿名可访问 |
+| `tk.File/x/listByIds` | 匿名可访问 |
+| `tk.File/x/info` | 匿名可访问 |
+| `tk.File/collection/list` | 要求相应角色 |
 
-> “匿名”验证使用不带 `Cookie`、`Authorization` 和 `justice-cloud-proxy-token` 的 `curl` 请求，因此不是代理 token 自动登录造成的结果。
+> 表格中的验证使用不带 `Cookie`、`Authorization` 和 `justice-cloud-proxy-token` 的 `curl` 请求发起，结果不受代理 token 自动登录的影响。
 
-## 先排除常见误判
+`tk.File/x/list` 的情况需要单独核对：这类请求由 `RestServer` 按 `tk.File.list` 分发；如果 `FileController` 没有定义 `list` 这个 action，请求可能直接返回 action not found。判断它的真实表现之前，应先核实实际请求路径、容器转发和部署版本。
 
-### 不是线上 jar 错误
+## 原因分析
 
-线上版本的行为与带这两条配置的代码版本一致，问题不是线上部署了旧 jar，也不存在代码与线上行为不一致。
+原因涉及两个环节的共同作用，缺一不可：一是请求匹配时按顺序取第一条命中的规则；二是规则表在构建阶段就会合并重复的 matcher。
 
-### 不是 `justice-cloud-proxy-token`
+### 相同的 pattern 会生成相等的 matcher
 
-`archives` 项目确实注册了 `JusticeCloudProxyTokenFilter`，它可以通过 `justice-cloud-proxy-token` 请求头自动登录用户。但去掉认证相关请求头后，匿名 `curl` 仍然可以复现 `cropImage`、`meta`、`uploadImage`、`listByIds` 等接口未被 URL 授权拦截，因此代理自动登录不是本问题的原因。
-
-### 不是 `authenticated()` 失效
-
-如果 `authenticated()` 的语义整体失效，那么所有命中该表达式的接口应该表现一致。实际结果却与请求路径有关：`collection/list` 仍然被拦截，而具体 action 接口被放行。因此，应继续分析最终生成的规则，而不是只检查当前的 `Authentication` 对象。
-
-## 根因：重复 matcher 替换了授权属性
-
-这个问题需要同时理解两个规则：
-
-1. **匹配时按顺序取第一条命中项。** 更具体的路径必须排在更宽泛的路径之前。
-2. **构建规则表时，重复的 matcher 会合并。** 后注册项替换前一项的授权属性，但不会自动移动到队尾。
-
-### `antMatchers` 产生的 matcher 可以相等
-
-在 Spring Security 5.6.2 中，`antMatchers` 会创建 `AntPathRequestMatcher`：
+在 Spring Security 5.6.2 中，`antMatchers` 创建的对象类型是 `AntPathRequestMatcher`：
 
 ```java
 // ExpressionUrlAuthorizationConfigurer
@@ -122,7 +106,7 @@ public C antMatchers(String... antPatterns) {
 }
 ```
 
-`AntPathRequestMatcher` 的 `equals()` 和 `hashCode()` 会比较 URL pattern、HTTP method 和大小写配置：
+`AntPathRequestMatcher` 实现 `equals()` 和 `hashCode()` 时比较三项内容：URL pattern、HTTP method 和大小写配置：
 
 ```java
 @Override
@@ -144,17 +128,17 @@ public int hashCode() {
 }
 ```
 
-业务规则和基类默认规则中都出现了完全相同的 pattern：
+业务规则和默认规则恰好声明了完全相同的 pattern：
 
 ```text
 /service/rest/tk.File/**
 ```
 
-在 matcher 的 HTTP method 和大小写配置也相同的前提下，这两个 `AntPathRequestMatcher` 实例满足 `equals()`，因此会被 `LinkedHashMap` 当作同一个 key。这里被替换的是授权属性，不是 matcher 的匹配逻辑本身。
+两者的 HTTP method 和大小写配置也一致，于是这两个 matcher 满足 `equals()`，对存储规则表的 map 来说是同一个 key。
 
-### `LinkedHashMap` 替换 value，但保留 key 的位置
+### 规则表用 LinkedHashMap 存储，重复写入替换 value、保留位置
 
-Spring Security 5.6.2 在构建安全元数据时使用有序的 `LinkedHashMap`：
+Spring Security 5.6.2 构建安全元数据时，把所有规则整理进一个有序 map：
 
 ```java
 // AbstractConfigAttributeRequestMatcherRegistry#createRequestMap
@@ -169,16 +153,16 @@ final LinkedHashMap<RequestMatcher, Collection<ConfigAttribute>> createRequestMa
 }
 ```
 
-对 `LinkedHashMap` 来说，向已经存在且 `equals()` 相等的 key 再次调用 `put()` 有两个结果：
+对 `LinkedHashMap` 来说，向一个已经存在的 key 再次 `put()` 会产生两个效果：
 
-1. 不会增加第二个 entry；
-2. 会替换原 entry 的 value，但保留原 key 的插入位置。
+1. entry 数量不增加；
+2. value 被新值替换，entry 仍保持在第一次插入时的位置。
 
-因此，和本问题直接相关的最终规则顺序可以简化为下面这样（省略 `authorizeRequestAfterDefault` 以及最后的 `anyRequest().denyAll()`）：
+把这个行为套到两组规则上，与本问题相关的最终规则表如下（省略 `authorizeRequestAfterDefault` 与末尾的 `anyRequest().denyAll()`）：
 
 ```text
-/service/rest/tk.File/collection/list  → hasRole(ADMIN)        ← 业务先注册
-/service/rest/tk.File/**               → permitAll()           ← 业务位置，value 被默认规则替换
+/service/rest/tk.File/collection/list  → hasRole(ADMIN)     ← 业务注册，pattern 不同，未被覆盖
+/service/rest/tk.File/**               → permitAll()       ← 位置来自业务规则，value 来自默认规则
 /service/rest/tk.File/**/cropImage     → hasRole(ADMIN)
 /service/rest/tk.File/**/jcropIframe   → hasRole(ADMIN)
 /service/rest/tk.File/**/info          → authenticated()
@@ -188,11 +172,11 @@ final LinkedHashMap<RequestMatcher, Collection<ConfigAttribute>> createRequestMa
 /service/rest/tk.File/**/uploadImage   → hasRole(ADMIN)
 ```
 
-也就是说，业务配置中的 `authenticated()` 没有形成一条独立的规则去覆盖默认的 `permitAll()`。相反，默认规则后注册的 `permitAll()` 替换了相同 matcher 原来的授权属性，同时让这个宽泛 matcher 继续排在所有默认 action 规则之前。
+业务声明的 `authenticated()` 就是这样消失的：它写入时的位置在最前面，随后默认规则又声明了一次相同的 matcher，`permitAll()` 替换了原有的授权属性，entry 的位置却没有移动。这条宽泛规则于是继续排在所有具体 action 规则前面，含义却变成了“全部放行”。
 
-### 匹配时只取第一条命中项
+### 请求只会命中顺序上的第一条规则
 
-`DefaultFilterInvocationSecurityMetadataSource` 会按照 map 的顺序返回第一条匹配规则：
+`DefaultFilterInvocationSecurityMetadataSource` 按照上一节的 map 顺序遍历规则，返回第一条命中的规则的授权属性：
 
 ```java
 // DefaultFilterInvocationSecurityMetadataSource#getAttributes
@@ -205,26 +189,15 @@ for (Map.Entry<RequestMatcher, Collection<ConfigAttribute>> entry
 return null;
 ```
 
-以 `tk.File/x/cropImage` 为例，请求首先命中位于第二行的 `/service/rest/tk.File/**`，取得的授权属性却是 `permitAll()`；后面的 `/service/rest/tk.File/**/cropImage` 根本没有机会参与匹配。
+以 `tk.File/x/cropImage` 为例：请求先命中位于第二行的 `/service/rest/tk.File/**`，拿到的授权属性是 `permitAll()`；后面的 `/service/rest/tk.File/**/cropImage` 再也没有机会参与匹配。`meta`、`listByIds`、`uploadImage`、`info` 等接口同理，全部被这条位置靠前的宽泛规则放行。
 
-`meta`、`listByIds`、`uploadImage`、`info` 等接口也是同样的原因。
+### collection/list 正常生效的原因
 
-### 为什么 `collection/list` 仍然被拦截
+`/service/rest/tk.File/collection/list` 是另一个 pattern，对应的 matcher 与宽泛规则不相等，进入 map 后独立成条，保留了业务预期的授权属性；同时它排在宽泛规则之前，请求到达时先被它命中，`hasRole` 校验得以正常执行。
 
-业务配置中的 `/service/rest/tk.File/collection/list` 是另一个 matcher，不会被 `/service/rest/tk.File/**` 的重复 key 替换，而且它位于宽泛 matcher 之前：
+### 背景：众多 action 共用一组 URL
 
-```text
-/service/rest/tk.File/collection/list  → hasRole(ADMIN)
-/service/rest/tk.File/**               → permitAll()
-```
-
-所以访问 `collection/list` 时，会先命中精确的角色规则，而不是宽泛的 `permitAll()`。
-
-**注意：** `tk.File/x/list` 与 `collection/list` 是两个不同的业务动作。`x/list` 会由 `RestServer` 按 `tk.File.list` 分发；如果 `FileController` 没有这个 action，它可能返回 action not found，而不是进入 `collection/list` 的精确规则。线上若观察到 `x/list` 被拦截，应继续核对实际请求路径、容器转发和部署版本，不能直接归因于 `collection/list`。
-
-### 为什么多个 action 共享这一组 URL matcher
-
-Homolo Boot 的 `tk.File` 并不是为每个方法单独声明 Spring MVC 的 `@RequestMapping`，而是使用框架自己的服务与 action 注解。下面是简化示意，并非完整源码：
+这个项目中，`tk.File` 的各个操作共用 `/service/rest/tk.File/...` 一组 URL。控制器的组织方式如下（简化示意）：
 
 ```java
 @RestService(name = "tk.File")
@@ -246,13 +219,15 @@ public class RestServer {
 }
 ```
 
-因此，多个文件操作最终会落在 `/service/rest/tk.File/...` 这一组 URL 下。这个架构解释了为什么一个宽泛 matcher 能覆盖多个 action，但它不是本次问题的根因；根因仍然是重复 matcher 在 `LinkedHashMap` 中替换了授权属性。
+各方法使用框架自带的 `@RestService` 与 `@ActionMethod` 注解标注，由 `RestServer` 统一分发，因此一个宽泛 matcher 就能覆盖大量接口。这一点解释了问题的波及面为何如此之广；覆盖行为的成因仍在前文的 map 合并逻辑。
 
 ## 修复方式
 
-### 只想恢复 Homolo Boot 的默认权限
+按照业务目标分两种情况处理。
 
-删除业务中重复声明的宽泛 matcher；如果业务确实需要额外限制 `collection/list`，只保留那条精确规则：
+### 目标一：恢复框架默认权限
+
+删除业务中重复声明的宽泛 matcher，只保留那条精确规则：
 
 ```java
 @Override
@@ -262,18 +237,18 @@ protected void authorizeRequestBeforeDefault(
             .antMatchers("/service/rest/tk.File/collection/list")
             .hasRole(Role.ADMIN_ROLE_ID);
 
-    // 不要再次声明与默认规则相同的 /service/rest/tk.File/**
+    // 这里不要再声明与默认规则相同的 /service/rest/tk.File/**
 }
 ```
 
-这样，默认 action 规则会排在默认的宽泛兜底规则之前，`cropImage`、`meta` 等接口会恢复各自的默认权限。
+此时默认的各个 action 规则会先于默认的宽泛规则命中，`cropImage`、`meta` 等接口恢复各自的默认权限。
 
-### 业务需要接管整组规则
+### 目标二：自定义整组 tk.File 权限
 
-如果业务目标不是恢复默认权限，而是让整个 `tk.File` 目录都必须登录，就不要把一条宽泛规则拆到 `before`，再把具体规则留给 `default`。应先禁用或调整框架默认规则，然后由同一个 registry 一次性注册完整规则表，并把具体 matcher 放在宽泛 matcher 之前。下面只展示规则顺序，其他需要特殊权限的 action 也应一并列出：
+让整个 `tk.File` 目录都必须登录时，把整组规则集中到同一个阶段注册：先列出需要特殊权限的具体 action，最后再用宽泛 matcher 收尾：
 
 ```java
-// 仅在默认 tk.File 规则不会同时注册时使用
+// 前提：默认的 tk.File 规则不再另行注册
 registry
         .antMatchers("/service/rest/tk.File/**/cropImage")
         .hasRole(Role.ADMIN_ROLE_ID)
@@ -286,20 +261,51 @@ registry
         .authenticated();
 ```
 
-不能只把具体 action 规则移动到 `authorizeRequestAfterDefault`：如果 `/service/rest/tk.File/**` 已经位于最终规则表前面，后置的具体规则仍然不会被访问。也不要在同一个 registry 中复制一份默认规则，或仅凭 `before`、`after` 这类方法名推断优先级；应检查最终生成的 matcher 列表和授权属性。
+两点提醒：
 
-## 排查清单
+1. 具体规则与宽泛规则应在同一批次内注册，并且具体的在前。只把具体规则挪进 `authorizeRequestAfterDefault` 行不通——宽泛规则已经写在前面，后置的具体规则永远不会被命中。
+2. 仅凭 `before`、`after` 这类方法名推断优先级不够可靠；注册完成后，应核对最终生成的 matcher 列表与各自的授权属性。
 
-遇到类似问题时，不要只看 Java 配置的书写顺序，还应检查：
+## 这一机制的可用之处
+
+理解了覆盖规则，它可以反过来看作一种能力：
+
+- **改写已有规则的授权属性。** 框架先注册了一条默认规则，业务希望调整它的严格程度时，在更晚的阶段（例如 `authorizeRequestAfterDefault`）重新声明相同的 `antMatchers`，新属性会替换旧值。由于 entry 的位置保留不动，一般也不必担心打乱原有排序。
+- **明确何时得不到新规则。** 想在同一个 registry 中新增一条独立规则时，要让 matcher 彼此有所区别（限定 HTTP method、使用不同的 pattern 等）。完全相同的 matcher 进入 map 后，得到的效果只是一次属性覆盖，期待中的第二条独立规则并不存在。
+
+本例恰好演示了误用方向：本意是追加一条更严格的规则，实际发生的却是默认值的覆盖，宽泛 matcher 还停留在了最前面。每次声明可能与现有规则重复的 matcher 时，先想清楚需要的是哪一种效果。
+
+## 类似问题的排查方法
+
+排查同类权限问题时，建议按下面的顺序进行。
+
+**第一步：核实运行的代码与预期版本一致。**
+
+确认线上进程的启动时间和实际加载 class 的时间，必要时比对 jar 内容。本例中线上行为与当前代码一致，后续排查才得以聚焦在权限模型本身。
+
+**第二步：用完全匿名的请求复现。**
+
+Cookie、`Authorization`、代理 token、JWT、浏览器已有会话都会改变鉴权结果，验证时应逐项剥离。命令示例：
+
+```shell
+curl --noproxy '*' -sS -D - -o /dev/null \
+  http://localhost:8182/backend/service/rest/tk.File/x/cropImage
+```
+
+同时记录 HTTP status、`Location`、`Set-Cookie` 以及响应体的来源（出自 `RestServer` 还是具体的 `FileController`）。本例在剥离全部凭据后依旧复现，代理 token 自动登录的因素随之排除。
+
+**第三步：检查运行期的最终规则表。**
+
+反复端详 Java 配置的书写顺序收效有限，有效的做法是确认运行期真实的规则集合：
 
 1. `antMatchers` 实际创建的 matcher 类型；
-2. matcher 的 `equals()` 和 `hashCode()` 是否会把两条规则视为同一个 key；
+2. matcher 的 `equals()` 与 `hashCode()` 会不会把两条规则判定为同一个 key；
 3. 规则最终写入的集合类型及其顺序语义；
-4. 重复 key 写入时是追加、覆盖，还是抛出异常；
-5. 最终 `FilterInvocationSecurityMetadataSource` 中的 matcher 顺序和授权属性；
-6. 请求是否携带了 Cookie、代理 token、JWT 或其他会话凭据。
+4. 重复 key 写入时发生的是追加、覆盖还是抛出异常；
+5. 运行期 `FilterInvocationSecurityMetadataSource` 中各 matcher 的顺序与授权属性；
+6. 请求路径是否经过容器转发或 context path 重写。
 
-如果手头有对应版本的 Spring Security 源码包，可以直接查看 `createRequestMap()`：
+如果有对应版本的 Spring Security 源码包，可以直接查看 `createRequestMap()` 的实现：
 
 ```shell
 # 将 sources.jar 放在当前目录，版本号按实际依赖调整
@@ -308,35 +314,11 @@ unzip -p spring-security-config-5.6.2-sources.jar \
   | grep -nE 'createRequestMap|requestMap\.put'
 ```
 
-实际请求也应使用完全匿名的方式验证，避免把代理 token、JWT、Cookie 或浏览器已有会话误认为权限来源：
+## 小结
 
-```shell
-curl --noproxy '*' -sS -D - -o /dev/null \
-  http://localhost:8182/backend/service/rest/tk.File/x/cropImage
-```
+回顾整个链条：业务的 `authenticated()` 与默认规则的 `permitAll()` 声明了同一个 `/service/rest/tk.File/**`；两个 `AntPathRequestMatcher` 相等，在 `LinkedHashMap` 中后到的 `permitAll()` 覆盖了先前的授权属性，entry 的位置停留在最前面；请求按顺序匹配第一条命中的规则，具体 action 规则再也没有出场机会，`cropImage`、`meta`、`listByIds`、`uploadImage` 等接口就这样对外放行了。
 
-同时记录：
-
-- HTTP status；
-- `Location`；
-- `Set-Cookie`；
-- 响应体是否来自 `RestServer` 或 `FileController`；
-- 当前进程启动时间和实际加载的 class 时间。
-
-## 结论
-
-本次问题的根因既不是 Homolo Boot 没有定义 `tk.File` 默认权限，也不是匿名用户被错误识别为已认证用户，更不是代理 token 自动登录。
-
-实际发生的是两条等价规则先后进入同一个 map：
-
-```text
-业务 before 规则：  /service/rest/tk.File/** → authenticated()
-框架 default 规则： /service/rest/tk.File/** → permitAll()
-```
-
-两个 `AntPathRequestMatcher` 相等，所以后注册的 `permitAll()` 替换了前一条规则的授权属性，却保留了宽泛 matcher 原来的插入位置。它因此在具体的 `cropImage`、`meta`、`listByIds`、`uploadImage` 等规则之前命中，把这些请求从 URL 授权层放行。
-
-> **记住：** Spring Security URL 规则既要看“谁先注册”，也要看“最终 map 如何合并”。不要在同一个授权 registry 中重复注册完全相同的 matcher，尤其不要以为后面的规则一定会追加成第二条规则；在基于 map 的规则集合中，它可能只是一次 value 覆盖。
+URL 授权规则的行为由两件事共同决定：注册顺序决定 matcher 在规则表中的位置，map 合并决定它的最终授权属性。维护这类配置时，保持每个 matcher 唯一；确需调整已有规则的授权属性时，在其注册之后的阶段重新声明，并核对最终生成的规则表，就能避开这一类隐蔽的权限回归。
 
 ## 参考源码
 
